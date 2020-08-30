@@ -1,6 +1,6 @@
 ### Parse Bihar Electoral Rolls
 
-We parse [Bihar electoral rolls](https://github.com/in-rolls/electoral_rolls). (For scripts for parsing 'readable' electoral rolls, see [here](https://github.com/in-rolls/parse_elex_rolls))
+We parse [Bihar electoral rolls](https://github.com/in-rolls/electoral_rolls). (For scripts for parsing 'readable' electoral rolls, see [here](https://github.com/in-rolls/parse_elex_rolls)
 
 The [python notebook](scripts/parse_bihar_hindi.ipynb) can be used to process Bihar Hindi pdf electoral rolls for 2015/17/20. It produces a CSV with the following columns:
 
@@ -13,6 +13,10 @@ The test results for a select few rolls are [here](final_csv_test_report.ipynb)
 ### Data
 
 The final data for Bihar electoral rolls is posted [here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/MUEGDT).
+
+### Transliteration
+
+For transliteration, we tried both [polyglot](https://pypi.org/project/polyglot/) and [indic_trans](https://github.com/libindic/indic-trans). Both have issues but indic_trans is better.
 
 ### Authors
 
