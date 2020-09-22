@@ -1,6 +1,6 @@
-## Parse Unsearchable Election Rolls
+## Parse Unsearchable Electoral Rolls
 
-Some of the Indian election rolls are searchable, with a separate text layer in the right encoding (see [here](https://github.com/in-rolls/parse_elex_rolls)). Most are not. Here, we provide scripts that parse unsearchable rolls from the following states: Bihar, Chandigarh, Delhi (English), Haryana, Himachal Pradesh, Jharkhand, Madhya Pradesh, Rajasthan, Uttar Pradesh, and Uttarakhand.
+Some of the Indian electoral rolls are searchable, with a separate text layer in the right encoding (see [here](https://github.com/in-rolls/parse_elex_rolls)). Most are not. Here, we provide scripts that parse unsearchable rolls from the following states: Bihar, Chandigarh, Delhi (English), Haryana, Himachal Pradesh, Jharkhand, Madhya Pradesh, Rajasthan, Uttar Pradesh, and Uttarakhand.
 
 ### Scripts and Test Results from Sample of PDFs
 
