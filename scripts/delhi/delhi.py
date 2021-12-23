@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import sys
+sys.path.append('../')
+
 import os
 import pdf2image
 from PIL import Image
@@ -9,90 +12,43 @@ import difflib
 import re
 import pandas as pd
 
+from helper import *
+import argparse
 import multiprocessing
 import time
 
+# python delhi.py '../../data/' 'delhi/'
+
+script_description = """ Delhi parsing """
+
+parser = argparse.ArgumentParser(description=script_description,
+                                 formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+
+parser.add_argument("data_path", help="data path of the states with append /")
+parser.add_argument("state_name", help="the exact state name of data with /")
+
+cli_args = parser.parse_args()
+
+DATA_PATH = cli_args.data_path
+STATE = cli_args.state_name
 
 def create_path(path):
 	if not os.path.exists(path):
 		os.makedirs(path)
 
-
-DATA_PATH = '../data/'
-STATE = 'delhi/'
-
-PARSE_DATA_PAGES = "../parseData/images/"+STATE
+PARSE_DATA_PAGES = "../../parseData/images/"+STATE
 create_path(PARSE_DATA_PAGES)
 
-PARSE_DATA_BLOCKS = "../parseData/blocks/"+STATE
+PARSE_DATA_BLOCKS = "../../parseData/blocks/"+STATE
 create_path(PARSE_DATA_BLOCKS)
 
-PARSE_DATA_CSVS = "../parseData/csvs/"+STATE
+PARSE_DATA_CSVS = "../../parseData/csvs/"+STATE
 create_path(PARSE_DATA_CSVS)
 
 COLUMNS = ["id", "elector_name", "father_or_husband_name", "relationship", "house_no", "age", "sex", "ac_name", "parl_constituency", "part_no", "year", "state", "filename", "main_town", "police_station", "mandal", "revenue_division", "district", "pin_code", "polling_station_name", "polling_station_address", "net_electors_male", "net_electors_female", "net_electors_third_gender", "net_electors_total"]
 
 state_pdfs_path = DATA_PATH+STATE
 state_pdfs_files = os.listdir(state_pdfs_path)
-
-
-def pdf_to_img(pdf_file_path, output_images_path) :
-	
-	PDF_PATH = pdf_file_path
-	DPI = 500
-	OUTPUT_FOLDER = output_images_path
-	FIRST_PAGE = None
-	LAST_PAGE = None
-	FORMAT = 'jpg'
-	THREAD_COUNT = 1
-	USERPWD = None
-	USE_CROPBOX = False
-	STRICT = False
-	
-	def rename_filename(output_image_path,idx):
-		path, filename = os.path.split(output_image_path)
-		os.rename(output_image_path,path+"/"+str(idx)+".jpg")
-	
-	def delete_existing_images():
-		images = os.listdir(output_images_path)
-		for image in images:
-			os.remove(output_images_path+"/"+image)
-
-	
-
-	def pdftopil():
-
-		pil_images = pdf2image.convert_from_path(PDF_PATH, 
-												 dpi=DPI, 
-												 output_folder=OUTPUT_FOLDER, 
-												 first_page=FIRST_PAGE, 
-												 last_page=LAST_PAGE, 
-												 fmt=FORMAT, 
-												 thread_count=THREAD_COUNT, 
-												 userpw=USERPWD, 
-												 use_cropbox=USE_CROPBOX, 
-												 strict=STRICT)
-	   
-		for idx,image in enumerate(pil_images,1):
-			rename_filename(image.filename,idx)
-			
-		return pil_images
-	
-	
-	delete_existing_images()
-	pil_images = pdftopil()
-
-def tryint(s):
-	try:
-		return int(s)
-	except ValueError:
-		return s
-	
-def alphanum_key(s):
-	return [ tryint(c) for c in re.split('([0-9]+)', s) ]
-
-def sort_nicely(l):
-	l.sort(key=alphanum_key)
 
 
 def generate_poll_blocks_from_page(page_full_path,page_blocks_path,amend_page):
@@ -151,41 +107,6 @@ def check_page_type(img,amend_page):
 			   
 			
 	return 1,270
-	
-
-
-		
-def step2_order(params):
-	for idx,value in enumerate(params):
-		if difflib.SequenceMatcher(None,'निर्वाचक का नाम',value.split(":")[0]).ratio()>0.80:
-			new_params = params[idx-1:]
-			return new_params
-	return params
-
-def save_to_csv(dataframe, full_filepath):
-	
-	if dataframe.empty:
-		return 
-	else :       
-		dataframe.to_csv(full_filepath,index=False)
-		
-def combine_all_csvs(combine_full_filepath,csvs_path):
-	
-	all_filenames = os.listdir(csvs_path)
-	csvs_list = []
-	
-	for file in all_filenames:
-		if file.endswith('csv'):
-			csvs_list.append(pd.read_csv(csvs_path+file))
-			
-	combined_csv = pd.concat(csvs_list)
-	combined_csv.to_csv( combine_full_filepath, encoding='utf-8-sig')
-
-
-def crop_section(intial_width,intial_height,crop_width,crop_height,img):
-	area = (intial_width, intial_height, intial_width+crop_width, intial_height+crop_height)
-	cropped_img = img.crop(area)
-	return cropped_img
 
 def split_data(data):
 	seps = [":",">","-","."]
@@ -202,7 +123,7 @@ def split_data(data):
 	else:
 		data = ""
 		
-def arrane_columns(first_page_list,block_list,last_page_list,filename):
+def arrange_columns(first_page_list,block_list,last_page_list,filename):
 	
 	year = 2020
 	state = 'delhi'
@@ -218,7 +139,6 @@ def arrane_columns(first_page_list,block_list,last_page_list,filename):
 				 net_electors_male,net_electors_female,net_electors_third_gender,net_electors_total]
 
 	return final_list
-
 
 def extract_details_from_block(new_params_list):
 	
@@ -349,11 +269,9 @@ def extract_details_from_block(new_params_list):
 			continue
 	return v_id,name,rel_name,rel_type,house_no,age,sex
 
-
 def extract_4_numbers(crop_stat_path):
 	
 	text = (pytesseract.image_to_string(crop_stat_path, config='--psm 6', lang='eng')) #config='--psm 4' config='-c preserve_interword_spaces=1'
-#     print(text)
 	text = re.findall(r'\d+', text)    
 	if len(text)==4:
 		if int(text[0]) + int(text[1]) == int(text[2]):
@@ -371,7 +289,6 @@ def extract_4_numbers(crop_stat_path):
 	
 	return net_electors_male,net_electors_female,net_electors_third_gender,net_electors_total
 
-
 def extract_detail_section(text):
 	
 	keywords = ['Village','Ward No','Police','Tehsil','District','Pin']
@@ -382,7 +299,6 @@ def extract_detail_section(text):
 				found_keywords[idx] = split_data(t)
 				break
 	return found_keywords
-
 
 def extract_p_name_add(text):
 	
@@ -435,16 +351,11 @@ def extract_last_page_details(path):
 	
 	return a_n,b_n,c_n,d_n
 	
-	
-
 def extract_first_page_details(path):
 
 	img = Image.open(path)
 	crop_path = input_images_blocks_path+"page/"
 	create_path(crop_path)
-	
-#     a,b,c,d = 1415,4630,2400,100  # stats for male and female
-
 	
 	a,b,c,d = 1770,1900,1480,545  # mandal block
 	crop_img = crop_section(a,b,c,d,img)
@@ -489,15 +400,15 @@ def extract_first_page_details(path):
 		polling_station_name, polling_station_address = text[1],text[3]
 	else:
 		polling_station_name, polling_station_address = extract_p_name_add(text) 
-		
-	print("polling_station_name, polling_station_address",polling_station_name, polling_station_address)
-			
+					
 	
 	a,b,c,d = 180,290,2806,405 # ac name and parl
 	crop_img = crop_section(a,b,c,d,img)
 	
 	crop_ac_path = crop_path+"ac.jpg"
 	crop_img.save(crop_ac_path)
+	
+	ac_name, parl_constituency = '',''
 
 	text = (pytesseract.image_to_string(crop_ac_path, config='--psm 6', lang='eng')) #config='--psm 4' config='-c preserve_interword_spaces=1'
 	text = text.split('\n')
@@ -537,8 +448,6 @@ def extract_first_page_details(path):
 				found = True
 	
 	return [ac_name,parl_constituency,part_no,main_town,police_station,polling_station_name,polling_station_address,revenue_division,mandal,district,pin_code]
-
-
 
 def run_tesseract(path):
 	text = (pytesseract.image_to_string(path, config='--psm 6', lang='eng'))
@@ -658,7 +567,7 @@ if __name__ == '__main__':
 					continue
 
 				block_list = extract_details_from_block(block)
-				final_list = arrane_columns(first_page_list,block_list,last_page_list,pdf_file_name_without_ext)
+				final_list = arrange_columns(first_page_list,block_list,last_page_list,pdf_file_name_without_ext)
 
 				df_length = len(df)
 				df.loc[df_length] = final_list
@@ -667,4 +576,4 @@ if __name__ == '__main__':
 		print("CSV saved",pdf_file_name_without_ext)
 	
 	#combine all state files into one csv
-	combine_all_csvs("final.csv",PARSE_DATA_CSVS)
+	combine_all_csvs("delhi_final.csv",PARSE_DATA_CSVS)
