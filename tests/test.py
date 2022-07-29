@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import pytesseract
 
 def get_boxes(im1):
     #im1 = cv2.imread(file, 0)
@@ -13,6 +14,7 @@ def get_boxes(im1):
 
     contours, hierarchy = cv2.findContours(dilated_value,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 
+    cropped = []
     cordinates = [] 
     for cnt in contours:
         x,y,w,h = cv2.boundingRect(cnt)
@@ -23,17 +25,19 @@ def get_boxes(im1):
             im = cv2.rectangle(im,(x,y),(x+w,y+h),(0,0,255),1)
 
             crop_img = im1[y:y+h, x:x+w]
-            cv2.imshow("cropped", crop_img)
-            cv2.waitKey(100)
+            cropped.append(crop_img)
+            # cv2.imshow("cropped", crop_img)
+            # cv2.waitKey(100)
             #cv2.imwrite("crop_example.jpg", crop_img) 
         
         #cv2.imwrite("detected.jpg", im) 
     
-    return
+    return cropped
 
 
 if __name__ == "__main__":
     file =  r'10.jpg'
     im1 = cv2.imread(file, 0)
-    get_boxes(im1)
+    cropped = get_boxes(im1)
+    breakpoint()
 

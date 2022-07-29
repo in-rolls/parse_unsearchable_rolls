@@ -1,11 +1,16 @@
 import sys
 import os
-from tkinter import W
 import pandas as pd
+from helpers import get_boxes, pdf_to_img
+import logging
+import pytesseract
+#sys.path.append('../')
+#from parse_unsearchable_rolls.scripts.helper import *
 
-sys.path.append('../')
-from parse_unsearchable_rolls.scripts.helper import *
-
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s %(message)s',
+                    handlers=[logging.FileHandler("parser/debug.log"),
+                              logging.StreamHandler()])
 
 class Parser:
     BASE_DATA_PATH = 'data/'
@@ -37,26 +42,31 @@ class Parser:
     def run(self):
         pdf_files_paths = self.get_this_state_files()
 
+
         for pdf_file_path in pdf_files_paths:
-            images_path = self.IMAGES_PATH + self.state
-            this_pdf_images = f'{images_path}/{pdf_file_path.rstrip(".pdf").split("/")[-1]}'
-            create_path(this_pdf_images)
+            logging.info(f'Converting {pdf_file_path} ...')
+            #images_path = self.IMAGES_PATH + self.state
+            #this_pdf_images = f'{images_path}/{pdf_file_path.rstrip(".pdf").split("/")[-1]}'
+            #create_path(this_pdf_images)
 
-            images_list = self.pdf_to_img(pdf_file_path, this_pdf_images,dpi=500)
-            df = pd.DataFrame(columns = self.columns)
-            images_files_paths = self.get_full_path_files(this_pdf_images)
-            images_files_paths = self.filter_and_sort(images_files_paths, '.jpg')
+            logging.info('Converting pdf to imgs ...')
+            images_list = self.pdf_to_img(pdf_file_path, '',dpi=500)
+            #df = pd.DataFrame(columns = self.columns)
+            #images_files_paths = self.get_full_path_files(this_pdf_images)
+            #images_files_paths = self.filter_and_sort(images_files_paths, '.jpg')
 
-            
-            for page in images_files_paths:
-                if page.endswith('1.jpg'):
-                    ...
-                elif page.endswith('2.jpg'):
-                    ...
-                else:
-                    text = (pytesseract.image_to_string(page, lang=self.lang, config='--psm 6')) #config='--psm 4' config='-c preserve_interword_spaces=1'))
-                    breakpoint()
-
+            for page in images_list[2:]: #images_files_paths:
+                # if page.endswith('1.jpg'):
+                #     ...
+                # elif page.endswith('2.jpg'):
+                #     ...
+                # else:
+                logging.info('Getting boxes..')
+                breakpoint()
+                boxes = get_boxes(page)
+                for box in boxes:
+                    text = (pytesseract.image_to_string(box, lang=self.lang, config='--psm 6'))
+                    print(text)
 
 
 
