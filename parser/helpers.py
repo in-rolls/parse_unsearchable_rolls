@@ -1,6 +1,14 @@
 import cv2
 import numpy as np
 import pdf2image
+import pandas as pd
+
+
+
+def items_to_csv(items, output_csv_path):
+    # Convert dictionary to csv file trough pandas df
+    df = pd.DataFrame.from_dict(items)
+    df.to_csv (output_csv_path, index = False, header=True) 
 
 def pdf_to_img(pdf_file_path, dpi=200,page=None) :
 

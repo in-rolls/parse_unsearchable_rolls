@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+from g2_scraper.parser.parser import OUTPUT_CSV, items_to_csv
 from helpers import get_boxes, pdf_to_img
 import logging
 import pytesseract
@@ -13,6 +14,7 @@ class Parser:
     BASE_DATA_PATH = 'data/'
     BASE_PARSED_DATA_PATH = 'parsed_data/'
     IMAGES_PATH = BASE_PARSED_DATA_PATH + 'images/'
+    OUTPUT_CSV = ''
 
     def __init__(self, state, columns, lang):
         self.state = state
@@ -43,6 +45,7 @@ class Parser:
             logging.info(f'Converting {pdf_file_path} ...')
             logging.info('Converting pdf to imgs ...')
             images_list = self.pdf_to_img(pdf_file_path, dpi=500)
+            items = []
 
             for page in images_list[2:]:
                 logging.info('Getting boxes..')
@@ -50,7 +53,14 @@ class Parser:
                 boxes = get_boxes(page)
                 for box in boxes:
                     text = (pytesseract.image_to_string(box, lang=self.lang, config='--psm 6'))
-                    print(text)
+                    # TODO process text
+                    items.append(text)
+
+            
+            items_to_csv(items, self.OUTPUT_CSV)
+
+
+                
 
 
 
