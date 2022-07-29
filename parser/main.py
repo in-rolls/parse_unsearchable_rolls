@@ -1,11 +1,8 @@
-import sys
 import os
 import pandas as pd
 from helpers import get_boxes, pdf_to_img
 import logging
 import pytesseract
-#sys.path.append('../')
-#from parse_unsearchable_rolls.scripts.helper import *
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s %(message)s',
@@ -42,25 +39,12 @@ class Parser:
     def run(self):
         pdf_files_paths = self.get_this_state_files()
 
-
         for pdf_file_path in pdf_files_paths:
             logging.info(f'Converting {pdf_file_path} ...')
-            #images_path = self.IMAGES_PATH + self.state
-            #this_pdf_images = f'{images_path}/{pdf_file_path.rstrip(".pdf").split("/")[-1]}'
-            #create_path(this_pdf_images)
-
             logging.info('Converting pdf to imgs ...')
-            images_list = self.pdf_to_img(pdf_file_path, '',dpi=500)
-            #df = pd.DataFrame(columns = self.columns)
-            #images_files_paths = self.get_full_path_files(this_pdf_images)
-            #images_files_paths = self.filter_and_sort(images_files_paths, '.jpg')
+            images_list = self.pdf_to_img(pdf_file_path, dpi=500)
 
-            for page in images_list[2:]: #images_files_paths:
-                # if page.endswith('1.jpg'):
-                #     ...
-                # elif page.endswith('2.jpg'):
-                #     ...
-                # else:
+            for page in images_list[2:]:
                 logging.info('Getting boxes..')
                 breakpoint()
                 boxes = get_boxes(page)
@@ -71,7 +55,6 @@ class Parser:
 
 
 if __name__ == '__main__':
-    
     columns = ["number","id", "elector_name", "father_or_husband_name", "relationship", "house_no", "age", "sex", "ac_name", "parl_constituency", "part_no", "year", "state", "filename", "main_town", "police_station", "mandal", "revenue_division", "district", "pin_code", "polling_station_name", "polling_station_address", "net_electors_male", "net_electors_female", "net_electors_third_gender", "net_electors_total"]
     lang = 'eng'
     Parser('delhi', columns, lang).run()
