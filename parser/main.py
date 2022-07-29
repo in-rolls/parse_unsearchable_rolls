@@ -1,9 +1,9 @@
 import os
 import pandas as pd
-from g2_scraper.parser.parser import OUTPUT_CSV, items_to_csv
-from helpers import get_boxes, pdf_to_img
+from helpers import get_boxes, pdf_to_img, items_to_csv, strip_lower
 import logging
 import pytesseract
+import re
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s %(message)s',
@@ -16,13 +16,13 @@ class Parser:
     IMAGES_PATH = BASE_PARSED_DATA_PATH + 'images/'
     OUTPUT_CSV = ''
 
-    def __init__(self, state, columns, lang):
+    def __init__(self, state, lang, separator= ':', separator_alt = None, ommit = None):
         self.state = state
-        self.columns = columns
+        #self.columns = columns
         self.lang = lang
-
-    def pdf_to_img(self, pdf_file_path, output_images_path,dpi=200,page=None):
-        return pdf_to_img(pdf_file_path, output_images_path,dpi=dpi,page=page) 
+        self.separator = separator
+        self.ommit = ommit
+        self.separator_alt = separator_alt
 
     def get_full_path_files(self, path):
         return [os.path.join(path, f) for f in os.listdir(path)]
@@ -37,6 +37,66 @@ class Parser:
         files_path_list = self.get_full_path_files(path)
         return self.filter_and_sort(files_path_list, '.pdf')
 
+    def ommit_sentences(self, text):
+        if self.ommit:
+            for o in self.ommit:
+                text = text.replace(o, '')
+            
+        return text
+
+    def process_boxes_text(self, text):
+        raw = self.ommit_sentences(text)
+        raw = raw.replace('\n\n', '\n').split('\n')
+        result = {}
+        
+        # TODO not abtracted
+        result['id'] = raw.pop(0).strip()
+
+        # To add data to previous column
+        last_key = None
+
+        # Iter over results
+        for r in raw:
+            if self.separator in r.lower():
+                separated = r.split(self.separator)
+
+                if len(separated) == 2:
+                    key = strip_lower(separated[0])
+                    value = separated[1].strip()
+                    result[key] = value
+                    last_key = key
+
+                elif len(separated) == 3:
+                    try:
+                        key = strip_lower(separated[0])
+                        value_1, key_2 = separated[1].split()
+                        result[key] = value_1.strip()
+                        result[strip_lower(key_2)] = separated[2].strip()
+                        last_key = key
+                    except Exception as e:
+                        logging.error(f'2 separators error: {e} : {raw}')
+
+                else:
+                    logging.error(f'More than 2 separators {raw}')
+
+            elif r and not self.separator in r:
+                separated = r.split(self.separator_alt)
+
+                # TODO REPEATED CODE :63
+                if len(separated) == 2:
+                    key = strip_lower(separated[0])
+                    value = separated[1].strip()
+                    result[key] = value
+                    last_key = key
+
+                else:
+                    try:
+                        result[last_key] = result[last_key] + ' ' + r.strip()
+                    except Exception as e:
+                        logging.error(f'Exception: {e}: {raw}') 
+
+        return result
+        
 
     def run(self):
         pdf_files_paths = self.get_this_state_files()
@@ -44,28 +104,27 @@ class Parser:
         for pdf_file_path in pdf_files_paths:
             logging.info(f'Converting {pdf_file_path} ...')
             logging.info('Converting pdf to imgs ...')
-            images_list = self.pdf_to_img(pdf_file_path, dpi=500)
+            images_list = pdf_to_img(pdf_file_path, dpi=500)
             items = []
 
             for page in images_list[2:]:
+                #page.show()
                 logging.info('Getting boxes..')
-                breakpoint()
+
                 boxes = get_boxes(page)
                 for box in boxes:
-                    text = (pytesseract.image_to_string(box, lang=self.lang, config='--psm 6'))
-                    # TODO process text
-                    items.append(text)
+                    # todo get number and id separated
+                    text = pytesseract.image_to_string(box, lang=self.lang, config='--psm 6')
+                    item = self.process_boxes_text(text)
+                    items.append(item)
 
-            
-            items_to_csv(items, self.OUTPUT_CSV)
+            # TODO path
+            output_path = self.OUTPUT_CSV + self.state + '.csv'
+            items_to_csv(items, output_path)
 
-
-                
-
-
+            logging.info(f'Converted to csv: {output_path}')
 
 if __name__ == '__main__':
-    columns = ["number","id", "elector_name", "father_or_husband_name", "relationship", "house_no", "age", "sex", "ac_name", "parl_constituency", "part_no", "year", "state", "filename", "main_town", "police_station", "mandal", "revenue_division", "district", "pin_code", "polling_station_name", "polling_station_address", "net_electors_male", "net_electors_female", "net_electors_third_gender", "net_electors_total"]
     lang = 'eng'
-    Parser('delhi', columns, lang).run()
+    Parser('delhi', lang, separator_alt = ' - ', ommit = ['Photo is', '\nAvailable']).run()
 

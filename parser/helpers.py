@@ -4,6 +4,11 @@ import pdf2image
 import pandas as pd
 
 
+def strip_lower(text):
+    try:
+        return text.strip().lower()
+    except:
+        return text
 
 def items_to_csv(items, output_csv_path):
     # Convert dictionary to csv file trough pandas df
@@ -14,7 +19,7 @@ def pdf_to_img(pdf_file_path, dpi=200,page=None) :
 
     PDF_PATH = pdf_file_path
     DPI = dpi
-    OUTPUT_FOLDER = output_images_path
+    #OUTPUT_FOLDER = output_images_path
     FIRST_PAGE = page
     LAST_PAGE = page
     FORMAT = 'jpg'
