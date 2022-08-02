@@ -1,10 +1,16 @@
 import os
-import pandas as pd
+#import pandas as pd
 from helpers import get_boxes, pdf_to_img, items_to_csv, strip_lower
 import logging
 import pytesseract
-import re
+#import re
+import cv2
 
+# import matplotlib.pyplot as plt
+# import keras_ocr 
+  
+# pipeline = keras_ocr.pipeline.Pipeline()
+  
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s %(message)s',
                     handlers=[logging.FileHandler("parser/debug.log"),
@@ -44,6 +50,12 @@ class Parser:
             
         return text
 
+    # def custom_split(self, separator):
+    #     key = strip_lower(separated[0])
+    #     value = separated[1].strip()
+    #     key, value, last
+        
+
     def process_boxes_text(self, text):
         raw = self.ommit_sentences(text)
         raw = raw.replace('\n\n', '\n').split('\n')
@@ -65,6 +77,7 @@ class Parser:
                     value = separated[1].strip()
                     result[key] = value
                     last_key = key
+
 
                 elif len(separated) == 3:
                     try:
@@ -100,12 +113,15 @@ class Parser:
 
     def run(self):
         pdf_files_paths = self.get_this_state_files()
+        if not pdf_files_paths:
+            logging.info(f'No files found for {self.state}')
 
         for pdf_file_path in pdf_files_paths:
             logging.info(f'Converting {pdf_file_path} ...')
             logging.info('Converting pdf to imgs ...')
-            images_list = pdf_to_img(pdf_file_path, dpi=500)
+            images_list = pdf_to_img(pdf_file_path, dpi=500)#, page=(1,3))
             items = []
+
 
             for page in images_list[2:]:
                 #page.show()
@@ -114,9 +130,17 @@ class Parser:
                 boxes = get_boxes(page)
                 for box in boxes:
                     # todo get number and id separated
-                    text = pytesseract.image_to_string(box, lang=self.lang, config='--psm 6')
+                    # cv2.imshow("cropped", box)
+                    # cv2.waitKey(10) 
+                    text = pytesseract.image_to_string(box, lang=self.lang, config='--psm 6 digit')
+                    # img = keras_ocr.tools.read(box)
+                    # prediction_groups = pipeline.recognize([img])
+                    # keras_ocr.tools.drawAnnotations(image=img, predictions=prediction_groups[0])
+
                     item = self.process_boxes_text(text)
                     items.append(item)
+                
+                #page.show()
 
             # TODO path
             output_path = self.OUTPUT_CSV + self.state + '.csv'
@@ -128,3 +152,5 @@ if __name__ == '__main__':
     lang = 'eng'
     Parser('delhi', lang, separator_alt = ' - ', ommit = ['Photo is', '\nAvailable']).run()
 
+    #lang = 'eng+guj'
+    #Parser('gujarat', lang, separator = 'ન : ', separator_alt = ':-').run()
