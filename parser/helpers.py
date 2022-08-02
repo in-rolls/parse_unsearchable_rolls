@@ -55,12 +55,12 @@ def get_countours(im):
     contours, hierarchy = cv2.findContours(dilated,cv2.RETR_TREE ,cv2.CHAIN_APPROX_SIMPLE)
     return contours#, hierarchy
 
-def crop(im, contours,hh):
+def crop(im, contours, hh, ww):
     processed = []
     for cnt in contours:
         x,y,w,h = cv2.boundingRect(cnt)
 
-        if h > hh[0] and h < hh[1]:
+        if h > hh[0] and h < hh[1] and w > ww[0] and w< ww[1]:
             cropped_img = im[y+1:y+h, x:x+w]
             processed.append(cropped_img)
 
@@ -85,12 +85,11 @@ def remove_contours(im, contours, hh):
         x,y,w,h = cv2.boundingRect(cnt)
         
         if h > hh[0] and h < hh[1]:         
-            #cv2.drawContours(test_im, cnt, -1, (255,255,255), 10)
             #processed = cv2.rectangle(processed,(x+3,y+3),(x+w-3,y+h-3),(255,255,255),5)
             #processed = cv2.rectangle(processed,(x-3,y-3),(x+w+3,y+h+3),(255,255,255),5)
             #processed = cv2.rectangle(processed,(x,y),(x+w,y+h),(255,255,0),thickness=5)
 
-            z = 4 #6
+            z = 6 #6
             processed = cv2.line(processed,(x,y),(x+w,y),(0,0,0),10)
             processed = cv2.line(processed,(x+w-z,y),(x+w-z,y+h),(0,0,0),12)
             processed = cv2.line(processed,(x+z,y),(x+z,y+h),(0,0,0),12)
@@ -111,13 +110,16 @@ def get_boxes(pil_image):
     im = resize_img(im, scale)
     im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
     contours = get_countours(im)
-    boxes = crop(im, contours, (400 * scale, 1000 * scale)) 
+    boxes = crop(im, contours, (500,800), (300,1500)) 
 
     boxes_processed = []
     for b in boxes:
+        # cv2.imshow("cropped", b)
+        # cv2.waitKey()
+        
         contours = get_countours(b)
         boxes_processed.append(
-            remove_contours(b, contours, (60 * scale, 400 * scale))
+            remove_contours(b, contours, (60, 400))
         )
 
     return boxes_processed
