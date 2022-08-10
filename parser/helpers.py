@@ -20,10 +20,14 @@ def strip_lower(text):
     except:
         return text
 
-def items_to_csv(items, output_path):
+def items_to_csv(items, output_path, columns):
     # Convert dictionary to csv file trough pandas df
+    item = {}
+    for c in columns:
+        item[c] = ''
+    items.append(item)
     df = pd.DataFrame.from_dict(items)
-    df.to_csv (output_path, index = False, header=True) 
+    df.to_csv(output_path, index = False, header=True, columns=columns) 
 
 def pdf_to_img(pdf_file_path, dpi=200,page=(None,None)) :
     PDF_PATH = pdf_file_path

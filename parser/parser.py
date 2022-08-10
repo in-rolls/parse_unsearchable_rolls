@@ -17,9 +17,9 @@ class Parser:
     BASE_DATA_PATH = 'data/'
     DPI = 600
 
-    def __init__(self, state, lang, separator= ':', handle = [], separators = [], ommit = None, remove_columns = []):
+    def __init__(self, state, lang, separator= ':', columns = [], handle = [], separators = [], ommit = None, remove_columns = []):
         self.state = state.lower()
-        #self.columns = columns
+        self.columns = columns
         self.lang = lang
         self.separator = separator
         self.ommit = ommit
@@ -96,6 +96,28 @@ class Parser:
         
         return result, last_key, is_splitted
 
+    
+    def columns_split(self, r, columns, result, last_key):
+        is_splitted = False
+        low_r = r.lower().strip()
+
+        for c in columns:
+            cc = c.replace('_', ' ').replace('\'', '.?') 
+
+            found = re.findall('^' + cc + '.*?([\w\d].*)', low_r)
+            if found and any([x == c  for x in self.handle]):
+                return self.handle_separation(r, result)
+
+            elif found:
+                v = ''.join(found)
+                result[c] = v
+                last_key = c
+                is_splitted = True
+                break
+        
+        return result, last_key, is_splitted
+
+
      
     def process_boxes_text(self, text):
         #logging.info('Processing boxes\' text..')
@@ -121,21 +143,24 @@ class Parser:
 
         # Iter over results and split with separators
         for r in raw:
-            is_splitted = False
-            for sep in self.separators:
-                if sep in r.lower():
-                    result, last_key, is_splitted = self.custom_split(r, sep, result)
+            if not self.columns:
+                is_splitted = False
+                for sep in self.separators:
+                    if sep in r.lower():
+                        result, last_key, is_splitted = self.custom_split(r, sep, result)
 
-                    if is_splitted:
-                        break
+                        if is_splitted:
+                            break
+            else:
+                result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
 
             if r and not is_splitted:
                 try:
                     result[last_key] = result[last_key] + ' ' + r.strip()
                 except Exception as e:
                     logging.error(f'Exception: {e}: {raw}') 
+                    #breakpoint()
                     result, last_key, is_splitted = self.handle_separation_error(r, self.separators, result)
-                    
         return result
 
     # def handle_extra_pages(self, pages):
@@ -202,5 +227,5 @@ class Parser:
             #items = self.check_columns(items)
             formatted_items = self.format_items(items, first_page_results, last_page_results)
             output_path = self.output_csv + filename + '.csv'
-            items_to_csv(formatted_items, output_path)
+            items_to_csv(formatted_items, output_path, self.columns)
             logging.info(f'Converted to csv: {output_path}')
