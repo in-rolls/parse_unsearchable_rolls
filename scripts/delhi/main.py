@@ -204,7 +204,8 @@ class Delhi(Parser):
         })
 
         return result
-    
+
+
     def handle_separation(self, r, result):
         low_r = r.lower().strip()
         found = re.findall('^age', low_r) 
@@ -252,8 +253,26 @@ class Delhi(Parser):
 if __name__ == '__main__':
     lang = 'eng'
     RESCALE = 600/500 # from 500 dpi to 600
-    
-    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'assambly_constituency_name', 'assambly_constituency_number', 'section name', 'section number', 'part number', 'count', 'id', 'name', 'father\'s name', 'husband\'s name', 'mother\'s name', 'house number', 'age', 'sex', 'net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total']
+    checks = {
+        'count': [
+            {'r': '\d+', 's': -1},
+            {'r': '^[^\$|s|e].*', 's': -100}
+        ],
+        'id': [{
+            'r':'\w+', 's': -1
+        }],
+        'house number': [{
+            'r':'[\d|\w]+', 's': -1
+        }],
+        'age': [{
+            'r':'\d+', 's': -1
+        }],
+        'sex': [{
+            'r':'male|female', 's': -1
+        }]
+    }
+
+    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'assambly_constituency_name', 'assambly_constituency_number', 'section name', 'section number', 'part number', 'accuracy score', 'count', 'id', 'name', 'father\'s name', 'husband\'s name', 'mother\'s name', 'house number', 'age', 'sex', 'net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total']
 
     #Delhi('delhi', lang, separators =  [':', '|', '.', '=', '-'], handle=['age', 'sex', 'house'], ommit = ['Photo is', 'Available'], remove_columns = ['agv', 'no', 'l']).run()
-    Delhi('delhi', lang, columns = columns, handle=['age', 'sex'], ommit = ['Photo is', 'Available']).run()
+    Delhi('delhi', lang, columns = columns, checks = checks, handle=['age', 'sex'], ommit = ['Photo is', 'Available']).run()

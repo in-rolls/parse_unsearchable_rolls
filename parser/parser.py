@@ -5,6 +5,7 @@ import pytesseract
 from collections import OrderedDict
 import re
 
+
 # import matplotlib.pyplot as plt
 # import keras_ocr
 
@@ -17,7 +18,7 @@ class Parser:
     BASE_DATA_PATH = 'data/'
     DPI = 600
 
-    def __init__(self, state, lang, separator= ':', columns = [], handle = [], separators = [], ommit = None, remove_columns = []):
+    def __init__(self, state, lang, separator= ':', columns = [], checks = [], handle = [], separators = [], ommit = None, remove_columns = []):
         self.state = state.lower()
         self.columns = columns
         self.lang = lang
@@ -26,6 +27,7 @@ class Parser:
         self.separators = separators
         self.handle = handle
         self.remove_columns = remove_columns
+        self.checks = checks
 
         self.output_csv = self.BASE_DATA_PATH + 'out/' + self.state + '/'
         if not os.path.exists(self.output_csv):
@@ -116,9 +118,26 @@ class Parser:
                 break
         
         return result, last_key, is_splitted
-
-
      
+        
+    def check_accuracy(self, d, raw_data):
+        # Checks if data is correct and decides depending on score
+
+        accuracy = 0 
+        for k,v in self.checks.items():
+            extracted_value = d.get(k, '').lower().strip()
+
+            if not extracted_value:
+                accuracy -= 1
+            else:
+                for condition in v:
+                    checked = ''.join(re.findall(condition['r'], extracted_value))
+                    if checked != extracted_value:
+                        accuracy += condition['s']
+
+        return accuracy 
+
+
     def process_boxes_text(self, text):
         #logging.info('Processing boxes\' text..')
         raw = self.ommit_sentences(text)
@@ -143,7 +162,11 @@ class Parser:
 
         # Iter over results and split with separators
         for r in raw:
-            if not self.columns:
+            # split data depending on known columns
+            if self.columns:
+                result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+            # automatic split
+            else:
                 is_splitted = False
                 for sep in self.separators:
                     if sep in r.lower():
@@ -151,8 +174,6 @@ class Parser:
 
                         if is_splitted:
                             break
-            else:
-                result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
 
             if r and not is_splitted:
                 try:
@@ -161,6 +182,10 @@ class Parser:
                     logging.error(f'Exception: {e}: {raw}') 
                     #breakpoint()
                     result, last_key, is_splitted = self.handle_separation_error(r, self.separators, result)
+        
+        if self.checks:
+            result['accuracy score'] = self.check_accuracy(result, raw)
+
         return result
 
     # def handle_extra_pages(self, pages):
@@ -174,6 +199,9 @@ class Parser:
     # def get_header(self, page):
     #     # Overwrite with particular scripts
     #     return {}
+
+    # def check_data(self, d):
+     # Overwrite with particular scripts
 
     def check_columns(self, items):
         result = []
