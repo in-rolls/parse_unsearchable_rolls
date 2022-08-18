@@ -19,7 +19,7 @@ class Parser(Helpers, FirstLastPage):
     BASE_DATA_PATH = 'data/'
     DPI = 600
 
-    def __init__(self, state, lang, contours, rescale = 1,  separator = ':', columns = [], checks = [], handle = [], separators = [], ommit = None, remove_columns = [], test = False):
+    def __init__(self, state, lang, contours, first_page_coordinates = {}, last_page_coordinates = {}, rescale = 1,  separator = ':', columns = [], checks = [], handle = [], separators = [], ommit = None, remove_columns = [], test = False):
         self.state = state.lower()
         self.columns = columns
         self.lang = lang
@@ -32,6 +32,8 @@ class Parser(Helpers, FirstLastPage):
         self.test = test
         self.rescale = rescale
         self.contours = contours
+        self.first_page_coordinates = first_page_coordinates
+        self.last_page_coordinates = last_page_coordinates
 
         self.output_csv = self.BASE_DATA_PATH + 'out/' + self.state + '/'
         if not os.path.exists(self.output_csv):

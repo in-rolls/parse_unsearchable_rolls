@@ -50,28 +50,9 @@ class Gujarat(Parser):
         return result
 
 if __name__ == '__main__':
-    lang = 'eng+guj'
-    RESCALE = 600/500 # from 500 dpi to 600
-    checks = {
-        'count': [
-            {'r': '\d+', 's': -1},
-            {'r': '^[^\$|s|e].*', 's': -100}
-        ],
-        'id': [{
-            'r':'\w+', 's': -1
-        }],
-        'house number': [{
-            'r':'[\d|\w]+', 's': -1
-        }],
-        'age': [{
-            'r':'\d+', 's': -1
-        }],
-        'sex': [{
-            'r':'male|female', 's': -1
-        }]
-    }
 
     columns = []
+    lang = 'eng+guj'
 
     contours = ((500,800), (300,1500), (70, 400))
-    Gujarat('gujarat', lang, contours, test=True, separators = [':-', '--', '==', '=', ':'], rescale = 600/500 ).run()#, columns = columns, checks = checks).run()
+    Gujarat('gujarat', lang, contours, test=True, separators = [':-', '--', '=='], rescale = 600/500 ).run()

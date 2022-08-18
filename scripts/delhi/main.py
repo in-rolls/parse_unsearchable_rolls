@@ -45,19 +45,6 @@ class Delhi(Parser):
             last_key = 'sex'
             is_splitted = True
        
-        # redundant
-#        elif 'house' in low_r:
-#            key = 'house number'
-#            value = ''.join(re.findall('house number.*?([\d\w].*)', low_r))
-#            result[key] = value
-#            last_key = key
-#            is_splitted = True
-        
-        # else:
-        #     ### check
-        #     last_key = None
-        #     is_splitted = False
-
         return result, last_key, is_splitted
 
      
@@ -103,6 +90,17 @@ if __name__ == '__main__':
 
     columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'assambly_constituency_name', 'assambly_constituency_number', 'section name', 'section number', 'part number', 'accuracy score', 'count', 'id', 'name', 'father\'s name', 'husband\'s name', 'mother\'s name', 'house number', 'age', 'sex', 'net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total']
     contours = ((500,800), (300,1500), (60, 400))
+    first_page_coordinates = {
+        'A': [1770, 1900, 1480, 545],
+        'B': [3165, 295, 620, 190],
+        'C': [185, 3330, 2000, 672],
+        'D': [180, 290, 2806, 405],
+        }
+    
+    last_page_coordinates = [
+        [2504, 988, 1200,95],
+        [2494, 2486, 1200, 95],
+        [2494, 2516, 1200, 95]
+        ]
 
-    #Delhi('delhi', lang, separators =  [':', '|', '.', '=', '-'], handle=['age', 'sex', 'house'], ommit = ['Photo is', 'Available'], remove_columns = ['agv', 'no', 'l']).run()
-    Delhi('delhi', lang, contours = contours, rescale = rescale, columns = columns, checks = checks, handle=['age', 'sex'], ommit = ['Photo is', 'Available']).run()
+    Delhi('delhi', lang, last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, contours = contours, rescale = rescale, columns = columns, checks = checks, handle=['age', 'sex'], ommit = ['Photo is', 'Available']).run()

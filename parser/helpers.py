@@ -102,7 +102,7 @@ class Helpers:
 
         # cv2.imshow("cropped", processed)
         # cv2.waitKey()
-        #self.show(processed)
+        # self.show(processed)
         return processed
 
     def get_boxes(self, pil_image, contours):
