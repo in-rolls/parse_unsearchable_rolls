@@ -29,7 +29,10 @@ class Helpers:
             item[c] = ''
         items.append(item)
         df = pd.DataFrame.from_dict(items)
-        df.to_csv(output_path, index = False, header=True, columns=columns) 
+        if columns:
+            df.to_csv(output_path, index = False, header=True, columns=columns)
+        else:
+            df.to_csv(output_path, index = False, header=True)
 
     def pdf_to_img(self, pdf_file_path, dpi=200,page=(None,None)) :
         PDF_PATH = pdf_file_path
@@ -99,10 +102,14 @@ class Helpers:
 
         # cv2.imshow("cropped", processed)
         # cv2.waitKey()
-
+        #self.show(processed)
         return processed
 
-    def get_boxes(self, pil_image, limits_h, limits_w, countour_limits):
+    def get_boxes(self, pil_image, contours):
+        limits_h = contours[0]
+        limits_w = contours[1]
+        contour_limits = contours[2]
+
         im = np.array(pil_image) 
         im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
         contours = self.get_countours(im)
@@ -112,7 +119,7 @@ class Helpers:
         for b in boxes:
             contours = self.get_countours(b)
             boxes_processed.append(
-                self.remove_contours(b, contours, countour_limits)# (60, 400))
+                self.remove_contours(b, contours, contour_limits)# (60, 400))
             )
 
         return boxes_processed

@@ -1,5 +1,5 @@
 import os
-from .helpers import Helpers#get_boxes, pdf_to_img, items_to_csv, strip_lower, show
+from .helpers import Helpers
 from .first_last_page import FirstLastPage 
 import logging
 import pytesseract
@@ -19,7 +19,7 @@ class Parser(Helpers, FirstLastPage):
     BASE_DATA_PATH = 'data/'
     DPI = 600
 
-    def __init__(self, state, lang, rescale = 1,  separator = ':', columns = [], checks = [], handle = [], separators = [], ommit = None, remove_columns = [], test = False):
+    def __init__(self, state, lang, contours, rescale = 1,  separator = ':', columns = [], checks = [], handle = [], separators = [], ommit = None, remove_columns = [], test = False):
         self.state = state.lower()
         self.columns = columns
         self.lang = lang
@@ -31,6 +31,7 @@ class Parser(Helpers, FirstLastPage):
         self.checks = checks
         self.test = test
         self.rescale = rescale
+        self.contours = contours
 
         self.output_csv = self.BASE_DATA_PATH + 'out/' + self.state + '/'
         if not os.path.exists(self.output_csv):
@@ -236,20 +237,23 @@ class Parser(Helpers, FirstLastPage):
             items = []
             filename = pdf_file_path.split('/')[-1].strip('.pdf')
 
-            first_page_results, last_page_results = self.handle_extra_pages(pages)
-            # breakpoint()
+            if not self.test: 
+                first_page_results, last_page_results = self.handle_extra_pages(pages)
+            else:
+                first_page_results, last_page_results = {}, {} 
+
             for page in pages[2:-1]:
                 logging.info('Getting boxes..')
 
-                header = self.get_header(page)
-                boxes = self.get_boxes(page, (500,800), (300,1500), (60, 400))
+                if not self.test:
+                    header = self.get_header(page)
+                else:
+                    header = OrderedDict()
+
+                boxes = self.get_boxes(page, self.contours)
                 for box in boxes:
                     # todo get number and id separated
                     text = pytesseract.image_to_string(box, lang=self.lang, config='--psm 6')
-
-                    #img = keras_ocr.tools.read(box)
-                    #prediction_groups = pipeline.recognize([box])
-                    #keras_ocr.tools.drawAnnotations(image=img, predictions=prediction_groups[0])
 
                     item = header.copy()
                     item.update(self.process_boxes_text(text))

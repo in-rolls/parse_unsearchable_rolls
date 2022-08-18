@@ -1,7 +1,6 @@
 import sys
 sys.path.append('../')
 from parse_unsearchable_rolls.parser.parser import Parser
-#from parse_unsearchable_rolls.parser.helpers import crop_section, show
 import pytesseract
 import re
 
@@ -103,6 +102,7 @@ if __name__ == '__main__':
     }
 
     columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'assambly_constituency_name', 'assambly_constituency_number', 'section name', 'section number', 'part number', 'accuracy score', 'count', 'id', 'name', 'father\'s name', 'husband\'s name', 'mother\'s name', 'house number', 'age', 'sex', 'net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total']
+    contours = ((500,800), (300,1500), (60, 400))
 
     #Delhi('delhi', lang, separators =  [':', '|', '.', '=', '-'], handle=['age', 'sex', 'house'], ommit = ['Photo is', 'Available'], remove_columns = ['agv', 'no', 'l']).run()
-    Delhi('delhi', lang, rescale = rescale, columns = columns, checks = checks, handle=['age', 'sex'], ommit = ['Photo is', 'Available']).run()
+    Delhi('delhi', lang, contours = contours, rescale = rescale, columns = columns, checks = checks, handle=['age', 'sex'], ommit = ['Photo is', 'Available']).run()

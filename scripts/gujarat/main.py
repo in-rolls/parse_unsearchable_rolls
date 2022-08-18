@@ -1,7 +1,6 @@
 import sys
 sys.path.append('../')
 from parse_unsearchable_rolls.parser.parser import Parser
-#from parse_unsearchable_rolls.parser.helpers import crop_section, show
 import pytesseract
 import re
 
@@ -31,33 +30,6 @@ class Gujarat(Parser):
         })
 
         return result
-
-
-    def handle_separation(self, r, result):
-        low_r = r.lower().strip()
-        found = re.findall('^age', low_r) 
-        if found:
-            result['age'] = ''.join(re.findall('age[^\d]*(\d*)', r.lower()))
-            result['sex'] = ''.join(re.findall('sex[^\w]*(\w*)', r.lower()))
-
-            last_key = 'sex'
-            is_splitted = True
-       
-        # redundant
-#        elif 'house' in low_r:
-#            key = 'house number'
-#            value = ''.join(re.findall('house number.*?([\d\w].*)', low_r))
-#            result[key] = value
-#            last_key = key
-#            is_splitted = True
-        
-        # else:
-        #     ### check
-        #     last_key = None
-        #     is_splitted = False
-
-        return result, last_key, is_splitted
-
      
     def format_items(self, items, first_page_results, last_page_results):
         result = []
@@ -101,4 +73,5 @@ if __name__ == '__main__':
 
     columns = []
 
-    Gujarat('gujarat', lang).run()#, columns = columns, checks = checks).run()
+    contours = ((500,800), (300,1500), (70, 400))
+    Gujarat('gujarat', lang, contours, test=True, separators = [':-', '--', '==', '=', ':'], rescale = 600/500 ).run()#, columns = columns, checks = checks).run()
