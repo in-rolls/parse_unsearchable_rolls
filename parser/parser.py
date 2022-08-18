@@ -1,5 +1,6 @@
 import os
 from .helpers import Helpers#get_boxes, pdf_to_img, items_to_csv, strip_lower, show
+from .first_last_page import FirstLastPage 
 import logging
 import pytesseract
 from collections import OrderedDict
@@ -14,11 +15,11 @@ logging.basicConfig(level=logging.INFO,
                     handlers=[logging.FileHandler("parser/debug.log"),
                               logging.StreamHandler()])
 
-class Parser(Helpers):
+class Parser(Helpers, FirstLastPage):
     BASE_DATA_PATH = 'data/'
     DPI = 600
 
-    def __init__(self, state, lang, separator= ':', columns = [], checks = [], handle = [], separators = [], ommit = None, remove_columns = [], test = False):
+    def __init__(self, state, lang, rescale = 1,  separator = ':', columns = [], checks = [], handle = [], separators = [], ommit = None, remove_columns = [], test = False):
         self.state = state.lower()
         self.columns = columns
         self.lang = lang
@@ -29,6 +30,7 @@ class Parser(Helpers):
         self.remove_columns = remove_columns
         self.checks = checks
         self.test = test
+        self.rescale = rescale
 
         self.output_csv = self.BASE_DATA_PATH + 'out/' + self.state + '/'
         if not os.path.exists(self.output_csv):
@@ -235,6 +237,7 @@ class Parser(Helpers):
             filename = pdf_file_path.split('/')[-1].strip('.pdf')
 
             first_page_results, last_page_results = self.handle_extra_pages(pages)
+            # breakpoint()
             for page in pages[2:-1]:
                 logging.info('Getting boxes..')
 
