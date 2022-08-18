@@ -1,5 +1,5 @@
 import os
-from .helpers import get_boxes, pdf_to_img, items_to_csv, strip_lower
+from .helpers import Helpers#get_boxes, pdf_to_img, items_to_csv, strip_lower, show
 import logging
 import pytesseract
 from collections import OrderedDict
@@ -14,11 +14,11 @@ logging.basicConfig(level=logging.INFO,
                     handlers=[logging.FileHandler("parser/debug.log"),
                               logging.StreamHandler()])
 
-class Parser:
+class Parser(Helpers):
     BASE_DATA_PATH = 'data/'
     DPI = 600
 
-    def __init__(self, state, lang, separator= ':', columns = [], checks = [], handle = [], separators = [], ommit = None, remove_columns = []):
+    def __init__(self, state, lang, separator= ':', columns = [], checks = [], handle = [], separators = [], ommit = None, remove_columns = [], test = False):
         self.state = state.lower()
         self.columns = columns
         self.lang = lang
@@ -28,6 +28,7 @@ class Parser:
         self.handle = handle
         self.remove_columns = remove_columns
         self.checks = checks
+        self.test = test
 
         self.output_csv = self.BASE_DATA_PATH + 'out/' + self.state + '/'
         if not os.path.exists(self.output_csv):
@@ -71,7 +72,7 @@ class Parser:
         return result, last_key, is_splitted
 
     def split_2(self, separated):
-        key = strip_lower(separated[0])
+        key = self.strip_lower(separated[0])
         value = separated[1].strip()
         return key, value
 
@@ -229,7 +230,7 @@ class Parser:
         for pdf_file_path in pdf_files_paths:
             logging.info(f'Converting {pdf_file_path} ...')
             logging.info('Converting pdf to imgs ...')
-            pages = pdf_to_img(pdf_file_path, dpi=self.DPI)#, page=(1,6))
+            pages = self.pdf_to_img(pdf_file_path, dpi=self.DPI)#, page=(1,6))
             items = []
             filename = pdf_file_path.split('/')[-1].strip('.pdf')
 
@@ -238,7 +239,7 @@ class Parser:
                 logging.info('Getting boxes..')
 
                 header = self.get_header(page)
-                boxes = get_boxes(page, (500,800), (300,1500), (60, 400))
+                boxes = self.get_boxes(page, (500,800), (300,1500), (60, 400))
                 for box in boxes:
                     # todo get number and id separated
                     text = pytesseract.image_to_string(box, lang=self.lang, config='--psm 6')
@@ -255,5 +256,5 @@ class Parser:
             #items = self.check_columns(items)
             formatted_items = self.format_items(items, first_page_results, last_page_results)
             output_path = self.output_csv + filename + '.csv'
-            items_to_csv(formatted_items, output_path, self.columns)
+            self.items_to_csv(formatted_items, output_path, self.columns)
             logging.info(f'Converted to csv: {output_path}')

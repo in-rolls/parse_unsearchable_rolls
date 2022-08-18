@@ -5,112 +5,115 @@ import pdf2image
 import pandas as pd
 import matplotlib.pyplot as plt 
 
-def show(im):
-    plotting = plt.imshow(im,cmap='gray')
-    plt.show()
 
-def crop_section(intial_width,intial_height,crop_width,crop_height,im):
-    #return im[intial_height:intial_height+crop_height, intial_width:intial_width+crop_width]
-    area = (intial_width, intial_height, intial_width+crop_width, intial_height+crop_height)
-    return im.crop(area)
+class Helpers:
+    def show(self, im):
+        plotting = plt.imshow(im,cmap='gray')
+        plt.show()
 
-def strip_lower(text):
-    try:
-        return text.strip().lower()
-    except:
-        return text
+    def crop_section(self, intial_width,intial_height,crop_width,crop_height,im):
+        #return im[intial_height:intial_height+crop_height, intial_width:intial_width+crop_width]
+        area = (intial_width, intial_height, intial_width+crop_width, intial_height+crop_height)
+        return im.crop(area)
 
-def items_to_csv(items, output_path, columns):
-    # Convert dictionary to csv file trough pandas df
-    item = {}
-    for c in columns:
-        item[c] = ''
-    items.append(item)
-    df = pd.DataFrame.from_dict(items)
-    df.to_csv(output_path, index = False, header=True, columns=columns) 
+    def strip_lower(self, text):
+        try:
+            return text.strip().lower()
+        except:
+            return text
 
-def pdf_to_img(pdf_file_path, dpi=200,page=(None,None)) :
-    PDF_PATH = pdf_file_path
-    DPI = dpi
-    #OUTPUT_FOLDER = output_images_path
-    FIRST_PAGE = page[0]
-    LAST_PAGE = page[1]
-    FORMAT = 'jpg'
-    THREAD_COUNT = 1
-    USERPWD = None
-    USE_CROPBOX = False
-    STRICT = False
+    def items_to_csv(self, items, output_path, columns):
+        # Convert dictionary to csv file trough pandas df
+        item = {}
+        for c in columns:
+            item[c] = ''
+        items.append(item)
+        df = pd.DataFrame.from_dict(items)
+        df.to_csv(output_path, index = False, header=True, columns=columns) 
 
-    return pdf2image.convert_from_path(
-            PDF_PATH,
-            dpi=DPI,
-            #output_folder=OUTPUT_FOLDER,
-            first_page=FIRST_PAGE,
-            last_page=LAST_PAGE,
-            fmt=FORMAT,
-            thread_count=THREAD_COUNT,
-            userpw=USERPWD,
-            use_cropbox=USE_CROPBOX,
-            strict=STRICT
-        )
+    def pdf_to_img(self, pdf_file_path, dpi=200,page=(None,None)) :
+        PDF_PATH = pdf_file_path
+        DPI = dpi
+        #OUTPUT_FOLDER = output_images_path
+        FIRST_PAGE = page[0]
+        LAST_PAGE = page[1]
+        FORMAT = 'jpg'
+        THREAD_COUNT = 1
+        USERPWD = None
+        USE_CROPBOX = False
+        STRICT = False
+
+        return pdf2image.convert_from_path(
+                PDF_PATH,
+                dpi=DPI,
+                #output_folder=OUTPUT_FOLDER,
+                first_page=FIRST_PAGE,
+                last_page=LAST_PAGE,
+                fmt=FORMAT,
+                thread_count=THREAD_COUNT,
+                userpw=USERPWD,
+                use_cropbox=USE_CROPBOX,
+                strict=STRICT
+            )
 
 
-def get_countours(im):
-    ret,thresh = cv2.threshold(im,180,255,cv2.THRESH_BINARY_INV)# + cv2.THRESH_OTSU)
-    kernel = np.ones((3,3),np.uint8)
-    dilated = cv2.dilate(thresh,kernel,iterations = 1)
-    contours, hierarchy = cv2.findContours(dilated,cv2.RETR_TREE ,cv2.CHAIN_APPROX_SIMPLE)
-    return contours
+    def get_countours(self, im):
+        ret,thresh = cv2.threshold(im,180,255,cv2.THRESH_BINARY_INV)# + cv2.THRESH_OTSU)
+        kernel = np.ones((3,3),np.uint8)
+        dilated = cv2.dilate(thresh,kernel,iterations = 1)
+        contours, hierarchy = cv2.findContours(dilated,cv2.RETR_TREE ,cv2.CHAIN_APPROX_SIMPLE)
+        return contours
 
-def crop(im, contours, hh, ww):
-    processed = []
-    for cnt in contours:
-        x,y,w,h = cv2.boundingRect(cnt)
+    def crop(self, im, contours, hh, ww):
+        processed = []
+        for cnt in contours:
+            x,y,w,h = cv2.boundingRect(cnt)
 
-        if h > hh[0] and h < hh[1] and w > ww[0] and w< ww[1]:
-            cropped_img = im[y+1:y+h, x:x+w]
-            processed.append(cropped_img)
+            if h > hh[0] and h < hh[1] and w > ww[0] and w< ww[1]:
+                cropped_img = im[y+1:y+h, x:x+w]
+                processed.append(cropped_img)
 
-    return processed
+        return processed
 
-# def resize_img(img, scale):
-#     width = int(img.shape[1] * scale)
-#     height = int(img.shape[0] * scale)
-#     dim = (width, height)
-    
-#     return cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
-
-def remove_contours(im, contours, hh):
-    ret,thresh = cv2.threshold(im,180,255,cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
-    processed = thresh
-
-    for cnt in contours:
-        x,y,w,h = cv2.boundingRect(cnt)
+    # def resize_img(img, scale):
+    #     width = int(img.shape[1] * scale)
+    #     height = int(img.shape[0] * scale)
+    #     dim = (width, height)
         
-        if h > hh[0] and h < hh[1]:
-            z = 6 
-            processed = cv2.line(processed,(x,y),(x+w,y),(0,0,0),10)
-            processed = cv2.line(processed,(x+w-z,y),(x+w-z,y+h),(0,0,0),12)
-            processed = cv2.line(processed,(x+z,y),(x+z,y+h),(0,0,0),12)
-            processed = cv2.line(processed,(x,y+h-z),(x+w,y+h-z),(0,0,0),10)
+    #     return cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
 
-    # cv2.imshow("cropped", processed)
-    # cv2.waitKey()
+    def remove_contours(self, im, contours, hh):
+        ret,thresh = cv2.threshold(im,180,255,cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+        processed = thresh
+        #processed = im
 
-    return processed
+        for cnt in contours:
+            x,y,w,h = cv2.boundingRect(cnt)
+            
+            if h > hh[0] and h < hh[1]:
+                z = 6 
+                processed = cv2.line(processed,(x,y),(x+w,y),(0,0,0),10)
+                processed = cv2.line(processed,(x+w-z,y),(x+w-z,y+h),(0,0,0),12)
+                processed = cv2.line(processed,(x+z,y),(x+z,y+h),(0,0,0),12)
+                processed = cv2.line(processed,(x,y+h-z),(x+w,y+h-z),(0,0,0),10)
 
-def get_boxes(pil_image, limits_h, limits_w, countour_limits):
-    im = np.array(pil_image) 
-    im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
-    contours = get_countours(im)
-    boxes = crop(im, contours, limits_h, limits_w) #(500,800), (300,1500)) 
+        # cv2.imshow("cropped", processed)
+        # cv2.waitKey()
 
-    boxes_processed = []
-    for b in boxes:
-        contours = get_countours(b)
-        boxes_processed.append(
-            remove_contours(b, contours, countour_limits)# (60, 400))
-        )
+        return processed
 
-    return boxes_processed
+    def get_boxes(self, pil_image, limits_h, limits_w, countour_limits):
+        im = np.array(pil_image) 
+        im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
+        contours = self.get_countours(im)
+        boxes = self.crop(im, contours, limits_h, limits_w) #(500,800), (300,1500)) 
+
+        boxes_processed = []
+        for b in boxes:
+            contours = self.get_countours(b)
+            boxes_processed.append(
+                self.remove_contours(b, contours, countour_limits)# (60, 400))
+            )
+
+        return boxes_processed
 
