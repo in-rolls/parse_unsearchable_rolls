@@ -268,7 +268,7 @@ class Parser(Helpers, FirstLastPage):
         else:
             first_page_results, last_page_results = {}, {} 
 
-        for page in pages[2:3]:
+        for page in pages[2:-1]:
             logging.info('Getting boxes..')
 
             if not self.test:

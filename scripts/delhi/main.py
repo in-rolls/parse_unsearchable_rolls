@@ -157,5 +157,4 @@ if __name__ == '__main__':
 
     DL = Delhi('delhi', lang, last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, contours = contours, rescale = rescale, columns = columns, checks = checks, handle=['age', 'sex'], ommit = ['Photo is', 'Available'])
 
-    # 8 cores processing
-    DL.run(8)
+    DL.run(4)

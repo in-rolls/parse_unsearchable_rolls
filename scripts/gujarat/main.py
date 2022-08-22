@@ -118,7 +118,6 @@ if __name__ == '__main__':
     contours = ((500,800), (300,1500), (70, 400))
     GJ = Gujarat('gujarat', lang, contours, translate_columns = translate_columns,last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, columns = columns, test=False, separators = [':-', '--', '=='], rescale = 600/500 )
 
-    # 8 cores processing 
-    GJ.run(8)
+    GJ.run(4)
 
 
