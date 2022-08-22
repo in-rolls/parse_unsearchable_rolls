@@ -8,6 +8,20 @@ from collections import OrderedDict
 
  
 class Delhi(Parser):
+    MANDAL_KEYWORDS = {
+        'Village': 'main_town',
+        'Ward No': 'revenue_division',
+        'Police': 'police_station',
+        'Tehsil': 'mandal',
+        'District': 'district',
+        'Pin': 'pin_code'
+    }
+    P_KEYWORDS = {
+        'polling_station_name': 'Name',
+        'polling_station_address': 'Address'
+        }
+
+
     def handle_extra_pages(self, pages):
         return self.extract_first_page_details(pages[0]), self.extract_last_page_details(pages[-1])
         #return super().handle_extra_pages(pages)
@@ -47,6 +61,40 @@ class Delhi(Parser):
        
         return result, last_key, is_splitted
 
+    def get_ac(self, text):
+        ac_name = ''
+        parl_constituency = ''
+        if len(text)>=3:
+            for t in text:
+                if "located" in t:
+                    for s in [':','-','>']:
+                        if s in t:
+                            break
+                        
+                    row = t.split(s)
+                    if len(row)>=2:
+                        parl_constituency = row[-1].strip()
+
+                    break
+
+            found = False
+            for t in text:
+                if found:
+                    if "Parliamentary" not in t:
+                        ac_name = ac_name + " "+t
+                    break
+
+                if "Assembly" in t:
+                    row = t.split(":")
+                    if len(row)>=2:
+                        ac_name = row[-1].strip()
+
+                    found = True
+
+            return {
+                    'ac_name': ac_name,
+                    'parl_constituency': parl_constituency
+                }
      
     def format_items(self, items, first_page_results, last_page_results):
         result = []
@@ -88,19 +136,26 @@ if __name__ == '__main__':
         }]
     }
 
-    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'assambly_constituency_name', 'assambly_constituency_number', 'section name', 'section number', 'part number', 'accuracy score', 'count', 'id', 'name', 'father\'s name', 'husband\'s name', 'mother\'s name', 'house number', 'age', 'sex', 'net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total']
+    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'assambly_constituency_name', 'assambly_constituency_number', 'section name', 'section number', 'part number', 'accuracy score', 'count', 'id', 'name', 'father\'s name', 'husband\'s name', 'mother\'s name', 'house number', 'age', 'sex', 'net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
+
     contours = ((500,800), (300,1500), (60, 400))
     first_page_coordinates = {
-        'A': [1770, 1900, 1480, 545],
-        'B': [3165, 295, 620, 190],
-        'C': [185, 3330, 2000, 672],
-        'D': [180, 290, 2806, 405],
+        'mandal': [1770, 1900, 1480, 545],
+        'part_no': [3165, 295, 620, 190],
+        'police': [185, 3330, 1900, 572],
+        'ac': [180, 290, 2806, 405],
         }
     
-    last_page_coordinates = [
+    last_page_coordinates = {
+        'rescale': True,
+        'coordinates':[
         [2504, 988, 1200,95],
         [2494, 2486, 1200, 95],
         [2494, 2516, 1200, 95]
         ]
+    }
 
-    Delhi('delhi', lang, last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, contours = contours, rescale = rescale, columns = columns, checks = checks, handle=['age', 'sex'], ommit = ['Photo is', 'Available']).run()
+    DL = Delhi('delhi', lang, last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, contours = contours, rescale = rescale, columns = columns, checks = checks, handle=['age', 'sex'], ommit = ['Photo is', 'Available'])
+
+    # 8 cores processing
+    DL.run(8)

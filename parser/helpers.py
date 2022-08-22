@@ -29,7 +29,11 @@ class Helpers:
             item[c] = ''
         items.append(item)
         df = pd.DataFrame.from_dict(items)
+
         if columns:
+            if self.translate_columns:
+                df.rename(columns=self.translate_columns, inplace=True)
+                columns = self.translate_input_columns()
             df.to_csv(output_path, index = False, header=True, columns=columns)
         else:
             df.to_csv(output_path, index = False, header=True)

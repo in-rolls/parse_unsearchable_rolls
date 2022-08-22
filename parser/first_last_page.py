@@ -3,21 +3,31 @@ import re
 from collections import OrderedDict
 
 class FirstLastPage:
+    # def split_data(self, data):
+    #     seps = [":",">","-","."]
+        
+    #     for s in seps:
+    #         if s in data:
+    #             break
+            
+    #     data = data.split(s)
+    #     data = [ i for i in data if i.strip()!='']
+    #     if len(data)>1:
+    #         data = data[1].strip()
+    #         return data
+    #     else:
+    #         data = ""
+
 
     def split_data(self, data):
         seps = [":",">","-","."]
-        
         for s in seps:
             if s in data:
                 break
             
         data = data.split(s)
-        data = [ i for i in data if i.strip()!='']
-        if len(data)>1:
-            data = data[1].strip()
-            return data
-        else:
-            data = ""
+        return [ x.strip() for x in data ]
+        
             
     def extract_4_numbers(self, crop_stat_path):
         text = (pytesseract.image_to_string(crop_stat_path, config='--psm 6', lang=self.lang)) #config='--psm 4' config='-c preserve_interword_spaces=1'
@@ -38,37 +48,42 @@ class FirstLastPage:
         
         return a,b,c,d
 
-    def extract_detail_section(self, text):
-        keywords = ['Village','Ward No','Police','Tehsil','District','Pin']
-        found_keywords = ["","","","","",""]
-        for idx,keyword in enumerate(keywords):
-            for t in text:
-                if keyword in t:
-                    found_keywords[idx] = self.split_data(t)
-                    break
-        return found_keywords
+    # def extract_detail_section(self, text):
+    #     keywords = self.MANDAL_KEYWORDS
+    #     breakpoint()
+    #     found_keywords = ["","","","","",""]
+    #     for idx,keyword in enumerate(keywords):
+    #         for t in text:
+    #             if keyword in t:
+    #                 found_keywords[idx] = self.split_data(t)
+    #                 break
+    #     return found_keywords
 
-    def extract_p_name_add(self, text):
-        keywords = ['Name','Address']
-        found_keywords = ["",""]
+    # def extract_p_name_add(self, text):
+    #     keywords = self.P_KEYWORDS
+    #     found_keywords = ["",""]
         
-        for idx,key in enumerate(keywords):
-            for t_idx, t in enumerate(text):
-                if key in t:
-                    if len(text)>t_idx+1:
-                        found_keywords[idx]  = text[t_idx+1]
+    #     for idx,key in enumerate(keywords):
+    #         for t_idx, t in enumerate(text):
+    #             if key in t:
+    #                 if len(text)>t_idx+1:
+    #                     found_keywords[idx]  = text[t_idx+1]
                         
-        return found_keywords
+    #     return found_keywords
 
     def extract_last_page_details(self, img):
         result = OrderedDict()
+        a, b, c, d = '','','',''
         coordinates = []
 
-        for c in self.last_page_coordinates:
-            coordinates.append(
-                [x * self.rescale for x in c]
-            )
-        
+        if self.last_page_coordinates.get('rescale', False):
+            for c in self.last_page_coordinates.get('coordinates', []):
+                coordinates.append(
+                    [x * self.rescale for x in c]
+                )
+        else:
+            coordinates = self.last_page_coordinates.get('coordinates')
+
         for cs in coordinates:
             c1, c2, c3, c4 = cs
             cropped = self.crop_section(c1,c2,c3,c4,img)
@@ -85,99 +100,71 @@ class FirstLastPage:
             'net_electors_total': d
         })
         return result
+
+    def rescale_cs(self, l):
+        return [ x * self.rescale for x in l] 
         
     def extract_first_page_details(self, img):
         coordinates = self.first_page_coordinates
         result = OrderedDict()
+        rescale = coordinates.get('rescale', True)
 
-        if A:= coordinates.get('A', None):
-            a,b,c,d = [ x * self.rescale for x in A] # mandal block
+        if cs := coordinates.get('mandal', None):
+            a,b,c,d = self.rescale_cs(cs) if rescale else cs # mandal block
+
             crop_img = self.crop_section(a,b,c,d,img)
-
-            text = (pytesseract.image_to_string(crop_img, config='--psm 6', lang=self.lang)) #config='--psm 4' config='-c preserve_interword_spaces=1'
+            text = (pytesseract.image_to_string(crop_img, config='--psm 6', lang=self.lang)) 
             text = text.split('\n')
             text = [ i for i in text if i!='' and i!='\x0c']
-                
-            right_length = True if len(text) == 6 else False
-            result.update({
-                'main_town': self.split_data(text[0]) if right_length else self.extract_detail_section(text)[0],
-                'revenue_division': self.split_data(text[1]) if right_length else self.extract_detail_section(text)[1],
-                'police_station': str(self.split_data(text[2])) if right_length else self.extract_detail_section(text)[2],
-                'mandal': self.split_data(text[3]) if right_length else self.extract_detail_section(text)[3],
-                'district': self.split_data(text[4]) if right_length else self.extract_detail_section(text)[4],
-                'pin_code': self.split_data(text[5]) if right_length else self.extract_detail_section(text)[5]
-            })
+
+            for t in text:
+                k, v = self.split_data(t)
+                for kk, vv in self.MANDAL_KEYWORDS.items(): 
+                    if kk in k:
+                        result[vv] = v
+                        break
             
-        if B:= coordinates.get('B', None):
-            a,b,c,d = [ x * self.rescale for x in B]  # part no
+        if cs := coordinates.get('part_no', None):
+            a,b,c,d = self.rescale_cs(cs) if rescale else cs # part no
             part_crop = self.crop_section(a,b,c,d,img)
             
-            text = (pytesseract.image_to_string(part_crop, config='--psm 6', lang=self.lang)) #config='--psm 4' config='-c preserve_interword_spaces=1'
+            text = (pytesseract.image_to_string(part_crop, config='--psm 6', lang=self.lang))
             text = re.findall(r'\d+', text)
             
-            right_length = True if len(text)>0 else False 
-            result.update({
-                'part_no': text[0] if right_length else ''
-            })
+            result['part_no'] = ''.join(text)
         
 
-        if C:= coordinates.get('C', None):
-            a,b,c,d = [ x * self.rescale for x in C] # police name name and address
+        if cs := coordinates.get('police', None):
+            a,b,c,d = self.rescale_cs(cs) if rescale else cs # police name name and address
             police_crop = self.crop_section(a,b,c,d,img)
-            
-            text = (pytesseract.image_to_string(police_crop, config='--psm 6', lang=self.lang)) #config='--psm 4' config='-c preserve_interword_spaces=1'
+            text = (pytesseract.image_to_string(police_crop, config='--psm 6', lang=self.lang)) 
+
             text = text.split('\n')
             text = [ i for i in text if i!='' and i!='\x0c']
-            
-            right_length = True if len(text)>0 else False  
-            result.update({
-                'polling_station_name': text[1] if right_length else self.extract_p_name_add(text)[0],
-                'polling_station_address': text[3] if right_length else self.extract_p_name_add(text)[1]  
-            })
 
-        if D:= coordinates.get('D', None):
-            a,b,c,d = [ x * self.rescale for x in D]# ac name and parl
+            for k,v in self.P_KEYWORDS.items():
+                for i,t in enumerate(text):
+                    if v in t:
+                        result[k] = text[i+1]
+                        try:
+                            text[i+3]
+                        except:
+                            result[k] = result[k] + ' ' + ' '.join(text[i+2:]) 
+                        break
+
+        if cs := coordinates.get('ac', None):
+            a,b,c,d = self.rescale_cs(cs) if rescale else cs # ac name and parl
             ac_crop = self.crop_section(a,b,c,d,img)
+            # self.show(ac_crop)
+            # self.show(img)
             
-            text = (pytesseract.image_to_string(ac_crop, config='--psm 6', lang=self.lang)) #config='--psm 4' config='-c preserve_interword_spaces=1'
+            text = (pytesseract.image_to_string(ac_crop, config='--psm 6', lang=self.lang)) 
             text = text.split('\n')
             text = [ i for i in text if i!='' and i!='\x0c']
             
-            ac_name = ''
-            parl_constituency = ''
-            if len(text)>=3:
-                for t in text:
-                    if "located" in t:
-                        for s in [':','-','>']:
-                            if s in t:
-                                break
-                            
-                        row = t.split(s)
-                        if len(row)>=2:
-                            parl_constituency = row[-1].strip()
-
-                        break
-
-                found = False
-                for t in text:
-                    if found:
-                        if "Parliamentary" not in t:
-                            ac_name = ac_name + " "+t
-                        break
-
-                    if "Assembly" in t:
-                        row = t.split(":")
-                        if len(row)>=2:
-                            ac_name = row[-1].strip()
-
-                        found = True
-
-                result.update({
-                        'ac_name': ac_name,
-                        'parl_constituency': parl_constituency
-                    })
+            result.update(self.get_ac(text))
         
-        return result #[ac_name,parl_constituency,part_no,main_town,police_station,polling_station_name,polling_station_address,revenue_division,mandal,district,pin_code]
+        return result
 
 
     def handle_extra_pages(self, pages):

@@ -5,7 +5,8 @@ import logging
 import pytesseract
 from collections import OrderedDict
 import re
-
+import time
+import multiprocessing
 
 # import matplotlib.pyplot as plt
 # import keras_ocr
@@ -19,7 +20,20 @@ class Parser(Helpers, FirstLastPage):
     BASE_DATA_PATH = 'data/'
     DPI = 600
 
-    def __init__(self, state, lang, contours, first_page_coordinates = {}, last_page_coordinates = {}, rescale = 1,  separator = ':', columns = [], checks = [], handle = [], separators = [], ommit = None, remove_columns = [], test = False):
+    def run(self, processors):
+        # multiprocessing
+        pdf_files = self.get_file_paths()
+
+        pool = multiprocessing.Pool(processors)
+        start_time = time.perf_counter()
+        processes = [pool.apply_async(self.process_pdf, args=(pdf,)) for pdf in pdf_files]
+        result = [p.get() for p in processes]
+        finish_time = time.perf_counter()
+
+        logging.info(f"Program finished in {finish_time-start_time} seconds")
+        logging.info(result)
+
+    def __init__(self, state, lang, contours, translate_columns = {} , first_page_coordinates = {}, last_page_coordinates = {}, rescale = 1,  separator = ':', columns = [], checks = [], handle = [], separators = [], ommit = None, remove_columns = [], test = False):
         self.state = state.lower()
         self.columns = columns
         self.lang = lang
@@ -34,6 +48,7 @@ class Parser(Helpers, FirstLastPage):
         self.contours = contours
         self.first_page_coordinates = first_page_coordinates
         self.last_page_coordinates = last_page_coordinates
+        self.translate_columns = translate_columns
 
         self.output_csv = self.BASE_DATA_PATH + 'out/' + self.state + '/'
         if not os.path.exists(self.output_csv):
@@ -194,6 +209,17 @@ class Parser(Helpers, FirstLastPage):
 
         return result
 
+
+    def translate_input_columns(self):
+        translated_columns = []
+        for k in self.columns:
+            if k in self.translate_columns.keys():
+                translated_columns.append(self.translate_columns[k])
+            else:
+                translated_columns.append(k)
+
+        return translated_columns
+
     # def handle_extra_pages(self, pages):
     #     # Overwrite with particular scripts
     #     return {}, {}
@@ -206,19 +232,12 @@ class Parser(Helpers, FirstLastPage):
     #     # Overwrite with particular scripts
     #     return {}
 
+    # def get_ac(self, text):
+    #     # Overwrite with particular scripts
+    #     return {)
+
     # def check_data(self, d):
      # Overwrite with particular scripts
-
-    def check_columns(self, items):
-        result = []
-        for i in items:
-            for rk in self.remove_columns:
-                if rk in i.keys():
-                    logging.error(f'Removed {k} from {str(i)}')
-                    del i[rk]
-            result.append(i)
-
-        return result
 
     # def export_to_csv(self, items):
     #     df = pd.DataFrame.from_dict(items)
@@ -227,43 +246,47 @@ class Parser(Helpers, FirstLastPage):
     #     df.to_csv (output_path, index = False, header=True) 
 
 
-    def run(self):
+    def get_file_paths(self):
         pdf_files_paths = self.get_this_state_files()
         if not pdf_files_paths:
             logging.info(f'No files found for {self.state}')
 
-        for pdf_file_path in pdf_files_paths:
-            logging.info(f'Converting {pdf_file_path} ...')
-            logging.info('Converting pdf to imgs ...')
-            pages = self.pdf_to_img(pdf_file_path, dpi=self.DPI)#, page=(1,6))
-            items = []
-            filename = pdf_file_path.split('/')[-1].strip('.pdf')
+        return pdf_files_paths
 
-            if not self.test: 
-                first_page_results, last_page_results = self.handle_extra_pages(pages)
-            else:
-                first_page_results, last_page_results = {}, {} 
+    def process_pdf(self, pdf_file_path):
+        logging.info(f'Converting {pdf_file_path} ...')
+        logging.info('Converting pdf to imgs ...')
+        pages = self.pdf_to_img(pdf_file_path, dpi=self.DPI)#, page=(1,6))
+        items = []
+        filename = pdf_file_path.split('/')[-1].strip('.pdf')
+        base_item = {
+            'file_name' : filename
+            }
 
-            for page in pages[2:-1]:
-                logging.info('Getting boxes..')
+        if not self.test: 
+            first_page_results, last_page_results = self.handle_extra_pages(pages)
+        else:
+            first_page_results, last_page_results = {}, {} 
 
-                if not self.test:
-                    header = self.get_header(page)
-                else:
-                    header = OrderedDict()
+        for page in pages[2:3]:
+            logging.info('Getting boxes..')
 
-                boxes = self.get_boxes(page, self.contours)
-                for box in boxes:
-                    # todo get number and id separated
-                    text = pytesseract.image_to_string(box, lang=self.lang, config='--psm 6')
+            if not self.test:
+                base_item.update(self.get_header(page))
 
-                    item = header.copy()
-                    item.update(self.process_boxes_text(text))
-                    items.append(item)
+            boxes = self.get_boxes(page, self.contours)
+            for box in boxes:
+                # todo get number and id separated
+                text = pytesseract.image_to_string(box, lang=self.lang, config='--psm 6')
 
-            
-            #items = self.check_columns(items)
-            formatted_items = self.format_items(items, first_page_results, last_page_results)
-            output_path = self.output_csv + filename + '.csv'
-            self.items_to_csv(formatted_items, output_path, self.columns)
-            logging.info(f'Converted to csv: {output_path}')
+                item = base_item.copy()
+                processed_box = self.process_boxes_text(text)
+                item.update(processed_box)
+                items.append(item)
+
+        
+        #items = self.check_columns(items)
+        formatted_items = self.format_items(items, first_page_results, last_page_results)
+        output_path = self.output_csv + filename + '.csv'
+        self.items_to_csv(formatted_items, output_path, self.columns)
+        logging.info(f'Converted to csv: {output_path}')
