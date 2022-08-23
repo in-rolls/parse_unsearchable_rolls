@@ -48,8 +48,22 @@ class Delhi(Parser):
 
         return result
 
+    def handle_separation_error(self, r, separator, result):
+        last_key = None
+        is_splitted = False
+
+        if '-' in r:
+            rr = r.split('-')
+            key = rr[0]
+            value = '-'.join(rr[1:])
+            result[key] = value
+            last_key = key
+            is_splitted = False
+
+        return result, last_key, is_splitted
 
     def handle_separation(self, r, result):
+        last_key = None
         low_r = r.lower().strip()
         found = re.findall('^age', low_r) 
         if found:
