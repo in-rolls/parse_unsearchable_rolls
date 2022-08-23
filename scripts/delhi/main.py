@@ -64,6 +64,8 @@ class Delhi(Parser):
 
     def handle_separation(self, r, result):
         last_key = None
+        is_splitted = False
+
         low_r = r.lower().strip()
         found = re.findall('^age', low_r) 
         if found:
@@ -72,6 +74,7 @@ class Delhi(Parser):
 
             last_key = 'sex'
             is_splitted = True
+        
        
         return result, last_key, is_splitted
 
