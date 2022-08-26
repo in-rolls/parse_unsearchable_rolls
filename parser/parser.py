@@ -24,16 +24,20 @@ class Parser(Helpers, FirstLastPage):
         # multiprocessing
         pdf_files = self.get_file_paths()
 
-        pool = multiprocessing.Pool(processors)
-        start_time = time.perf_counter()
-        processes = [pool.apply_async(self.process_pdf, args=(pdf,)) for pdf in pdf_files]
-        result = [p.get() for p in processes]
-        finish_time = time.perf_counter()
+        if not self.test:
+            pool = multiprocessing.Pool(processors)
+            start_time = time.perf_counter()
+            processes = [pool.apply_async(self.process_pdf, args=(pdf,)) for pdf in pdf_files]
+            result = [p.get() for p in processes]
+            finish_time = time.perf_counter()
 
-        logging.info(f"Program finished in {finish_time-start_time} seconds")
-        logging.info(result)
+            logging.info(f"Program finished in {finish_time-start_time} seconds")
+            logging.info(result)
+        else:
+            for pdf in pdf_files:
+                self.process_pdf(pdf)
 
-    def __init__(self, state, lang, contours, translate_columns = {} , first_page_coordinates = {}, last_page_coordinates = {}, rescale = 1,  separator = ':', columns = [], checks = [], handle = [], separators = [], ommit = None, remove_columns = [], test = False):
+    def __init__(self, state, lang, contours, ignore_last=False,translate_columns = {} , first_page_coordinates = {}, last_page_coordinates = {}, rescale = 1,  separator = ':', columns = [], checks = [], handle = [], separators = [], ommit = None, remove_columns = [], test = False):
         self.state = state.lower()
         self.columns = columns
         self.lang = lang
@@ -49,6 +53,7 @@ class Parser(Helpers, FirstLastPage):
         self.first_page_coordinates = first_page_coordinates
         self.last_page_coordinates = last_page_coordinates
         self.translate_columns = translate_columns
+        self.ignore_last = ignore_last
 
         self.output_csv = self.BASE_DATA_PATH + 'out/' + self.state + '/'
         if not os.path.exists(self.output_csv):
@@ -74,23 +79,6 @@ class Parser(Helpers, FirstLastPage):
             
         return text
     
-    def handle_separation_error(self, r, separator, result):
-        last_key = None
-        is_splitted = False
-
-        if '-' in r:
-            rr = r.split('-')
-            key = rr[0]
-            value = '-'.join(rr[1:])
-            result[key] = value
-            last_key = key
-            is_splitted = False
-
-        else:
-            logging.error(f'Separation error : {r}')
-
-        return result, last_key, is_splitted
-
     def split_2(self, separated):
         key = self.strip_lower(separated[0])
         value = separated[1].strip()
@@ -137,7 +125,7 @@ class Parser(Helpers, FirstLastPage):
                 last_key = c
                 is_splitted = True
                 break
-        
+                
         return result, last_key, is_splitted
      
         
@@ -165,6 +153,9 @@ class Parser(Helpers, FirstLastPage):
         raw = raw.replace('\n\n', '\n').split('\n')
         result = OrderedDict()
         
+        # clean raw
+        raw = list(filter(None, raw))
+
         # TODO not abstracted
         id_ = raw.pop(0).strip()
         first = id_.split(' ')
@@ -180,6 +171,10 @@ class Parser(Helpers, FirstLastPage):
 
         # To add data to previous column
         last_key = None
+
+        if self.ignore_last:
+            raw = list(filter(None, raw))
+            raw = raw[:-1]
 
         # Iter over results and split with separators
         for r in raw:
@@ -198,9 +193,10 @@ class Parser(Helpers, FirstLastPage):
 
             if r and not is_splitted:
                 try:
+                    # Add last line to previous key
                     result[last_key] = result[last_key] + ' ' + r.strip()
                 except Exception as e:
-                    logging.error(f'Exception: {e}: {raw}') 
+                    logging.error(f'Exception: {e}: \n{raw} \n{result}') 
                     #breakpoint()
                     result, last_key, is_splitted = self.handle_separation_error(r, self.separators, result)
         
@@ -218,7 +214,51 @@ class Parser(Helpers, FirstLastPage):
             else:
                 translated_columns.append(k)
 
-        return translated_columns
+        return translated_columns        
+
+    def get_file_paths(self):
+        pdf_files_paths = self.get_this_state_files()
+        if not pdf_files_paths:
+            logging.info(f'No files found for {self.state}')
+
+        return pdf_files_paths
+
+    def process_pdf(self, pdf_file_path):
+        logging.info(f'Converting {pdf_file_path} ...')
+        logging.info('Converting pdf to imgs ...')
+        pages = self.pdf_to_img(pdf_file_path, dpi=self.DPI)
+        items = []
+        filename = pdf_file_path.split('/')[-1].strip('.pdf')
+        base_item = {
+            'file_name' : filename
+            }
+
+        first_page_results, last_page_results = self.handle_extra_pages(pages)
+
+        for page in pages[2:-1]:
+            logging.info('Getting boxes..')
+
+            base_item.update(self.get_header(page))
+
+            boxes = self.get_boxes(page, self.contours)
+            for box in boxes:
+                # todo get number and id separated
+                text = pytesseract.image_to_string(box, lang=self.lang, config='--psm 6')
+
+                item = base_item.copy()
+                processed_box = self.process_boxes_text(text)
+                item.update(processed_box)
+                items.append(item)
+
+        
+        #items = self.check_columns(items)
+        formatted_items = self.format_items(items, first_page_results, last_page_results)
+        output_path = self.output_csv + filename + '.csv'
+        self.items_to_csv(formatted_items, output_path, self.columns)
+        logging.info(f'Converted to csv: {output_path}')
+
+
+
 
     # def handle_extra_pages(self, pages):
     #     # Overwrite with particular scripts
@@ -244,49 +284,3 @@ class Parser(Helpers, FirstLastPage):
     #     df = self.check_errors(df)
     #     output_path = self.output_csv + self.state + '.csv'
     #     df.to_csv (output_path, index = False, header=True) 
-
-
-    def get_file_paths(self):
-        pdf_files_paths = self.get_this_state_files()
-        if not pdf_files_paths:
-            logging.info(f'No files found for {self.state}')
-
-        return pdf_files_paths
-
-    def process_pdf(self, pdf_file_path):
-        logging.info(f'Converting {pdf_file_path} ...')
-        logging.info('Converting pdf to imgs ...')
-        pages = self.pdf_to_img(pdf_file_path, dpi=self.DPI)#, page=(1,6))
-        items = []
-        filename = pdf_file_path.split('/')[-1].strip('.pdf')
-        base_item = {
-            'file_name' : filename
-            }
-
-        if not self.test: 
-            first_page_results, last_page_results = self.handle_extra_pages(pages)
-        else:
-            first_page_results, last_page_results = {}, {} 
-
-        for page in pages[2:-1]:
-            logging.info('Getting boxes..')
-
-            if not self.test:
-                base_item.update(self.get_header(page))
-
-            boxes = self.get_boxes(page, self.contours)
-            for box in boxes:
-                # todo get number and id separated
-                text = pytesseract.image_to_string(box, lang=self.lang, config='--psm 6')
-
-                item = base_item.copy()
-                processed_box = self.process_boxes_text(text)
-                item.update(processed_box)
-                items.append(item)
-
-        
-        #items = self.check_columns(items)
-        formatted_items = self.format_items(items, first_page_results, last_page_results)
-        output_path = self.output_csv + filename + '.csv'
-        self.items_to_csv(formatted_items, output_path, self.columns)
-        logging.info(f'Converted to csv: {output_path}')

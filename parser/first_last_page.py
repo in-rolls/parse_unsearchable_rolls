@@ -75,14 +75,17 @@ class FirstLastPage:
         result = OrderedDict()
         a, b, c, d = '','','',''
         coordinates = []
+        rescale = self.last_page_coordinates.get('rescale', False)
+        input_coordinates = self.last_page_coordinates.get('coordinates', [])
+        year_coordinates = self.last_page_coordinates.get('year', [])
 
-        if self.last_page_coordinates.get('rescale', False):
-            for c in self.last_page_coordinates.get('coordinates', []):
+        if rescale:
+            for c in input_coordinates:
                 coordinates.append(
                     [x * self.rescale for x in c]
                 )
         else:
-            coordinates = self.last_page_coordinates.get('coordinates')
+            coordinates = input_coordinates
 
         for cs in coordinates:
             c1, c2, c3, c4 = cs
@@ -93,11 +96,20 @@ class FirstLastPage:
             else:
                 break
         
+        if year_coordinates:
+            c1, c2, c3, c4 = year_coordinates
+            cropped = self.crop_section(c1,c2,c3,c4,img)
+            text = pytesseract.image_to_string(cropped, lang=self.lang, config='--psm 6')
+            year = ''.join(re.findall('\d+', text))
+        else:
+            year = ''
+
         result.update({
             'net_electors_male': a,
             'net_electors_female': b,
             'net_electors_third_gender': c,
-            'net_electors_total': d
+            'net_electors_total': d,
+            'year': year
         })
         return result
 

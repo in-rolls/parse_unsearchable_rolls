@@ -1,6 +1,8 @@
 import sys
 sys.path.append('../')
-from parse_unsearchable_rolls.parser.parser import Parser
+#from parse_unsearchable_rolls.parser.parser import Parser
+from parse_unsearchable_rolls.scripts.gujarat.main import Gujarat
+
 import pytesseract
 import re
 
@@ -9,7 +11,7 @@ from collections import OrderedDict
 
 # methods specific to this state
  
-class Gujarat(Parser):
+class Daman(Gujarat):
     MANDAL_KEYWORDS = {
         'મુખ્ય ગામ/શહેર': 'main_town',
         #'Ward No': 'revenue_division',
@@ -76,6 +78,20 @@ class Gujarat(Parser):
             'parl_constituency': parl_constituency
         }
 
+    def handle_separation(self, r, result):
+        last_key = None
+        is_splitted = False
+
+        low_r = r.lower().strip()
+        found = re.findall('^age', low_r) 
+        if found:
+            result['age'] = ''.join(re.findall('age[^\d]*(\d*)', r.lower()))
+            result['sex'] = ''.join(re.findall('sex[^\w]*(\w*)', r.lower()))
+
+            last_key = 'sex'
+            is_splitted = True
+       
+        return result, last_key, is_splitted
 
 if __name__ == '__main__':
 
@@ -96,25 +112,25 @@ if __name__ == '__main__':
         [3030,2321,4669-3030,2653-2321]
         ],
         'year': [1354, 2500, 2270-1354, 2640-2500]
-
     }
 
-    #columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'assambly_constituency_name', 'assambly_constituency_number', 'section name', 'section number', 'part number', 'accuracy score', 'count', 'id', 'નામ', 'પિતાન નામ', 'પતીનં નામ', 'પતીનં નામ', 'માતાન નામ', 'ઘરનં', 'age', 'sex', 'net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total']
-
-    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'accuracy score', 'count', 'id', 'નામ', 'પિતાન નામ', 'પતીનં નામ', 'માતાન નામ', 'ઘરનં', 'net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
+    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'accuracy score', 'count', 'id', 'નામ', 'પિતાનુ નામ', 'પતીનું નામ', 'ઘરનં', 'માતાનુ નામ', 'ઉમર', 'જાતિ', 'net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
 
     translate_columns = {
         'નામ': 'name',
-        'પિતાન નામ': 'father\'s name',
-        'પતીનં નામ': 'husband\'s name',
+        'પિતાનુ નામ': 'father\'s name',
+        'પતીનું નામ': 'husband\'s name',
         'ઘરનં': 'house_number',
-        #'પતીનં નામ':  'wife\'s name',
-        'માતાન નામ': 'mother\'s name',
+        'માતાનુ નામ': 'mother\'s name',
+        'ઉમર':'age',
+        'જાતિ':'sex'
     }
 
     contours = ((500,800), (300,1500), (70, 400))
-    GJ = Gujarat('gujarat', lang, contours, ignore_last = True, translate_columns = translate_columns,last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, columns = columns, separators = [':-', '--', '=='], rescale = 600/500 )
+    
+    DM = Daman('daman', lang, contours, test = True, translate_columns = translate_columns,last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, columns = columns, separators = [':-', '--', '=='], rescale = 600/500, handle=['ઉમર', 'જાતિ'] )
+    #DM = Daman('daman', lang, contours, test = True ,last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, separators = [':-', '--', '=='], rescale = 600/500, handle=['ઉમર', 'જાતિ'] )
 
-    GJ.run(2)
+    DM.run(2)
 
 

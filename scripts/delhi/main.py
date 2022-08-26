@@ -74,7 +74,6 @@ class Delhi(Parser):
 
             last_key = 'sex'
             is_splitted = True
-        
        
         return result, last_key, is_splitted
 
@@ -172,6 +171,6 @@ if __name__ == '__main__':
         ]
     }
 
-    DL = Delhi('delhi', lang, last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, contours = contours, rescale = rescale, columns = columns, checks = checks, handle=['age', 'sex'], ommit = ['Photo is', 'Available'])
+    DL = Delhi('delhi', lang, test = False, last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, contours = contours, rescale = rescale, columns = columns, checks = checks, handle=['age', 'sex'], ommit = ['Photo is', 'Available'])
 
-    DL.run(4)
+    DL.run(3)
