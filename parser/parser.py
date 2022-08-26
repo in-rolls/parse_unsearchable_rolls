@@ -149,12 +149,16 @@ class Parser(Helpers, FirstLastPage):
 
     def process_boxes_text(self, text):
         #logging.info('Processing boxes\' text..')
+        result = OrderedDict()
         raw = self.ommit_sentences(text)
         raw = raw.replace('\n\n', '\n').split('\n')
-        result = OrderedDict()
-        
+
         # clean raw
-        raw = list(filter(None, raw))
+        try:
+            raw = [x.strip() for x in raw]
+            raw = list(filter(None, raw))
+        except Exception as e:
+            logging.error(f'Clean error: {e}: {raw}')
 
         # TODO not abstracted
         id_ = raw.pop(0).strip()
@@ -196,7 +200,7 @@ class Parser(Helpers, FirstLastPage):
                     # Add last line to previous key
                     result[last_key] = result[last_key] + ' ' + r.strip()
                 except Exception as e:
-                    logging.error(f'Exception: {e}: \n{raw} \n{result}') 
+                    logging.warning(f'Exception: {e}: \n{raw} \n{result}') 
                     #breakpoint()
                     result, last_key, is_splitted = self.handle_separation_error(r, self.separators, result)
         
