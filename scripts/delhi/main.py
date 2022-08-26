@@ -70,7 +70,8 @@ class Delhi(Parser):
         found = re.findall('^age', low_r) 
         if found:
             result['age'] = ''.join(re.findall('age[^\d]*(\d*)', r.lower()))
-            result['sex'] = ''.join(re.findall('sex[^\w]*(\w*)', r.lower()))
+            # cleaning female/male field
+            result['sex'] = ''.join(re.findall('sex[^\w]*([male|female]*)', r.lower()))
 
             last_key = 'sex'
             is_splitted = True
@@ -171,6 +172,6 @@ if __name__ == '__main__':
         ]
     }
 
-    DL = Delhi('delhi', lang, test = False, last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, contours = contours, rescale = rescale, columns = columns, checks = checks, handle=['age', 'sex'], ommit = ['Photo is', 'Available'])
+    DL = Delhi('delhi', lang, test = True, last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, contours = contours, rescale = rescale, columns = columns, checks = checks, handle=['age', 'sex'], ommit = ['Photo is', 'Available'])
 
     DL.run(3)
