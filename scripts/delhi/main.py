@@ -48,7 +48,7 @@ class Delhi(Parser):
 
         return result
 
-    def handle_separation_error(self, r, separator, result):
+    def handle_custom_split_not_found(self, r, separator, result):
         last_key = None
         is_splitted = False
 
@@ -58,22 +58,24 @@ class Delhi(Parser):
             value = '-'.join(rr[1:])
             result[key] = value
             last_key = key
-            is_splitted = False
+            is_splitted = False #??? True
 
         return result, last_key, is_splitted
 
     def handle_separation(self, r, result):
         last_key = None
         is_splitted = False
+        age = self.handle[0]
+        sex = self.handle[1]
 
         low_r = r.lower().strip()
-        found = re.findall('^age', low_r) 
+        found = re.findall('^' + age, low_r) 
         if found:
-            result['age'] = ''.join(re.findall('age[^\d]*(\d*)', r.lower()))
+            result[age] = ''.join(re.findall(age + '[^\d]*(\d*)', r.lower()))
             # cleaning female/male field
-            result['sex'] = ''.join(re.findall('sex[^\w]*([male|female]*)', r.lower()))
+            result[sex] = ''.join(re.findall(sex + '[^\w]*([male|female]*)', r.lower()))
 
-            last_key = 'sex'
+            last_key = sex
             is_splitted = True
        
         return result, last_key, is_splitted
@@ -172,6 +174,6 @@ if __name__ == '__main__':
         ]
     }
 
-    DL = Delhi('delhi', lang, test = True, last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, contours = contours, rescale = rescale, columns = columns, checks = checks, handle=['age', 'sex'], ommit = ['Photo is', 'Available'])
+    DL = Delhi('delhi', lang, last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, contours = contours, rescale = rescale, columns = columns, checks = checks, handle=['age', 'sex'], ommit = ['Photo is', 'Available'])
 
     DL.run(3)

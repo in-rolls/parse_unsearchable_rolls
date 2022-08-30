@@ -11,7 +11,7 @@ from collections import OrderedDict
 
 # methods specific to this state
  
-class Daman(Gujarat):
+class Dadra(Gujarat):
     MANDAL_KEYWORDS = {
         'મુખ્ય ગામ/શહેર': 'main_town',
         #'Ward No': 'revenue_division',
@@ -34,7 +34,7 @@ class Daman(Gujarat):
         result = []
 
         additional = {
-            'year': '2021',
+            #'year': '2021',
             'state': self.state
         }
 
@@ -81,14 +81,16 @@ class Daman(Gujarat):
     def handle_separation(self, r, result):
         last_key = None
         is_splitted = False
+        age = self.handle[0]
+        sex = self.handle[1]
 
         low_r = r.lower().strip()
-        found = re.findall('^age', low_r) 
+        found = re.findall('^' + age, low_r) 
         if found:
-            result['age'] = ''.join(re.findall('age[^\d]*(\d*)', r.lower()))
-            result['sex'] = ''.join(re.findall('sex[^\w]*(\w*)', r.lower()))
+            result[age] = ''.join(re.findall(age + '[^\d]*(\d*)', r.lower()))
+            result[sex] = ''.join(re.findall(sex + '[^\w]*(\w*)', r.lower()))
 
-            last_key = 'sex'
+            last_key = sex
             is_splitted = True
        
         return result, last_key, is_splitted
@@ -128,9 +130,9 @@ if __name__ == '__main__':
 
     contours = ((500,800), (300,1500), (70, 400))
     
-    DM = Daman('daman', lang, contours, test = True, translate_columns = translate_columns,last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, columns = columns, separators = [':-', '--', '=='], rescale = 600/500, handle=['ઉમર', 'જાતિ'] )
+    DD = Dadra('dadra', lang, contours, translate_columns = translate_columns,last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, columns = columns, separators = [':-', '--', '=='], rescale = 600/500, handle=['ઉમર', 'જાતિ'] )
     #DM = Daman('daman', lang, contours, test = True ,last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, separators = [':-', '--', '=='], rescale = 600/500, handle=['ઉમર', 'જાતિ'] )
 
-    DM.run(2)
+    DD.run(2)
 
 

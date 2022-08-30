@@ -37,6 +37,10 @@ class Helpers:
             df.to_csv(output_path, index = False, header=True, columns=columns)
         else:
             df.to_csv(output_path, index = False, header=True)
+    
+    def check_cropped(self, im, cropped):
+        self.show(im)
+        self.show(cropped)
 
     def pdf_to_img(self, pdf_file_path, dpi=200,page=(None,None)) :
         PDF_PATH = pdf_file_path

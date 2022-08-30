@@ -1,4 +1,5 @@
 import os
+from turtle import setx
 from .helpers import Helpers
 from .first_last_page import FirstLastPage 
 import logging
@@ -7,6 +8,7 @@ from collections import OrderedDict
 import re
 import time
 import multiprocessing
+import traceback
 
 # import matplotlib.pyplot as plt
 # import keras_ocr
@@ -19,6 +21,7 @@ logging.basicConfig(level=logging.INFO,
 class Parser(Helpers, FirstLastPage):
     BASE_DATA_PATH = 'data/'
     DPI = 600
+    SEPARATORS = [":-", ":", ">", "="]
 
     def run(self, processors):
         # multiprocessing
@@ -37,7 +40,7 @@ class Parser(Helpers, FirstLastPage):
             for pdf in pdf_files:
                 self.process_pdf(pdf)
 
-    def __init__(self, state, lang, contours, ignore_last=False,translate_columns = {} , first_page_coordinates = {}, last_page_coordinates = {}, rescale = 1,  separator = ':', columns = [], checks = [], handle = [], separators = [], ommit = None, remove_columns = [], test = False):
+    def __init__(self, state, lang, contours, ignore_last=False,translate_columns = {} , first_page_coordinates = {}, last_page_coordinates = {}, rescale = 1,  separator = ':', columns = [], checks = [], handle = [], separators = [], ommit = None, remove_columns = []):
         self.state = state.lower()
         self.columns = columns
         self.lang = lang
@@ -47,13 +50,27 @@ class Parser(Helpers, FirstLastPage):
         self.handle = handle
         self.remove_columns = remove_columns
         self.checks = checks
-        self.test = test
+        self.test = os.getenv('TEST')
         self.rescale = rescale
         self.contours = contours
         self.first_page_coordinates = first_page_coordinates
         self.last_page_coordinates = last_page_coordinates
         self.translate_columns = translate_columns
         self.ignore_last = ignore_last
+
+
+        # Column names one time convertion
+        self.house_number = 'house number'
+        self.age = 'age'
+        self.gender = 'sex'
+
+        for k,v in translate_columns.items():
+            if v == 'house_number':
+                self.house_number = k
+            elif v == 'age':
+                self.age = k
+            elif v == 'sex':
+                self.gender = k
 
         self.output_csv = self.BASE_DATA_PATH + 'out/' + self.state + '/'
         if not os.path.exists(self.output_csv):
@@ -103,10 +120,37 @@ class Parser(Helpers, FirstLastPage):
                 is_splitted = True
 
             else:
-                return self.handle_separation_error(r, separator, result)
+                return self.handle_custom_split_not_found(r, separator, result)
         
         return result, last_key, is_splitted
 
+    def handle_separator_without_column(self, r, result, last_key):
+        is_splitted = False
+        sep = ':'
+        count = r.count(sep)
+        # accuracy_points = -1
+
+        if count == 1:
+            if not self.house_number in result.keys():
+                # to house number
+                result[self.house_number] = r.split(sep)[-1].strip()
+                is_splitted = True
+                last_key = self.house_number
+
+        elif count == 2:    
+            # gender
+            if not self.age in result.keys():
+
+                splitted = r.split(sep)
+                result[self.age] = re.findall('\d*', splitted[1])
+                result[self.gender] = splitted[-1]
+                is_splitted = True
+                last_key = self.gender
+                      
+        else:
+            logging.warning(f'Split uncaught {r} {result}')
+
+        return result, last_key, is_splitted
     
     def columns_split(self, r, columns, result, last_key):
         is_splitted = False
@@ -124,7 +168,12 @@ class Parser(Helpers, FirstLastPage):
                 result[c] = v
                 last_key = c
                 is_splitted = True
-                break
+                
+                return result, last_key, is_splitted
+        
+        # Not found in columns but there's separators in it
+        if any([x in r  for x in self.SEPARATORS]):
+            result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
                 
         return result, last_key, is_splitted
      
@@ -171,7 +220,7 @@ class Parser(Helpers, FirstLastPage):
             result['count'] = ''
             result['id'] = first[0]
 
-            logging.error(f"Not clear id: {raw}")
+            # logging.error(f"Not clear id: {raw}")
 
         # To add data to previous column
         last_key = None
@@ -200,13 +249,11 @@ class Parser(Helpers, FirstLastPage):
                     # Add last line to previous key
                     result[last_key] = result[last_key] + ' ' + r.strip()
                 except Exception as e:
-                    logging.warning(f'Exception: {e}: \n{raw} \n{result}') 
-                    #breakpoint()
-                    result, last_key, is_splitted = self.handle_separation_error(r, self.separators, result)
+                    logging.warning(f'Add extra last key: {r} \nException: {traceback.format_exc()}: \n{raw} \n{result}') 
         
         if self.checks:
             result['accuracy score'] = self.check_accuracy(result, raw)
-
+        
         return result
 
 

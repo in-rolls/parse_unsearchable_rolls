@@ -3,24 +3,10 @@ import re
 from collections import OrderedDict
 
 class FirstLastPage:
-    # def split_data(self, data):
-    #     seps = [":",">","-","."]
-        
-    #     for s in seps:
-    #         if s in data:
-    #             break
-            
-    #     data = data.split(s)
-    #     data = [ i for i in data if i.strip()!='']
-    #     if len(data)>1:
-    #         data = data[1].strip()
-    #         return data
-    #     else:
-    #         data = ""
-
+    FIRST_LAST_SEPARATORS = [":-", ":", ">", "-", "."]
 
     def split_data(self, data):
-        seps = [":",">","-","."]
+        seps = self.FIRST_LAST_SEPARATORS
         for s in seps:
             if s in data:
                 break
@@ -144,7 +130,6 @@ class FirstLastPage:
             text = re.findall(r'\d+', text)
             
             result['part_no'] = ''.join(text)
-        
 
         if cs := coordinates.get('police', None):
             a,b,c,d = self.rescale_cs(cs) if rescale else cs # police name name and address
@@ -167,15 +152,13 @@ class FirstLastPage:
         if cs := coordinates.get('ac', None):
             a,b,c,d = self.rescale_cs(cs) if rescale else cs # ac name and parl
             ac_crop = self.crop_section(a,b,c,d,img)
-            # self.show(ac_crop)
-            # self.show(img)
             
             text = (pytesseract.image_to_string(ac_crop, config='--psm 6', lang=self.lang)) 
             text = text.split('\n')
             text = [ i for i in text if i!='' and i!='\x0c']
             
             result.update(self.get_ac(text))
-        
+
         return result
 
 
