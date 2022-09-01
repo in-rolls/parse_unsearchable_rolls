@@ -21,7 +21,7 @@ logging.basicConfig(level=logging.INFO,
 class Parser(Helpers, FirstLastPage):
     BASE_DATA_PATH = 'data/'
     DPI = 600
-    SEPARATORS = [":-", ":", ">", "="]
+    SEPARATORS = [":-", ":", ">", "=", ';']
 
     def run(self, processors):
         # multiprocessing
@@ -38,26 +38,29 @@ class Parser(Helpers, FirstLastPage):
             logging.info(result)
         else:
             for pdf in pdf_files:
-                self.process_pdf(pdf)
+                import pprofile
+                profiler = pprofile.Profile()
+                with profiler:
+                    self.process_pdf(pdf)
+                profiler.print_stats()
 
-    def __init__(self, state, lang, contours, ignore_last=False,translate_columns = {} , first_page_coordinates = {}, last_page_coordinates = {}, rescale = 1,  separator = ':', columns = [], checks = [], handle = [], separators = [], ommit = None, remove_columns = []):
+                #self.process_pdf(pdf)
+
+    def __init__(self, state, lang, contours, ignore_last=False, translate_columns={} , first_page_coordinates={}, last_page_coordinates={}, rescale=1, columns=[], checks=[], handle=[], detect_columns=[]):
+
+        self.test = os.getenv('TEST')
         self.state = state.lower()
         self.columns = columns
         self.lang = lang
-        self.separator = separator
-        self.ommit = ommit
-        self.separators = separators
-        self.handle = handle
-        self.remove_columns = remove_columns
-        self.checks = checks
-        self.test = os.getenv('TEST')
-        self.rescale = rescale
         self.contours = contours
+        self.handle = handle
+        self.checks = checks
+        self.rescale = rescale
         self.first_page_coordinates = first_page_coordinates
         self.last_page_coordinates = last_page_coordinates
         self.translate_columns = translate_columns
         self.ignore_last = ignore_last
-
+        self.detect_columns = detect_columns
 
         # Column names one time convertion
         self.house_number = 'house number'
@@ -75,57 +78,84 @@ class Parser(Helpers, FirstLastPage):
         self.output_csv = self.BASE_DATA_PATH + 'out/' + self.state + '/'
         if not os.path.exists(self.output_csv):
             os.makedirs(self.output_csv)
+  
+    def process_boxes_text(self, text):
+        result = OrderedDict()
 
-    def get_full_path_files(self, path):
-        return [os.path.join(path, f) for f in os.listdir(path)]
+        raw = text.replace('\n\n', '\n').split('\n')
+            
+        # clean raw
+        try:
+            raw = [x.strip() for x in raw]
+            raw = list(filter(None, raw))
+        except Exception as e:
+            logging.error(f'Clean error: {e}: {raw}')
 
-    def filter_and_sort(self, objs, ext):
-        result = list(filter(lambda x: x.endswith(ext), objs))
-        result.sort()
+        try:
+            raw = self.correct_alignment(raw)
+        except:
+            pass
+
+        # TODO not abstracted
+        id_ = raw.pop(0).strip()
+
+        first = id_.split(' ')
+   
+        if len(first) > 1:
+            result['count'] = first[0]    
+            result['id'] = first[1]
+        else:
+            result['count'] = ''
+            result['id'] = first[0]
+
+        # To add data to previous column
+        last_key = None
+
+        if self.ignore_last:
+            raw = list(filter(None, raw))
+            raw = raw[:-1]
+
+        # Iter over results and split with separators
+        for r in raw:
+            # split data depending on known columns
+            if not self.detect_columns:
+                result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+
+            # automatic split
+            else:
+                is_splitted = False
+                for sep in self.detect_columns:
+                    if sep in r.lower():
+                        result, last_key, is_splitted = self.separator_split(r, sep, result, last_key)
+
+                        if is_splitted:
+                            break
+
+            if r and not is_splitted:
+                try:
+                    # Add last line to previous key
+                    result[last_key] = result[last_key] + ' ' + r.strip()
+                except Exception as e:
+                    logging.warning(f'Add extra last key: {r} \nException: {traceback.format_exc()}: \n{raw} \n{result}') 
+        
+        # Get accuracy score
+        if self.checks:
+            result['accuracy score'] = self.check_accuracy(result, raw)
+        
         return result
 
-    def get_this_state_files(self):
-        path = f'{self.BASE_DATA_PATH}in/{self.state}'
-        files_path_list = self.get_full_path_files(path)
-        return self.filter_and_sort(files_path_list, '.pdf')
-
-    def ommit_sentences(self, text):
-        if self.ommit:
-            for o in self.ommit:
-                text = text.replace(o, '')
-            
-        return text
-    
-    def split_2(self, separated):
-        key = self.strip_lower(separated[0])
-        value = separated[1].strip()
-        return key, value
-
-    def custom_split(self, r, separator, result):
-        is_splitted = False
-
-        # for exceptions
-        #if any([re.findall(f"^[\w]{x}^[\w]", r.lower()) for x in self.handle]):
-        if any([x in r.lower() for x in self.handle]):
-            return self.handle_separation(r, separator, result)
-
-        # normal split
-        else:
-            separated = r.split(separator)
-
-            if len(separated) == 2:
-                key, value = self.split_2(separated)
-                result[key] = value
-                last_key = key
-                is_splitted = True
-
-            else:
-                return self.handle_custom_split_not_found(r, separator, result)
+    def male_or_female(self, r):
+        if self.FEMALE in r:
+            return self.FEMALE
+        elif self.MALE in r:
+            return self.MALE
         
-        return result, last_key, is_splitted
+        return ''
 
     def handle_separator_without_column(self, r, result, last_key):
         is_splitted = False
+        r = r.replace(';', ':')
+
         sep = ':'
         count = r.count(sep)
         # accuracy_points = -1
@@ -134,18 +164,22 @@ class Parser(Helpers, FirstLastPage):
             if not self.house_number in result.keys():
                 # to house number
                 result[self.house_number] = r.split(sep)[-1].strip()
-                is_splitted = True
-                last_key = self.house_number
+                is_splitted, last_key = True, self.house_number
+
+            else:
+                # search age and gender
+                result[self.age] = ''.join(re.findall('\d+', r)).strip()
+                result[self.gender] = self.male_or_female(r)
+
+                is_splitted, last_key = True, self.gender
 
         elif count == 2:    
             # gender
             if not self.age in result.keys():
-
                 splitted = r.split(sep)
-                result[self.age] = re.findall('\d*', splitted[1])
+                result[self.age] = ''.join(re.findall('\d+', splitted[1])).strip()
                 result[self.gender] = splitted[-1]
-                is_splitted = True
-                last_key = self.gender
+                is_splitted, last_key = True, self.gender
                       
         else:
             logging.warning(f'Split uncaught {r} {result}')
@@ -159,7 +193,9 @@ class Parser(Helpers, FirstLastPage):
         for c in columns:
             cc = c.replace('_', ' ').replace('\'', '.?') 
 
+            # find column name in line
             found = re.findall('^' + cc + '.*?([\w\d].*)', low_r)
+            
             if found and any([x == c  for x in self.handle]):
                 return self.handle_separation(r, result)
 
@@ -170,7 +206,7 @@ class Parser(Helpers, FirstLastPage):
                 is_splitted = True
                 
                 return result, last_key, is_splitted
-        
+
         # Not found in columns but there's separators in it
         if any([x in r  for x in self.SEPARATORS]):
             result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
@@ -179,7 +215,7 @@ class Parser(Helpers, FirstLastPage):
      
         
     def check_accuracy(self, d, raw_data):
-        # Checks if data is correct and decides depending on score
+        # Checks if data is correct and returns score
 
         accuracy = 0 
         for k,v in self.checks.items():
@@ -194,67 +230,7 @@ class Parser(Helpers, FirstLastPage):
                         accuracy += condition['s']
 
         return accuracy 
-
-
-    def process_boxes_text(self, text):
-        #logging.info('Processing boxes\' text..')
-        result = OrderedDict()
-        raw = self.ommit_sentences(text)
-        raw = raw.replace('\n\n', '\n').split('\n')
-
-        # clean raw
-        try:
-            raw = [x.strip() for x in raw]
-            raw = list(filter(None, raw))
-        except Exception as e:
-            logging.error(f'Clean error: {e}: {raw}')
-
-        # TODO not abstracted
-        id_ = raw.pop(0).strip()
-        first = id_.split(' ')
-   
-        if len(first) > 1:
-            result['count'] = first[0]    
-            result['id'] = first[1]
-        else:
-            result['count'] = ''
-            result['id'] = first[0]
-
-            # logging.error(f"Not clear id: {raw}")
-
-        # To add data to previous column
-        last_key = None
-
-        if self.ignore_last:
-            raw = list(filter(None, raw))
-            raw = raw[:-1]
-
-        # Iter over results and split with separators
-        for r in raw:
-            # split data depending on known columns
-            if self.columns:
-                result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
-            # automatic split
-            else:
-                is_splitted = False
-                for sep in self.separators:
-                    if sep in r.lower():
-                        result, last_key, is_splitted = self.custom_split(r, sep, result)
-
-                        if is_splitted:
-                            break
-
-            if r and not is_splitted:
-                try:
-                    # Add last line to previous key
-                    result[last_key] = result[last_key] + ' ' + r.strip()
-                except Exception as e:
-                    logging.warning(f'Add extra last key: {r} \nException: {traceback.format_exc()}: \n{raw} \n{result}') 
         
-        if self.checks:
-            result['accuracy score'] = self.check_accuracy(result, raw)
-        
-        return result
 
 
     def translate_input_columns(self):
@@ -267,12 +243,7 @@ class Parser(Helpers, FirstLastPage):
 
         return translated_columns        
 
-    def get_file_paths(self):
-        pdf_files_paths = self.get_this_state_files()
-        if not pdf_files_paths:
-            logging.info(f'No files found for {self.state}')
 
-        return pdf_files_paths
 
     def process_pdf(self, pdf_file_path):
         logging.info(f'Converting {pdf_file_path} ...')
@@ -284,7 +255,10 @@ class Parser(Helpers, FirstLastPage):
             'file_name' : filename
             }
 
-        first_page_results, last_page_results = self.handle_extra_pages(pages)
+        if not self.detect_columns:
+            first_page_results, last_page_results = self.handle_extra_pages(pages)
+        else:
+            first_page_results, last_page_results = {}, {} 
 
         for page in pages[2:-1]:
             logging.info('Getting boxes..')

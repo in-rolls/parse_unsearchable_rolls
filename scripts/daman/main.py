@@ -13,6 +13,9 @@ from collections import OrderedDict
  
 class Daman(Gujarat):
 
+    MALE = 'પૂરૂષ'
+    FEMALE = 'સ્ત્રી'
+
     MANDAL_KEYWORDS = {
         'મુખ્ય ગામ/શહેર': 'main_town',
         #'Ward No': 'revenue_division',
@@ -75,8 +78,8 @@ class Daman(Gujarat):
         low_r = r.lower().strip()
         found = re.findall('^' + age, low_r) 
         if found:
-            result[age] = ''.join(re.findall(age + '[^\d]*(\d*)', r.lower()))
-            result[sex] = ''.join(re.findall(sex + '[^\w]*(\w*)', r.lower()))
+            result[age] = ''.join(re.findall(age + '[^\d]*(\d*)', low_r))
+            result[sex] = ''.join(re.findall(sex + '[^\w]*(.*)', low_r))
 
             last_key = sex
             is_splitted = True
@@ -117,9 +120,8 @@ if __name__ == '__main__':
     }
 
     contours = ((500,800), (300,1500), (70, 400))
-    
-    DM = Daman('daman', lang, contours, translate_columns = translate_columns,last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, columns = columns, separators = [':-', '--', '=='], rescale = 600/500, handle=['ઉમર', 'જાતિ'] )
 
+    DM = Daman('daman', lang, contours, translate_columns=translate_columns, last_page_coordinates=last_page_coordinates, first_page_coordinates=first_page_coordinates, columns=columns, rescale=600/500, handle=['ઉમર', 'જાતિ'] )
     DM.run(2)
 
 

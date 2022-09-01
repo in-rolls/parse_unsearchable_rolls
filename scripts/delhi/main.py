@@ -8,6 +8,10 @@ from collections import OrderedDict
 
  
 class Delhi(Parser):
+
+    MALE = 'male'
+    FEMALE = 'female'
+
     MANDAL_KEYWORDS = {
         'Village': 'main_town',
         'Ward No': 'revenue_division',
@@ -174,6 +178,7 @@ if __name__ == '__main__':
         ]
     }
 
-    DL = Delhi('delhi', lang, last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, contours = contours, rescale = rescale, columns = columns, checks = checks, handle=['age', 'sex'], ommit = ['Photo is', 'Available'])
-
+    DL = Delhi('delhi', lang, last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, contours = contours, rescale = rescale, columns = columns, checks = checks, handle=['age', 'sex'])
     DL.run(3)
+
+
