@@ -10,6 +10,23 @@ import time
 import multiprocessing
 import traceback
 
+
+####
+import concurrent.futures
+import queue
+import time
+
+import numpy as np
+
+import tesserocr
+from tesserocr import PyTessBaseAPI
+
+from PIL import Image
+from matplotlib import cm
+
+import numpy as np
+
+####
 # import matplotlib.pyplot as plt
 # import keras_ocr
 
@@ -22,6 +39,7 @@ class Parser(Helpers, FirstLastPage):
     BASE_DATA_PATH = 'data/'
     DPI = 600
     SEPARATORS = [":-", ":", ">", "=", ';']
+    FIRST_PAGES = 1
 
     def run(self, processors):
         # multiprocessing
@@ -38,13 +56,7 @@ class Parser(Helpers, FirstLastPage):
             logging.info(result)
         else:
             for pdf in pdf_files:
-                import pprofile
-                profiler = pprofile.Profile()
-                with profiler:
-                    self.process_pdf(pdf)
-                profiler.print_stats()
-
-                #self.process_pdf(pdf)
+                self.process_pdf(pdf)
 
     def __init__(self, state, lang, contours, ignore_last=False, translate_columns={} , first_page_coordinates={}, last_page_coordinates={}, rescale=1, columns=[], checks=[], handle=[], detect_columns=[]):
 
@@ -81,7 +93,6 @@ class Parser(Helpers, FirstLastPage):
   
     def process_boxes_text(self, text):
         result = OrderedDict()
-
         raw = text.replace('\n\n', '\n').split('\n')
             
         # clean raw
@@ -95,7 +106,7 @@ class Parser(Helpers, FirstLastPage):
             raw = self.correct_alignment(raw)
         except:
             pass
-
+        
         # TODO not abstracted
         id_ = raw.pop(0).strip()
 
@@ -260,21 +271,42 @@ class Parser(Helpers, FirstLastPage):
         else:
             first_page_results, last_page_results = {}, {} 
 
-        for page in pages[2:-1]:
+        for page in pages[self.FIRST_PAGES:-1]:
             logging.info('Getting boxes..')
-
             base_item.update(self.get_header(page))
-
             boxes = self.get_boxes(page, self.contours)
-            for box in boxes:
-                # todo get number and id separated
-                text = pytesseract.image_to_string(box, lang=self.lang, config='--psm 6')
 
+            # concurrent tesserocr
+            def get_data(im):
                 item = base_item.copy()
+                text = tesserocr.image_to_text(im, lang=self.lang, psm=tesserocr.PSM.SINGLE_BLOCK) #tesserocr.PSM.SPARSE_TEXT
                 processed_box = self.process_boxes_text(text)
                 item.update(processed_box)
                 items.append(item)
 
+            bbim = [Image.fromarray(np.uint8(cm.gist_earth(box)*255))  for box in boxes] 
+
+            with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
+                executor.map(get_data, bbim)
+
+
+            # for box in boxes:
+            #     # todo get number and id separated           
+                
+            #     text = pytesseract.image_to_string(box, lang=self.lang, config='--psm 6')
+
+            #     #im = Image.fromarray(np.uint8(cm.gist_earth(box)*255))  
+                
+            #     # api.SetImageFile(im)
+            #     # api.GetUTF8Text()
+            #     # print(api.AllWordConfidences())
+            #     #text = tesserocr.image_to_text(im, lang='guj')
+
+
+            #     item = base_item.copy()
+            #     processed_box = self.process_boxes_text(text)
+            #     item.update(processed_box)
+            #     items.append(item)
         
         #items = self.check_columns(items)
         formatted_items = self.format_items(items, first_page_results, last_page_results)

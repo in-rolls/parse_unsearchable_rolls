@@ -15,8 +15,10 @@ class FirstLastPage:
         return [ x.strip() for x in data ]
         
             
-    def extract_4_numbers(self, crop_stat_path):
-        text = (pytesseract.image_to_string(crop_stat_path, config='--psm 6', lang=self.lang)) #config='--psm 4' config='-c preserve_interword_spaces=1'
+    def extract_4_numbers(self, cropped):
+
+        text = (pytesseract.image_to_string(cropped, config='--psm 6', lang=self.lang)) #config='--psm 4' config='-c preserve_interword_spaces=1'
+        
         text = re.findall(r'\d+', text)    
         if len(text)==4:
             if int(text[0]) + int(text[1]) == int(text[2]):
@@ -33,6 +35,7 @@ class FirstLastPage:
             a,b,c,d = "","","",""
         
         return a,b,c,d
+
 
     # def extract_detail_section(self, text):
     #     keywords = self.MANDAL_KEYWORDS
@@ -57,7 +60,26 @@ class FirstLastPage:
                         
     #     return found_keywords
 
-    def extract_last_page_details(self, img):
+    def get_police_data(self, result, cs, im, rescale):
+            a, b, c, d = self.rescale_cs(cs) if rescale else cs # police name name and address
+            crop_police = self.crop_section(a, b, c, d, im)
+            text = (pytesseract.image_to_string(crop_police, config='--psm 6', lang=self.lang)) 
+
+            text = text.split('\n')
+            text = [ i for i in text if i!='' and i!='\x0c']
+
+            for k,v in self.P_KEYWORDS.items():
+                for i,t in enumerate(text):
+                    if v in t:
+                        result[k] = text[i+1]
+                        try:
+                            text[i+3]
+                        except:
+                            result[k] = result[k] + ' ' + ' '.join(text[i+2:]) 
+                        break
+            return result
+
+    def extract_last_page_details(self, im):
         result = OrderedDict()
         a, b, c, d = '','','',''
         coordinates = []
@@ -75,7 +97,7 @@ class FirstLastPage:
 
         for cs in coordinates:
             c1, c2, c3, c4 = cs
-            cropped = self.crop_section(c1,c2,c3,c4,img)
+            cropped = self.crop_section(c1, c2, c3, c4, im)
             a, b, c, d = self.extract_4_numbers(cropped)
             if (a == '' and b == '') or a == '0':
                 ...
@@ -84,7 +106,7 @@ class FirstLastPage:
         
         if year_coordinates:
             c1, c2, c3, c4 = year_coordinates
-            cropped = self.crop_section(c1,c2,c3,c4,img)
+            cropped = self.crop_section(c1, c2, c3, c4, im)
             text = pytesseract.image_to_string(cropped, lang=self.lang, config='--psm 6')
             year = ''.join(re.findall('\d+', text))
         else:
@@ -102,7 +124,7 @@ class FirstLastPage:
     def rescale_cs(self, l):
         return [ x * self.rescale for x in l] 
         
-    def extract_first_page_details(self, img):
+    def extract_first_page_details(self, im):
         coordinates = self.first_page_coordinates
         result = OrderedDict()
         rescale = coordinates.get('rescale', True)
@@ -110,8 +132,8 @@ class FirstLastPage:
         if cs := coordinates.get('mandal', None):
             a,b,c,d = self.rescale_cs(cs) if rescale else cs # mandal block
 
-            crop_img = self.crop_section(a,b,c,d,img)
-            text = (pytesseract.image_to_string(crop_img, config='--psm 6', lang=self.lang)) 
+            crop_mandal = self.crop_section(a,b,c,d,im)
+            text = (pytesseract.image_to_string(crop_mandal, config='--psm 6', lang=self.lang)) 
             text = text.split('\n')
             text = [ i for i in text if i!='' and i!='\x0c']
 
@@ -121,39 +143,24 @@ class FirstLastPage:
                     if kk in k:
                         result[vv] = v
                         break
-            
+
         if cs := coordinates.get('part_no', None):
-            a,b,c,d = self.rescale_cs(cs) if rescale else cs # part no
-            part_crop = self.crop_section(a,b,c,d,img)
+            a, b, c, d = self.rescale_cs(cs) if rescale else cs # part no
+            crop_part = self.crop_section(a, b, c, d, im)
             
-            text = (pytesseract.image_to_string(part_crop, config='--psm 6', lang=self.lang))
+            text = (pytesseract.image_to_string(crop_part, config='--psm 6', lang=self.lang))
             text = re.findall(r'\d+', text)
             
             result['part_no'] = ''.join(text)
 
         if cs := coordinates.get('police', None):
-            a,b,c,d = self.rescale_cs(cs) if rescale else cs # police name name and address
-            police_crop = self.crop_section(a,b,c,d,img)
-            text = (pytesseract.image_to_string(police_crop, config='--psm 6', lang=self.lang)) 
-
-            text = text.split('\n')
-            text = [ i for i in text if i!='' and i!='\x0c']
-
-            for k,v in self.P_KEYWORDS.items():
-                for i,t in enumerate(text):
-                    if v in t:
-                        result[k] = text[i+1]
-                        try:
-                            text[i+3]
-                        except:
-                            result[k] = result[k] + ' ' + ' '.join(text[i+2:]) 
-                        break
+            result = self.get_police_data(result, cs, im, rescale)
 
         if cs := coordinates.get('ac', None):
-            a,b,c,d = self.rescale_cs(cs) if rescale else cs # ac name and parl
-            ac_crop = self.crop_section(a,b,c,d,img)
+            a, b, c, d = self.rescale_cs(cs) if rescale else cs # ac name and parl
+            crop_ac = self.crop_section(a, b, c, d, im)
             
-            text = (pytesseract.image_to_string(ac_crop, config='--psm 6', lang=self.lang)) 
+            text = (pytesseract.image_to_string(crop_ac, config='--psm 6', lang=self.lang)) 
             text = text.split('\n')
             text = [ i for i in text if i!='' and i!='\x0c']
             

@@ -8,7 +8,7 @@ from collections import OrderedDict
 
  
 class Delhi(Parser):
-
+    FIRST_PAGES = 2
     MALE = 'male'
     FEMALE = 'female'
 
@@ -24,7 +24,7 @@ class Delhi(Parser):
         'polling_station_name': 'Name',
         'polling_station_address': 'Address'
         }
-
+    
 
     def handle_extra_pages(self, pages):
         return self.extract_first_page_details(pages[0]), self.extract_last_page_details(pages[-1])
