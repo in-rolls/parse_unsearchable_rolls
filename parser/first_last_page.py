@@ -39,7 +39,6 @@ class FirstLastPage:
 
     # def extract_detail_section(self, text):
     #     keywords = self.MANDAL_KEYWORDS
-    #     breakpoint()
     #     found_keywords = ["","","","","",""]
     #     for idx,keyword in enumerate(keywords):
     #         for t in text:
@@ -67,7 +66,6 @@ class FirstLastPage:
 
             text = text.split('\n')
             text = [ i for i in text if i!='' and i!='\x0c']
-
             for k,v in self.P_KEYWORDS.items():
                 for i,t in enumerate(text):
                     if v in t:
@@ -147,7 +145,6 @@ class FirstLastPage:
         if cs := coordinates.get('part_no', None):
             a, b, c, d = self.rescale_cs(cs) if rescale else cs # part no
             crop_part = self.crop_section(a, b, c, d, im)
-            
             text = (pytesseract.image_to_string(crop_part, config='--psm 6', lang=self.lang))
             text = re.findall(r'\d+', text)
             
@@ -159,7 +156,6 @@ class FirstLastPage:
         if cs := coordinates.get('ac', None):
             a, b, c, d = self.rescale_cs(cs) if rescale else cs # ac name and parl
             crop_ac = self.crop_section(a, b, c, d, im)
-            
             text = (pytesseract.image_to_string(crop_ac, config='--psm 6', lang=self.lang)) 
             text = text.split('\n')
             text = [ i for i in text if i!='' and i!='\x0c']

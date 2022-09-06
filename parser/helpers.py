@@ -14,7 +14,8 @@ class Helpers:
     def get_file_paths(self):
         pdf_files_paths = self.get_this_state_files()
         if not pdf_files_paths:
-            logging.info(f'No files found for {self.state}')
+            print('No files found')
+            #logging.info(f'No files found')
 
         return pdf_files_paths
 
@@ -28,6 +29,8 @@ class Helpers:
 
     def get_this_state_files(self):
         path = f'{self.BASE_DATA_PATH}in/{self.state}'
+        if self.year:
+            path += '/' + self.year
         files_path_list = self.get_full_path_files(path)
         return self.filter_and_sort(files_path_list, '.pdf')
 

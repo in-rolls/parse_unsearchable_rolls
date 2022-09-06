@@ -50,7 +50,7 @@ class Parser(Helpers, FirstLastPage):
             for pdf in pdf_files:
                 self.process_pdf(pdf)
 
-    def __init__(self, state, lang, contours, ignore_last=False, translate_columns={} , first_page_coordinates={}, last_page_coordinates={}, rescale=1, columns=[], checks=[], handle=[], detect_columns=[]):
+    def __init__(self, state, lang, contours, year=None, ignore_last=False, translate_columns={} , first_page_coordinates={}, last_page_coordinates={}, rescale=1, columns=[], checks=[], handle=[], detect_columns=[]):
 
         self.test = os.getenv('TEST')
         self.state = state.lower()
@@ -65,6 +65,7 @@ class Parser(Helpers, FirstLastPage):
         self.translate_columns = translate_columns
         self.ignore_last = ignore_last
         self.detect_columns = detect_columns
+        self.year = year
 
         # Column names one time convertion
         self.house_number = 'house number'
@@ -80,6 +81,9 @@ class Parser(Helpers, FirstLastPage):
                 self.gender = k
 
         self.output_csv = self.BASE_DATA_PATH + 'out/' + self.state + '/'
+        if self.year:
+            self.output_csv += self.year + '/'
+
         if not os.path.exists(self.output_csv):
             os.makedirs(self.output_csv)
   
@@ -281,10 +285,9 @@ class Parser(Helpers, FirstLastPage):
             with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
                 executor.map(get_data, bbim)
 
-
+            # Deprecated methods
             # for box in boxes:
             #     # todo get number and id separated           
-                
             #     text = pytesseract.image_to_string(box, lang=self.lang, config='--psm 6')
 
             #     #im = Image.fromarray(np.uint8(cm.gist_earth(box)*255))  
@@ -293,7 +296,6 @@ class Parser(Helpers, FirstLastPage):
             #     # api.GetUTF8Text()
             #     # print(api.AllWordConfidences())
             #     #text = tesserocr.image_to_text(im, lang='guj')
-
 
             #     item = base_item.copy()
             #     processed_box = self.process_boxes_text(text)
