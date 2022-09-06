@@ -1,30 +1,22 @@
 import os
-from turtle import setx
 from .helpers import Helpers
 from .first_last_page import FirstLastPage 
 import logging
-import pytesseract
+#import pytesseract
 from collections import OrderedDict
 import re
 import time
 import multiprocessing
 import traceback
 
-
-####
 import concurrent.futures
-import queue
+#import queue
 import time
 
 import numpy as np
-
 import tesserocr
-from tesserocr import PyTessBaseAPI
-
 from PIL import Image
 from matplotlib import cm
-
-import numpy as np
 
 ####
 # import matplotlib.pyplot as plt
