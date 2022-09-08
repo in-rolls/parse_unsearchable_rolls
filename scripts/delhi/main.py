@@ -159,7 +159,8 @@ if __name__ == '__main__':
         }]
     }
 
-    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'assambly_constituency_name', 'assambly_constituency_number', 'section name', 'section number', 'part number', 'accuracy score', 'count', 'id', 'name', 'father\'s name', 'husband\'s name', 'mother\'s name', 'house number', 'age', 'sex', 'net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
+    boxes_columns = ['name', 'father\'s name', 'husband\'s name', 'mother\'s name', 'house number', 'age', 'sex']
+    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'assambly_constituency_name', 'assambly_constituency_number', 'section name', 'section number', 'part number', 'accuracy score', 'count', 'id'] + boxes_columns +  ['net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
 
     contours = ((500,800), (300,1500), (60, 400))
     first_page_coordinates = {
@@ -178,7 +179,7 @@ if __name__ == '__main__':
         ]
     }
 
-    DL = Delhi('delhi', lang, last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, contours = contours, rescale = rescale, columns = columns, checks = checks, handle=['age', 'sex'])
+    DL = Delhi('delhi', lang, last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, contours = contours, rescale = rescale, columns = columns, boxes_columns=boxes_columns, checks = checks, handle=['age', 'sex'])
     DL.run(3)
 
 

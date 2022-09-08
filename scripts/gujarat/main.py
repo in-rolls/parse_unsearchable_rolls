@@ -103,7 +103,8 @@ if __name__ == '__main__':
 
     }
 
-    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'accuracy score', 'count', 'id', 'નામ', 'પિતાન નામ', 'પતીનં નામ', 'માતાન નામ', 'ઘરનં', 'net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
+    boxes_columns = ['નામ', 'પિતાન નામ', 'પતીનં નામ', 'માતાન નામ', 'ઘરનં']
+    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'accuracy score', 'count', 'id'] + boxes_columns + ['net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
 
     translate_columns = {
         'નામ': 'name',
@@ -115,12 +116,7 @@ if __name__ == '__main__':
     }
 
     contours = ((500,800), (300,1500), (70, 400))
-    GJ = Gujarat('gujarat', lang, contours, ignore_last=True, translate_columns=translate_columns, last_page_coordinates=last_page_coordinates, first_page_coordinates=first_page_coordinates, columns=columns, rescale=600/500 )
-
-    # from line_profiler import LineProfiler
-    # lp = LineProfiler()
-    # lp_wrapper = lp(GJ.run(2))
-    # lp.print_stats()
+    GJ = Gujarat('gujarat', lang, contours, ignore_last=True, translate_columns=translate_columns, last_page_coordinates=last_page_coordinates, first_page_coordinates=first_page_coordinates, columns=columns, boxes_columns=boxes_columns, rescale=600/500)
 
     GJ.run(2)
 

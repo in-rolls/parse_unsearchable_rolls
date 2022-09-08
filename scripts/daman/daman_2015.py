@@ -52,6 +52,13 @@ class Daman(Gujarat):
 
         return result
 
+    def check_data(self, item):
+        # house no check
+        test_h = item.get('ઘરનં', '').strip().replace('-', '').replace('|', '')
+        if not test_h :
+            item['ઘરનં'] = ''
+
+        return item
 
     def get_ac(self, text):
         try: 
@@ -80,7 +87,6 @@ class Daman(Gujarat):
         if found:
             result[age] = ''.join(re.findall(age + '[^\d]*(\d*)', low_r))
             result[sex] = ''.join(re.findall(sex + '[^\w]*(.*)', low_r))
-
             last_key = sex
             is_splitted = True
        
@@ -107,7 +113,8 @@ if __name__ == '__main__':
         'year': [1354, 2434, 2460-1354, 2640-2434]
     }
 
-    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'accuracy score', 'count', 'id', 'નામ', 'પિતાનુ નામ', 'પતીનું નામ', 'ઘરનં', 'માતાનુ નામ', 'ઉમર', 'જાતિ', 'net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
+    boxes_columns = ['નામ', 'પિતાનુ નામ', 'પતીનું નામ', 'ઘરનં', 'માતાનુ નામ', 'ઉમર', 'જાતિ']
+    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'accuracy score', 'count', 'id'] + boxes_columns + ['net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
 
     translate_columns = {
         'નામ': 'name',
@@ -121,7 +128,7 @@ if __name__ == '__main__':
 
     contours = ((500,800), (300,1500), (70, 400))
 
-    DM = Daman('daman', lang, contours, year='2015', translate_columns=translate_columns, last_page_coordinates=last_page_coordinates, first_page_coordinates=first_page_coordinates, columns=columns, rescale=600/500, handle=['ઉમર', 'જાતિ'] )
-    DM.run(2)
+    DM = Daman('daman', lang, contours, year='2015', translate_columns=translate_columns, last_page_coordinates=last_page_coordinates, first_page_coordinates=first_page_coordinates, columns=columns, boxes_columns=boxes_columns, rescale=600/500, handle=['ઉમર', 'જાતિ'] )
+    DM.run(3)
 
 

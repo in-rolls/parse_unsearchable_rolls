@@ -33,7 +33,23 @@ class Daman(Gujarat):
     def get_header(self, page):
         result = OrderedDict()
         return result
-     
+    
+    def check_data(self, item):
+        # house no check
+        test_h = item.get('ઘરનં', '').strip().replace('-', '')
+        if not test_h :
+            item['ઘરનં'] = ''
+        return item
+
+    def known_exceptions(self, result, r):
+        is_splitted = False
+        house_no = re.findall('\s(\d.+)', r)
+        if house_no:
+            result['ઘરનં'] = house_no
+            is_splitted = True
+
+        return result, is_splitted
+
     def format_items(self, items, first_page_results, last_page_results):
         result = []
 
@@ -107,7 +123,12 @@ if __name__ == '__main__':
         'year': [1354, 2434, 2460-1354, 2640-2434]
     }
 
-    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'accuracy score', 'count', 'id', 'નામ', 'પિતાન નામ', 'પતીનં નામ', 'ઘરનં', 'માતાન નામ', 'ઉમર', 'જાતિ', 'net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
+    boxes_columns = ['નામ', 'પિતાન નામ', 'પતીનં નામ', 'ઘરનં', 'માતાન નામ', 'ઉમર', 'જાતિ']
+    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'accuracy score', 'count', 'id'] + boxes_columns + ['net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
+
+    # multiple_columns = {
+    #     'ઘરનં': ['ઘરનં', 'ઘર ન', 'ઘરન', 'ગના', 'વા', 'U2 al', 'Ur ol', 'U2? oi', 'જયા', 'du2roa', 'u2rc-'],
+    # }
 
     translate_columns = {
         'નામ': 'name',
@@ -122,8 +143,8 @@ if __name__ == '__main__':
     contours = ((500,800), (300,1500), (70, 400))
 
     #DM = Daman('daman', lang, contours, year='2017', detect_columns=[':-',':', '.', '--'],last_page_coordinates=last_page_coordinates, first_page_coordinates=first_page_coordinates, rescale=600/500)
-    DM = Daman('daman', lang, contours, year='2017', ignore_last=True, translate_columns=translate_columns, last_page_coordinates=last_page_coordinates, first_page_coordinates=first_page_coordinates, columns=columns, rescale=600/500)
+    DM = Daman('daman', lang, contours, year='2017', ignore_last=True, translate_columns=translate_columns, last_page_coordinates=last_page_coordinates, first_page_coordinates=first_page_coordinates, columns=columns, boxes_columns=boxes_columns, rescale=600/500)
 
-    DM.run(2)
+    DM.run(3)
 
 
