@@ -267,8 +267,7 @@ class Parser(Helpers, FirstLastPage):
         return translated_columns        
 
     def process_pdf(self, pdf_file_path):
-        logging.info(f'Converting {pdf_file_path} ...')
-        logging.info('Converting pdf to imgs ...')
+        logging.info(f'Converting {pdf_file_path} to img...')
         pages = self.pdf_to_img(pdf_file_path, dpi=self.DPI)
         items = []
         filename = pdf_file_path.split('/')[-1].strip('.pdf')
@@ -277,12 +276,13 @@ class Parser(Helpers, FirstLastPage):
             }
 
         if not self.detect_columns:
+            logging.info('Parsing first and last page data..')
             first_page_results, last_page_results = self.handle_extra_pages(pages)
         else:
             first_page_results, last_page_results = {}, {} 
 
+        logging.info('Detecting and parsing boxes..')
         for page in pages[self.FIRST_PAGES:-1]:
-            logging.info('Getting boxes..')
             base_item.update(self.get_header(page))
             boxes = self.get_boxes(page, self.contours)
 
@@ -307,7 +307,7 @@ class Parser(Helpers, FirstLastPage):
                 except:
                     pass
 
-
+        logging.info('Formatting and exporting data..')
         formatted_items = self.format_items(items, first_page_results, last_page_results)
         output_path = self.output_csv + filename + '.csv'
         self.items_to_csv(formatted_items, output_path, self.columns)
