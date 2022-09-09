@@ -68,14 +68,7 @@ class Parser(Helpers, FirstLastPage):
         self.year = year
         self.stop = False # testing
         self.boxes_columns = boxes_columns
-
-        # DEP
-        # self.multiple_columns = multiple_columns
-        # self.multiple_columns_flattened = []
-        # if multiple_columns:
-        #     for k,v in multiple_columns.items():
-        #         self.multiple_columns_flattened.extend(v)
-
+        
         if self.test:
             self.tesseorc_workers = 1
         else:
@@ -131,7 +124,7 @@ class Parser(Helpers, FirstLastPage):
                 result['id'] = first[0]
             else:
                 result['count'] = first[0]
-            
+
         # To add data to previous column
         last_key = None
 
@@ -145,7 +138,7 @@ class Parser(Helpers, FirstLastPage):
             if not self.detect_columns:
                 result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
 
-            # automatic split
+            # detect columns splitting with separators
             else:
                 is_splitted = False
                 for sep in self.detect_columns:
@@ -155,16 +148,18 @@ class Parser(Helpers, FirstLastPage):
                         if is_splitted:
                             break
 
-            # Try known exceptions
+            # Try known exceptions when line not found with columns
             if r and not is_splitted:
                 result, is_splitted = self.known_exceptions(result, r)
 
+            # If line not recognized add data to previous field
             if r and not is_splitted:
                 try:    
                     # Add last line to previous key
                     result[last_key] = result[last_key] + ' ' + r.strip()
                 except Exception as e:
-                    logging.warning(f'Add extra last key: {r} \nException: {traceback.format_exc()}: \n{raw} \n{result}') 
+                    logging.warning(f'Add extra last key: {r} \nException: {e}: \n{raw} \n{result}') 
+                    # logging.warning(f'Add extra last key: {r} \nException: {traceback.format_exc()}: \n{raw} \n{result}') 
 
         # Get accuracy score
         if self.checks:
@@ -195,11 +190,14 @@ class Parser(Helpers, FirstLastPage):
                 is_splitted, last_key = True, self.house_number
 
             else:
-                # search age and gender
-                result[self.age] = ''.join(re.findall('\d+', r)).strip()
-                result[self.gender] = self.male_or_female(r)
+                try:
+                    # search age and gender
+                    result[self.age] = ''.join(re.findall('\d+', r)).strip()
+                    result[self.gender] = self.male_or_female(r)
 
-                is_splitted, last_key = True, self.gender
+                    is_splitted, last_key = True, self.gender
+                except:
+                    pass
 
         elif count == 2:    
             # gender
@@ -218,15 +216,6 @@ class Parser(Helpers, FirstLastPage):
         is_splitted = False
         low_r = r.lower().strip()
 
-        # for c_name in self.boxes_columns:
-        #     # find column name in field, or other words for same column
-        #     if c_name in self.multiple_columns.keys():
-        #         columns = self.multiple_columns[c_name]
-        #     else:
-        #         columns = [c_name]
-            
-        #     for c in columns:
-
         for c_name in self.boxes_columns:
             cc = c_name.replace('_', ' ').replace('\'', '.?') 
 
@@ -237,7 +226,7 @@ class Parser(Helpers, FirstLastPage):
                 return self.handle_separation(r, result)
 
             elif found:
-                v = ''.join(found)
+                v = ''.join(found).strip()
                 result[c_name] = v
                 last_key = c_name
                 is_splitted = True
@@ -299,41 +288,59 @@ class Parser(Helpers, FirstLastPage):
 
             # concurrent tesserocr
             def get_data(im):
-                item = base_item.copy()
-                text = tesserocr.image_to_text(im, lang=self.lang, psm=tesserocr.PSM.SINGLE_BLOCK) #tesserocr.PSM.SPARSE_TEXT
-                processed_box = self.process_boxes_text(text)
-                item.update(processed_box)
-                item = self.check_data(item)
-                items.append(item)
+                try:
+                    item = base_item.copy()
+                    text = tesserocr.image_to_text(im, lang=self.lang, psm=tesserocr.PSM.SINGLE_BLOCK) #tesserocr.PSM.SPARSE_TEXT
+                    processed_box = self.process_boxes_text(text)
+                    item.update(processed_box)
+                    item = self.check_data(item)
+                    items.append(item)
+                except Exception as e:
+                    logging.error(traceback.format_exc())
 
             bbim = [Image.fromarray(np.uint8(cm.gist_earth(box)*255))  for box in boxes] 
 
             with concurrent.futures.ThreadPoolExecutor(max_workers=self.tesseorc_workers) as executor:
-                executor.map(get_data, bbim)
+                future = executor.map(get_data, bbim)
+                try:
+                    future.result()
+                except:
+                    pass
 
-            # Deprecated methods
-            # for box in boxes:
-            #     # todo get number and id separated           
-            #     text = pytesseract.image_to_string(box, lang=self.lang, config='--psm 6')
 
-            #     #im = Image.fromarray(np.uint8(cm.gist_earth(box)*255))  
-                
-            #     # api.SetImageFile(im)
-            #     # api.GetUTF8Text()
-            #     # print(api.AllWordConfidences())
-            #     #text = tesserocr.image_to_text(im, lang='guj')
-
-            #     item = base_item.copy()
-            #     processed_box = self.process_boxes_text(text)
-            #     item.update(processed_box)
-            #     items.append(item)
-        
-        
         formatted_items = self.format_items(items, first_page_results, last_page_results)
         output_path = self.output_csv + filename + '.csv'
         self.items_to_csv(formatted_items, output_path, self.columns)
         logging.info(f'Converted to csv: {output_path}')
 
+    def basic_clean(self, dic):
+        cleaned = {}
+        for k,v in dic.items():
+            cleaned[k] = v.strip().replace(' ,', ',').replace('\n','')
+
+        return cleaned
+
+    def format_items(self, items, first_page_results, last_page_results):
+        result = []
+
+        additional = {
+            #'year': '',
+            'state': self.state
+        }
+
+        first_page_results = self.basic_clean(first_page_results)
+        last_page_results = self.basic_clean(last_page_results)
+
+        for item in items:
+            item = self.basic_clean(item)
+            try:
+                result.append(
+                    first_page_results | additional | item | last_page_results
+                )
+            except Exception as e:
+                print(f'Format error: {item} - {e}')
+
+        return result
 
     def check_data(self, item):
         return item

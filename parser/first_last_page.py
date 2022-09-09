@@ -17,7 +17,7 @@ class FirstLastPage:
             
     def extract_4_numbers(self, cropped):
 
-        text = (pytesseract.image_to_string(cropped, config='--psm 6', lang=self.lang)) #config='--psm 4' config='-c preserve_interword_spaces=1'
+        text = (pytesseract.image_to_string(cropped, config='--oem 3 --psm 6 outputbase digits', lang=self.lang)) #config='--psm 4' config='-c preserve_interword_spaces=1'
         
         text = re.findall(r'\d+', text)    
         if len(text)==4:
@@ -36,28 +36,6 @@ class FirstLastPage:
         
         return a,b,c,d
 
-
-    # def extract_detail_section(self, text):
-    #     keywords = self.MANDAL_KEYWORDS
-    #     found_keywords = ["","","","","",""]
-    #     for idx,keyword in enumerate(keywords):
-    #         for t in text:
-    #             if keyword in t:
-    #                 found_keywords[idx] = self.split_data(t)
-    #                 break
-    #     return found_keywords
-
-    # def extract_p_name_add(self, text):
-    #     keywords = self.P_KEYWORDS
-    #     found_keywords = ["",""]
-        
-    #     for idx,key in enumerate(keywords):
-    #         for t_idx, t in enumerate(text):
-    #             if key in t:
-    #                 if len(text)>t_idx+1:
-    #                     found_keywords[idx]  = text[t_idx+1]
-                        
-    #     return found_keywords
 
     def get_police_data(self, result, cs, im, rescale):
             a, b, c, d = self.rescale_cs(cs) if rescale else cs # police name name and address

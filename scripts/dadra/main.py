@@ -51,25 +51,6 @@ class Dadra(Gujarat):
 
         return result
 
-    def format_items(self, items, first_page_results, last_page_results):
-        result = []
-
-        additional = {
-            #'year': '2021',
-            'state': self.state
-        }
-
-        for item in items:
-            try:
-                result.append(
-                    first_page_results | additional | item | last_page_results
-                )
-            except Exception as e:
-                print(f'Format error: {item} - {e}')
-
-        return result
-
-
     def get_ac(self, text):
         try: 
             ac_name = text[0].strip(',').strip()

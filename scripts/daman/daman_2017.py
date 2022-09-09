@@ -36,7 +36,7 @@ class Daman(Gujarat):
     
     def check_data(self, item):
         # house no check
-        test_h = item.get('ઘરનં', '').strip().replace('-', '')
+        test_h = item.get('ઘરનં', '').strip().replace('-', '').replace('|', '')
         if not test_h :
             item['ઘરનં'] = ''
         return item
@@ -45,30 +45,11 @@ class Daman(Gujarat):
         is_splitted = False
         house_no = re.findall('\s(\d.+)', r)
         if house_no:
-            result['ઘરનં'] = house_no
+            result['ઘરનં'] = house_no[0]
             is_splitted = True
 
         return result, is_splitted
-
-    def format_items(self, items, first_page_results, last_page_results):
-        result = []
-
-        additional = {
-            #'year': '2021',
-            'state': self.state
-        }
-
-        for item in items:
-            try:
-                result.append(
-                    first_page_results | additional | item | last_page_results
-                )
-            except Exception as e:
-                print(f'Format error: {item} - {e}')
-
-        return result
-
-
+    
     def get_ac(self, text):
         try: 
             ac_name = text[1].strip()

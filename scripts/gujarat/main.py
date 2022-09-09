@@ -40,7 +40,11 @@ class Gujarat(Parser):
             'state': self.state
         }
 
+        first_page_results = self.basic_clean(first_page_results)
+        last_page_results = self.basic_clean(last_page_results)
+
         for item in items:
+            item = self.basic_clean(item)
             try:
                 result.append(
                     first_page_results | additional | item | last_page_results
