@@ -16,13 +16,17 @@ class Tests():
         for r in results:
 
             df = pd.read_csv(r)
-            total_rows = df['file_name'].size - 1
-            declared_total = int(df._get_value(1, 'net_electors_total', takeable=False))
+            try:
+                total_rows = df['file_name'].size - 1
+                declared_total = int(df._get_value(1, 'net_electors_total', takeable=False))
 
-            if total_rows ==  declared_total:
-                print(f'{r}: Correct total')
-            else:
-                print(f'{r}: Incorrect total: {total_rows} - {declared_total}')
+            
+                if total_rows ==  declared_total:
+                    print(f'{r}: Correct total')
+                else:
+                    print(f'{r}: Incorrect total: {total_rows} - {declared_total}')
+            except:
+                print(f'{r}: No total')
 
 if __name__ == '__main__':
     TS = Tests()

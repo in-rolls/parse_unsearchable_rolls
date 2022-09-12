@@ -90,6 +90,7 @@ class FirstLastPage:
         else:
             coordinates = input_coordinates
 
+        # if not stats nums check for the second time
         if not self.stats_nums:
             for cs in coordinates:
                 c1, c2, c3, c4 = cs
@@ -100,9 +101,10 @@ class FirstLastPage:
                 else:
                     break
 
-            self.stat_nums = self.check_stats_nums(stat_nums)
-            a, b, c, d = self.stat_nums if self.stat_nums else '', '', '', ''
-            
+            self.stats_nums = self.check_stats_nums(stat_nums)
+
+        if not self.stats_nums:
+            self.stats_nums = '', '', '', ''   
 
         if year_coordinates:
             c1, c2, c3, c4 = year_coordinates
@@ -113,10 +115,10 @@ class FirstLastPage:
             year = ''
 
         result.update({
-            'net_electors_male': a,
-            'net_electors_female': b,
-            'net_electors_third_gender': c,
-            'net_electors_total': d,
+            'net_electors_male': self.stats_nums[0],
+            'net_electors_female': self.stats_nums[1],
+            'net_electors_third_gender': self.stats_nums[2],
+            'net_electors_total': self.stats_nums[3],
             'year': year
         })
         return result

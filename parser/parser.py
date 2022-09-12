@@ -18,9 +18,6 @@ import tesserocr
 from PIL import Image
 from matplotlib import cm
 
-####
-# import matplotlib.pyplot as plt
-# import keras_ocr
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s %(message)s',
@@ -269,57 +266,63 @@ class Parser(Helpers, FirstLastPage):
 
     def process_pdf(self, pdf_file_path):
         logging.info(f'Converting {pdf_file_path} to img...')
-        pages = self.pdf_to_img(pdf_file_path, dpi=self.DPI)
-        items = []
-        filename = pdf_file_path.split('/')[-1].strip('.pdf')
-        base_item = {
-            'file_name' : filename
-            }
+        try:
+            pages = self.pdf_to_img(pdf_file_path, dpi=self.DPI)
+            items = []
+            filename = pdf_file_path.split('/')[-1].strip('.pdf')
+            base_item = {
+                'file_name' : filename
+                }
 
-        if not self.detect_columns:
-            logging.info('Parsing first and last page data..')
-            first_page_results, last_page_results = self.handle_extra_pages(pages)
-        else:
-            first_page_results, last_page_results = {}, {} 
+            if not self.detect_columns:
+                logging.info('Parsing first and last page data..')
+                first_page_results, last_page_results = self.handle_extra_pages(pages)
+            else:
+                first_page_results, last_page_results = {}, {} 
 
-        logging.info(f'Detecting and parsing {pdf_file_path} boxes..')
-        for page in pages[self.FIRST_PAGES:-1]:
-            base_item.update(self.get_header(page))
-            boxes = self.get_boxes(page, self.contours)
+            logging.info(f'Detecting and parsing {pdf_file_path} boxes..')
+            for page in pages[self.FIRST_PAGES:-1]:
+                base_item.update(self.get_header(page))
+                boxes = self.get_boxes(page, self.contours)
 
-            # concurrent tesserocr
-            def get_data(im):
-                try:
-                    item = base_item.copy()
-                    text = tesserocr.image_to_text(im, lang=self.lang, psm=tesserocr.PSM.SINGLE_BLOCK) #tesserocr.PSM.SPARSE_TEXT
-                    processed_box = self.process_boxes_text(text)
-                    item.update(processed_box)
-                    item = self.check_data(item)
-                    items.append(item)
-                except Exception as e:
-                    logging.error(traceback.format_exc())
+                # concurrent tesserocr
+                def get_data(im):
+                    try:
+                        item = base_item.copy()
+                        text = tesserocr.image_to_text(im, lang=self.lang, psm=tesserocr.PSM.SINGLE_BLOCK) #tesserocr.PSM.SPARSE_TEXT
+                        processed_box = self.process_boxes_text(text)
+                        item.update(processed_box)
+                        item = self.check_data(item)
+                        items.append(item)
+                    except Exception as e:
+                        logging.error(traceback.format_exc())
 
-            bbim = [Image.fromarray(np.uint8(cm.gist_earth(box)*255))  for box in boxes] 
+                bbim = [Image.fromarray(np.uint8(cm.gist_earth(box)*255))  for box in boxes] 
 
-            with concurrent.futures.ThreadPoolExecutor(max_workers=self.tesseorc_workers) as executor:
-                future = executor.map(get_data, bbim)
-                try:
-                    future.result()
-                except:
-                    pass
+                with concurrent.futures.ThreadPoolExecutor(max_workers=self.tesseorc_workers) as executor:
+                    future = executor.map(get_data, bbim)
+                    try:
+                        future.result()
+                    except:
+                        pass
 
-        logging.info(f'Formatting and exporting {pdf_file_path} data..')
-        formatted_items = self.format_items(items, first_page_results, last_page_results)
-        output_path = self.output_csv + filename + '.csv'
-        self.items_to_csv(formatted_items, output_path, self.columns)
-        logging.info(f'Converted to csv: {output_path}')
+            logging.info(f'Formatting and exporting {pdf_file_path} data..')
+            formatted_items = self.format_items(items, first_page_results, last_page_results)
+            output_path = self.output_csv + filename + '.csv'
+            self.items_to_csv(formatted_items, output_path, self.columns)
+            logging.info(f'Converted to csv: {output_path}')
+        except:
+            logging.error(f'Error converting {pdf_file_path}: {traceback.format_exc()}')
 
     def basic_clean(self, dic):
-        cleaned = {}
-        for k,v in dic.items():
-            cleaned[k] = v.strip().replace(' ,', ',').replace('\n','')
+        try:
+            cleaned = {}
+            for k,v in dic.items():
+                cleaned[k] = v.strip().replace(' ,', ',').replace('\n','')
 
-        return cleaned
+            return cleaned
+        except:
+            return dic
 
     def format_items(self, items, first_page_results, last_page_results):
         result = []

@@ -2,20 +2,25 @@ import cv2
 import numpy as np
 import pdf2image
 import os 
+import logging
 
 import pandas as pd
 import matplotlib.pyplot as plt 
 
 
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s %(message)s',
+                    handlers=[logging.FileHandler("parser/debug.log"),
+                              logging.StreamHandler()])
+
 class Helpers:
 
     # File methods
-
     def get_file_paths(self):
+        logging.info('test')
         pdf_files_paths = self.get_this_state_files()
         if not pdf_files_paths:
-            print('No files found')
-            #logging.info(f'No files found')
+            logging.info(f'No files found')
 
         return pdf_files_paths
 
