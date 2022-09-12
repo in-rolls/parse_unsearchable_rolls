@@ -1,6 +1,8 @@
 import pytesseract
 import re
 from collections import OrderedDict
+import cv2
+import numpy as np
 
 class FirstLastPage:
     FIRST_LAST_SEPARATORS = [":-", ":", ">", "-", "."]
@@ -16,15 +18,27 @@ class FirstLastPage:
         
     def check_stats_nums(self, sn):
         # check if stats nums count are accurate
-        sni = [int(x) for x in sn]
-        if sni[0] + sni[1] + sni[2] == sni[3]:
-            return sn
-        else:
-            return ('','','','')
+        try:
+            sni = [int(x) for x in sn]
+            if sni[0] + sni[1] + sni[2] == sni[3]:
+                return sn
+        except:
+            pass
+        
+        return None
 
     def extract_4_numbers(self, cropped):
-        text = (pytesseract.image_to_string(cropped, config='--psm 6', lang=self.lang)) #config='--psm 4' config='-c preserve_interword_spaces=1'
+        # remove box lines
+        im = np.array(cropped) 
+        im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
+        contours = self.get_countours(im)
+        cropped = self.remove_contours(im, contours, (70,150))
+
+        # OCR
+        text = (pytesseract.image_to_string(cropped, config='--psm 6 --oem 3 -c tessedit_char_whitelist=0123456789', lang=self.lang)) #config='--psm 4' config='-c preserve_interword_spaces=1'
         text = re.findall(r'\d+', text)    
+
+        #Interpretation
         if len(text)==4:
             if int(text[0]) + int(text[1]) == int(text[2]):
                 a,b,c,d = text[0],text[1],"0",text[2]
@@ -87,6 +101,7 @@ class FirstLastPage:
                     break
 
             self.stat_nums = self.check_stats_nums(stat_nums)
+            a, b, c, d = self.stat_nums if self.stat_nums else '', '', '', ''
             
 
         if year_coordinates:
@@ -98,10 +113,10 @@ class FirstLastPage:
             year = ''
 
         result.update({
-            'net_electors_male': self.stat_nums[0],
-            'net_electors_female': self.stat_nums[1],
-            'net_electors_third_gender': self.stat_nums[2],
-            'net_electors_total': self.stat_nums[3],
+            'net_electors_male': a,
+            'net_electors_female': b,
+            'net_electors_third_gender': c,
+            'net_electors_total': d,
             'year': year
         })
         return result
@@ -149,7 +164,7 @@ class FirstLastPage:
             
             result.update(self.get_ac(text))
 
-        if cs := coordinates.get('stats_num', None):
+        if cs := coordinates.get('stats_nums', None):
             a, b, c, d = self.rescale_cs(cs) if rescale else cs # ac name and parl
             crop_stats_nums = self.crop_section(a, b, c, d, im)
             self.stats_nums = self.check_stats_nums(self.extract_4_numbers(crop_stats_nums))
