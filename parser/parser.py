@@ -68,6 +68,7 @@ class Parser(Helpers, FirstLastPage):
         self.year = year
         self.stop = False # testing
         self.boxes_columns = boxes_columns
+        self.stats_nums = None # for multiple check of stats nums
         
         if self.test:
             self.tesseorc_workers = 1
@@ -281,7 +282,7 @@ class Parser(Helpers, FirstLastPage):
         else:
             first_page_results, last_page_results = {}, {} 
 
-        logging.info('Detecting and parsing boxes..')
+        logging.info(f'Detecting and parsing {pdf_file_path} boxes..')
         for page in pages[self.FIRST_PAGES:-1]:
             base_item.update(self.get_header(page))
             boxes = self.get_boxes(page, self.contours)

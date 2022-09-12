@@ -14,11 +14,16 @@ class FirstLastPage:
         data = data.split(s)
         return [ x.strip() for x in data ]
         
-            
-    def extract_4_numbers(self, cropped):
+    def check_stats_nums(self, sn):
+        # check if stats nums count are accurate
+        sni = [int(x) for x in sn]
+        if sni[0] + sni[1] + sni[2] == sni[3]:
+            return sn
+        else:
+            return ('','','','')
 
-        text = (pytesseract.image_to_string(cropped, config='--oem 3 --psm 6 outputbase digits', lang=self.lang)) #config='--psm 4' config='-c preserve_interword_spaces=1'
-        
+    def extract_4_numbers(self, cropped):
+        text = (pytesseract.image_to_string(cropped, config='--psm 6', lang=self.lang)) #config='--psm 4' config='-c preserve_interword_spaces=1'
         text = re.findall(r'\d+', text)    
         if len(text)==4:
             if int(text[0]) + int(text[1]) == int(text[2]):
@@ -34,7 +39,7 @@ class FirstLastPage:
         else:
             a,b,c,d = "","","",""
         
-        return a,b,c,d
+        return (a, b, c, d)
 
 
     def get_police_data(self, result, cs, im, rescale):
@@ -71,15 +76,19 @@ class FirstLastPage:
         else:
             coordinates = input_coordinates
 
-        for cs in coordinates:
-            c1, c2, c3, c4 = cs
-            cropped = self.crop_section(c1, c2, c3, c4, im)
-            a, b, c, d = self.extract_4_numbers(cropped)
-            if (a == '' and b == '') or a == '0':
-                ...
-            else:
-                break
-        
+        if not self.stats_nums:
+            for cs in coordinates:
+                c1, c2, c3, c4 = cs
+                cropped = self.crop_section(c1, c2, c3, c4, im)
+                stat_nums = self.extract_4_numbers(cropped)
+                if (a == '' and b == '') or a == '0':
+                    ...
+                else:
+                    break
+
+            self.stat_nums = self.check_stats_nums(stat_nums)
+            
+
         if year_coordinates:
             c1, c2, c3, c4 = year_coordinates
             cropped = self.crop_section(c1, c2, c3, c4, im)
@@ -89,10 +98,10 @@ class FirstLastPage:
             year = ''
 
         result.update({
-            'net_electors_male': a,
-            'net_electors_female': b,
-            'net_electors_third_gender': c,
-            'net_electors_total': d,
+            'net_electors_male': self.stat_nums[0],
+            'net_electors_female': self.stat_nums[1],
+            'net_electors_third_gender': self.stat_nums[2],
+            'net_electors_total': self.stat_nums[3],
             'year': year
         })
         return result
@@ -140,8 +149,12 @@ class FirstLastPage:
             
             result.update(self.get_ac(text))
 
-        return result
+        if cs := coordinates.get('stats_num', None):
+            a, b, c, d = self.rescale_cs(cs) if rescale else cs # ac name and parl
+            crop_stats_nums = self.crop_section(a, b, c, d, im)
+            self.stats_nums = self.check_stats_nums(self.extract_4_numbers(crop_stats_nums))
 
+        return result
 
     def handle_extra_pages(self, pages):
         return self.extract_first_page_details(pages[0]), self.extract_last_page_details(pages[-1])
