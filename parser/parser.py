@@ -159,7 +159,7 @@ class Parser(Helpers, FirstLastPage):
                     # Add last line to previous key
                     result[last_key] = result[last_key] + ' ' + r.strip()
                 except Exception as e:
-                    logging.warning(f'Add extra last key: {r} \nException: {e}: \n{raw} \n{result}') 
+                    logging.warning(f'Add extra last key: {r}; Exception: {e}: ; Line: {raw} ; Result: {result}') 
                     # logging.warning(f'Add extra last key: {r} \nException: {traceback.format_exc()}: \n{raw} \n{result}') 
 
         # Get accuracy score
@@ -308,7 +308,7 @@ class Parser(Helpers, FirstLastPage):
                 except:
                     pass
 
-        logging.info('Formatting and exporting data..')
+        logging.info(f'Formatting and exporting {pdf_file_path} data..')
         formatted_items = self.format_items(items, first_page_results, last_page_results)
         output_path = self.output_csv + filename + '.csv'
         self.items_to_csv(formatted_items, output_path, self.columns)
