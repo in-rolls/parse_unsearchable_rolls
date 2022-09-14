@@ -104,7 +104,7 @@ class FirstLastPage:
                 c1, c2, c3, c4 = cs
                 cropped = self.crop_section(c1, c2, c3, c4, im)
                 stat_nums = self.extract_4_numbers(cropped)
-                if (a == '' and b == '') or a == '0':
+                if (stat_nums[0] == '' and stat_nums[1] == '') or stat_nums[0] == '0':
                     ...
                 else:
                     break
