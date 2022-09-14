@@ -17,7 +17,6 @@ class Helpers:
 
     # File methods
     def get_file_paths(self):
-        logging.info('test')
         pdf_files_paths = self.get_this_state_files()
         if not pdf_files_paths:
             logging.info(f'No files found')

@@ -27,16 +27,24 @@ class FirstLastPage:
         
         return None
 
-    def extract_4_numbers(self, cropped):
-        # remove box lines
-        im = np.array(cropped) 
-        im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
-        contours = self.get_countours(im)
-        cropped = self.remove_contours(im, contours, (70,150))
 
-        # OCR
-        text = (pytesseract.image_to_string(cropped, config='--psm 6 --oem 3 -c tessedit_char_whitelist=0123456789', lang=self.lang)) #config='--psm 4' config='-c preserve_interword_spaces=1'
-        text = re.findall(r'\d+', text)    
+    def extract_4_numbers(self, cropped):
+        # Extract numbers
+        text = (pytesseract.image_to_string(cropped, config='--psm 6', lang=self.lang)) #config='--psm 4' config='-c preserve_interword_spaces=1'
+        text = re.findall(r'\d+', text)
+
+        if text:
+            nums = [int(x) for x in text]
+            if nums[-1] != sum(nums[:-1]):
+                # Remove box lines
+                im = np.array(cropped) 
+                im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
+                contours = self.get_countours(im)
+                cropped_p = self.remove_contours(im, contours, (70,150))
+
+                # Retry
+                text = (pytesseract.image_to_string(cropped_p, config='--psm 6 --oem 3 -c tessedit_char_whitelist=0123456789', lang=self.lang)) 
+                text = re.findall(r'\d+', text)
 
         #Interpretation
         if len(text)==4:

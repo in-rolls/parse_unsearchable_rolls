@@ -349,7 +349,7 @@ class Parser(Helpers, FirstLastPage):
     def check_data(self, item):
         return item
 
-    def known_exception(self, result, r):
+    def known_exceptions(self, result, r):
         is_splitted = False
         return result, is_splitted
 
