@@ -1,5 +1,5 @@
 import os
-# import sys
+import sys
 # sys.path.append('../')
 # from parse_unsearchable_rolls.parser.helpers import Helpers
 
@@ -30,4 +30,8 @@ class Tests():
 
 if __name__ == '__main__':
     TS = Tests()
-    TS.main('data/out/daman/2017')
+    try:
+        path = sys.argv[1]
+        TS.main(path)
+    except Exception as e:
+        print(f'Path error: {e}')
