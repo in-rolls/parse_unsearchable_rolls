@@ -6,6 +6,7 @@ import logging
 
 import pandas as pd
 import matplotlib.pyplot as plt 
+import concurrent.futures
 
 
 logging.basicConfig(level=logging.INFO,
@@ -199,11 +200,20 @@ class Helpers:
         boxes = self.crop(im, contours, limits_h, limits_w)
 
         boxes_processed = []
-        for b in boxes:
+
+        def get_box(b):
             contours = self.get_countours(b)
             box = self.remove_contours(b, contours, contour_limits)
             box = self.remove_photo(box, contours)
             boxes_processed.append(box)
+
+        # concurrent
+        with concurrent.futures.ProcessPoolExecutor(max_workers=self.cv2_workers) as executor:
+            future = executor.map(get_box, boxes, chunksize=self.chunksize)
+            try:
+                future.result()
+            except:
+                pass
 
         return boxes_processed
 

@@ -25,27 +25,28 @@ logging.basicConfig(level=logging.INFO,
                               logging.StreamHandler()])
 
 class Parser(Helpers, FirstLastPage):
-    BASE_DATA_PATH = 'data/'
+    BASE_DATA_PATH = 'data/'    
     DPI = 600
     SEPARATORS = [":-", ":", ">", "=", ';']
     FIRST_PAGES = 1
+    chunksize = 100000000000
 
     def run(self, processors):
         # multiprocessing
         pdf_files = self.get_file_paths()
 
-        if not self.test:
-            pool = multiprocessing.Pool(processors)
-            start_time = time.perf_counter()
-            processes = [pool.apply_async(self.process_pdf, args=(pdf,)) for pdf in pdf_files]
-            result = [p.get() for p in processes]
-            finish_time = time.perf_counter()
+        # if not self.test:
+        #     pool = multiprocessing.Pool(processors)
+        #     start_time = time.perf_counter()
+        #     processes = [pool.apply_async(self.process_pdf, args=(pdf,)) for pdf in pdf_files]
+        #     result = [p.get() for p in processes]
+        #     finish_time = time.perf_counter()
 
-            logging.info(f"Program finished in {finish_time-start_time} seconds")
-            logging.info(result)
-        else:
-            for pdf in pdf_files:
-                self.process_pdf(pdf)
+        #     logging.info(f"Program finished in {finish_time-start_time} seconds")
+        #     logging.info(result)
+        # else:
+        for pdf in pdf_files:
+            self.process_pdf(pdf)
 
     def __init__(self, state, lang, contours, year=None, ignore_last=False, translate_columns={} , first_page_coordinates={}, last_page_coordinates={}, rescale=1, columns=[], boxes_columns=[], checks=[], handle=[], detect_columns=[]):
 
@@ -67,10 +68,13 @@ class Parser(Helpers, FirstLastPage):
         self.boxes_columns = boxes_columns
         self.stats_nums = None # for multiple check of stats nums
         
-        if self.test:
-            self.tesseorc_workers = 1
-        else:
-            self.tesseorc_workers = 8
+
+        self.tesseorc_workers = 12
+        self.cv2_workers = 12
+
+        # else:
+        #     self.tesseorc_workers = 8
+        #     self.tesseorc_workers = 8
 
         # Column names one time convertion
         self.house_number = 'house number'
@@ -282,10 +286,11 @@ class Parser(Helpers, FirstLastPage):
 
             logging.info(f'Detecting and parsing {pdf_file_path} boxes..')
             for page in pages[self.FIRST_PAGES:-1]:
+                logging.info(f'Processing page')
                 base_item.update(self.get_header(page))
                 boxes = self.get_boxes(page, self.contours)
 
-                # concurrent tesserocr
+                # roncurrent tesserocr
                 def get_data(im):
                     try:
                         item = base_item.copy()
@@ -299,8 +304,9 @@ class Parser(Helpers, FirstLastPage):
 
                 bbim = [Image.fromarray(np.uint8(cm.gist_earth(box)*255))  for box in boxes] 
 
-                with concurrent.futures.ThreadPoolExecutor(max_workers=self.tesseorc_workers) as executor:
-                    future = executor.map(get_data, bbim)
+                #with concurrent.futures.ThreadPoolExecutor(max_workers=self.tesseorc_workers) as executor:
+                with concurrent.futures.ProcessPoolExecutor(max_workers=self.tesseorc_workers) as executor:
+                    future = executor.map(get_data, bbim, chunksize=self.chunksize)
                     try:
                         future.result()
                     except:
