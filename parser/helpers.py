@@ -207,13 +207,11 @@ class Helpers:
             box = self.remove_photo(box, contours)
             boxes_processed.append(box)
 
-        # concurrent
-        with concurrent.futures.ProcessPoolExecutor(max_workers=self.cv2_workers) as executor:
-            future = executor.map(get_box, boxes, chunksize=self.chunksize)
-            try:
-                future.result()
-            except:
-                pass
+        # # concurrent
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            for r in executor.map(get_box, boxes):
+                if r:
+                    logging.warning(r)
 
         return boxes_processed
 

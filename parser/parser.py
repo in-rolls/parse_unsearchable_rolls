@@ -29,24 +29,21 @@ class Parser(Helpers, FirstLastPage):
     DPI = 600
     SEPARATORS = [":-", ":", ">", "=", ';']
     FIRST_PAGES = 1
-    chunksize = 100000000000
 
     def run(self, processors):
-        # multiprocessing
         pdf_files = self.get_file_paths()
 
-        # if not self.test:
-        #     pool = multiprocessing.Pool(processors)
-        #     start_time = time.perf_counter()
-        #     processes = [pool.apply_async(self.process_pdf, args=(pdf,)) for pdf in pdf_files]
-        #     result = [p.get() for p in processes]
-        #     finish_time = time.perf_counter()
+        if not self.test:
+            # multiprocessing
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                for r in executor.map(self.process_pdf, pdf_files):
+                    if r:
+                        logging.warning(r)
 
-        #     logging.info(f"Program finished in {finish_time-start_time} seconds")
-        #     logging.info(result)
-        # else:
-        for pdf in pdf_files:
-            self.process_pdf(pdf)
+            logging.info(f"Finished")
+        else:
+            for pdf in pdf_files:
+                self.process_pdf(pdf)
 
     def __init__(self, state, lang, contours, year=None, ignore_last=False, translate_columns={} , first_page_coordinates={}, last_page_coordinates={}, rescale=1, columns=[], boxes_columns=[], checks=[], handle=[], detect_columns=[]):
 
@@ -68,14 +65,6 @@ class Parser(Helpers, FirstLastPage):
         self.boxes_columns = boxes_columns
         self.stats_nums = None # for multiple check of stats nums
         
-
-        self.tesseorc_workers = 12
-        self.cv2_workers = 12
-
-        # else:
-        #     self.tesseorc_workers = 8
-        #     self.tesseorc_workers = 8
-
         # Column names one time convertion
         self.house_number = 'house number'
         self.age = 'age'
@@ -302,15 +291,12 @@ class Parser(Helpers, FirstLastPage):
                     except Exception as e:
                         logging.error(traceback.format_exc())
 
-                bbim = [Image.fromarray(np.uint8(cm.gist_earth(box)*255))  for box in boxes] 
+                bbim = [Image.fromarray(np.uint8(cm.gist_earth(box)*255)) for box in boxes] 
 
-                #with concurrent.futures.ThreadPoolExecutor(max_workers=self.tesseorc_workers) as executor:
-                with concurrent.futures.ProcessPoolExecutor(max_workers=self.tesseorc_workers) as executor:
-                    future = executor.map(get_data, bbim, chunksize=self.chunksize)
-                    try:
-                        future.result()
-                    except:
-                        pass
+                with concurrent.futures.ThreadPoolExecutor() as executor:
+                    for r in executor.map(get_data, bbim):
+                        if r:
+                            logging.warning(r)
 
             logging.info(f'Formatting and exporting {pdf_file_path} data..')
             formatted_items = self.format_items(items, first_page_results, last_page_results)
