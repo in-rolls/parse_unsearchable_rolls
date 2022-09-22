@@ -22,11 +22,12 @@ class Helpers:
         result = []
         processed = self.get_this_state_files('out/', ext='.csv')
         processed_names = [_.split('/')[-1].split('.')[0] for _ in processed]
-        pdf_names = [_.split('/')[-1].split('.')[0] for _ in pdf_files]
+        
+        for _ in pdf_files:
+            pdf_name = _.split('/')[-1].split('.')[0]
 
-        for _ in pdf_names:
-            if _ not in processed_names:
-                result.append(_ + '.pdf')
+            if pdf_name not in processed_names:
+                result.append(_)
 
         if not result:
             logging.warning('Files already processed')
