@@ -29,21 +29,24 @@ class Parser(Helpers, FirstLastPage):
     DPI = 600
     SEPARATORS = [":-", ":", ">", "=", ';']
     FIRST_PAGES = 1
+    MAX_WORKERS = 7
 
     def run(self, processors):
-        pdf_files = self.get_file_paths()
+        pdf_files = self.get_file_paths('in/')
+        pdf_files = self.check_processed_files(pdf_files)
+        breakpoint()
 
-        if not self.test:
-            # multiprocessing
-            with concurrent.futures.ThreadPoolExecutor() as executor:
-                for r in executor.map(self.process_pdf, pdf_files):
-                    if r:
-                        logging.warning(r)
+        # if not self.test:
+        #     # multiprocessing
+        #     with concurrent.futures.ThreadPoolExecutor() as executor:
+        #         for r in executor.map(self.process_pdf, pdf_files):
+        #             if r:
+        #                 logging.warning(r)
 
-            logging.info(f"Finished")
-        else:
-            for pdf in pdf_files:
-                self.process_pdf(pdf)
+        #     logging.info(f"Finished")
+        # else:
+        for pdf in pdf_files:
+            self.process_pdf(pdf)
 
     def __init__(self, state, lang, contours, year=None, ignore_last=False, translate_columns={} , first_page_coordinates={}, last_page_coordinates={}, rescale=1, columns=[], boxes_columns=[], checks=[], handle=[], detect_columns=[]):
 
@@ -293,7 +296,7 @@ class Parser(Helpers, FirstLastPage):
 
                 bbim = [Image.fromarray(np.uint8(cm.gist_earth(box)*255)) for box in boxes] 
 
-                with concurrent.futures.ThreadPoolExecutor() as executor:
+                with concurrent.futures.ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
                     for r in executor.map(get_data, bbim):
                         if r:
                             logging.warning(r)

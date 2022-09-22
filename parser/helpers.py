@@ -17,8 +17,24 @@ logging.basicConfig(level=logging.INFO,
 class Helpers:
 
     # File methods
-    def get_file_paths(self):
-        pdf_files_paths = self.get_this_state_files()
+
+    def check_processed_files(self, pdf_files):
+        result = []
+        processed = self.get_this_state_files('out/', ext='.csv')
+        processed_names = [_.split('/')[-1].split('.')[0] for _ in processed]
+        pdf_names = [_.split('/')[-1].split('.')[0] for _ in pdf_files]
+
+        for _ in pdf_names:
+            if _ not in processed_names:
+                result.append(_ + '.pdf')
+
+        if not result:
+            logging.warning('Files already processed')
+
+        return result
+        
+    def get_file_paths(self, folder):
+        pdf_files_paths = self.get_this_state_files(folder)
         if not pdf_files_paths:
             logging.info(f'No files found')
 
@@ -32,16 +48,15 @@ class Helpers:
         result.sort()
         return result
 
-    def get_this_state_files(self):
-        path = f'{self.BASE_DATA_PATH}in/{self.state}'
+    def get_this_state_files(self, folder, ext='.pdf'):
+        path = f'{self.BASE_DATA_PATH}{folder}{self.state}'
         if self.year:
             path += '/' + self.year
         files_path_list = self.get_full_path_files(path)
-        return self.filter_and_sort(files_path_list, '.pdf')
+        return self.filter_and_sort(files_path_list, ext)
 
 
     # testing methods
-
     def show(self, im):
         plotting = plt.imshow(im,cmap='gray')
         plt.show()
@@ -208,7 +223,7 @@ class Helpers:
             boxes_processed.append(box)
 
         # # concurrent
-        with concurrent.futures.ThreadPoolExecutor() as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
             for r in executor.map(get_box, boxes):
                 if r:
                     logging.warning(r)
