@@ -34,7 +34,6 @@ class Parser(Helpers, FirstLastPage):
     def run(self, processors):
         pdf_files = self.get_file_paths('in/')
         pdf_files = self.check_processed_files(pdf_files)
-        breakpoint()
 
         # if not self.test:
         #     # multiprocessing
