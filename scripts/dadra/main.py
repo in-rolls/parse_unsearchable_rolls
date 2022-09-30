@@ -12,7 +12,7 @@ from collections import OrderedDict
 # methods specific to this state
  
 class Dadra(Gujarat):
-
+    DPI = 300
     MALE = 'પુરૂષ'
     FEMALE = 'સ્ત્રી'
 
@@ -63,7 +63,6 @@ class Dadra(Gujarat):
         }
 
     def correct_alignment(self, raw):
-
         if len(raw) == 7:
             age = ''.join(re.findall('\d+', raw[5]))
             gender = self.male_or_female(raw[5])
@@ -114,9 +113,9 @@ if __name__ == '__main__':
         'જાતિ':'sex'
     }
 
-    contours = ((500,800), (300,1500), (70, 400))
+    contours = ((500/2,800/2), (300/2,1500/2), (70/2, 400/2))
     
-    DD = Dadra('dadra', lang, contours, last_page_coordinates=last_page_coordinates, first_page_coordinates=first_page_coordinates ,columns=columns, translate_columns=translate_columns, rescale=600/500)
+    DD = Dadra('dadra', lang, contours,columns=columns, translate_columns=translate_columns, rescale=300/500)
 
     DD.run(2)
 

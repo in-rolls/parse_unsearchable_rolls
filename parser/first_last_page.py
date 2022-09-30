@@ -82,7 +82,7 @@ class FirstLastPage:
                         break
             return result
 
-    def extract_last_page_details(self, im):
+    def extract_last_page_details(self, im, stats_nums):
         result = OrderedDict()
         a, b, c, d = '','','',''
         coordinates = []
@@ -99,20 +99,23 @@ class FirstLastPage:
             coordinates = input_coordinates
 
         # if not stats nums check for the second time
-        if not self.stats_nums:
+        if not stats_nums:
             for cs in coordinates:
                 c1, c2, c3, c4 = cs
                 cropped = self.crop_section(c1, c2, c3, c4, im)
-                stat_nums = self.extract_4_numbers(cropped)
-                if (stat_nums[0] == '' and stat_nums[1] == '') or stat_nums[0] == '0':
+                s_nums = self.extract_4_numbers(cropped)
+                if (s_nums[0] == '' and s_nums[1] == '') or s_nums[0] == '0':
                     ...
                 else:
                     break
 
-            self.stats_nums = self.check_stats_nums(stat_nums)
+            try:
+                stats_nums = self.check_stats_nums(s_nums)
+            except:
+                ...
 
-        if not self.stats_nums:
-            self.stats_nums = '', '', '', ''   
+        if not stats_nums:
+            stats_nums = '', '', '', ''   
 
         if year_coordinates:
             c1, c2, c3, c4 = year_coordinates
@@ -123,10 +126,10 @@ class FirstLastPage:
             year = ''
 
         result.update({
-            'net_electors_male': self.stats_nums[0],
-            'net_electors_female': self.stats_nums[1],
-            'net_electors_third_gender': self.stats_nums[2],
-            'net_electors_total': self.stats_nums[3],
+            'net_electors_male': stats_nums[0],
+            'net_electors_female': stats_nums[1],
+            'net_electors_third_gender': stats_nums[2],
+            'net_electors_total': stats_nums[3],
             'year': year
         })
         return result
@@ -138,6 +141,7 @@ class FirstLastPage:
         coordinates = self.first_page_coordinates
         result = OrderedDict()
         rescale = coordinates.get('rescale', True)
+        stats_nums = []
 
         if cs := coordinates.get('mandal', None):
             a,b,c,d = self.rescale_cs(cs) if rescale else cs # mandal block
@@ -177,10 +181,12 @@ class FirstLastPage:
         if cs := coordinates.get('stats_nums', None):
             a, b, c, d = self.rescale_cs(cs) if rescale else cs # ac name and parl
             crop_stats_nums = self.crop_section(a, b, c, d, im)
-            self.stats_nums = self.check_stats_nums(self.extract_4_numbers(crop_stats_nums))
+            stats_nums = self.check_stats_nums(self.extract_4_numbers(crop_stats_nums))
 
-        return result
+        return result, stats_nums
 
     def handle_extra_pages(self, pages):
-        return self.extract_first_page_details(pages[0]), self.extract_last_page_details(pages[-1])
-        #return super().handle_extra_pages(pages)
+        fp_result, stats_nums = self.extract_first_page_details(pages[0])
+        lp_result = self.extract_last_page_details(pages[-1], stats_nums)
+
+        return fp_result, lp_result

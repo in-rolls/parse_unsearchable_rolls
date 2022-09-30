@@ -281,7 +281,7 @@ class Parser(Helpers, FirstLastPage):
                 base_item.update(self.get_header(page))
                 boxes = self.get_boxes(page, self.contours)
 
-                # roncurrent tesserocr
+                # concurrent tesserocr
                 def get_data(im):
                     try:
                         item = base_item.copy()
@@ -295,10 +295,13 @@ class Parser(Helpers, FirstLastPage):
 
                 bbim = [Image.fromarray(np.uint8(cm.gist_earth(box)*255)) for box in boxes] 
 
-                with concurrent.futures.ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
-                    for r in executor.map(get_data, bbim):
-                        if r:
-                            logging.warning(r)
+                if not self.test:
+                    with concurrent.futures.ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
+                        for r in executor.map(get_data, bbim):
+                            if r:
+                                logging.warning(r)
+                else:
+                    [get_data(_) for _ in bbim]
 
             logging.info(f'Formatting and exporting {pdf_file_path} data..')
             formatted_items = self.format_items(items, first_page_results, last_page_results)

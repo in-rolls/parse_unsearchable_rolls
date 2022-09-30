@@ -223,11 +223,14 @@ class Helpers:
             box = self.remove_photo(box, contours)
             boxes_processed.append(box)
 
-        # # concurrent
-        with concurrent.futures.ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
-            for r in executor.map(get_box, boxes):
-                if r:
-                    logging.warning(r)
+        if not self.test:
+            # # concurrent
+            with concurrent.futures.ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
+                for r in executor.map(get_box, boxes):
+                    if r:
+                        logging.warning(r)
+        else:
+            [get_box(_) for _ in boxes]
 
         return boxes_processed
 

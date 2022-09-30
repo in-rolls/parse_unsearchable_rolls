@@ -26,10 +26,6 @@ class Delhi(Parser):
         }
     
 
-    def handle_extra_pages(self, pages):
-        return self.extract_first_page_details(pages[0]), self.extract_last_page_details(pages[-1])
-        #return super().handle_extra_pages(pages)
-
     def get_header(self, page):
         result = OrderedDict()
         a,b,c,d = 0,0,4700,335

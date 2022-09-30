@@ -12,7 +12,6 @@ from collections import OrderedDict
 # methods specific to this state
  
 class Dadra(GoogleVisionParser):
-
     MALE = 'પુરૂષ'
     FEMALE = 'સ્ત્રી'
 
@@ -116,7 +115,7 @@ if __name__ == '__main__':
 
     contours = ((500,800), (300,1500), (70, 400))
     
-    DD = Dadra('dadra', lang, contours, last_page_coordinates=last_page_coordinates, first_page_coordinates=first_page_coordinates ,columns=columns, translate_columns=translate_columns, rescale=600/500)
+    DD = Dadra('dadra', lang, contours, last_page_coordinates=last_page_coordinates, first_page_coordinates=first_page_coordinates ,columns=columns, translate_columns=translate_columns)
 
     DD.run(2)
 
