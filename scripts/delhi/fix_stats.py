@@ -2,12 +2,16 @@ import sys
 import pytesseract
 import re
 from collections import OrderedDict
-import cv2
 import numpy as np
 import pandas as pd
+import logging
 
 sys.path.append('../')
 from parse_unsearchable_rolls.scripts.delhi.main import Delhi
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s %(message)s',)
+
 
 class FixStats(Delhi):
 
@@ -15,7 +19,7 @@ class FixStats(Delhi):
         out_files = self.get_this_state_files('out/', ext='.csv')
 
         for out_file in out_files:
-            print(f'Processing file: {out_file}')
+            logging.info(f'Processing file: {out_file}')
             pdf_file_path = out_file.replace('out/','in/').replace('.csv','.pdf') 
             pages = self.pdf_to_img(pdf_file_path, dpi=self.DPI)
             first_page_results, last_page_results = self.handle_extra_pages(pages)

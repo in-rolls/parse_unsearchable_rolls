@@ -116,6 +116,9 @@ class Helpers:
         items.append(item)
         df = pd.DataFrame.from_dict(items)
 
+        # drop last row contqaining all columns
+        df.drop(df.tail(1).index,inplace=True)
+
         if columns:
             if self.translate_columns:
                 df.rename(columns=self.translate_columns, inplace=True)
