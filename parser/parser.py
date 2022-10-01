@@ -47,7 +47,7 @@ class Parser(Helpers, FirstLastPage):
         for pdf in pdf_files:
             self.process_pdf(pdf)
 
-    def __init__(self, state, lang, contours, year=None, ignore_last=False, translate_columns={} , first_page_coordinates={}, last_page_coordinates={}, rescale=1, columns=[], boxes_columns=[], checks=[], handle=[], detect_columns=[], only_first_last=False):
+    def __init__(self, state, lang, contours, year=None, ignore_last=False, translate_columns={} , first_page_coordinates={}, last_page_coordinates={}, rescale=1, columns=[], boxes_columns=[], checks=[], handle=[], detect_columns=[]):
 
         self.test = os.getenv('TEST')
         self.state = state.lower()
@@ -66,7 +66,6 @@ class Parser(Helpers, FirstLastPage):
         self.stop = False # testing
         self.boxes_columns = boxes_columns
         self.stats_nums = None # for multiple check of stats nums
-        self.only_first_last = only_first_last
         
         # Column names one time convertion
         self.house_number = 'house number'
@@ -276,36 +275,34 @@ class Parser(Helpers, FirstLastPage):
             else:
                 first_page_results, last_page_results = {}, {} 
 
-            if not self.only_first_last:
-                logging.info(f'Detecting and parsing {pdf_file_path} boxes..')
-                for page in pages[self.FIRST_PAGES:-1]:
-                    logging.info(f'Processing page')
-                    base_item.update(self.get_header(page))
-                    boxes = self.get_boxes(page, self.contours)
+            logging.info(f'Detecting and parsing {pdf_file_path} boxes..')
+            for page in pages[self.FIRST_PAGES:-1]:
+                logging.info(f'Processing page')
+                base_item.update(self.get_header(page))
+                boxes = self.get_boxes(page, self.contours)
 
-                    # concurrent tesserocr
-                    def get_data(im):
-                        try:
-                            item = base_item.copy()
-                            text = tesserocr.image_to_text(im, lang=self.lang, psm=tesserocr.PSM.SINGLE_BLOCK) #tesserocr.PSM.SPARSE_TEXT
-                            processed_box = self.process_boxes_text(text)
-                            item.update(processed_box)
-                            item = self.check_data(item)
-                            items.append(item)
-                        except Exception as e:
-                            logging.error(traceback.format_exc())
+                # concurrent tesserocr
+                def get_data(im):
+                    try:
+                        item = base_item.copy()
+                        text = tesserocr.image_to_text(im, lang=self.lang, psm=tesserocr.PSM.SINGLE_BLOCK) #tesserocr.PSM.SPARSE_TEXT
+                        processed_box = self.process_boxes_text(text)
+                        item.update(processed_box)
+                        item = self.check_data(item)
+                        items.append(item)
+                    except Exception as e:
+                        logging.error(traceback.format_exc())
 
-                    bbim = [Image.fromarray(np.uint8(cm.gist_earth(box)*255)) for box in boxes] 
+                bbim = [Image.fromarray(np.uint8(cm.gist_earth(box)*255)) for box in boxes] 
 
-                    if not self.test:
-                        with concurrent.futures.ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
-                            for r in executor.map(get_data, bbim):
-                                if r:
-                                    logging.warning(r)
-                    else:
-                        [get_data(_) for _ in bbim]
-            else:
-                items.append(base_item)
+                if not self.test:
+                    with concurrent.futures.ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
+                        for r in executor.map(get_data, bbim):
+                            if r:
+                                logging.warning(r)
+                else:
+                    [get_data(_) for _ in bbim]
+
 
             logging.info(f'Formatting and exporting {pdf_file_path} data..')
             formatted_items = self.format_items(items, first_page_results, last_page_results)

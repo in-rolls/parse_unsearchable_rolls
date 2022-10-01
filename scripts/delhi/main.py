@@ -175,7 +175,7 @@ if __name__ == '__main__':
         ]
     }
 
-    DL = Delhi('delhi', lang, last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, contours = contours, rescale = rescale, columns = columns, boxes_columns=boxes_columns, handle=['age', 'sex'], only_first_last=True)
+    DL = Delhi('delhi', lang, last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, contours = contours, rescale = rescale, columns = columns, boxes_columns=boxes_columns, handle=['age', 'sex'])
     DL.run(3)
 
 
