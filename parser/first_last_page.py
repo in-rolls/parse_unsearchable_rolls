@@ -74,12 +74,15 @@ class FirstLastPage:
             for k,v in self.P_KEYWORDS.items():
                 for i,t in enumerate(text):
                     if v in t:
-                        result[k] = text[i+1]
                         try:
-                            text[i+3]
+                            result[k] = text[i+1]
+                            try:
+                                text[i+3]
+                            except:
+                                result[k] = result[k] + ' ' + ' '.join(text[i+2:]) 
+                            break
                         except:
-                            result[k] = result[k] + ' ' + ' '.join(text[i+2:]) 
-                        break
+                            result[k] = text[i]
             return result
 
     def extract_last_page_details(self, im, stats_nums):
