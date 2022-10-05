@@ -6,6 +6,9 @@ import numpy as np
 import pandas as pd
 import logging
 
+import multiprocessing
+import concurrent.futures
+
 sys.path.append('../')
 from parse_unsearchable_rolls.scripts.delhi.main import Delhi
 
@@ -17,8 +20,17 @@ class FixStats(Delhi):
 
     def main(self):
         out_files = self.get_this_state_files('out/', ext='.csv')
+        
+        # multiprocessing
+        with concurrent.futures.ProcessPoolExecutor() as executor:
+            for r in executor.map(self.process, out_files):
+                if r:
+                    logging.warning(r)
 
-        for out_file in out_files:
+        logging.info(f"Finished")
+
+    def process(self, out_file):
+        try:
             logging.info(f'Processing file: {out_file}')
             pdf_file_path = out_file.replace('out/','in/').replace('.csv','.pdf') 
             pages = self.pdf_to_img(pdf_file_path, dpi=self.DPI)
@@ -37,6 +49,18 @@ class FixStats(Delhi):
 
             fixed_path =  out_file.replace('delhi','delhi-fixed')
             df.to_csv(fixed_path, index = False, header=True)
+        except Exception as e:
+            logging.error(f'ERROR: {out_file}')
+
+    
+    def last_row(self):
+        out_files = self.get_this_state_files('out/', ext='.csv')
+        for out_file in out_files:
+           df = pd.read_csv(out_file) 
+           df.drop(df.tail(1).index,inplace=True)
+           df = df.convert_dtypes()
+           fixed_path =  out_file.replace('2015','2015-fixed')
+           df.to_csv(fixed_path, index = False, header=True)
 
 
 if __name__ == '__main__':
@@ -57,4 +81,5 @@ if __name__ == '__main__':
         }
 
     FS = FixStats('delhi', 'eng', contours=contours, last_page_coordinates=last_page_coordinates, rescale = 600/500).main()
+    #FS = FixStats('daman', 'eng', year='2015', contours=contours, rescale = 600/500).last_row()
     
