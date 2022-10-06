@@ -89,20 +89,22 @@ class Parser(Helpers, FirstLastPage):
   
     def process_boxes_text(self, text):
         result = OrderedDict()
-        raw = text.replace('\n\n', '\n').split('\n')
             
-        # clean raw
+        # clean raw text
+        raw = text.replace('\n\n', '\n').split('\n')
         try:
             raw = [x.strip() for x in raw]
             raw = list(filter(None, raw))
         except Exception as e:
             logging.error(f'Clean error: {e}: {raw}')
 
+        # If correct aligment is activated
         try:
             raw = self.correct_alignment(raw)
         except:
             pass
         
+        # Get and handle Id and count data
         # TODO not abstracted
         id_ = raw.pop(0).strip()
         first = id_.split(' ')
@@ -121,17 +123,18 @@ class Parser(Helpers, FirstLastPage):
         # To add data to previous column
         last_key = None
 
+        # If ignore last row option is activated
         if self.ignore_last:
             raw = list(filter(None, raw))
             raw = raw[:-1]
 
         # Iter over results and split with separators
         for r in raw:
-            # split data depending on known columns
+            # Split data depending on known columns
             if not self.detect_columns:
                 result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
 
-            # detect columns splitting with separators
+            # Detect columns by splitting with separators if detect_columns is activated
             else:
                 is_splitted = False
                 for sep in self.detect_columns:
@@ -153,14 +156,16 @@ class Parser(Helpers, FirstLastPage):
                 except Exception as e:
                     logging.warning(f'Add extra last key: {r}; Exception: {e}: ; Line: {raw} ; Result: {result}') 
                     # logging.warning(f'Add extra last key: {r} \nException: {traceback.format_exc()}: \n{raw} \n{result}') 
+        
 
-        # Get accuracy score
+        # Get accuracy score if check accuracy is activated
         if self.checks:
             result['accuracy score'] = self.check_accuracy(result, raw)
         
         return result
 
     def male_or_female(self, r):
+        # Force Male or Female
         if self.FEMALE in r:
             return self.FEMALE
         elif self.MALE in r:
@@ -169,6 +174,8 @@ class Parser(Helpers, FirstLastPage):
         return ''
 
     def handle_separator_without_column(self, r, result, last_key):
+        # For when column isnt found but there's a separator in the field
+
         is_splitted = False
         r = r.replace(';', ':')
 
@@ -206,6 +213,8 @@ class Parser(Helpers, FirstLastPage):
         return result, last_key, is_splitted
     
     def columns_split(self, r, columns, result, last_key):
+        # Split columns by known columns
+
         is_splitted = False
         low_r = r.lower().strip()
 
@@ -233,7 +242,7 @@ class Parser(Helpers, FirstLastPage):
         return result, last_key, is_splitted
         
     def check_accuracy(self, d, raw_data):
-        # Checks if data is correct and returns score
+        # Checks data and returns an accuracy score dependint on checks dictionary
 
         accuracy = 0 
         for k,v in self.checks.items():
@@ -248,18 +257,10 @@ class Parser(Helpers, FirstLastPage):
                         accuracy += condition['s']
 
         return accuracy 
-        
-    def translate_input_columns(self):
-        translated_columns = []
-        for k in self.columns:
-            if k in self.translate_columns.keys():
-                translated_columns.append(self.translate_columns[k])
-            else:
-                translated_columns.append(k)
-
-        return translated_columns        
 
     def process_pdf(self, pdf_file_path):
+        # Get pdf file, process convertion and process output
+
         logging.info(f'Converting {pdf_file_path} to img...')
         try:
             pages = self.pdf_to_img(pdf_file_path, dpi=self.DPI)

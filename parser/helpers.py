@@ -57,7 +57,7 @@ class Helpers:
         return self.filter_and_sort(files_path_list, ext)
 
 
-    # testing methods
+    # Testing methods
     def show(self, im):
         plotting = plt.imshow(im,cmap='gray')
         plt.show()
@@ -70,7 +70,7 @@ class Helpers:
         self.show(im)
         self.show(cropped)
 
-    # text manipulation methods
+    # Text manipulation methods
 
     def split_2(self, separated):
         key = self.strip_lower(separated[0])
@@ -104,9 +104,21 @@ class Helpers:
             return text.strip().lower()
         except:
             return text
+    
+    def translate_input_columns(self):
+        # if translate_columns dictionary translate columns detected
+        
+        translated_columns = []
+        for k in self.columns:
+            if k in self.translate_columns.keys():
+                translated_columns.append(self.translate_columns[k])
+            else:
+                translated_columns.append(k)
+
+        return translated_columns        
 
 
-    # convertion methods
+    # Convertion methods
 
     def items_to_csv(self, items, output_path, columns):
         # Convert dictionary to csv file trough pandas df
@@ -116,7 +128,7 @@ class Helpers:
         items.append(item)
         df = pd.DataFrame.from_dict(items)
 
-        # drop last row contqaining all columns
+        # Drop last row containing all columns
         df.drop(df.tail(1).index,inplace=True)
 
         if columns:

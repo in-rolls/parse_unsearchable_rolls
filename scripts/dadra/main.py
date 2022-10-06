@@ -63,6 +63,8 @@ class Dadra(Gujarat):
         }
 
     def correct_alignment(self, raw):
+        # If correct aligment acrivated
+
         if len(raw) == 7:
             age = ''.join(re.findall('\d+', raw[5]))
             gender = self.male_or_female(raw[5])
@@ -101,7 +103,8 @@ if __name__ == '__main__':
         'year': [1600, 2300, 2500-1600, 2500-2300]
     }
 
-    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'accuracy score', 'count', 'id', 'મતદારનુ નામ', 'પિતાનુ નામ', 'પતિનુ નામ', 'ઘર નં', 'માતાનુ નામ', 'ઉમર', 'જાતિ', 'net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
+    boxes_columns = ['મતદારનુ નામ', 'પિતાનુ નામ', 'પતિનુ નામ', 'ઘર નં', 'માતાનુ નામ', 'ઉમર', 'જાતિ'] 
+    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'accuracy score', 'count', 'id'] + boxes_columns + ['net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
 
     translate_columns = {
         'મતદારનુ નામ': 'name',
@@ -115,7 +118,7 @@ if __name__ == '__main__':
 
     contours = ((500/2,800/2), (300/2,1500/2), (70/2, 400/2))
     
-    DD = Dadra('dadra', lang, contours,columns=columns, translate_columns=translate_columns, rescale=300/500)
+    DD = Dadra('dadra', lang, contours, boxes_columns=boxes_columns, columns=columns, translate_columns=translate_columns, rescale=300/500)
 
     DD.run(2)
 
