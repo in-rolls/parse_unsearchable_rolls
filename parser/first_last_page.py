@@ -19,7 +19,7 @@ class FirstLastPage:
     def check_stats_nums(self, sn):
         # check if stats nums count are accurate
         try:
-            sni = [int(x) for x in sn]
+            sni = [int(x) if x else 0 for x in sn]
             if sni[0] + sni[1] + sni[2] == sni[3]:
                 return sn
         except:
@@ -49,41 +49,41 @@ class FirstLastPage:
         #Interpretation
         if len(text)==4:
             if int(text[0]) + int(text[1]) == int(text[2]):
-                a,b,c,d = text[0],text[1],"0",text[2]
+                result = text[0], text[1], "0", text[2]
             elif int(text[0]) + int(text[1]) == int(text[3]):
-                a,b,c,d = text[0],text[1],"0",text[3]
+                result = text[0], text[1], "0", text[3]
             else:
-                a,b,c,d = text[0],text[1],text[2],text[3]
+                result = text[0], text[1], text[2], text[3]
         elif len(text) == 3 and int(text[2])>=int(text[1]) and int(text[2])>=int(text[0]):
-            a,b,c,d = text[0],text[1],"0",text[2]
+            result = text[0], text[1], "0", text[2]
         elif len(text) == 2 and int(text[0])*2-100<int(text[1]):
-            a,b,c,d = text[0],int(text[1])-int(text[0]),"0",text[1]
+            result = text[0], int(text[1])-int(text[0]), "0", text[1]
         else:
-            a,b,c,d = "","","",""
+            result = None
         
-        return (a, b, c, d)
+        return result
 
 
     def get_police_data(self, result, cs, im, rescale):
-            a, b, c, d = self.rescale_cs(cs) if rescale else cs # police name name and address
-            crop_police = self.crop_section(a, b, c, d, im)
-            text = (pytesseract.image_to_string(crop_police, config='--psm 6', lang=self.lang)) 
+        a, b, c, d = self.rescale_cs(cs) if rescale else cs # police name name and address
+        crop_police = self.crop_section(a, b, c, d, im)
+        text = (pytesseract.image_to_string(crop_police, config='--psm 6', lang=self.lang)) 
 
-            text = text.split('\n')
-            text = [ i for i in text if i!='' and i!='\x0c']
-            for k,v in self.P_KEYWORDS.items():
-                for i,t in enumerate(text):
-                    if v in t:
+        text = text.split('\n')
+        text = [ i for i in text if i!='' and i!='\x0c']
+        for k,v in self.P_KEYWORDS.items():
+            for i,t in enumerate(text):
+                if v in t:
+                    try:
+                        result[k] = text[i+1]
                         try:
-                            result[k] = text[i+1]
-                            try:
-                                text[i+3]
-                            except:
-                                result[k] = result[k] + ' ' + ' '.join(text[i+2:]) 
-                            break
+                            text[i+3]
                         except:
-                            result[k] = text[i]
-            return result
+                            result[k] = result[k] + ' ' + ' '.join(text[i+2:]) 
+                        break
+                    except:
+                        result[k] = text[i]
+        return result
 
     def extract_last_page_details(self, im, stats_nums):
         result = OrderedDict()

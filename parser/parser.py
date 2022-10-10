@@ -5,8 +5,8 @@ import logging
 #import pytesseract
 from collections import OrderedDict
 import re
-import time
-import multiprocessing
+# import time
+# import multiprocessing
 import traceback
 
 import concurrent.futures
@@ -47,7 +47,7 @@ class Parser(Helpers, FirstLastPage):
         for pdf in pdf_files:
             self.process_pdf(pdf)
 
-    def __init__(self, state, lang, contours, year=None, ignore_last=False, translate_columns={} , first_page_coordinates={}, last_page_coordinates={}, rescale=1, columns=[], boxes_columns=[], checks=[], handle=[], detect_columns=[]):
+    def __init__(self, state, lang, contours, year=None, ignore_last=False, translate_columns={} , first_page_coordinates={}, last_page_coordinates={}, rescale=1, columns=[], boxes_columns=[], checks=[], handle=[], detect_columns=[], multiple_rows=True):
 
         self.test = os.getenv('TEST')
         self.state = state.lower()
@@ -66,6 +66,7 @@ class Parser(Helpers, FirstLastPage):
         self.stop = False # testing
         self.boxes_columns = boxes_columns
         self.stats_nums = None # for multiple check of stats nums
+        self.multiple_rows = multiple_rows
         
         # Column names one time convertion
         self.house_number = 'house number'
@@ -105,7 +106,6 @@ class Parser(Helpers, FirstLastPage):
             pass
         
         # Get and handle Id and count data
-        # TODO not abstracted
         id_ = raw.pop(0).strip()
         first = id_.split(' ')
 
@@ -146,17 +146,18 @@ class Parser(Helpers, FirstLastPage):
 
             # Try known exceptions when line not found with columns
             if r and not is_splitted:
-                result, is_splitted = self.known_exceptions(result, r)
+                result, is_splitted = self.known_exceptions(result, r, raw)
 
             # If line not recognized add data to previous field
-            if r and not is_splitted:
+            if r and not is_splitted and self.multiple_rows:
                 try:    
                     # Add last line to previous key
                     result[last_key] = result[last_key] + ' ' + r.strip()
                 except Exception as e:
                     logging.warning(f'Add extra last key: {r}; Exception: {e}: ; Line: {raw} ; Result: {result}') 
                     # logging.warning(f'Add extra last key: {r} \nException: {traceback.format_exc()}: \n{raw} \n{result}') 
-        
+            elif r and not is_splitted:
+                pass
 
         # Get accuracy score if check accuracy is activated
         if self.checks:
@@ -170,8 +171,8 @@ class Parser(Helpers, FirstLastPage):
             return self.FEMALE
         elif self.MALE in r:
             return self.MALE
-        
-        return ''
+
+        return 'UNREADABLE'
 
     def handle_separator_without_column(self, r, result, last_key):
         # For when column isnt found but there's a separator in the field
@@ -277,8 +278,9 @@ class Parser(Helpers, FirstLastPage):
                 first_page_results, last_page_results = {}, {} 
 
             logging.info(f'Detecting and parsing {pdf_file_path} boxes..')
-            for page in pages[self.FIRST_PAGES:-1]:
-                logging.info(f'Processing page')
+            for i, page in enumerate(pages[self.FIRST_PAGES:-1]):
+                logging.info(f'Processing page {i+1}')
+
                 base_item.update(self.get_header(page))
                 boxes = self.get_boxes(page, self.contours)
 
@@ -348,7 +350,7 @@ class Parser(Helpers, FirstLastPage):
     def check_data(self, item):
         return item
 
-    def known_exceptions(self, result, r):
+    def known_exceptions(self, result, r, raw):
         is_splitted = False
         return result, is_splitted
 

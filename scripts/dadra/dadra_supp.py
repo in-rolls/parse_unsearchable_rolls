@@ -15,6 +15,15 @@ class Dadra(Gujarat):
     DPI = 300
     MALE = 'પુરૂષ'
     FEMALE = 'સ્ત્રી'
+
+    # MANDAL_KEYWORDS = {
+    #     'મુખ્ય ગામ/શહેર': 'main_town',
+    #     #'Ward No': 'revenue_division',
+    #     'પોલિસ સ્ટેશન': 'police_station',
+    #     'પોસ્ટ ઓફિસ': 'mandal',
+    #     'જીલ્લા': 'district',
+    #     'પીન કોડ': 'pin_code'
+    # }
     
     P_KEYWORDS = {
         'polling_station_name': ' મતદડન કકનનનફ નબન ર અનન નડમ',
@@ -53,22 +62,9 @@ class Dadra(Gujarat):
             'parl_constituency': ''
         }
 
-    def known_exceptions(self, result, r, raw):
-        is_splitted = False
-        
-        try:
-            if r == raw[2]:
-                house_no = re.findall('\s(\d.?)', r)
-                if house_no:
-                    result['ઘર નં'] = house_no[0]
-                    is_splitted = True
-        except:
-            pass
-
-        return result, is_splitted
-
     def correct_alignment(self, raw):
         # If correct aligment acrivated
+
         if len(raw) == 7:
             age = ''.join(re.findall('\d+', raw[5]))
             gender = self.male_or_female(raw[5])
@@ -85,18 +81,6 @@ class Dadra(Gujarat):
             print('warning' + raw)
 
         return ordered
-
-    def male_or_female(self, r):
-        # Force Male or Female
-        if self.FEMALE in r:
-            return self.FEMALE
-        elif self.MALE in r:
-            return self.MALE
-        else:
-            try:
-                return r.split(':')[-1].strip()
-            except:
-                return 'UNREADABLE'
 
 if __name__ == '__main__':
 
@@ -132,9 +116,9 @@ if __name__ == '__main__':
         'જાતિ':'sex'
     }
 
-    contours = ((300,400), (700,800), (70/2, 400/2))
+    contours = ((500/2,800/2), (300/2,1500/2), (70/2, 400/2))
     
-    DD = Dadra('dadra', lang, contours, year='main', boxes_columns=boxes_columns, columns=columns, translate_columns=translate_columns, first_page_coordinates=first_page_coordinates, last_page_coordinates=last_page_coordinates, rescale=300/500, multiple_rows=False)
+    DD = Dadra('dadra', lang, contours, year='supp', boxes_columns=boxes_columns, columns=columns, translate_columns=translate_columns, rescale=300/500)
 
     DD.run(3)
 

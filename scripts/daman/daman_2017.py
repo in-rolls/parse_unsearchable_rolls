@@ -41,7 +41,7 @@ class Daman(Gujarat):
             item['ઘરનં'] = ''
         return item
 
-    def known_exceptions(self, result, r):
+    def known_exceptions(self, result, r, raw):
         is_splitted = False
         house_no = re.findall('\s(\d.+)', r)
         if house_no:

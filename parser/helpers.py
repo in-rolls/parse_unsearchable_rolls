@@ -62,9 +62,15 @@ class Helpers:
         plotting = plt.imshow(im,cmap='gray')
         plt.show()
     
-    def nshow(self, im):
+    def scnt(self, im, contours):
+        bkgrnd = 255 * np.ones_like(im, dtype = np.uint8)
+        cnts_test = cv2.drawContours(bkgrnd, contours, -1, (0,255,0), 3)
+        #self.show(cnts_test)
+        self.nshow(cnts_test)
+    
+    def nshow(self, im, wait=10):
         cv2.imshow('image',im)
-        cv2.waitKey(10)
+        cv2.waitKey(wait)
 
     def check_cropped(self, im, cropped):
         self.show(im)
@@ -176,17 +182,28 @@ class Helpers:
         ret,thresh = cv2.threshold(im,180,255,cv2.THRESH_BINARY_INV)# + cv2.THRESH_OTSU)
         kernel = np.ones((3,3),np.uint8)
         dilated = cv2.dilate(thresh,kernel,iterations = 1)
-        contours, hierarchy = cv2.findContours(dilated,cv2.RETR_TREE ,cv2.CHAIN_APPROX_SIMPLE)
+        contours, hierarchy = cv2.findContours(dilated, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
         return contours
 
     def crop(self, im, contours, hh, ww):
         processed = []
+        stored_coords = []
 
+        def dup(x,y, stored_coords):
+        # Avoid duplicates
+
+            for c in stored_coords:
+                if c[0] - x < 50:
+                    if c[1] - y < 50:
+                        return True
+            return False
+            
         for cnt in contours:
             x,y,w,h = cv2.boundingRect(cnt)
-            if h > hh[0] and h < hh[1] and w > ww[0] and w< ww[1]:
+            if h > hh[0] and h < hh[1] and w > ww[0] and w< ww[1] and not dup(x,y, stored_coords):
                 cropped_img = im[y+1:y+h, x:x+w]
                 processed.append(cropped_img)
+                stored_coords.append((x,y))
 
         return processed
 
@@ -210,7 +227,7 @@ class Helpers:
 
         for c in contours:
             x,y,w,h = cv2.boundingRect(c)
-            if x > box.shape[1]/2 and w > 300:
+            if x > box.shape[1]/2 and w > 300 * self.rescale:
                 start_point = (x,y) 
                 break
         
@@ -229,7 +246,6 @@ class Helpers:
         im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
         contours = self.get_countours(im)
         boxes = self.crop(im, contours, limits_h, limits_w)
-
         boxes_processed = []
 
         def get_box(b):
