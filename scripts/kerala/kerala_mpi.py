@@ -37,16 +37,16 @@ if False:
     STATE = cli_args.state_name
 
 
-DATA_PATH = '/share/svasudevan2lab/parse_in_rolls/data/'
+DATA_PATH = '../../data/in/'
 STATE = 'kerala/'
 
-PARSE_DATA_PAGES = "/share/svasudevan2lab/parse_in_rolls/parseData/images/"+STATE
+PARSE_DATA_PAGES = "/tmp/parse_in_rolls/parseData/images/"+STATE
 create_path(PARSE_DATA_PAGES)
 
-PARSE_DATA_BLOCKS = "/share/svasudevan2lab/parse_in_rolls/parseData/blocks/"+STATE
+PARSE_DATA_BLOCKS = "/tmp/parse_in_rolls/parseData/blocks/"+STATE
 create_path(PARSE_DATA_BLOCKS)
 
-PARSE_DATA_CSVS = "/share/svasudevan2lab/parse_in_rolls/parseData/csvs/"+STATE
+PARSE_DATA_CSVS = "/tmp/parse_in_rolls/parseData/csvs/"+STATE
 create_path(PARSE_DATA_CSVS)
 
 
