@@ -28,22 +28,16 @@ class Parser(Helpers, FirstLastPage):
     BASE_DATA_PATH = 'data/'    
     DPI = 600
     SEPARATORS = [":-", ":", ">", "=", ';']
-    FIRST_PAGES = 1
     MAX_WORKERS = 7
+    
+    # Pages where not to search boxes
+    FIRST_PAGES = 1
+    LAST_PAGE = -1
 
     def run(self, processors):
         pdf_files = self.get_file_paths('in/')
         pdf_files = self.check_processed_files(pdf_files)
 
-        # if not self.test:
-        #     # multiprocessing
-        #     with concurrent.futures.ThreadPoolExecutor() as executor:
-        #         for r in executor.map(self.process_pdf, pdf_files):
-        #             if r:
-        #                 logging.warning(r)
-
-        #     logging.info(f"Finished")
-        # else:
         for pdf in pdf_files:
             self.process_pdf(pdf)
 
@@ -66,7 +60,12 @@ class Parser(Helpers, FirstLastPage):
         self.stop = False # testing
         self.boxes_columns = boxes_columns
         self.stats_nums = None # for multiple check of stats nums
-        self.multiple_rows = multiple_rows
+
+        # When detecting columns avoid joining rows
+        if detect_columns:
+            self.multiple_rows = False
+        else:
+            self.multiple_rows = multiple_rows
         
         # Column names one time convertion
         self.house_number = 'house number'
@@ -87,7 +86,28 @@ class Parser(Helpers, FirstLastPage):
 
         if not os.path.exists(self.output_csv):
             os.makedirs(self.output_csv)
-  
+
+    def handle_ids(self, raw, result):
+        id_ = raw.pop(0).strip()
+        first = id_.split(' ')
+
+        # join separated id
+        if len(first) > 2:
+            first = [first[0], ''.join(first[1:])]
+
+        if len(first) > 1:
+            result.update({
+                'count': first[0],   
+                'id': first[1]
+            })
+        elif first:
+            if re.findall('[a-z]', first[0].lower()):
+                result['id'] = first[0]
+            else:
+                result['count'] = first[0]
+
+        return raw, result
+
     def process_boxes_text(self, text):
         result = OrderedDict()
             
@@ -104,21 +124,9 @@ class Parser(Helpers, FirstLastPage):
             raw = self.correct_alignment(raw)
         except:
             pass
-        
-        # Get and handle Id and count data
-        id_ = raw.pop(0).strip()
-        first = id_.split(' ')
 
-        if len(first) > 1:
-            result.update({
-                'count': first[0],   
-                'id': first[1]
-            })
-        elif first:
-            if re.findall('[a-z]', first[0].lower()):
-                result['id'] = first[0]
-            else:
-                result['count'] = first[0]
+        # Get and handle Id and count data
+        raw, result = self.handle_ids(raw, result)
 
         # To add data to previous column
         last_key = None
@@ -278,7 +286,7 @@ class Parser(Helpers, FirstLastPage):
                 first_page_results, last_page_results = {}, {} 
 
             logging.info(f'Detecting and parsing {pdf_file_path} boxes..')
-            for i, page in enumerate(pages[self.FIRST_PAGES:-1]):
+            for i, page in enumerate(pages[self.FIRST_PAGES:self.LAST_PAGE]):
                 logging.info(f'Processing page {i+1}')
 
                 base_item.update(self.get_header(page))
