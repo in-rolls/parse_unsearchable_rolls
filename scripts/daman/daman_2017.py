@@ -122,11 +122,15 @@ if __name__ == '__main__':
         'જાતિ':'sex'
     }
 
-    contours = ((500,800), (300,1500), (70, 400))
+    contours = {
+        'limits_h': (500,800),
+        'limits_w': (300,1500),
+        'remove_limits': (70, 400)
+    }
 
     #DM = Daman('daman', lang, contours, year='2017', detect_columns=[':-',':', '.', '--'],last_page_coordinates=last_page_coordinates, first_page_coordinates=first_page_coordinates, rescale=600/500)
     DM = Daman('daman', lang, contours, year='2017', ignore_last=True, translate_columns=translate_columns, last_page_coordinates=last_page_coordinates, first_page_coordinates=first_page_coordinates, columns=columns, boxes_columns=boxes_columns, rescale=600/500)
 
-    DM.run(3)
+    DM.run()
 
 

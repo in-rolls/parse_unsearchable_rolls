@@ -238,9 +238,9 @@ class Helpers:
         return cv2.rectangle(box, start_point, end_point, (0, 0, 0), -1)
 
     def get_boxes(self, pil_image, contours):
-        limits_h = contours[0]
-        limits_w = contours[1]
-        contour_limits = contours[2]
+        limits_h = contours['limits_h']
+        limits_w = contours['limits_w']
+        contour_limits = contours['remove_limits']
 
         im = np.array(pil_image) 
         im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)

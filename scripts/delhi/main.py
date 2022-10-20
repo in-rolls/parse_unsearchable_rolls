@@ -158,7 +158,13 @@ if __name__ == '__main__':
     boxes_columns = ['name', 'father\'s name', 'husband\'s name', 'mother\'s name', 'house number', 'age', 'sex']
     columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'assambly_constituency_name', 'assambly_constituency_number', 'section name', 'section number', 'part number', 'count', 'id'] + boxes_columns +  ['net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
 
-    contours = ((500,800), (300,1500), (60, 400))
+
+    contours = {
+        'limits_h': (500,800),
+        'limits_w': (300,1500),
+        'remove_limits': (70, 400)
+    }
+
     first_page_coordinates = {
         'mandal': [1770, 1900, 1480, 545],
         'part_no': [3165, 295, 620, 190],
@@ -176,6 +182,6 @@ if __name__ == '__main__':
     }
 
     DL = Delhi('delhi', lang, last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, contours = contours, rescale = rescale, columns = columns, boxes_columns=boxes_columns, handle=['age', 'sex'])
-    DL.run(3)
+    DL.run()
 
 

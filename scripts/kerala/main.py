@@ -12,52 +12,79 @@ from collections import OrderedDict
 # methods specific to this state
  
 class Kerala(Gujarat):
-    
     DPI = 300
     MALE = 'പു'
     FEMALE = 'സ്ത്രീ'
-    #SEPARATORS = ['\u200c', '\u200d']
     FIRST_PAGES = 2
     LAST_PAGE = None
-    
-    P_KEYWORDS = {
-        'polling_station_name': ' મતદડન કકનનનફ નબન ર અનન નડમ',
-        # 'polling_station_address': ''
+
+    def replace_u2(self, s):
+        return s.replace('\u200d', '-').replace('\u200c', ',').strip().strip(',')
+
+    def get_mandal_data(self, result, cs, im, rescale):
+        a,b,c,d = self.rescale_cs(cs) if rescale else cs # mandal block
+
+        crop_mandal = self.crop_section(a,b,c,d,im)
+        text = (pytesseract.image_to_string(crop_mandal, config='--psm 6', lang=self.lang)) 
+        text = text.split('\n')
+        text = [self.replace_u2(_) for _ in text]
+
+        try:
+            result['main_town'] = text[1].split(':')[-1].strip().strip(',')
+        except:
+            pass
+
+        try:
+            result['revenue_division'] = text[3].split(':')[-1].strip().strip(',').replace('|', '1')
+        except:
+            pass
+
+        try:
+            mandal = text[4].split(':')[-1].strip().strip(',')
+            mandal = re.sub('[A-Z]', '', mandal)
+            mandal = re.sub('[0-9]', '', mandal)
+            result['mandal'] = mandal
+        except:
+            pass
+
+        try:
+            result['district'] = text[5].split(':')[-1].strip().strip(',')
+        except:
+            pass
+
+        return result
+
+
+    def get_police_data(self, result, cs, im, rescale):
+        #a, b, c, d = self.rescale_cs(cs) if rescale else cs # police name name and address
+        a, b, c, d = cs
+        crop_police = self.crop_section(a, b, c, d, im)
+        text = (pytesseract.image_to_string(crop_police, config='--psm 6', lang=self.lang)) 
+        text = text.split('\n')
+
+        try:
+            result['polling_station_name'] = self.replace_u2(text[1])
+            result['polling_station_address'] = self.replace_u2(text[2])
+        except:
+            pass
+
+        return result
+
+    def get_ac(self, text):
+        try: 
+            ac_name = self.replace_u2(text[0])
+        except:
+            ac_name = ''
+        
+        try: 
+            parl_constituency =  self.replace_u2(text[1])
+        except:
+            parl_constituency = ''
+
+        return {
+            'ac_name':ac_name,
+            'parl_constituency': parl_constituency
         }
-    
-    # def get_header(self, page):
-    #     result = OrderedDict()
-    #     return result
-     
-    # def extract_4_numbers(self, cropped):
-    #     text = (pytesseract.image_to_string(cropped, config='--psm 6', lang=self.lang)) 
-    #     c = ''
-    #     a,b,d = re.findall(r'\d+', text)
-    #     d = int(a) + int(b)
-
-    #     return a,b,c,d
-
-    # def get_police_data(self, result, cs, im, rescale):
-    #     #a, b, c, d = self.rescale_cs(cs) if rescale else cs # police name name and address
-    #     a, b, c, d = cs
-    #     crop_police = self.crop_section(a, b, c, d, im)
-    #     text = (pytesseract.image_to_string(crop_police, config='--psm 6', lang=self.lang)) 
-    #     result['polling_station_name'] = text.split(',')[-1]
-
-    #     return result
-
-    # def get_ac(self, text):
-    #     try: 
-    #         ac_name = text[0].strip(',').strip()
-    #     except:
-    #         ac_name = ''
-
-    #     return {
-    #         'ac_name':ac_name,
-    #         'parl_constituency': ''
-    #     }
-
-
 
     def known_exceptions(self, result, r, raw):
         is_splitted = False
@@ -78,7 +105,6 @@ class Kerala(Gujarat):
 
         return result, is_splitted
 
-
     def male_or_female(self, r):
         # Force Male or Female
         if self.FEMALE in r:
@@ -89,45 +115,37 @@ class Kerala(Gujarat):
             return 'UNREADABLE'
 
 if __name__ == '__main__':
-    columns = []
-
     first_page_coordinates = {
         'rescale': False,
-        'mandal': '', 
-        'part_no': [2100, 225, 2350-2100, 340-225],
-        'police': [245, 2500, 1684-245, 2857-2500],
-        'ac': [1000, 250, 1500-1000, 330-250],
+        'mandal': [1244, 950, 2341-1244, 1597-950], 
+        'part_no': [2154, 290, 2331-2154, 367-290],
+        'police': [119, 1682, 1200-119, 2000-1682],
+        'ac': [730, 244, 1360-720, 580-244],
+        'stats_nums': [1400, 3100, 2356-1400, 3168-3100]
     } 
 
-    last_page_coordinates = {
-        'rescale': False,
-        'coordinates':[
-        [1688, 1400, 2344-1688, 1500-1400]
-        ],
-        'year': [1100, 700, 1300-1100, 1300-700]
-    }
-
     boxes_columns = ['പേര്', 'അച്ഛന്റെ പേര്', 'ഭര്‍ത്താവിന്റെ പേര്', 'വീട്ടുനമ്പര്', 'അമ്മയുടെ പേര്', 'വീട്ടുപേര്', 'വയസ്സ്', '(സ്ത്രീ /പു)'] 
-    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'count', 'id'] + boxes_columns + ['net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
+    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'number', 'id'] + boxes_columns + ['net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
 
     translate_columns = {
-        'പേര്': 'name',
-        'അച്ഛന്റെ പേര്': 'father\'s name',
-        'ഭര്‍ത്താവിന്റെ പേര്': 'husband\'s name',
+        'പേര്': 'elector_name',
+        'അച്ഛന്റെ പേര്': 'father_or_husband_name',
+        'ഭര്‍ത്താവിന്റെ പേര്': 'husband',
         'വീട്ടുനമ്പര്': 'house_number',
-        'അമ്മയുടെ പേര്': 'mother\'s name',
-        'വീട്ടുപേര്': 'household name',
+        'അമ്മയുടെ പേര്': 'mother_name',
+        'വീട്ടുപേര്': 'household_name',
         'വയസ്സ്':'age',
         '(സ്ത്രീ /പു)':'sex'
     }
 
-    contours = ((230,270), (750,850), (70/2, 400/2))
-    
-    #KR = Kerala('kerala', lang, contours, boxes_columns=boxes_columns, columns=columns, translate_columns=translate_columns, first_page_coordinates=first_page_coordinates, last_page_coordinates=last_page_coordinates, rescale=300/500, multiple_rows=False)
+    contours = {
+        'limits_h': (240,330),
+        'limits_w': (730,900),
+        'remove_limits': (70/2, 400/2)
+    }
 
-    KR = Kerala('kerala', 'mal+eng', contours, rescale=300/500, boxes_columns=boxes_columns, columns=columns,  multiple_rows=False)#detect_columns = ['\u200c', '\u200d'])
+    KR = Kerala('kerala', 'mal+eng', contours, year='2016', rescale=300/500, boxes_columns=boxes_columns, columns=columns,  multiple_rows=False, first_page_coordinates=first_page_coordinates, translate_columns=translate_columns) #detect_columns = ['\u200c', '\u200d'])
 
-
-    KR.run(0)
+    KR.run()
 
 

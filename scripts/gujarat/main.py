@@ -118,10 +118,14 @@ if __name__ == '__main__':
         #'પતીનં નામ':  'wife\'s name',
         'માતાન નામ': 'mother\'s name',
     }
-
-    contours = ((500,800), (300,1500), (70, 400))
+    contours = {
+        'limits_h': (500,800),
+        'limits_w': (300,1500),
+        'remove_limits': (70, 400)
+    }
+    
     GJ = Gujarat('gujarat', lang, contours, ignore_last=True, translate_columns=translate_columns, last_page_coordinates=last_page_coordinates, first_page_coordinates=first_page_coordinates, columns=columns, boxes_columns=boxes_columns, rescale=600/500)
 
-    GJ.run(2)
+    GJ.run()
 
 

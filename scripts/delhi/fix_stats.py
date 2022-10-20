@@ -64,7 +64,13 @@ class FixStats(Delhi):
 
 
 if __name__ == '__main__':
-    contours = ((500,800), (300,1500), (60, 400))
+
+    contours = {
+        'limits_h': (500,800),
+        'limits_w': (300,1500),
+        'remove_limits': (60, 400)
+    }
+
     last_page_coordinates = {
         'rescale': True,
         'coordinates':[

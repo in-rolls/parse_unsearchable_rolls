@@ -128,11 +128,15 @@ if __name__ == '__main__':
         'જાતિ':'sex'
     }
 
-    contours = ((500,800), (300,1500), (70, 400))
+    contours = {
+        'limits_h': (500,800),
+        'limits_w': (300,1500),
+        'remove_limits': (70, 400)
+    }
     
     DD = Dadra('dadra', lang, contours, translate_columns = translate_columns,last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, columns = columns, separators = [':-', '--', '=='], rescale = 600/500, handle=['ઉમર', 'જાતિ'] )
     #DM = Daman('daman', lang, contours, test = True ,last_page_coordinates = last_page_coordinates, first_page_coordinates = first_page_coordinates, separators = [':-', '--', '=='], rescale = 600/500, handle=['ઉમર', 'જાતિ'] )
 
-    DD.run(2)
+    DD.run()
 
 

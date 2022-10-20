@@ -34,7 +34,7 @@ class Parser(Helpers, FirstLastPage):
     FIRST_PAGES = 1
     LAST_PAGE = -1
 
-    def run(self, processors):
+    def run(self):
         pdf_files = self.get_file_paths('in/')
         pdf_files = self.check_processed_files(pdf_files)
 
@@ -97,14 +97,14 @@ class Parser(Helpers, FirstLastPage):
 
         if len(first) > 1:
             result.update({
-                'count': first[0],   
+                'number': first[0],   
                 'id': first[1]
             })
         elif first:
             if re.findall('[a-z]', first[0].lower()):
                 result['id'] = first[0]
             else:
-                result['count'] = first[0]
+                result['number'] = first[0]
 
         return raw, result
 
@@ -287,7 +287,7 @@ class Parser(Helpers, FirstLastPage):
 
             logging.info(f'Detecting and parsing {pdf_file_path} boxes..')
             for i, page in enumerate(pages[self.FIRST_PAGES:self.LAST_PAGE]):
-                logging.info(f'Processing page {i+1}')
+                logging.info(f'Processing page {self.FIRST_PAGES + i+1}')
 
                 base_item.update(self.get_header(page))
                 boxes = self.get_boxes(page, self.contours)
@@ -313,7 +313,6 @@ class Parser(Helpers, FirstLastPage):
                                 logging.warning(r)
                 else:
                     [get_data(_) for _ in bbim]
-
 
             logging.info(f'Formatting and exporting {pdf_file_path} data..')
             formatted_items = self.format_items(items, first_page_results, last_page_results)

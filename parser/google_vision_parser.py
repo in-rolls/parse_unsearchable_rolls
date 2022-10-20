@@ -53,14 +53,14 @@ class GoogleVisionParser(Parser):
 
         if len(first) > 1:
             result.update({
-                'count': first[0],   
+                'number': first[0],   
                 'id': first[1]
             })
         elif first:
             if re.findall('[a-z]', first[0].lower()):
                 result['id'] = first[0]
             else:
-                result['count'] = first[0]
+                result['number'] = first[0]
 
         # To add data to previous column
         last_key = None

@@ -132,10 +132,14 @@ if __name__ == '__main__':
         'જાતિ':'sex'
     }
 
-    contours = ((300,400), (700,800), (70/2, 400/2))
+    contours = {
+        'limits_h': (300,400),
+        'limits_w': (700,800),
+        'remove_limits': (70/2, 400/2)
+    }
     
     DD = Dadra('dadra', lang, contours, year='main', boxes_columns=boxes_columns, columns=columns, translate_columns=translate_columns, first_page_coordinates=first_page_coordinates, last_page_coordinates=last_page_coordinates, rescale=300/500, multiple_rows=False)
 
-    DD.run(3)
+    DD.run()
 
 
