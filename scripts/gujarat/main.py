@@ -10,10 +10,6 @@ from collections import OrderedDict
 # methods specific to this state
  
 class Gujarat(Parser):
-
-    # MALE = ''
-    # FEMALE = ''
-
     MANDAL_KEYWORDS = {
         'મુખ્ય ગામ/શહેર': 'main_town',
         #'Ward No': 'revenue_division',
@@ -28,6 +24,38 @@ class Gujarat(Parser):
         # 'polling_station_address': ''
         }
     
+    lang = 'eng+guj'
+    rescale=600/500
+    first_page_coordinates = {
+        'rescale': False,
+        'mandal': [2869, 3800, 4234-2869,5000-3800],
+        'part_no': [4200,500,4600-4200,900-500],
+        'police': [520,5150,2000-520,5500-5150],
+        'ac': [382+50,450+50,2207+1500,475],
+    } 
+    last_page_coordinates = {
+        'rescale': False,
+        'coordinates':[
+        [3030,2321,4669-3030,2653-2321]
+        ],
+        'year': [1354, 2500, 2270-1354, 2640-2500]
+
+    }
+    boxes_columns = ['નામ', 'પિતાન નામ', 'પતીનં નામ', 'માતાન નામ', 'ઘરનં']
+    translate_columns = {
+        'નામ': 'name',
+        'પિતાન નામ': 'father\'s name',
+        'પતીનં નામ': 'husband\'s name',
+        'ઘરનં': 'house_number',
+        #'પતીનં નામ':  'wife\'s name',
+        'માતાન નામ': 'mother\'s name',
+    }
+    contours = {
+        'limits_h': (500,800),
+        'limits_w': (300,1500),
+        'remove_limits': (70, 400)
+    }
+     
     def get_header(self, page):
         result = OrderedDict()
         return result
@@ -86,46 +114,7 @@ class Gujarat(Parser):
 
 
 if __name__ == '__main__':
-
-    columns = []
-    lang = 'eng+guj'
-
-    first_page_coordinates = {
-        'rescale': False,
-        'mandal': [2869, 3800, 4234-2869,5000-3800],
-        'part_no': [4200,500,4600-4200,900-500],
-        'police': [520,5150,2000-520,5500-5150],
-        'ac': [382+50,450+50,2207+1500,475],
-    } 
-
-    last_page_coordinates = {
-        'rescale': False,
-        'coordinates':[
-        [3030,2321,4669-3030,2653-2321]
-        ],
-        'year': [1354, 2500, 2270-1354, 2640-2500]
-
-    }
-
-    boxes_columns = ['નામ', 'પિતાન નામ', 'પતીનં નામ', 'માતાન નામ', 'ઘરનં']
-    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'accuracy score', 'count', 'id'] + boxes_columns + ['net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
-
-    translate_columns = {
-        'નામ': 'name',
-        'પિતાન નામ': 'father\'s name',
-        'પતીનં નામ': 'husband\'s name',
-        'ઘરનં': 'house_number',
-        #'પતીનં નામ':  'wife\'s name',
-        'માતાન નામ': 'mother\'s name',
-    }
-    contours = {
-        'limits_h': (500,800),
-        'limits_w': (300,1500),
-        'remove_limits': (70, 400)
-    }
-    
-    GJ = Gujarat('gujarat', lang, contours, ignore_last=True, translate_columns=translate_columns, last_page_coordinates=last_page_coordinates, first_page_coordinates=first_page_coordinates, columns=columns, boxes_columns=boxes_columns, rescale=600/500)
-
+    GJ = Gujarat('gujarat', ignore_last=True)
     GJ.run()
 
 

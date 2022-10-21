@@ -21,6 +21,38 @@ class Dadra(Gujarat):
         # 'polling_station_address': ''
         }
     
+    rescale=300/500
+    lang = 'eng+guj'
+    first_page_coordinates = {
+        'rescale': False,
+        'mandal': '', 
+        'part_no': [2100, 225, 2350-2100, 340-225],
+        'police': [245, 2500, 1684-245, 2857-2500],
+        'ac': [1000, 250, 1500-1000, 330-250],
+    } 
+    last_page_coordinates = {
+        'rescale': False,
+        'coordinates':[
+        [1688, 1400, 2344-1688, 1500-1400]
+        ],
+        'year': [1100, 700, 1300-1100, 1300-700]
+    }
+    boxes_columns = ['મતદારનુ નામ', 'પિતાનુ નામ', 'પતિનુ નામ', 'ઘર નં', 'માતાનુ નામ', 'ઉમર', 'જાતિ'] 
+    translate_columns = {
+        'મતદારનુ નામ': 'name',
+        'પિતાનુ નામ': 'father\'s name',
+        'પતિનુ નામ': 'husband\'s name',
+        'ઘર નં': 'house_number',
+        'માતાનુ નામ': 'mother\'s name',
+        'ઉમર':'age',
+        'જાતિ':'sex'
+    }
+    contours = {
+        'limits_h': (300,400),
+        'limits_w': (700,800),
+        'remove_limits': (70/2, 400/2)
+    }
+    
     def get_header(self, page):
         result = OrderedDict()
         return result
@@ -98,47 +130,8 @@ class Dadra(Gujarat):
             except:
                 return 'UNREADABLE'
 
-if __name__ == '__main__':
-
-    columns = []
-    lang = 'eng+guj'
-
-    first_page_coordinates = {
-        'rescale': False,
-        'mandal': '', 
-        'part_no': [2100, 225, 2350-2100, 340-225],
-        'police': [245, 2500, 1684-245, 2857-2500],
-        'ac': [1000, 250, 1500-1000, 330-250],
-    } 
-
-    last_page_coordinates = {
-        'rescale': False,
-        'coordinates':[
-        [1688, 1400, 2344-1688, 1500-1400]
-        ],
-        'year': [1100, 700, 1300-1100, 1300-700]
-    }
-
-    boxes_columns = ['મતદારનુ નામ', 'પિતાનુ નામ', 'પતિનુ નામ', 'ઘર નં', 'માતાનુ નામ', 'ઉમર', 'જાતિ'] 
-    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'count', 'id'] + boxes_columns + ['net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
-
-    translate_columns = {
-        'મતદારનુ નામ': 'name',
-        'પિતાનુ નામ': 'father\'s name',
-        'પતિનુ નામ': 'husband\'s name',
-        'ઘર નં': 'house_number',
-        'માતાનુ નામ': 'mother\'s name',
-        'ઉમર':'age',
-        'જાતિ':'sex'
-    }
-
-    contours = {
-        'limits_h': (300,400),
-        'limits_w': (700,800),
-        'remove_limits': (70/2, 400/2)
-    }
-    
-    DD = Dadra('dadra', lang, contours, year='main', boxes_columns=boxes_columns, columns=columns, translate_columns=translate_columns, first_page_coordinates=first_page_coordinates, last_page_coordinates=last_page_coordinates, rescale=300/500, multiple_rows=False)
+if __name__ == '__main__':    
+    DD = Dadra('dadra')
 
     DD.run()
 

@@ -12,10 +12,6 @@ from collections import OrderedDict
 # methods specific to this state
  
 class Daman(Gujarat):
-
-    # MALE = 'પૂરૂષ'
-    # FEMALE = 'સ્ત્રી'
-
     MANDAL_KEYWORDS = {
         'મુખ્ય ગામ/શહેર': 'main_town',
         #'Ward No': 'revenue_division',
@@ -29,6 +25,39 @@ class Daman(Gujarat):
         'polling_station_name': 'મતદાન કેન્દ્રનો',
         # 'polling_station_address': ''
         }
+
+    lang = 'eng+guj'
+    boxes_columns = ['નામ', 'પિતાન નામ', 'પતીનં નામ', 'ઘરનં', 'માતાન નામ', 'ઉમર', 'જાતિ']
+    rescale=600/500
+    first_page_coordinates = {
+        'rescale': False,
+        'mandal': [2858, 3800, 4250-2858, 4933-3800],
+        'part_no': [4200,500,4600-4200,900-500],
+        'police': [490,5134,2349-504,5657-5134],
+        'ac': [382+50,450+50,2207+1500,475],
+        'stats_nums': [1572, 6446, 4616-1572, 6588-6446]
+    } 
+    last_page_coordinates = {
+        'rescale': False,
+        'coordinates':[
+        [3030,2321,4669-3030,2653-2321]
+        ],
+        'year': [1354, 2434, 2460-1354, 2640-2434]
+    }
+    translate_columns = {
+        'નામ': 'name',
+        'પિતાન નામ': 'father\'s name',
+        'પતીનં નામ': 'husband\'s name',
+        'ઘરનં': 'house_number',
+        'માતાન નામ': 'mother\'s name',
+        'ઉમર':'age',
+        'જાતિ':'sex'
+    }
+    contours = {
+        'limits_h': (500,800),
+        'limits_w': (300,1500),
+        'remove_limits': (70, 400)
+    }
     
     def get_header(self, page):
         result = OrderedDict()
@@ -84,53 +113,7 @@ class Daman(Gujarat):
         return result, last_key, is_splitted
 
 if __name__ == '__main__':
-
-    columns = []
-    lang = 'eng+guj'
-
-    first_page_coordinates = {
-        'rescale': False,
-        'mandal': [2858, 3800, 4250-2858, 4933-3800],
-        'part_no': [4200,500,4600-4200,900-500],
-        'police': [490,5134,2349-504,5657-5134],
-        'ac': [382+50,450+50,2207+1500,475],
-        'stats_nums': [1572, 6446, 4616-1572, 6588-6446]
-    } 
-
-    last_page_coordinates = {
-        'rescale': False,
-        'coordinates':[
-        [3030,2321,4669-3030,2653-2321]
-        ],
-        'year': [1354, 2434, 2460-1354, 2640-2434]
-    }
-
-    boxes_columns = ['નામ', 'પિતાન નામ', 'પતીનં નામ', 'ઘરનં', 'માતાન નામ', 'ઉમર', 'જાતિ']
-    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'accuracy score', 'count', 'id'] + boxes_columns + ['net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
-
-    # multiple_columns = {
-    #     'ઘરનં': ['ઘરનં', 'ઘર ન', 'ઘરન', 'ગના', 'વા', 'U2 al', 'Ur ol', 'U2? oi', 'જયા', 'du2roa', 'u2rc-'],
-    # }
-
-    translate_columns = {
-        'નામ': 'name',
-        'પિતાન નામ': 'father\'s name',
-        'પતીનં નામ': 'husband\'s name',
-        'ઘરનં': 'house_number',
-        'માતાન નામ': 'mother\'s name',
-        'ઉમર':'age',
-        'જાતિ':'sex'
-    }
-
-    contours = {
-        'limits_h': (500,800),
-        'limits_w': (300,1500),
-        'remove_limits': (70, 400)
-    }
-
-    #DM = Daman('daman', lang, contours, year='2017', detect_columns=[':-',':', '.', '--'],last_page_coordinates=last_page_coordinates, first_page_coordinates=first_page_coordinates, rescale=600/500)
-    DM = Daman('daman', lang, contours, year='2017', ignore_last=True, translate_columns=translate_columns, last_page_coordinates=last_page_coordinates, first_page_coordinates=first_page_coordinates, columns=columns, boxes_columns=boxes_columns, rescale=600/500)
-
+    DM = Daman('daman', year='2017', ignore_last=True)
     DM.run()
 
 

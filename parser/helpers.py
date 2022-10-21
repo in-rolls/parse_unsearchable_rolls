@@ -6,6 +6,9 @@ import logging
 
 import pandas as pd
 import matplotlib.pyplot as plt 
+from matplotlib import cm
+from PIL import Image
+
 import concurrent.futures
 
 
@@ -264,6 +267,16 @@ class Helpers:
             [get_box(_) for _ in boxes]
 
         return boxes_processed
+
+    def array_to_im(self, im):
+        return Image.fromarray(np.uint8(cm.gist_earth(im)*255))
+
+    def transform_and_remove_contours(self, im, contours_limits):
+        im = np.array(im) 
+        im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
+        contours = self.get_countours(im)
+        im = self.remove_contours(im, contours, contours_limits)
+        return self.array_to_im(im)
 
     # def resize_img(img, scale):
     #     width = int(img.shape[1] * scale)

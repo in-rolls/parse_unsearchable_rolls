@@ -18,72 +18,6 @@ class Kerala(Gujarat):
     FIRST_PAGES = 2
     LAST_PAGE = None
 
-    lang = 'mal+eng'
-    rescale = 300/500
-    first_page_coordinates = {
-        'rescale': False,
-        'mandal': [1244, 950, 2341-1244, 1597-950], 
-        'part_no': [2154, 290, 2331-2154, 367-290],
-        'police': [119, 1682, 1200-119, 2000-1682],
-        'ac': [730, 244, 1360-720, 580-244],
-        'stats_nums': [1400, 3000, 2400-1400, 3168-3000]
-    } 
-    boxes_columns = ['പേര്', 'അച്ഛന്റെ പേര്', 'ഭര്‍ത്താവിന്റെ പേര്', 'വീട്ടുനമ്പര്', 'അമ്മയുടെ പേര്', 'വീട്ടുപേര്', 'വയസ്സ്', '(സ്ത്രീ /പു)'] 
-    translate_columns = {
-        'പേര്': 'elector_name',
-        'അച്ഛന്റെ പേര്': 'father_or_husband_name',
-        'ഭര്‍ത്താവിന്റെ പേര്': 'husband',
-        'വീട്ടുനമ്പര്': 'house_number',
-        'അമ്മയുടെ പേര്': 'mother_name',
-        'വീട്ടുപേര്': 'household_name',
-        'വയസ്സ്':'age',
-        '(സ്ത്രീ /പു)':'sex'
-    }
-    contours = {
-        'limits_h': (240,330),
-        'limits_w': (730,900),
-        'remove_limits': (70/2, 400/2)
-    }
-
-    def check_data(self, item):
-        # check for correct data
-
-        number = item.get('number', '')
-        try:
-            assert ''.join(re.findall('[\w\d]', number)) == number
-            assert bool(re.match('\d+', number))
-        except:
-            item['number'] = self.unreadable
-
-        id_ = item.get('id', '')
-        try:
-            assert ''.join(re.findall('[A-Za-z\d/]', id_)) == id_
-            assert bool(re.match('[A-Za-z]+', id_))
-            assert len(id_) > 8
-        except:
-            item['id'] = self.unreadable
-
-        age = item.get('വയസ്സ്', '')
-        if age:
-            try:
-                assert bool(re.match('\d+', age))
-            except:
-                item['വയസ്സ്'] = self.unreadable
-
-        # Global checks
-        keys = ['പേര്', 'അച്ഛന്റെ പേര്', 'ഭര്‍ത്താവിന്റെ പേര്', 'അമ്മയുടെ പേര്', 'വീട്ടുപേര്']
-        for k in keys:
-            gl = item.get(k, '')
-            if gl:
-                try:
-                    assert bool(re.match('\w+', gl))
-                    assert not bool(re.match('[\d\W]', gl))
-                except:
-                    item[k] = self.unreadable
-
-        return item
-        
-
     def replace_u2(self, s):
         return s.replace('\u200d', '-').replace('\u200c', ',').strip().strip(',')
 
@@ -162,7 +96,7 @@ class Kerala(Gujarat):
             try:
                 values = r.split('\u200c')[-1].strip().split(' ')
                 if len(values) > 1:
-                    result[sex_key] = self.male_or_female(values[0])
+                    result[sex_key] = values[0]
                     result[age_key] = values[1][1:]
                 elif len(values) == 1:
                     result[sex_key] = self.male_or_female(values[0])
@@ -177,14 +111,41 @@ class Kerala(Gujarat):
             return self.FEMALE
         elif self.MALE in r:
             return self.MALE
-        elif 'പൂ' == r:
-            return self.MALE 
         else:
-            return self.unreadable
+            return 'UNREADABLE'
 
 if __name__ == '__main__':
-    KR = Kerala('kerala', year='2014', check_updated_counts=True) #detect_columns = ['\u200c', '\u200d'])
-    KR.run()
+    first_page_coordinates = {
+        'rescale': False,
+        'mandal': [1244, 950, 2341-1244, 1597-950], 
+        'part_no': [2154, 290, 2331-2154, 367-290],
+        'police': [119, 1682, 1200-119, 2000-1682],
+        'ac': [730, 244, 1360-720, 580-244],
+        'stats_nums': [1400, 3100, 2356-1400, 3168-3100]
+    } 
 
+    boxes_columns = ['പേര്', 'അച്ഛന്റെ പേര്', 'ഭര്‍ത്താവിന്റെ പേര്', 'വീട്ടുനമ്പര്', 'അമ്മയുടെ പേര്', 'വീട്ടുപേര്', 'വയസ്സ്', '(സ്ത്രീ /പു)'] 
+    columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'number', 'id'] + boxes_columns + ['net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
+
+    translate_columns = {
+        'പേര്': 'elector_name',
+        'അച്ഛന്റെ പേര്': 'father_or_husband_name',
+        'ഭര്‍ത്താവിന്റെ പേര്': 'husband',
+        'വീട്ടുനമ്പര്': 'house_number',
+        'അമ്മയുടെ പേര്': 'mother_name',
+        'വീട്ടുപേര്': 'household_name',
+        'വയസ്സ്':'age',
+        '(സ്ത്രീ /പു)':'sex'
+    }
+
+    contours = {
+        'limits_h': (240,330),
+        'limits_w': (730,900),
+        'remove_limits': (70/2, 400/2)
+    }
+
+    KR = Kerala('kerala', 'mal+eng', contours, year='2016', rescale=300/500, boxes_columns=boxes_columns, columns=columns,  multiple_rows=False, first_page_coordinates=first_page_coordinates, translate_columns=translate_columns) #detect_columns = ['\u200c', '\u200d'])
+
+    KR.run()
 
 

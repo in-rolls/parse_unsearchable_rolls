@@ -32,16 +32,6 @@ class Parser(Helpers, FirstLastPage):
     FIRST_PAGES = 1
     LAST_PAGE = -1
 
-    # Initiate parameters
-    first_page_coordinates={}
-    last_page_coordinates={}
-    translate_columns = {}
-    multiple_rows = False
-    rescale = 1
-    checks = {}
-    lang = 'eng'
-    unreadable = 'UNREADABLE'
-
     def run(self):
         pdf_files = self.get_file_paths('in/')
         pdf_files = self.check_processed_files(pdf_files)
@@ -49,35 +39,41 @@ class Parser(Helpers, FirstLastPage):
         for pdf in pdf_files:
             self.process_pdf(pdf)
 
-    def __init__(self, state, year=None, ignore_last=False, handle=[], check_updated_counts=None, detect_columns=False):
+    def __init__(self, state, lang, contours, year=None, ignore_last=False, translate_columns={} , first_page_coordinates={}, last_page_coordinates={}, rescale=1, columns=[], boxes_columns=[], checks=[], handle=[], detect_columns=[], multiple_rows=True, check_updated_counts=None):
+
         self.test = os.getenv('TEST')
         self.state = state.lower()
+        self.columns = columns
+        self.lang = lang
+        self.contours = contours
         self.handle = handle
+        self.checks = checks
+        self.rescale = rescale
+        self.first_page_coordinates = first_page_coordinates
+        self.last_page_coordinates = last_page_coordinates
+        self.translate_columns = translate_columns
         self.ignore_last = ignore_last
+        self.detect_columns = detect_columns
         self.year = year
         self.stop = False # testing
+        self.boxes_columns = boxes_columns
         self.stats_nums = None # for multiple check of stats nums
         self.check_updated_counts = check_updated_counts
 
-        # if there's no boxes columns detect them
-        try:
-            self.columns = ['main_town', 'revenue_division', 'police_station', 'mandal', 'district', 'pin_code', 'part_no', 'polling_station_name', 'polling_station_address', 'ac_name', 'parl_constituency', 'year', 'state', 'number', 'id'] + self.boxes_columns + ['net_electors_male', 'net_electors_female', 'net_electors_third_gender', 'net_electors_total', 'file_name']
-            self.detect_columns = False
-        except:
-            self.detect_columns = True
-
-        # When detecting columns avoid joining rows and eliminate columns
+        # When detecting columns avoid joining rows
         if detect_columns:
-            self.columns = []
             self.multiple_rows = False
-            self.detect_columns = True
-
+        else:
+            self.multiple_rows = multiple_rows
+        
+        
+        
         # Column names one time convertion
         self.house_number = 'house number'
         self.age = 'age'
         self.gender = 'sex'
 
-        for k,v in self.translate_columns.items():
+        for k,v in translate_columns.items():
             if v == 'house_number':
                 self.house_number = k
             elif v == 'age':
@@ -172,9 +168,9 @@ class Parser(Helpers, FirstLastPage):
             elif r and not is_splitted:
                 pass
 
-        # # Get accuracy score if check accuracy is activated
-        # if self.checks:
-        #     result['accuracy score'] = self.check_accuracy(result, raw)
+        # Get accuracy score if check accuracy is activated
+        if self.checks:
+            result['accuracy score'] = self.check_accuracy(result, raw)
         
         return result
 
@@ -255,22 +251,22 @@ class Parser(Helpers, FirstLastPage):
         
         return result, last_key, is_splitted
         
-    # def check_accuracy(self, d, raw_data):
-    #     # Checks data and returns an accuracy score dependint on checks dictionary
+    def check_accuracy(self, d, raw_data):
+        # Checks data and returns an accuracy score dependint on checks dictionary
 
-    #     accuracy = 0 
-    #     for k,v in self.checks.items():
-    #         extracted_value = d.get(k, '').lower().strip()
+        accuracy = 0 
+        for k,v in self.checks.items():
+            extracted_value = d.get(k, '').lower().strip()
 
-    #         if not extracted_value:
-    #             accuracy -= 1
-    #         else:
-    #             for condition in v:
-    #                 checked = ''.join(re.findall(condition['r'], extracted_value))
-    #                 if checked != extracted_value:
-    #                     accuracy += condition['s']
+            if not extracted_value:
+                accuracy -= 1
+            else:
+                for condition in v:
+                    checked = ''.join(re.findall(condition['r'], extracted_value))
+                    if checked != extracted_value:
+                        accuracy += condition['s']
 
-    #     return accuracy 
+        return accuracy 
 
     def process_pdf(self, pdf_file_path):
         # Get pdf file, process convertion and process output
@@ -377,6 +373,7 @@ class Parser(Helpers, FirstLastPage):
     def known_exceptions(self, result, r, raw):
         is_splitted = False
         return result, is_splitted
+
 
 
     # def format_items(self, items, first_page_results, last_page_results):
