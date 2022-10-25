@@ -37,27 +37,9 @@ class FirstLastPage:
 
     def extract_4_numbers(self, cropped):
         # Extract numbers
-        # text = (pytesseract.image_to_string(cropped, config='--psm 6', lang=self.lang)) #config='--psm 4' config='-c preserve_interword_spaces=1'
-        # text = re.findall(r'\d+', text)
-
-        # if not text:
-
         cc = self.transform_and_remove_contours(cropped, (40,200))
         text = tesserocr.image_to_text(cc, lang=self.lang, psm=tesserocr.PSM.SPARSE_TEXT) 
         text = re.findall(r'\d+', text)
-        
-        # if text:
-        #     nums = [int(x) for x in text]
-        #     if nums[-1] != sum(nums[:-1]):
-        #         # Remove box lines
-        #         im = np.array(cropped) 
-        #         im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
-        #         contours = self.get_countours(im)
-        #         cropped_p = self.remove_contours(im, contours, (70,150))
-
-        #         # Retry
-        #         text = (pytesseract.image_to_string(cropped_p, config='--psm 6 --oem 3 -c tessedit_char_whitelist=0123456789', lang=self.lang)) 
-        #         text = re.findall(r'\d+', text)
 
         #Interpretation
         if len(text)==4:
@@ -218,25 +200,43 @@ class FirstLastPage:
 
         return fp_result, lp_result
 
-    def update_counts(self, page, last_page_results):
-        # check if there's additional stats
+    def check_supp_counts(self, page):
         cropped = page.crop((1783, 401, 2443, 750))
-        
-        # text = tesserocr.image_to_text(cropped, lang=self.lang, psm=tesserocr.PSM.SPARSE_TEXT) 
-        # p_stats = re.findall('\d+', text)
-        
         im = self.transform_and_remove_contours(cropped, (40,200))
         text = tesserocr.image_to_text(im, lang=self.lang, psm=tesserocr.PSM.SPARSE_TEXT)
-        p_stats = re.findall('\d+', text)
+        return re.findall('\d+', text)
+
+    def update_counts(self, page, last_page_results):
+        # check if there's additional stats
+        p_stats = self.check_supp_counts(page) 
         
         # validate
         if len(p_stats) == 3: 
             try:
-                last_page_results['net_electors_male'] = int(last_page_results['net_electors_male']) + int(p_stats[0])
-                last_page_results['net_electors_female'] = int(last_page_results['net_electors_female']) + int(p_stats[1])
-                #last_page_results['net_electors_third_gender'] += 
-                last_page_results['net_electors_total'] = int(last_page_results['net_electors_total']) + int(p_stats[2])
+                # check correct values
+                m = int(p_stats[0])
+                f = int(p_stats[1])
+                t = int(p_stats[2])
+
+                if m + f == t:
+                    #add
+                    last_page_results['net_electors_male'] = int(last_page_results['net_electors_male']) + m
+                    last_page_results['net_electors_female'] = int(last_page_results['net_electors_female']) + f
+                    #last_page_results['net_electors_third_gender'] += 
+                    last_page_results['net_electors_total'] = int(last_page_results['net_electors_total']) + t
+
             except Exception as e:
-                logging.debug(f'No last_page results {e}')
+                logging.debug(f'Adding stats error: {e}')
 
         return last_page_results
+
+    def mark_supplementary_data(self, page):
+        # check if there's additional counts
+        v = False
+        p_stats = self.check_supp_counts(page) 
+        
+        # validate
+        if len(p_stats) == 3: 
+            v = True
+
+        return v

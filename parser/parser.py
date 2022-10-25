@@ -49,7 +49,7 @@ class Parser(Helpers, FirstLastPage):
         for pdf in pdf_files:
             self.process_pdf(pdf)
 
-    def __init__(self, state, year=None, ignore_last=False, handle=[], check_updated_counts=None, detect_columns=False):
+    def __init__(self, state, year=None, ignore_last=False, handle=[], check_supplementary_data=None, check_updated_counts=None, detect_columns=False):
         self.test = os.getenv('TEST')
         self.state = state.lower()
         self.handle = handle
@@ -58,6 +58,7 @@ class Parser(Helpers, FirstLastPage):
         self.stop = False # testing
         self.stats_nums = None # for multiple check of stats nums
         self.check_updated_counts = check_updated_counts
+        self.check_supplementary_data = check_supplementary_data
 
         # if there's no boxes columns detect them
         try:
@@ -294,6 +295,7 @@ class Parser(Helpers, FirstLastPage):
             logging.info(f'Detecting and parsing {pdf_file_path} boxes..')
 
             pages_range = pages[self.FIRST_PAGES:self.LAST_PAGE]
+            is_supp = False
             for i, page in enumerate(pages_range):
                 logging.info(f'Processing page {self.FIRST_PAGES + i+1}')
 
@@ -302,10 +304,13 @@ class Parser(Helpers, FirstLastPage):
 
                 #logging.debug(f'{len(boxes)} boxes detected')
 
+                # Check last 15 pages for supplementary data
                 if self.check_updated_counts:
-                    # Check last 5 pages
                     if i > len(pages_range) - 15:
                         last_page_results = self.update_counts(page, last_page_results)
+                if self.check_supplementary_data:
+                    if i > len(pages_range) - 15 and not is_supp:
+                        is_supp = self.mark_supplementary_data(page)
 
                 # concurrent tesserocr
                 def get_data(im):
@@ -314,6 +319,7 @@ class Parser(Helpers, FirstLastPage):
                         text = tesserocr.image_to_text(im, lang=self.lang, psm=tesserocr.PSM.SINGLE_BLOCK) #tesserocr.PSM.SPARSE_TEXT
                         processed_box = self.process_boxes_text(text)
                         item.update(processed_box)
+                        item['supplementary_data'] = is_supp if is_supp else '' # add if data is supplementary or not
                         item = self.check_data(item)
                         items.append(item)
                     except Exception as e:

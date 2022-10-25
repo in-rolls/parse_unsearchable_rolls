@@ -17,9 +17,17 @@ class Tests():
 
             df = pd.read_csv(r)
             try:
+                # Drop supplementaries
+                try:
+                    df = df.drop(df[df.supplementary_data == True].index)
+                except:
+                    pass
+
+                # Get total rows
                 total_rows = df['file_name'].size
                 declared_total = int(df._get_value(1, 'net_electors_total', takeable=False))
 
+                # Compare
                 if total_rows ==  declared_total:
                     print(f'{r}: Correct total')
                 else:
@@ -27,7 +35,6 @@ class Tests():
             except:
                 print(f'{r}: No total')
         
-
 
 if __name__ == '__main__':
     TS = Tests()
