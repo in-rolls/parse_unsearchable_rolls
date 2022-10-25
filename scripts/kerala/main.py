@@ -17,6 +17,7 @@ class Kerala(Gujarat):
     FEMALE = 'സ്ത്രീ'
     FIRST_PAGES = 2
     LAST_PAGE = None
+    MAX_WORKERS = 7
 
     lang = 'mal+eng'
     rescale = 300/500
