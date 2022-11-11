@@ -4,6 +4,9 @@ from parse_unsearchable_rolls.scripts.kerala.main import Kerala
 
 
 if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        KR.MAX_WORKERS = 1
+        KR.BASE_DATA_PATH = sys.argv[1]    
     KR = Kerala('kerala', year='2016')
     KR.first_page_coordinates = {
         'rescale': False,
