@@ -75,7 +75,7 @@ class Gujarat(Parser):
             item = self.basic_clean(item)
             try:
                 result.append(
-                    first_page_results | additional | item | last_page_results
+                   {**first_page_results, **additional, **item, **last_page_results}
                 )
             except Exception as e:
                 print(f'Format error: {item} - {e}')
