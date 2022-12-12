@@ -1,0 +1,35 @@
+2022-11-09 10:04:16,420 Converting data/part148/in/kerala/2015/2015_078_005.pdf to img...
+2022-11-09 10:04:16,523 Error converting data/part148/in/kerala/2015/2015_078_005.pdf: Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/site-packages/pdf2image/pdf2image.py", line 462, in pdfinfo_from_path
+    raise ValueError
+ValueError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "../parse_unsearchable_rolls/parser/parser.py", line 284, in process_pdf
+    pages = self.pdf_to_img(pdf_file_path, dpi=self.DPI)
+  File "../parse_unsearchable_rolls/parser/helpers.py", line 163, in pdf_to_img
+    return pdf2image.convert_from_path(
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/site-packages/pdf2image/pdf2image.py", line 97, in convert_from_path
+    page_count = pdfinfo_from_path(pdf_path, userpw, poppler_path=poppler_path)["Pages"]
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/site-packages/pdf2image/pdf2image.py", line 471, in pdfinfo_from_path
+    raise PDFPageCountError(
+pdf2image.exceptions.PDFPageCountError: Unable to get page count.
+Syntax Warning: May not be a PDF file (continuing anyway)
+Syntax Error: Couldn't find trailer dictionary
+Syntax Error: Couldn't find trailer dictionary
+Syntax Error: Couldn't read xref table
+
+
+
+#################
+Epilogue Job Info:
+Job ID: 467118[148].acropolis
+User ID: t-9adar
+Job Name: Kerala2015JobArray-148
+Resource List: nodes=1:ppn=1,mem=3400mb,neednodes=1:ppn=1
+Resources Used: cput=00:00:00,vmem=837848kb,walltime=00:00:27,mem=57748kb,energy_used=0
+Exit Code: 0
+#################
+

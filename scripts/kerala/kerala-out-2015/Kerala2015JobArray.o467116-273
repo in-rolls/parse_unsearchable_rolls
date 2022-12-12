@@ -1,0 +1,69 @@
+2022-11-09 09:44:27,971 Converting data/part273/in/kerala/2015/2015_137_018.pdf to img...
+2022-11-09 09:44:34,337 Parsing first and last page data..
+2022-11-09 09:44:37,105 Detecting and parsing data/part273/in/kerala/2015/2015_137_018.pdf boxes..
+2022-11-09 09:44:37,105 Processing page 3
+2022-11-09 09:45:07,654 Processing page 4
+2022-11-09 09:45:39,734 Processing page 5
+2022-11-09 09:46:12,658 Processing page 6
+2022-11-09 09:46:45,736 Processing page 7
+2022-11-09 09:47:17,755 Processing page 8
+2022-11-09 09:47:51,106 Processing page 9
+2022-11-09 09:48:25,053 Processing page 10
+2022-11-09 09:49:00,800 Processing page 11
+2022-11-09 09:49:34,522 Processing page 12
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 126-129: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught allgyenie for=VoMcrelar) OrderedDict([('number', '300'), ('id', 'KL/20/139/405542'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d36\u0d36\u0d3f\u0d27\u0d30\u0d28\u0d4d\\u200d \u0d28\u0d3e\u0d2f\u0d30\u0d4d\\u200d'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d35\u0d4d\\u200c)'), ('\u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d2e\u0d4d\u0d2a\u0d30\u0d4d', '8/435 (0/313)')])"
+Arguments: ()
+2022-11-09 09:49:37,260 Split uncaught allgyenie for=VoMcrelar) OrderedDict([('number', '300'), ('id', 'KL/20/139/405542'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d36\u0d36\u0d3f\u0d27\u0d30\u0d28\u0d4d\u200d \u0d28\u0d3e\u0d2f\u0d30\u0d4d\u200d'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d35\u0d4d\u200c)'), ('\u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d2e\u0d4d\u0d2a\u0d30\u0d4d', '8/435 (0/313)')])
+2022-11-09 09:50:05,395 Processing page 13
+2022-11-09 09:50:33,020 Processing page 14
+2022-11-09 09:51:04,715 Processing page 15
+2022-11-09 09:51:36,530 Processing page 16
+2022-11-09 09:52:09,135 Processing page 17
+2022-11-09 09:52:38,848 Processing page 18
+2022-11-09 09:53:11,207 Processing page 19
+2022-11-09 09:53:44,249 Processing page 20
+2022-11-09 09:54:15,712 Processing page 21
+2022-11-09 09:54:47,246 Processing page 22
+2022-11-09 09:55:19,516 Processing page 23
+2022-11-09 09:55:49,773 Processing page 24
+2022-11-09 09:56:20,564 Processing page 25
+2022-11-09 09:56:54,505 Processing page 26
+2022-11-09 09:57:26,673 Processing page 27
+2022-11-09 09:58:01,326 Processing page 28
+2022-11-09 09:58:34,110 Processing page 29
+2022-11-09 09:59:10,134 Processing page 30
+
+#################
+Epilogue Job Info:
+Job ID: 467116[273].acropolis
+User ID: t-9adar
+Job Name: Kerala2015JobArray-273
+Resource List: nodes=1:ppn=1,mem=3400mb,neednodes=1:ppn=1
+Resources Used: cput=00:15:01,vmem=2356476kb,walltime=00:15:31,mem=1389668kb,energy_used=0
+Exit Code: 271
+#################
+

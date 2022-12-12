@@ -1,0 +1,105 @@
+2022-11-09 10:04:03,685 Converting data/part102/in/kerala/2015/2015_054_092.pdf to img...
+2022-11-09 10:04:15,388 Parsing first and last page data..
+2022-11-09 10:04:18,798 Detecting and parsing data/part102/in/kerala/2015/2015_054_092.pdf boxes..
+2022-11-09 10:04:18,798 Processing page 3
+2022-11-09 10:04:53,677 Processing page 4
+2022-11-09 10:05:29,188 Processing page 5
+2022-11-09 10:06:03,749 Processing page 6
+2022-11-09 10:06:40,400 Processing page 7
+2022-11-09 10:07:15,024 Processing page 8
+2022-11-09 10:07:50,733 Processing page 9
+2022-11-09 10:08:27,591 Processing page 10
+2022-11-09 10:09:05,344 Processing page 11
+2022-11-09 10:09:43,588 Processing page 12
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 118-121: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 323, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 152, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 258, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 229, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught sdomalog ete (Gle>JaIB OrderedDict([('number', '300'), ('id', 'ZET0086157'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d30\u0d41\u0d27\u0d3f\u0d23\u0d3f')])"
+Arguments: ()
+2022-11-09 10:09:46,623 Split uncaught sdomalog ete (Gle>JaIB OrderedDict([('number', '300'), ('id', 'ZET0086157'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d30\u0d41\u0d27\u0d3f\u0d23\u0d3f')])
+2022-11-09 10:10:20,480 Processing page 13
+2022-11-09 10:10:57,377 Processing page 14
+2022-11-09 10:11:34,485 Processing page 15
+2022-11-09 10:12:10,715 Processing page 16
+2022-11-09 10:12:46,445 Processing page 17
+2022-11-09 10:13:22,271 Processing page 18
+2022-11-09 10:13:59,021 Processing page 19
+2022-11-09 10:14:35,402 Processing page 20
+2022-11-09 10:15:12,457 Processing page 21
+2022-11-09 10:15:50,460 Processing page 22
+2022-11-09 10:16:27,420 Processing page 23
+2022-11-09 10:17:06,503 Processing page 24
+2022-11-09 10:17:43,544 Processing page 25
+2022-11-09 10:18:20,888 Processing page 26
+2022-11-09 10:18:56,911 Processing page 27
+2022-11-09 10:19:34,102 Processing page 28
+2022-11-09 10:20:11,082 Processing page 29
+2022-11-09 10:20:48,700 Processing page 30
+2022-11-09 10:21:24,700 Processing page 31
+2022-11-09 10:22:01,316 Processing page 32
+2022-11-09 10:22:38,622 Processing page 33
+2022-11-09 10:23:15,809 Processing page 34
+2022-11-09 10:23:53,600 Processing page 35
+2022-11-09 10:24:30,815 Processing page 36
+2022-11-09 10:25:06,831 Processing page 37
+2022-11-09 10:25:44,191 Processing page 38
+2022-11-09 10:26:19,694 Processing page 39
+2022-11-09 10:26:56,561 Processing page 40
+2022-11-09 10:27:32,502 Processing page 41
+2022-11-09 10:28:09,771 Processing page 42
+2022-11-09 10:28:46,682 Processing page 43
+2022-11-09 10:29:24,477 Processing page 44
+2022-11-09 10:30:02,324 Processing page 45
+2022-11-09 10:30:38,843 Processing page 46
+2022-11-09 10:31:15,275 Processing page 47
+2022-11-09 10:31:52,528 Processing page 48
+2022-11-09 10:32:28,664 Processing page 49
+2022-11-09 10:33:05,662 Processing page 50
+2022-11-09 10:33:10,996 Processing page 51
+2022-11-09 10:33:50,573 Processing page 52
+2022-11-09 10:34:29,646 Processing page 53
+2022-11-09 10:35:09,825 Processing page 54
+2022-11-09 10:35:49,380 Processing page 55
+2022-11-09 10:36:15,003 Processing page 56
+2022-11-09 10:36:30,221 Processing page 57
+2022-11-09 10:37:05,083 Processing page 58
+2022-11-09 10:37:25,111 Processing page 59
+2022-11-09 10:37:34,488 Processing page 60
+2022-11-09 10:37:42,075 Processing page 61
+2022-11-09 10:38:02,496 Processing page 62
+2022-11-09 10:38:05,316 Processing page 63
+2022-11-09 10:38:09,301 Processing page 64
+2022-11-09 10:38:10,564 Formatting and exporting data/part102/in/kerala/2015/2015_054_092.pdf data..
+2022-11-09 10:38:10,660 Converted to csv: data/out/kerala/2015/2015_054_092.csv
+
+#################
+Epilogue Job Info:
+Job ID: 467118[102].acropolis
+User ID: t-9adar
+Job Name: Kerala2015JobArray-102
+Resource List: nodes=1:ppn=1,mem=3400mb,neednodes=1:ppn=1
+Resources Used: cput=00:34:04,vmem=3615796kb,walltime=00:34:27,mem=2653512kb,energy_used=0
+Exit Code: 0
+#################
+

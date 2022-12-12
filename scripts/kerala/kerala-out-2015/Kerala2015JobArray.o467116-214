@@ -1,0 +1,65 @@
+2022-11-09 09:44:19,659 Converting data/part214/in/kerala/2015/2015_109_098.pdf to img...
+2022-11-09 09:44:25,931 Parsing first and last page data..
+2022-11-09 09:44:29,309 Detecting and parsing data/part214/in/kerala/2015/2015_109_098.pdf boxes..
+2022-11-09 09:44:29,309 Processing page 3
+2022-11-09 09:45:04,640 Processing page 4
+2022-11-09 09:45:41,670 Processing page 5
+2022-11-09 09:46:18,498 Processing page 6
+2022-11-09 09:46:54,504 Processing page 7
+2022-11-09 09:47:31,121 Processing page 8
+2022-11-09 09:48:08,967 Processing page 9
+2022-11-09 09:48:46,850 Processing page 10
+2022-11-09 09:49:23,804 Processing page 11
+2022-11-09 09:50:00,700 Processing page 12
+2022-11-09 09:50:38,700 Processing page 13
+2022-11-09 09:51:15,572 Processing page 14
+2022-11-09 09:51:52,642 Processing page 15
+2022-11-09 09:52:29,741 Processing page 16
+2022-11-09 09:53:06,856 Processing page 17
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 56-59: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught ollgyeaie Blesg> \u0d2d\u0d35\u0d28\u0d02 OrderedDict([('number', '447'), ('id', 'ZJX0451229'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d30\u0d40\u0d37\u0d4d\u0d1f\u0d41 \u0d06\u0d30\u0d4d\\u200d'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d30\u0d3e\u0d27\u0d3e\u0d15\u0d43\u0d37\u0d4d\u0d23\u0d28\u0d4d\\u200d')])"
+Arguments: ()
+2022-11-09 09:53:12,362 Split uncaught ollgyeaie Blesg> \u0d2d\u0d35\u0d28\u0d02 OrderedDict([('number', '447'), ('id', 'ZJX0451229'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d30\u0d40\u0d37\u0d4d\u0d1f\u0d41 \u0d06\u0d30\u0d4d\u200d'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d30\u0d3e\u0d27\u0d3e\u0d15\u0d43\u0d37\u0d4d\u0d23\u0d28\u0d4d\u200d')])
+2022-11-09 09:53:45,529 Processing page 18
+2022-11-09 09:54:23,984 Processing page 19
+2022-11-09 09:55:00,656 Processing page 20
+2022-11-09 09:55:36,632 Processing page 21
+2022-11-09 09:56:13,257 Processing page 22
+2022-11-09 09:56:50,469 Processing page 23
+2022-11-09 09:57:29,134 Processing page 24
+2022-11-09 09:58:07,653 Processing page 25
+2022-11-09 09:58:46,405 Processing page 26
+
+#################
+Epilogue Job Info:
+Job ID: 467116[214].acropolis
+User ID: t-9adar
+Job Name: Kerala2015JobArray-214
+Resource List: nodes=1:ppn=1,mem=3400mb,neednodes=1:ppn=1
+Resources Used: cput=00:15:01,vmem=2212432kb,walltime=00:15:27,mem=1246804kb,energy_used=0
+Exit Code: 271
+#################
+

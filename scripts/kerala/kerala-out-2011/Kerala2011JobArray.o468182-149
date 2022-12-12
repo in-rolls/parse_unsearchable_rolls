@@ -1,0 +1,36 @@
+2022-11-17 20:11:09,619 Converting data/part149/in/kerala/2011/2011_078_098.pdf to img...
+2022-11-17 20:11:09,696 Error converting data/part149/in/kerala/2011/2011_078_098.pdf: Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/site-packages/pdf2image/pdf2image.py", line 462, in pdfinfo_from_path
+    raise ValueError
+ValueError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "../parse_unsearchable_rolls/parser/parser.py", line 281, in process_pdf
+    pages = self.pdf_to_img(pdf_file_path, dpi=self.DPI)
+  File "../parse_unsearchable_rolls/parser/helpers.py", line 163, in pdf_to_img
+    return pdf2image.convert_from_path(
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/site-packages/pdf2image/pdf2image.py", line 97, in convert_from_path
+    page_count = pdfinfo_from_path(pdf_path, userpw, poppler_path=poppler_path)["Pages"]
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/site-packages/pdf2image/pdf2image.py", line 471, in pdfinfo_from_path
+    raise PDFPageCountError(
+pdf2image.exceptions.PDFPageCountError: Unable to get page count.
+Syntax Warning: May not be a PDF file (continuing anyway)
+Syntax Error: Invalid XRef entry
+Syntax Error: Top-level pages object is wrong type (null)
+Syntax Error: Top-level pages object is wrong type (null)
+Command Line Error: Wrong page range given: the first page (1) can not be after the last page (0).
+
+
+
+#################
+Epilogue Job Info:
+Job ID: 468182[149].acropolis
+User ID: t-9adar
+Job Name: Kerala2011JobArray-149
+Resource List: nodes=1:ppn=20,mem=35000mb,neednodes=1:ppn=20
+Resources Used: cput=00:00:02,vmem=0kb,walltime=00:00:04,mem=0kb,energy_used=0
+Exit Code: 0
+#################
+

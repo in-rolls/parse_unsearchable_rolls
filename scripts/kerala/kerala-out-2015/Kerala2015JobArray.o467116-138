@@ -1,0 +1,66 @@
+2022-11-09 09:44:17,103 Converting data/part138/in/kerala/2015/2015_072_080.pdf to img...
+2022-11-09 09:44:24,473 Parsing first and last page data..
+2022-11-09 09:44:28,469 Detecting and parsing data/part138/in/kerala/2015/2015_072_080.pdf boxes..
+2022-11-09 09:44:28,469 Processing page 3
+2022-11-09 09:45:05,254 Processing page 4
+2022-11-09 09:45:41,322 Processing page 5
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 126-129: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught Gralaoog sold O2WIk> Logs OrderedDict([('number', '68'), ('id', 'KL/10/061/039815'), ('\u0d2a\u0d47\u0d30\u0d4d', 'moail@)l')])"
+Arguments: ()
+2022-11-09 09:46:07,857 Split uncaught Gralaoog sold O2WIk> Logs OrderedDict([('number', '68'), ('id', 'KL/10/061/039815'), ('\u0d2a\u0d47\u0d30\u0d4d', 'moail@)l')])
+2022-11-09 09:46:16,869 Processing page 6
+2022-11-09 09:46:53,889 Processing page 7
+2022-11-09 09:47:30,089 Processing page 8
+2022-11-09 09:48:06,843 Processing page 9
+2022-11-09 09:48:42,703 Processing page 10
+2022-11-09 09:49:18,834 Processing page 11
+2022-11-09 09:49:55,406 Processing page 12
+2022-11-09 09:50:32,278 Processing page 13
+2022-11-09 09:51:08,105 Processing page 14
+2022-11-09 09:51:44,514 Processing page 15
+2022-11-09 09:52:21,803 Processing page 16
+2022-11-09 09:52:57,851 Processing page 17
+2022-11-09 09:53:34,203 Processing page 18
+2022-11-09 09:54:10,084 Processing page 19
+2022-11-09 09:54:46,912 Processing page 20
+2022-11-09 09:55:23,343 Processing page 21
+2022-11-09 09:55:58,766 Processing page 22
+2022-11-09 09:56:34,851 Processing page 23
+2022-11-09 09:57:10,712 Processing page 24
+2022-11-09 09:57:46,837 Processing page 25
+2022-11-09 09:58:21,950 Processing page 26
+2022-11-09 09:58:58,524 Processing page 27
+
+#################
+Epilogue Job Info:
+Job ID: 467116[138].acropolis
+User ID: t-9adar
+Job Name: Kerala2015JobArray-138
+Resource List: nodes=1:ppn=1,mem=3400mb,neednodes=1:ppn=1
+Resources Used: cput=00:14:52,vmem=2288100kb,walltime=00:15:23,mem=1323552kb,energy_used=0
+Exit Code: 271
+#################
+

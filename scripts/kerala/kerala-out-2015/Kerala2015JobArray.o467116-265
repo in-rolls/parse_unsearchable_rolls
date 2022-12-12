@@ -1,0 +1,65 @@
+2022-11-09 09:44:27,417 Converting data/part265/in/kerala/2015/2015_133_001.pdf to img...
+2022-11-09 09:44:38,697 Parsing first and last page data..
+2022-11-09 09:44:43,135 Detecting and parsing data/part265/in/kerala/2015/2015_133_001.pdf boxes..
+2022-11-09 09:44:43,135 Processing page 3
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 39-40: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught \u0d28\u0d3f AL>OlOo OrderedDict([('number', '2'), ('id', 'UHE0351726'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d30\u0d3e\u0d1c\u0d47\u0d37\u0d4d\\u200c')])"
+Arguments: ()
+2022-11-09 09:45:18,804 Split uncaught \u0d28\u0d3f AL>OlOo OrderedDict([('number', '2'), ('id', 'UHE0351726'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d30\u0d3e\u0d1c\u0d47\u0d37\u0d4d\u200c')])
+2022-11-09 09:45:21,101 Processing page 4
+2022-11-09 09:45:58,068 Processing page 5
+2022-11-09 09:46:35,382 Processing page 6
+2022-11-09 09:47:12,309 Processing page 7
+2022-11-09 09:47:50,262 Processing page 8
+2022-11-09 09:48:28,234 Processing page 9
+2022-11-09 09:49:04,655 Processing page 10
+2022-11-09 09:49:42,388 Processing page 11
+2022-11-09 09:50:20,258 Processing page 12
+2022-11-09 09:50:58,095 Processing page 13
+2022-11-09 09:51:36,170 Processing page 14
+2022-11-09 09:52:14,094 Processing page 15
+2022-11-09 09:52:51,491 Processing page 16
+2022-11-09 09:53:30,320 Processing page 17
+2022-11-09 09:54:08,102 Processing page 18
+2022-11-09 09:54:47,081 Processing page 19
+2022-11-09 09:55:25,714 Processing page 20
+2022-11-09 09:56:03,755 Processing page 21
+2022-11-09 09:56:43,180 Processing page 22
+2022-11-09 09:57:20,453 Processing page 23
+2022-11-09 09:57:59,242 Processing page 24
+2022-11-09 09:58:36,570 Processing page 25
+2022-11-09 09:59:14,339 Processing page 26
+
+#################
+Epilogue Job Info:
+Job ID: 467116[265].acropolis
+User ID: t-9adar
+Job Name: Kerala2015JobArray-265
+Resource List: nodes=1:ppn=1,mem=3400mb,neednodes=1:ppn=1
+Resources Used: cput=00:15:01,vmem=2237940kb,walltime=00:15:31,mem=1273324kb,energy_used=0
+Exit Code: 271
+#################
+

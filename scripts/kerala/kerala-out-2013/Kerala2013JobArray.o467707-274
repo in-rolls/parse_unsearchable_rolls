@@ -1,0 +1,3681 @@
+2022-11-12 21:24:11,705 Converting data/part274/in/kerala/2013/2013_122_030.pdf to img...
+2022-11-12 21:24:19,820 Parsing first and last page data..
+2022-11-12 21:24:22,206 Detecting and parsing data/part274/in/kerala/2013/2013_122_030.pdf boxes..
+2022-11-12 21:24:22,206 Processing page 3
+2022-11-12 21:24:51,288 Processing page 4
+2022-11-12 21:25:18,319 Processing page 5
+2022-11-12 21:25:47,074 Processing page 6
+2022-11-12 21:26:17,820 Processing page 7
+2022-11-12 21:26:47,533 Processing page 8
+2022-11-12 21:27:20,391 Processing page 9
+2022-11-12 21:27:53,374 Processing page 10
+2022-11-12 21:28:25,438 Processing page 11
+2022-11-12 21:29:00,347 Processing page 12
+2022-11-12 21:29:34,046 Processing page 13
+2022-11-12 21:30:07,902 Processing page 14
+2022-11-12 21:30:40,608 Processing page 15
+2022-11-12 21:31:11,470 Processing page 16
+2022-11-12 21:31:44,151 Processing page 17
+2022-11-12 21:32:19,031 Processing page 18
+2022-11-12 21:32:52,082 Processing page 19
+2022-11-12 21:33:20,466 Processing page 20
+2022-11-12 21:33:54,797 Processing page 21
+2022-11-12 21:34:25,453 Processing page 22
+2022-11-12 21:34:54,258 Processing page 23
+2022-11-12 21:35:26,718 Processing page 24
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode character '\u2014' in position 56: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught aligned 21204 ag \u2014=\u2014«(7/463) OrderedDict([('number', '636'), ('id', 'XIL0125039'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d38\u0d41\u0d2d\u0d26\u0d4d\u0d30')])"
+Arguments: ()
+2022-11-12 21:35:54,050 Split uncaught aligned 21204 ag \u2014=\u2014«(7/463) OrderedDict([('number', '636'), ('id', 'XIL0125039'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d38\u0d41\u0d2d\u0d26\u0d4d\u0d30')])
+2022-11-12 21:35:58,539 Processing page 25
+2022-11-12 21:36:27,241 Processing page 26
+2022-11-12 21:37:00,790 Processing page 27
+2022-11-12 21:37:31,068 Processing page 28
+2022-11-12 21:38:04,702 Processing page 29
+2022-11-12 21:38:35,788 Processing page 30
+2022-11-12 21:39:12,523 Processing page 31
+2022-11-12 21:39:47,135 Processing page 32
+2022-11-12 21:40:21,070 Processing page 33
+2022-11-12 21:40:57,299 Processing page 34
+2022-11-12 21:41:29,469 Processing page 35
+2022-11-12 21:41:58,207 Processing page 36
+2022-11-12 21:42:25,130 Processing page 37
+2022-11-12 21:43:10,968 Processing page 38
+2022-11-12 21:43:49,436 Processing page 39
+2022-11-12 21:44:21,754 Processing page 40
+2022-11-12 21:44:54,489 Processing page 41
+2022-11-12 21:45:29,098 Processing page 42
+2022-11-12 21:45:41,125 Processing page 43
+2022-11-12 21:46:02,959 Processing page 44
+2022-11-12 21:46:03,939 Processing page 45
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 134-137: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught allgyeaic fercrey] ey =Yorantys OrderedDict([('number', 'E481'), ('id', 'KL/17/116/003452'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d15. 1'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d36\u0d19\u0d4d\u0d15\u0d30\u0d2a\u0d3f\u0d33\u0d4d\u0d33'), ('\u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d2e\u0d4d\u0d2a\u0d30\u0d4d', '2/150qg) (10/121)')])"
+Arguments: ()
+2022-11-12 21:46:08,868 Split uncaught allgyeaic fercrey] ey =Yorantys OrderedDict([('number', 'E481'), ('id', 'KL/17/116/003452'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d15. 1'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d36\u0d19\u0d4d\u0d15\u0d30\u0d2a\u0d3f\u0d33\u0d4d\u0d33'), ('\u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d2e\u0d4d\u0d2a\u0d30\u0d4d', '2/150qg) (10/121)')])
+2022-11-12 21:46:09,954 Formatting and exporting data/part274/in/kerala/2013/2013_122_030.pdf data..
+2022-11-12 21:46:10,087 Converted to csv: data/part274/out/kerala/2013/2013_122_030.csv
+2022-11-12 21:46:10,247 Converting data/part274/in/kerala/2013/2013_122_031.pdf to img...
+2022-11-12 21:46:16,580 Parsing first and last page data..
+2022-11-12 21:46:19,445 Detecting and parsing data/part274/in/kerala/2013/2013_122_031.pdf boxes..
+2022-11-12 21:46:19,446 Processing page 3
+2022-11-12 21:46:49,736 Processing page 4
+2022-11-12 21:47:22,992 Processing page 5
+2022-11-12 21:47:54,219 Processing page 6
+2022-11-12 21:48:24,583 Processing page 7
+2022-11-12 21:48:52,888 Processing page 8
+2022-11-12 21:49:16,703 Processing page 9
+2022-11-12 21:49:58,927 Processing page 10
+2022-11-12 21:50:30,304 Processing page 11
+2022-11-12 21:50:59,926 Processing page 12
+2022-11-12 21:51:28,106 Processing page 13
+2022-11-12 21:51:52,694 Processing page 14
+2022-11-12 21:52:21,483 Processing page 15
+2022-11-12 21:52:57,307 Processing page 16
+2022-11-12 21:53:25,108 Processing page 17
+2022-11-12 21:54:00,638 Processing page 18
+2022-11-12 21:54:30,094 Processing page 19
+2022-11-12 21:55:05,760 Processing page 20
+2022-11-12 21:55:38,064 Processing page 21
+2022-11-12 21:56:03,655 Processing page 22
+2022-11-12 21:56:46,596 Processing page 23
+2022-11-12 21:57:20,486 Processing page 24
+2022-11-12 21:57:46,080 Processing page 25
+2022-11-12 21:58:21,185 Processing page 26
+2022-11-12 21:58:58,647 Processing page 27
+2022-11-12 21:59:33,452 Processing page 28
+2022-11-12 22:00:11,199 Processing page 29
+2022-11-12 22:00:45,315 Processing page 30
+2022-11-12 22:01:16,046 Processing page 31
+2022-11-12 22:01:52,504 Processing page 32
+2022-11-12 22:02:17,482 Processing page 33
+2022-11-12 22:02:56,666 Processing page 34
+2022-11-12 22:03:39,444 Processing page 35
+2022-11-12 22:04:17,429 Processing page 36
+2022-11-12 22:04:53,394 Processing page 37
+2022-11-12 22:05:27,965 Processing page 38
+2022-11-12 22:05:56,436 Processing page 39
+2022-11-12 22:06:28,472 Processing page 40
+2022-11-12 22:07:06,143 Processing page 41
+2022-11-12 22:07:34,660 Processing page 42
+2022-11-12 22:08:07,173 Processing page 43
+2022-11-12 22:08:41,141 Processing page 44
+2022-11-12 22:08:54,949 Processing page 45
+2022-11-12 22:09:07,943 Formatting and exporting data/part274/in/kerala/2013/2013_122_031.pdf data..
+2022-11-12 22:09:07,980 Converted to csv: data/part274/out/kerala/2013/2013_122_031.csv
+2022-11-12 22:09:08,079 Converting data/part274/in/kerala/2013/2013_122_032.pdf to img...
+2022-11-12 22:09:13,629 Parsing first and last page data..
+2022-11-12 22:09:15,423 Detecting and parsing data/part274/in/kerala/2013/2013_122_032.pdf boxes..
+2022-11-12 22:09:15,423 Processing page 3
+2022-11-12 22:09:40,105 Processing page 4
+2022-11-12 22:10:16,623 Processing page 5
+2022-11-12 22:10:56,244 Processing page 6
+2022-11-12 22:11:31,716 Processing page 7
+2022-11-12 22:12:04,518 Processing page 8
+2022-11-12 22:12:34,706 Processing page 9
+2022-11-12 22:12:58,753 Processing page 10
+2022-11-12 22:13:26,416 Processing page 11
+2022-11-12 22:14:01,302 Processing page 12
+2022-11-12 22:14:37,648 Processing page 13
+2022-11-12 22:15:07,351 Processing page 14
+2022-11-12 22:15:42,600 Processing page 15
+2022-11-12 22:16:07,553 Processing page 16
+2022-11-12 22:16:36,804 Processing page 17
+2022-11-12 22:17:15,088 Processing page 18
+2022-11-12 22:17:46,012 Processing page 19
+2022-11-12 22:18:17,970 Processing page 20
+2022-11-12 22:18:46,043 Processing page 21
+2022-11-12 22:19:09,891 Processing page 22
+2022-11-12 22:19:43,338 Processing page 23
+2022-11-12 22:20:16,829 Processing page 24
+2022-11-12 22:20:50,341 Processing page 25
+2022-11-12 22:21:24,760 Processing page 26
+2022-11-12 22:21:59,207 Processing page 27
+2022-11-12 22:22:27,762 Processing page 28
+2022-11-12 22:22:55,433 Processing page 29
+2022-11-12 22:23:35,433 Processing page 30
+2022-11-12 22:23:54,932 Processing page 31
+2022-11-12 22:24:22,924 Processing page 32
+2022-11-12 22:24:55,214 Processing page 33
+2022-11-12 22:25:27,282 Processing page 34
+2022-11-12 22:25:55,933 Processing page 35
+2022-11-12 22:26:24,630 Processing page 36
+2022-11-12 22:26:53,137 Processing page 37
+2022-11-12 22:27:25,545 Processing page 38
+2022-11-12 22:27:58,793 Processing page 39
+2022-11-12 22:28:36,834 Processing page 40
+2022-11-12 22:29:05,862 Processing page 41
+2022-11-12 22:29:46,580 Processing page 42
+2022-11-12 22:30:18,187 Processing page 43
+2022-11-12 22:30:39,223 Processing page 44
+2022-11-12 22:30:43,036 Processing page 45
+2022-11-12 22:30:43,326 Processing page 46
+2022-11-12 22:30:50,808 Processing page 47
+2022-11-12 22:30:52,408 Formatting and exporting data/part274/in/kerala/2013/2013_122_032.pdf data..
+2022-11-12 22:30:52,476 Converted to csv: data/part274/out/kerala/2013/2013_122_032.csv
+2022-11-12 22:30:52,596 Converting data/part274/in/kerala/2013/2013_122_033.pdf to img...
+2022-11-12 22:31:03,032 Parsing first and last page data..
+2022-11-12 22:31:05,985 Detecting and parsing data/part274/in/kerala/2013/2013_122_033.pdf boxes..
+2022-11-12 22:31:05,985 Processing page 3
+2022-11-12 22:31:39,323 Processing page 4
+2022-11-12 22:32:08,884 Processing page 5
+2022-11-12 22:32:42,423 Processing page 6
+2022-11-12 22:33:19,533 Processing page 7
+2022-11-12 22:33:54,748 Processing page 8
+2022-11-12 22:34:28,500 Processing page 9
+2022-11-12 22:35:00,626 Processing page 10
+2022-11-12 22:35:24,517 Processing page 11
+2022-11-12 22:36:06,314 Processing page 12
+2022-11-12 22:36:47,147 Processing page 13
+2022-11-12 22:37:22,528 Processing page 14
+2022-11-12 22:37:56,342 Processing page 15
+2022-11-12 22:38:34,295 Processing page 16
+2022-11-12 22:39:09,052 Processing page 17
+2022-11-12 22:39:41,604 Processing page 18
+2022-11-12 22:40:18,234 Processing page 19
+2022-11-12 22:40:50,343 Processing page 20
+2022-11-12 22:41:25,703 Processing page 21
+2022-11-12 22:41:53,750 Processing page 22
+2022-11-12 22:42:27,282 Processing page 23
+2022-11-12 22:42:51,883 Processing page 24
+2022-11-12 22:43:31,694 Processing page 25
+2022-11-12 22:44:08,868 Processing page 26
+2022-11-12 22:44:39,162 Processing page 27
+2022-11-12 22:45:11,879 Processing page 28
+2022-11-12 22:45:46,183 Processing page 29
+2022-11-12 22:46:19,034 Processing page 30
+2022-11-12 22:46:54,657 Processing page 31
+2022-11-12 22:47:29,308 Processing page 32
+2022-11-12 22:48:05,683 Processing page 33
+2022-11-12 22:48:37,318 Processing page 34
+2022-11-12 22:49:12,709 Processing page 35
+2022-11-12 22:49:48,107 Processing page 36
+2022-11-12 22:50:19,547 Processing page 37
+2022-11-12 22:51:03,771 Processing page 38
+2022-11-12 22:51:45,193 Processing page 39
+2022-11-12 22:52:22,240 Processing page 40
+2022-11-12 22:53:01,745 Processing page 41
+2022-11-12 22:53:33,255 Processing page 42
+2022-11-12 22:54:04,442 Processing page 43
+2022-11-12 22:54:42,783 Processing page 44
+2022-11-12 22:55:17,793 Processing page 45
+2022-11-12 22:55:51,470 Processing page 46
+2022-11-12 22:56:20,205 Processing page 47
+2022-11-12 22:56:42,621 Processing page 48
+2022-11-12 22:56:43,467 Processing page 49
+2022-11-12 22:56:52,656 Processing page 50
+2022-11-12 22:57:09,536 Formatting and exporting data/part274/in/kerala/2013/2013_122_033.pdf data..
+2022-11-12 22:57:09,617 Converted to csv: data/part274/out/kerala/2013/2013_122_033.csv
+2022-11-12 22:57:09,783 Converting data/part274/in/kerala/2013/2013_122_034.pdf to img...
+2022-11-12 22:57:20,574 Parsing first and last page data..
+2022-11-12 22:57:24,145 Detecting and parsing data/part274/in/kerala/2013/2013_122_034.pdf boxes..
+2022-11-12 22:57:24,146 Processing page 3
+2022-11-12 22:57:59,831 Processing page 4
+2022-11-12 22:58:28,652 Processing page 5
+2022-11-12 22:58:57,278 Processing page 6
+2022-11-12 22:59:31,655 Processing page 7
+2022-11-12 23:00:04,483 Processing page 8
+2022-11-12 23:00:33,437 Processing page 9
+2022-11-12 23:01:12,176 Processing page 10
+2022-11-12 23:01:48,729 Processing page 11
+2022-11-12 23:01:55,664 Processing page 12
+2022-11-12 23:02:31,681 Processing page 13
+2022-11-12 23:02:56,723 Processing page 14
+2022-11-12 23:03:33,718 Processing page 15
+2022-11-12 23:04:11,947 Processing page 16
+2022-11-12 23:04:48,349 Processing page 17
+2022-11-12 23:05:24,454 Processing page 18
+2022-11-12 23:05:59,502 Processing page 19
+2022-11-12 23:06:35,770 Processing page 20
+2022-11-12 23:07:09,562 Processing page 21
+2022-11-12 23:07:45,364 Processing page 22
+2022-11-12 23:08:17,168 Processing page 23
+2022-11-12 23:08:52,484 Processing page 24
+2022-11-12 23:09:19,614 Processing page 25
+2022-11-12 23:09:58,797 Processing page 26
+2022-11-12 23:10:34,520 Processing page 27
+2022-11-12 23:11:08,455 Processing page 28
+2022-11-12 23:11:45,155 Processing page 29
+2022-11-12 23:12:22,877 Processing page 30
+2022-11-12 23:12:59,859 Processing page 31
+2022-11-12 23:13:39,815 Processing page 32
+2022-11-12 23:14:12,528 Processing page 33
+2022-11-12 23:14:44,717 Processing page 34
+2022-11-12 23:15:17,107 Processing page 35
+2022-11-12 23:15:54,436 Processing page 36
+2022-11-12 23:16:36,078 Processing page 37
+2022-11-12 23:17:08,716 Processing page 38
+2022-11-12 23:17:25,448 Processing page 39
+2022-11-12 23:17:30,823 Processing page 40
+2022-11-12 23:17:44,349 Processing page 41
+2022-11-12 23:17:45,884 Processing page 42
+2022-11-12 23:17:50,050 Processing page 43
+2022-11-12 23:17:52,877 Formatting and exporting data/part274/in/kerala/2013/2013_122_034.pdf data..
+2022-11-12 23:17:52,936 Converted to csv: data/part274/out/kerala/2013/2013_122_034.csv
+2022-11-12 23:17:53,089 Converting data/part274/in/kerala/2013/2013_122_035.pdf to img...
+2022-11-12 23:18:00,491 Parsing first and last page data..
+2022-11-12 23:18:02,507 Detecting and parsing data/part274/in/kerala/2013/2013_122_035.pdf boxes..
+2022-11-12 23:18:02,508 Processing page 3
+2022-11-12 23:18:37,613 Processing page 4
+2022-11-12 23:19:14,188 Processing page 5
+2022-11-12 23:19:45,257 Processing page 6
+2022-11-12 23:20:18,733 Processing page 7
+2022-11-12 23:20:48,730 Processing page 8
+2022-11-12 23:21:19,821 Processing page 9
+2022-11-12 23:21:50,860 Processing page 10
+2022-11-12 23:22:29,011 Processing page 11
+2022-11-12 23:23:06,140 Processing page 12
+2022-11-12 23:23:36,633 Processing page 13
+2022-11-12 23:24:06,009 Processing page 14
+2022-11-12 23:24:42,210 Processing page 15
+2022-11-12 23:25:16,986 Processing page 16
+2022-11-12 23:25:55,053 Processing page 17
+2022-11-12 23:26:30,428 Processing page 18
+2022-11-12 23:27:07,512 Processing page 19
+2022-11-12 23:27:43,444 Processing page 20
+2022-11-12 23:28:07,968 Processing page 21
+2022-11-12 23:28:47,285 Processing page 22
+2022-11-12 23:29:28,882 Processing page 23
+2022-11-12 23:30:04,223 Processing page 24
+2022-11-12 23:30:33,500 Processing page 25
+2022-11-12 23:31:03,998 Processing page 26
+2022-11-12 23:31:33,090 Processing page 27
+2022-11-12 23:32:02,335 Processing page 28
+2022-11-12 23:32:30,037 Processing page 29
+2022-11-12 23:32:59,737 Processing page 30
+2022-11-12 23:33:39,007 Processing page 31
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 65-69: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught Sd@OIA OG Goo ©2W)I&>\\o94 \u0d2a\u0d3f\u0d33\u0d4d\u0d33 OrderedDict([('number', '851'), ('id', 'FWD1448174'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d17\u0d30\u0d30\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d1f\u0d4d\u0d1f\u0d3f\u0d05\u0d2e\u0d4d\u0d2e')])"
+Arguments: ()
+2022-11-12 23:34:04,527 Split uncaught Sd@OIA OG Goo ©2W)I&>\o94 \u0d2a\u0d3f\u0d33\u0d4d\u0d33 OrderedDict([('number', '851'), ('id', 'FWD1448174'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d17\u0d30\u0d30\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d1f\u0d4d\u0d1f\u0d3f\u0d05\u0d2e\u0d4d\u0d2e')])
+2022-11-12 23:34:14,020 Processing page 32
+2022-11-12 23:34:42,984 Processing page 33
+2022-11-12 23:35:13,188 Processing page 34
+2022-11-12 23:35:53,075 Processing page 35
+2022-11-12 23:36:09,214 Processing page 36
+2022-11-12 23:36:26,019 Processing page 37
+2022-11-12 23:36:36,657 Processing page 38
+2022-11-12 23:36:59,719 Formatting and exporting data/part274/in/kerala/2013/2013_122_035.pdf data..
+2022-11-12 23:36:59,775 Converted to csv: data/part274/out/kerala/2013/2013_122_035.csv
+2022-11-12 23:36:59,886 Converting data/part274/in/kerala/2013/2013_122_036.pdf to img...
+2022-11-12 23:37:07,439 Parsing first and last page data..
+2022-11-12 23:37:09,278 Detecting and parsing data/part274/in/kerala/2013/2013_122_036.pdf boxes..
+2022-11-12 23:37:09,278 Processing page 3
+2022-11-12 23:37:42,968 Processing page 4
+2022-11-12 23:38:17,728 Processing page 5
+2022-11-12 23:38:43,910 Processing page 6
+2022-11-12 23:39:12,028 Processing page 7
+2022-11-12 23:39:41,631 Processing page 8
+2022-11-12 23:40:11,528 Processing page 9
+2022-11-12 23:40:39,008 Processing page 10
+2022-11-12 23:41:03,147 Processing page 11
+2022-11-12 23:41:45,561 Processing page 12
+2022-11-12 23:42:18,334 Processing page 13
+2022-11-12 23:42:48,094 Processing page 14
+2022-11-12 23:43:22,956 Processing page 15
+2022-11-12 23:43:53,986 Processing page 16
+2022-11-12 23:44:28,866 Processing page 17
+2022-11-12 23:45:05,440 Processing page 18
+2022-11-12 23:45:43,318 Processing page 19
+2022-11-12 23:46:11,629 Processing page 20
+2022-11-12 23:46:42,225 Processing page 21
+2022-11-12 23:47:06,205 Processing page 22
+2022-11-12 23:47:46,339 Processing page 23
+2022-11-12 23:48:22,339 Processing page 24
+2022-11-12 23:49:00,205 Processing page 25
+2022-11-12 23:49:37,032 Processing page 26
+2022-11-12 23:50:15,258 Processing page 27
+2022-11-12 23:50:48,860 Processing page 28
+2022-11-12 23:51:23,141 Processing page 29
+2022-11-12 23:51:56,464 Processing page 30
+2022-11-12 23:52:30,763 Processing page 31
+2022-11-12 23:53:00,901 Processing page 32
+2022-11-12 23:53:43,542 Processing page 33
+2022-11-12 23:54:19,761 Processing page 34
+2022-11-12 23:54:55,795 Processing page 35
+2022-11-12 23:55:30,552 Processing page 36
+2022-11-12 23:56:04,216 Processing page 37
+2022-11-12 23:56:38,402 Processing page 38
+2022-11-12 23:57:04,735 Processing page 39
+2022-11-12 23:57:16,727 Processing page 40
+2022-11-12 23:57:49,739 Processing page 41
+2022-11-12 23:58:26,883 Processing page 42
+2022-11-12 23:58:53,909 Processing page 43
+2022-11-12 23:59:32,586 Processing page 44
+2022-11-13 00:00:11,934 Processing page 45
+2022-11-13 00:00:41,605 Processing page 46
+2022-11-13 00:00:54,733 Processing page 47
+2022-11-13 00:01:08,033 Processing page 48
+2022-11-13 00:01:11,061 Processing page 49
+2022-11-13 00:01:13,814 Processing page 50
+2022-11-13 00:01:33,259 Processing page 51
+2022-11-13 00:01:34,785 Formatting and exporting data/part274/in/kerala/2013/2013_122_036.pdf data..
+2022-11-13 00:01:34,855 Converted to csv: data/part274/out/kerala/2013/2013_122_036.csv
+2022-11-13 00:01:35,037 Converting data/part274/in/kerala/2013/2013_122_037.pdf to img...
+2022-11-13 00:01:44,308 Parsing first and last page data..
+2022-11-13 00:01:47,767 Detecting and parsing data/part274/in/kerala/2013/2013_122_037.pdf boxes..
+2022-11-13 00:01:47,773 Processing page 3
+2022-11-13 00:02:23,961 Processing page 4
+2022-11-13 00:02:58,040 Processing page 5
+2022-11-13 00:03:25,816 Processing page 6
+2022-11-13 00:04:02,570 Processing page 7
+2022-11-13 00:04:35,694 Processing page 8
+2022-11-13 00:05:07,903 Processing page 9
+2022-11-13 00:05:32,997 Processing page 10
+2022-11-13 00:06:15,515 Processing page 11
+2022-11-13 00:06:43,509 Processing page 12
+2022-11-13 00:07:20,731 Processing page 13
+2022-11-13 00:07:59,539 Processing page 14
+2022-11-13 00:08:36,035 Processing page 15
+2022-11-13 00:09:13,705 Processing page 16
+2022-11-13 00:09:50,961 Processing page 17
+2022-11-13 00:10:22,527 Processing page 18
+2022-11-13 00:10:58,486 Processing page 19
+2022-11-13 00:11:23,289 Processing page 20
+2022-11-13 00:12:04,654 Processing page 21
+2022-11-13 00:12:34,015 Processing page 22
+2022-11-13 00:13:07,848 Processing page 23
+2022-11-13 00:13:44,323 Processing page 24
+2022-11-13 00:14:18,009 Processing page 25
+2022-11-13 00:14:48,093 Processing page 26
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 51-52: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught Cole Glosg> \u0d1f\u0d3f OrderedDict([('number', '709'), ('id', 'FWD2908408')])"
+Arguments: ()
+2022-11-13 00:14:54,659 Split uncaught Cole Glosg> \u0d1f\u0d3f OrderedDict([('number', '709'), ('id', 'FWD2908408')])
+2022-11-13 00:15:13,781 Processing page 27
+2022-11-13 00:15:44,147 Processing page 28
+2022-11-13 00:16:14,742 Processing page 29
+2022-11-13 00:16:50,781 Processing page 30
+2022-11-13 00:17:17,679 Processing page 31
+2022-11-13 00:17:51,354 Processing page 32
+2022-11-13 00:18:27,800 Processing page 33
+2022-11-13 00:19:03,337 Processing page 34
+2022-11-13 00:19:37,433 Processing page 35
+2022-11-13 00:20:16,648 Processing page 36
+2022-11-13 00:20:55,690 Processing page 37
+2022-11-13 00:21:31,209 Processing page 38
+2022-11-13 00:22:11,425 Processing page 39
+2022-11-13 00:22:43,570 Processing page 40
+2022-11-13 00:22:50,897 Processing page 41
+2022-11-13 00:23:09,891 Processing page 42
+2022-11-13 00:23:44,878 Processing page 43
+2022-11-13 00:23:49,120 Processing page 44
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 39-40: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught \u0d2a\u0d3f O2WIk> \\o94 aigs OrderedDict([('number', '1086'), ('id', '10364331'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d30\u0d41\u0d36\u0d3f\u0d23\u0d3f \u0d05\u0d2e\u0d4d\u0d2e')])"
+Arguments: ()
+2022-11-13 00:23:50,694 Split uncaught \u0d2a\u0d3f O2WIk> \o94 aigs OrderedDict([('number', '1086'), ('id', '10364331'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d30\u0d41\u0d36\u0d3f\u0d23\u0d3f \u0d05\u0d2e\u0d4d\u0d2e')])
+2022-11-13 00:23:51,767 Processing page 45
+2022-11-13 00:24:01,338 Processing page 46
+2022-11-13 00:24:09,083 Formatting and exporting data/part274/in/kerala/2013/2013_122_037.pdf data..
+2022-11-13 00:24:09,155 Converted to csv: data/part274/out/kerala/2013/2013_122_037.csv
+2022-11-13 00:24:09,333 Converting data/part274/in/kerala/2013/2013_122_038.pdf to img...
+2022-11-13 00:24:19,936 Parsing first and last page data..
+2022-11-13 00:24:22,953 Detecting and parsing data/part274/in/kerala/2013/2013_122_038.pdf boxes..
+2022-11-13 00:24:22,953 Processing page 3
+2022-11-13 00:24:54,760 Processing page 4
+2022-11-13 00:25:28,508 Processing page 5
+2022-11-13 00:25:58,997 Processing page 6
+2022-11-13 00:26:35,268 Processing page 7
+2022-11-13 00:27:04,167 Processing page 8
+2022-11-13 00:27:34,681 Processing page 9
+2022-11-13 00:28:02,600 Processing page 10
+2022-11-13 00:28:28,734 Processing page 11
+2022-11-13 00:28:53,887 Processing page 12
+2022-11-13 00:29:24,315 Processing page 13
+2022-11-13 00:30:01,759 Processing page 14
+2022-11-13 00:30:38,360 Processing page 15
+2022-11-13 00:31:15,514 Processing page 16
+2022-11-13 00:31:52,923 Processing page 17
+2022-11-13 00:32:24,527 Processing page 18
+2022-11-13 00:32:56,535 Processing page 19
+2022-11-13 00:33:28,507 Processing page 20
+2022-11-13 00:34:01,180 Processing page 21
+2022-11-13 00:34:34,285 Processing page 22
+2022-11-13 00:34:59,400 Processing page 23
+2022-11-13 00:35:40,325 Processing page 24
+2022-11-13 00:36:16,520 Processing page 25
+2022-11-13 00:36:50,172 Processing page 26
+2022-11-13 00:37:25,762 Processing page 27
+2022-11-13 00:37:58,259 Processing page 28
+2022-11-13 00:38:35,258 Processing page 29
+2022-11-13 00:39:07,896 Processing page 30
+2022-11-13 00:39:40,393 Processing page 31
+2022-11-13 00:40:10,441 Processing page 32
+2022-11-13 00:40:39,136 Processing page 33
+2022-11-13 00:41:07,296 Processing page 34
+2022-11-13 00:41:47,690 Processing page 35
+2022-11-13 00:42:23,892 Processing page 36
+2022-11-13 00:42:53,107 Processing page 37
+2022-11-13 00:43:27,278 Processing page 38
+2022-11-13 00:44:01,005 Processing page 39
+2022-11-13 00:44:41,320 Processing page 40
+2022-11-13 00:44:43,049 Processing page 41
+2022-11-13 00:45:22,409 Processing page 42
+2022-11-13 00:45:57,275 Processing page 43
+2022-11-13 00:46:31,657 Processing page 44
+2022-11-13 00:47:00,399 Processing page 45
+2022-11-13 00:47:34,669 Processing page 46
+2022-11-13 00:48:02,509 Processing page 47
+2022-11-13 00:48:29,640 Processing page 48
+2022-11-13 00:48:49,466 Processing page 49
+2022-11-13 00:49:00,554 Processing page 50
+2022-11-13 00:49:04,306 Processing page 51
+2022-11-13 00:49:05,227 Processing page 52
+2022-11-13 00:49:25,407 Formatting and exporting data/part274/in/kerala/2013/2013_122_038.pdf data..
+2022-11-13 00:49:25,481 Converted to csv: data/part274/out/kerala/2013/2013_122_038.csv
+2022-11-13 00:49:25,708 Converting data/part274/in/kerala/2013/2013_122_039.pdf to img...
+2022-11-13 00:49:32,666 Parsing first and last page data..
+2022-11-13 00:49:35,479 Detecting and parsing data/part274/in/kerala/2013/2013_122_039.pdf boxes..
+2022-11-13 00:49:35,479 Processing page 3
+2022-11-13 00:50:04,821 Processing page 4
+2022-11-13 00:50:36,513 Processing page 5
+2022-11-13 00:51:08,376 Processing page 6
+2022-11-13 00:51:45,408 Processing page 7
+2022-11-13 00:52:23,643 Processing page 8
+2022-11-13 00:52:51,911 Processing page 9
+2022-11-13 00:53:17,280 Processing page 10
+2022-11-13 00:53:54,955 Processing page 11
+2022-11-13 00:54:33,633 Processing page 12
+2022-11-13 00:55:11,120 Processing page 13
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 130-133: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught sdomoalag eos AYUMI o> ya as OrderedDict([('number', '329'), ('id', 'KL/17/116/153300'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d38\u0d47\u0d24\u0d41\u0d15\u0d4d\u0d15\u0d41\u0d1f\u0d4d\u0d1f\u0d3f\u0d2f\u0d2e\u0d4d\u0d2e')])"
+Arguments: ()
+2022-11-13 00:55:13,931 Split uncaught sdomoalag eos AYUMI o> ya as OrderedDict([('number', '329'), ('id', 'KL/17/116/153300'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d38\u0d47\u0d24\u0d41\u0d15\u0d4d\u0d15\u0d41\u0d1f\u0d4d\u0d1f\u0d3f\u0d2f\u0d2e\u0d4d\u0d2e')])
+2022-11-13 00:55:48,036 Processing page 14
+2022-11-13 00:56:24,901 Processing page 15
+2022-11-13 00:57:00,539 Processing page 16
+2022-11-13 00:57:35,484 Processing page 17
+2022-11-13 00:58:08,181 Processing page 18
+2022-11-13 00:58:40,529 Processing page 19
+2022-11-13 00:58:53,607 Split uncaught Cole areile> enflall OrderedDict([('number', '494'), ('id', 'XIL0110262')])
+2022-11-13 00:59:12,289 Processing page 20
+2022-11-13 00:59:47,502 Processing page 21
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 122-125: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught adomalog oid faaby=¥ OrderedDict([('number', '551'), ('id', 'KL/17/116/153559'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d31\u0d2b\u0d3f\u0d15\u0d4d\u0d15\u0d3e')])"
+Arguments: ()
+2022-11-13 01:00:10,313 Split uncaught adomalog oid faaby=¥ OrderedDict([('number', '551'), ('id', 'KL/17/116/153559'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d31\u0d2b\u0d3f\u0d15\u0d4d\u0d15\u0d3e')])
+2022-11-13 01:00:22,811 Processing page 22
+2022-11-13 01:00:59,214 Processing page 23
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 65-69: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught Sd@OIA OG Goo ©2W)I&>\\o94 \u0d2a\u0d3f\u0d33\u0d4d\u0d33 OrderedDict([('number', '[1'), ('id', '1\u0d69\u0d6c2529758'), ('\u0d2a\u0d47\u0d30\u0d4d', '5]')])"
+Arguments: ()
+2022-11-13 01:01:24,281 Split uncaught Sd@OIA OG Goo ©2W)I&>\o94 \u0d2a\u0d3f\u0d33\u0d4d\u0d33 OrderedDict([('number', '[1'), ('id', '1\u0d69\u0d6c2529758'), ('\u0d2a\u0d47\u0d30\u0d4d', '5]')])
+2022-11-13 01:01:36,192 Processing page 24
+2022-11-13 01:02:08,973 Processing page 25
+2022-11-13 01:02:43,763 Processing page 26
+2022-11-13 01:03:17,293 Processing page 27
+2022-11-13 01:03:53,242 Processing page 28
+2022-11-13 01:04:25,329 Processing page 29
+2022-11-13 01:04:50,904 Processing page 30
+2022-11-13 01:05:19,499 Processing page 31
+2022-11-13 01:05:53,074 Processing page 32
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 124-127: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught sdomalog ete (Gle>JaIB OrderedDict([('number', '900'), ('id', 'KL/17/116/153059'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d38\u0d41\u0d1c\u0d3e\u0d24')])"
+Arguments: ()
+2022-11-13 01:05:56,258 Split uncaught sdomalog ete (Gle>JaIB OrderedDict([('number', '900'), ('id', 'KL/17/116/153059'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d38\u0d41\u0d1c\u0d3e\u0d24')])
+2022-11-13 01:06:28,231 Processing page 33
+2022-11-13 01:07:04,333 Processing page 34
+2022-11-13 01:07:40,411 Processing page 35
+2022-11-13 01:08:02,543 Processing page 36
+2022-11-13 01:08:34,213 Processing page 37
+2022-11-13 01:08:38,152 Processing page 38
+2022-11-13 01:08:43,692 Processing page 39
+2022-11-13 01:09:01,753 Formatting and exporting data/part274/in/kerala/2013/2013_122_039.pdf data..
+2022-11-13 01:09:01,811 Converted to csv: data/part274/out/kerala/2013/2013_122_039.csv
+2022-11-13 01:09:01,951 Converting data/part274/in/kerala/2013/2013_122_040.pdf to img...
+2022-11-13 01:09:08,308 Parsing first and last page data..
+2022-11-13 01:09:10,520 Detecting and parsing data/part274/in/kerala/2013/2013_122_040.pdf boxes..
+2022-11-13 01:09:10,520 Processing page 3
+2022-11-13 01:09:40,606 Processing page 4
+2022-11-13 01:10:12,144 Processing page 5
+2022-11-13 01:10:37,903 Processing page 6
+2022-11-13 01:11:12,199 Processing page 7
+2022-11-13 01:11:52,860 Processing page 8
+2022-11-13 01:12:24,801 Processing page 9
+2022-11-13 01:13:00,126 Processing page 10
+2022-11-13 01:13:33,700 Processing page 11
+2022-11-13 01:14:10,083 Processing page 12
+2022-11-13 01:14:43,106 Processing page 13
+2022-11-13 01:15:16,077 Processing page 14
+2022-11-13 01:15:43,273 Processing page 15
+2022-11-13 01:16:08,198 Processing page 16
+2022-11-13 01:16:31,649 Processing page 17
+2022-11-13 01:16:56,222 Processing page 18
+2022-11-13 01:17:19,258 Processing page 19
+2022-11-13 01:17:49,860 Processing page 20
+2022-11-13 01:18:29,853 Processing page 21
+2022-11-13 01:19:05,506 Processing page 22
+2022-11-13 01:19:35,425 Processing page 23
+2022-11-13 01:20:06,279 Processing page 24
+2022-11-13 01:20:40,959 Processing page 25
+2022-11-13 01:21:19,620 Processing page 26
+2022-11-13 01:21:56,831 Processing page 27
+2022-11-13 01:22:29,933 Processing page 28
+2022-11-13 01:22:58,709 Processing page 29
+2022-11-13 01:23:30,791 Processing page 30
+2022-11-13 01:24:03,833 Processing page 31
+2022-11-13 01:24:45,122 Processing page 32
+2022-11-13 01:25:14,587 Processing page 33
+2022-11-13 01:25:53,383 Processing page 34
+2022-11-13 01:26:29,421 Processing page 35
+2022-11-13 01:26:33,844 Processing page 36
+2022-11-13 01:27:06,783 Processing page 37
+2022-11-13 01:27:08,465 Processing page 38
+2022-11-13 01:27:23,612 Formatting and exporting data/part274/in/kerala/2013/2013_122_040.pdf data..
+2022-11-13 01:27:23,644 Converted to csv: data/part274/out/kerala/2013/2013_122_040.csv
+2022-11-13 01:27:23,725 Converting data/part274/in/kerala/2013/2013_122_041.pdf to img...
+2022-11-13 01:27:28,593 Parsing first and last page data..
+2022-11-13 01:27:31,188 Detecting and parsing data/part274/in/kerala/2013/2013_122_041.pdf boxes..
+2022-11-13 01:27:31,188 Processing page 3
+2022-11-13 01:28:04,887 Processing page 4
+2022-11-13 01:28:36,686 Processing page 5
+2022-11-13 01:29:06,908 Processing page 6
+2022-11-13 01:29:36,285 Processing page 7
+2022-11-13 01:30:00,031 Processing page 8
+2022-11-13 01:30:39,173 Processing page 9
+2022-11-13 01:31:19,271 Processing page 10
+2022-11-13 01:31:53,023 Processing page 11
+2022-11-13 01:32:28,213 Processing page 12
+2022-11-13 01:33:01,354 Processing page 13
+2022-11-13 01:33:31,686 Processing page 14
+2022-11-13 01:34:05,606 Processing page 15
+2022-11-13 01:34:40,335 Processing page 16
+2022-11-13 01:35:16,095 Processing page 17
+2022-11-13 01:35:49,847 Processing page 18
+2022-11-13 01:36:17,316 Processing page 19
+2022-11-13 01:36:54,536 Processing page 20
+2022-11-13 01:37:27,170 Processing page 21
+2022-11-13 01:38:05,150 Processing page 22
+2022-11-13 01:38:35,189 Processing page 23
+2022-11-13 01:39:07,563 Processing page 24
+2022-11-13 01:39:43,155 Processing page 25
+2022-11-13 01:40:11,446 Processing page 26
+2022-11-13 01:40:47,421 Processing page 27
+2022-11-13 01:41:17,702 Processing page 28
+2022-11-13 01:41:54,670 Processing page 29
+2022-11-13 01:42:23,853 Processing page 30
+2022-11-13 01:43:03,094 Processing page 31
+2022-11-13 01:43:35,412 Processing page 32
+2022-11-13 01:44:12,058 Processing page 33
+2022-11-13 01:44:41,801 Processing page 34
+2022-11-13 01:44:45,296 Processing page 35
+2022-11-13 01:44:54,265 Processing page 36
+2022-11-13 01:44:55,690 Processing page 37
+2022-11-13 01:45:03,368 Formatting and exporting data/part274/in/kerala/2013/2013_122_041.pdf data..
+2022-11-13 01:45:03,407 Converted to csv: data/part274/out/kerala/2013/2013_122_041.csv
+2022-11-13 01:45:03,472 Converting data/part274/in/kerala/2013/2013_122_042.pdf to img...
+2022-11-13 01:45:08,730 Parsing first and last page data..
+2022-11-13 01:45:10,514 Detecting and parsing data/part274/in/kerala/2013/2013_122_042.pdf boxes..
+2022-11-13 01:45:10,514 Processing page 3
+2022-11-13 01:45:38,831 Processing page 4
+2022-11-13 01:46:10,237 Processing page 5
+2022-11-13 01:46:41,381 Processing page 6
+2022-11-13 01:47:11,642 Processing page 7
+2022-11-13 01:47:44,689 Processing page 8
+2022-11-13 01:48:17,159 Processing page 9
+2022-11-13 01:48:43,354 Processing page 10
+2022-11-13 01:49:09,408 Processing page 11
+2022-11-13 01:49:46,537 Processing page 12
+2022-11-13 01:50:19,753 Processing page 13
+2022-11-13 01:50:52,748 Processing page 14
+2022-11-13 01:51:28,447 Processing page 15
+2022-11-13 01:52:04,922 Processing page 16
+2022-11-13 01:52:42,863 Processing page 17
+2022-11-13 01:53:20,808 Processing page 18
+2022-11-13 01:53:46,545 Processing page 19
+2022-11-13 01:54:14,994 Processing page 20
+2022-11-13 01:54:38,843 Processing page 21
+2022-11-13 01:55:02,528 Processing page 22
+2022-11-13 01:55:34,820 Processing page 23
+2022-11-13 01:56:09,998 Processing page 24
+2022-11-13 01:56:35,359 Processing page 25
+2022-11-13 01:57:06,623 Processing page 26
+2022-11-13 01:57:38,686 Processing page 27
+2022-11-13 01:58:10,587 Processing page 28
+2022-11-13 01:58:37,539 Processing page 29
+2022-11-13 01:59:09,140 Processing page 30
+2022-11-13 01:59:45,089 Processing page 31
+2022-11-13 02:00:16,332 Processing page 32
+2022-11-13 02:00:52,828 Processing page 33
+2022-11-13 02:01:26,072 Processing page 34
+2022-11-13 02:02:07,921 Processing page 35
+2022-11-13 02:02:40,738 Processing page 36
+2022-11-13 02:03:12,671 Processing page 37
+2022-11-13 02:03:18,593 Processing page 38
+2022-11-13 02:03:41,526 Processing page 39
+2022-11-13 02:04:00,978 Processing page 40
+2022-11-13 02:04:01,924 Processing page 41
+2022-11-13 02:04:03,854 Processing page 42
+2022-11-13 02:04:13,241 Processing page 43
+2022-11-13 02:04:25,665 Formatting and exporting data/part274/in/kerala/2013/2013_122_042.pdf data..
+2022-11-13 02:04:25,700 Converted to csv: data/part274/out/kerala/2013/2013_122_042.csv
+2022-11-13 02:04:25,774 Converting data/part274/in/kerala/2013/2013_122_043.pdf to img...
+2022-11-13 02:04:33,055 Parsing first and last page data..
+2022-11-13 02:04:35,930 Detecting and parsing data/part274/in/kerala/2013/2013_122_043.pdf boxes..
+2022-11-13 02:04:35,930 Processing page 3
+2022-11-13 02:05:11,450 Processing page 4
+2022-11-13 02:05:43,923 Processing page 5
+2022-11-13 02:06:17,839 Processing page 6
+2022-11-13 02:06:52,618 Processing page 7
+2022-11-13 02:07:19,104 Processing page 8
+2022-11-13 02:07:58,438 Processing page 9
+2022-11-13 02:08:28,332 Processing page 10
+2022-11-13 02:08:57,669 Processing page 11
+2022-11-13 02:09:34,083 Processing page 12
+2022-11-13 02:10:09,902 Processing page 13
+2022-11-13 02:10:43,414 Processing page 14
+2022-11-13 02:11:15,694 Processing page 15
+2022-11-13 02:11:43,756 Processing page 16
+2022-11-13 02:12:14,959 Processing page 17
+2022-11-13 02:12:48,679 Processing page 18
+2022-11-13 02:13:14,049 Processing page 19
+2022-11-13 02:13:48,148 Processing page 20
+2022-11-13 02:14:29,313 Processing page 21
+2022-11-13 02:15:04,335 Processing page 22
+2022-11-13 02:15:37,571 Processing page 23
+2022-11-13 02:16:05,895 Processing page 24
+2022-11-13 02:16:40,009 Processing page 25
+2022-11-13 02:17:11,850 Processing page 26
+2022-11-13 02:17:48,811 Processing page 27
+2022-11-13 02:18:26,801 Processing page 28
+2022-11-13 02:19:03,765 Processing page 29
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 120-123: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught aligned 2/298 == (5/123) OrderedDict([('number', '798'), ('id', 'FWD2502284'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d37\u0d48\u0d32\u0d3e\u0d24\u0d19\u0d4d\u0d15\u0d1a\u0d4d\u0d1a\u0d28\u0d4d\\u200d'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d24\u0d19\u0d4d\u0d15\u0d1a\u0d4d\u0d1a\u0d28\u0d4d\\u200d')])"
+Arguments: ()
+2022-11-13 02:19:16,883 Split uncaught aligned 2/298 == (5/123) OrderedDict([('number', '798'), ('id', 'FWD2502284'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d37\u0d48\u0d32\u0d3e\u0d24\u0d19\u0d4d\u0d15\u0d1a\u0d4d\u0d1a\u0d28\u0d4d\u200d'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d24\u0d19\u0d4d\u0d15\u0d1a\u0d4d\u0d1a\u0d28\u0d4d\u200d')])
+2022-11-13 02:19:30,703 Processing page 30
+2022-11-13 02:20:11,374 Processing page 31
+2022-11-13 02:20:49,294 Processing page 32
+2022-11-13 02:21:27,779 Processing page 33
+2022-11-13 02:22:07,024 Processing page 34
+2022-11-13 02:22:37,520 Processing page 35
+2022-11-13 02:23:08,073 Processing page 36
+2022-11-13 02:23:40,283 Processing page 37
+2022-11-13 02:24:10,500 Processing page 38
+2022-11-13 02:24:18,115 Processing page 39
+2022-11-13 02:24:45,526 Processing page 40
+2022-11-13 02:24:55,060 Processing page 41
+2022-11-13 02:25:02,760 Processing page 42
+2022-11-13 02:25:18,844 Formatting and exporting data/part274/in/kerala/2013/2013_122_043.pdf data..
+2022-11-13 02:25:18,878 Converted to csv: data/part274/out/kerala/2013/2013_122_043.csv
+2022-11-13 02:25:18,951 Converting data/part274/in/kerala/2013/2013_122_044.pdf to img...
+2022-11-13 02:25:23,896 Parsing first and last page data..
+2022-11-13 02:25:25,711 Detecting and parsing data/part274/in/kerala/2013/2013_122_044.pdf boxes..
+2022-11-13 02:25:25,711 Processing page 3
+2022-11-13 02:26:02,800 Processing page 4
+2022-11-13 02:26:40,412 Processing page 5
+2022-11-13 02:27:17,468 Processing page 6
+2022-11-13 02:27:52,110 Processing page 7
+2022-11-13 02:28:21,920 Processing page 8
+2022-11-13 02:28:56,546 Processing page 9
+2022-11-13 02:29:26,369 Processing page 10
+2022-11-13 02:30:02,178 Processing page 11
+2022-11-13 02:30:39,854 Processing page 12
+2022-11-13 02:31:09,672 Processing page 13
+2022-11-13 02:31:36,702 Processing page 14
+2022-11-13 02:32:18,925 Processing page 15
+2022-11-13 02:32:50,787 Processing page 16
+2022-11-13 02:33:21,681 Processing page 17
+2022-11-13 02:33:53,771 Processing page 18
+2022-11-13 02:34:26,648 Processing page 19
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 123-126: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught adomraiog cod 1} T 3 B>YDIS OrderedDict([('number', '493'), ('id', 'FWD2675254'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d38\u0d41\u0d1c\u0d3e\u0d24')])"
+Arguments: ()
+2022-11-13 02:34:46,369 Split uncaught adomraiog cod 1} T 3 B>YDIS OrderedDict([('number', '493'), ('id', 'FWD2675254'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d38\u0d41\u0d1c\u0d3e\u0d24')])
+2022-11-13 02:35:01,123 Processing page 20
+2022-11-13 02:35:36,644 Processing page 21
+2022-11-13 02:36:08,583 Processing page 22
+2022-11-13 02:36:44,555 Processing page 23
+2022-11-13 02:37:12,252 Processing page 24
+2022-11-13 02:37:37,756 Processing page 25
+2022-11-13 02:38:17,037 Processing page 26
+2022-11-13 02:38:49,086 Processing page 27
+2022-11-13 02:39:25,969 Processing page 28
+2022-11-13 02:40:00,766 Processing page 29
+2022-11-13 02:40:32,734 Processing page 30
+2022-11-13 02:41:04,292 Processing page 31
+2022-11-13 02:41:42,071 Processing page 32
+2022-11-13 02:42:19,545 Processing page 33
+2022-11-13 02:42:50,530 Processing page 34
+2022-11-13 02:43:14,521 Processing page 35
+2022-11-13 02:43:43,188 Processing page 36
+2022-11-13 02:44:08,260 Processing page 37
+2022-11-13 02:44:38,342 Processing page 38
+2022-11-13 02:44:43,454 Processing page 39
+2022-11-13 02:44:47,816 Processing page 40
+2022-11-13 02:45:02,975 Formatting and exporting data/part274/in/kerala/2013/2013_122_044.pdf data..
+2022-11-13 02:45:03,033 Converted to csv: data/part274/out/kerala/2013/2013_122_044.csv
+2022-11-13 02:45:03,178 Converting data/part274/in/kerala/2013/2013_122_045.pdf to img...
+2022-11-13 02:45:07,993 Parsing first and last page data..
+2022-11-13 02:45:09,947 Detecting and parsing data/part274/in/kerala/2013/2013_122_045.pdf boxes..
+2022-11-13 02:45:09,947 Processing page 3
+2022-11-13 02:45:38,945 Processing page 4
+2022-11-13 02:46:15,454 Processing page 5
+2022-11-13 02:46:43,335 Processing page 6
+2022-11-13 02:47:17,440 Processing page 7
+2022-11-13 02:47:52,491 Processing page 8
+2022-11-13 02:48:27,551 Processing page 9
+2022-11-13 02:48:57,342 Processing page 10
+2022-11-13 02:49:25,600 Processing page 11
+2022-11-13 02:50:06,424 Processing page 12
+2022-11-13 02:50:43,737 Processing page 13
+2022-11-13 02:51:16,886 Processing page 14
+2022-11-13 02:51:46,264 Split uncaught Cole (0) @Ié>}026) OrderedDict([('number', '[7'), ('id', 'KL/17/116/183223')])
+2022-11-13 02:51:50,090 Processing page 15
+2022-11-13 02:52:18,993 Processing page 16
+2022-11-13 02:52:48,462 Processing page 17
+2022-11-13 02:53:20,805 Processing page 18
+2022-11-13 02:53:53,550 Processing page 19
+2022-11-13 02:54:27,767 Processing page 20
+2022-11-13 02:55:03,501 Processing page 21
+2022-11-13 02:55:36,257 Processing page 22
+2022-11-13 02:56:13,848 Processing page 23
+2022-11-13 02:56:50,351 Processing page 24
+2022-11-13 02:57:26,578 Processing page 25
+2022-11-13 02:57:52,946 Processing page 26
+2022-11-13 02:58:31,084 Processing page 27
+2022-11-13 02:59:00,106 Processing page 28
+2022-11-13 02:59:26,750 Processing page 29
+2022-11-13 03:00:00,657 Processing page 30
+2022-11-13 03:00:35,542 Processing page 31
+2022-11-13 03:01:00,681 Processing page 32
+2022-11-13 03:01:04,557 Processing page 33
+2022-11-13 03:01:36,693 Processing page 34
+2022-11-13 03:01:52,605 Processing page 35
+2022-11-13 03:02:10,047 Processing page 36
+2022-11-13 03:02:17,481 Formatting and exporting data/part274/in/kerala/2013/2013_122_045.pdf data..
+2022-11-13 03:02:17,513 Converted to csv: data/part274/out/kerala/2013/2013_122_045.csv
+2022-11-13 03:02:17,609 Converting data/part274/in/kerala/2013/2013_122_046.pdf to img...
+2022-11-13 03:02:22,586 Parsing first and last page data..
+2022-11-13 03:02:24,582 Detecting and parsing data/part274/in/kerala/2013/2013_122_046.pdf boxes..
+2022-11-13 03:02:24,582 Processing page 3
+2022-11-13 03:02:59,433 Processing page 4
+2022-11-13 03:03:36,268 Processing page 5
+2022-11-13 03:04:13,197 Processing page 6
+2022-11-13 03:04:49,496 Processing page 7
+2022-11-13 03:05:26,375 Processing page 8
+2022-11-13 03:06:04,409 Processing page 9
+2022-11-13 03:06:41,666 Processing page 10
+2022-11-13 03:07:08,743 Processing page 11
+2022-11-13 03:07:43,983 Processing page 12
+2022-11-13 03:08:19,611 Processing page 13
+2022-11-13 03:08:53,940 Processing page 14
+2022-11-13 03:09:32,089 Processing page 15
+2022-11-13 03:10:07,764 Processing page 16
+2022-11-13 03:10:40,748 Processing page 17
+2022-11-13 03:11:11,489 Processing page 18
+2022-11-13 03:11:43,816 Processing page 19
+2022-11-13 03:12:18,060 Processing page 20
+2022-11-13 03:12:54,196 Processing page 21
+2022-11-13 03:13:20,109 Processing page 22
+2022-11-13 03:14:00,121 Processing page 23
+2022-11-13 03:14:12,276 Processing page 24
+2022-11-13 03:14:45,752 Processing page 25
+2022-11-13 03:15:21,364 Processing page 26
+2022-11-13 03:15:57,451 Processing page 27
+2022-11-13 03:16:34,587 Processing page 28
+2022-11-13 03:17:07,499 Processing page 29
+2022-11-13 03:17:45,143 Processing page 30
+2022-11-13 03:18:20,295 Processing page 31
+2022-11-13 03:18:51,547 Processing page 32
+2022-11-13 03:19:28,878 Processing page 33
+2022-11-13 03:19:59,818 Processing page 34
+2022-11-13 03:20:44,206 Processing page 35
+2022-11-13 03:21:22,698 Processing page 36
+2022-11-13 03:21:34,854 Processing page 37
+2022-11-13 03:21:58,062 Processing page 38
+2022-11-13 03:22:15,560 Processing page 39
+2022-11-13 03:22:29,897 Processing page 40
+2022-11-13 03:22:37,795 Processing page 41
+2022-11-13 03:22:39,362 Formatting and exporting data/part274/in/kerala/2013/2013_122_046.pdf data..
+2022-11-13 03:22:39,422 Converted to csv: data/part274/out/kerala/2013/2013_122_046.csv
+2022-11-13 03:22:39,526 Converting data/part274/in/kerala/2013/2013_122_047.pdf to img...
+2022-11-13 03:22:45,635 Parsing first and last page data..
+2022-11-13 03:22:47,908 Detecting and parsing data/part274/in/kerala/2013/2013_122_047.pdf boxes..
+2022-11-13 03:22:47,909 Processing page 3
+2022-11-13 03:23:21,193 Processing page 4
+2022-11-13 03:23:52,882 Processing page 5
+2022-11-13 03:24:23,541 Processing page 6
+2022-11-13 03:25:00,935 Processing page 7
+2022-11-13 03:25:32,980 Processing page 8
+2022-11-13 03:26:03,923 Processing page 9
+2022-11-13 03:26:31,547 Processing page 10
+2022-11-13 03:27:05,388 Processing page 11
+2022-11-13 03:27:40,299 Processing page 12
+2022-11-13 03:28:09,872 Processing page 13
+2022-11-13 03:28:43,820 Processing page 14
+2022-11-13 03:29:15,329 Processing page 15
+2022-11-13 03:29:48,463 Processing page 16
+2022-11-13 03:30:19,591 Processing page 17
+2022-11-13 03:30:53,791 Processing page 18
+2022-11-13 03:31:25,109 Processing page 19
+2022-11-13 03:31:59,690 Processing page 20
+2022-11-13 03:32:28,383 Processing page 21
+2022-11-13 03:32:52,932 Processing page 22
+2022-11-13 03:33:25,671 Processing page 23
+2022-11-13 03:33:59,316 Processing page 24
+2022-11-13 03:34:30,409 Processing page 25
+2022-11-13 03:35:04,073 Processing page 26
+2022-11-13 03:35:37,736 Processing page 27
+2022-11-13 03:36:08,137 Processing page 28
+2022-11-13 03:36:45,248 Processing page 29
+2022-11-13 03:37:22,015 Processing page 30
+2022-11-13 03:38:00,891 Processing page 31
+2022-11-13 03:38:39,978 Processing page 32
+2022-11-13 03:38:58,865 Processing page 33
+2022-11-13 03:39:21,783 Processing page 34
+2022-11-13 03:39:32,607 Processing page 35
+2022-11-13 03:39:44,596 Processing page 36
+2022-11-13 03:39:59,621 Formatting and exporting data/part274/in/kerala/2013/2013_122_047.pdf data..
+2022-11-13 03:39:59,683 Converted to csv: data/part274/out/kerala/2013/2013_122_047.csv
+2022-11-13 03:39:59,781 Converting data/part274/in/kerala/2013/2013_122_048.pdf to img...
+2022-11-13 03:40:07,818 Parsing first and last page data..
+2022-11-13 03:40:10,437 Detecting and parsing data/part274/in/kerala/2013/2013_122_048.pdf boxes..
+2022-11-13 03:40:10,438 Processing page 3
+2022-11-13 03:40:41,734 Processing page 4
+2022-11-13 03:41:15,140 Processing page 5
+2022-11-13 03:41:50,696 Processing page 6
+2022-11-13 03:42:25,253 Processing page 7
+2022-11-13 03:42:57,135 Processing page 8
+2022-11-13 03:43:31,562 Processing page 9
+2022-11-13 03:44:06,231 Processing page 10
+2022-11-13 03:44:41,672 Processing page 11
+2022-11-13 03:45:14,587 Processing page 12
+2022-11-13 03:45:47,010 Processing page 13
+2022-11-13 03:46:18,691 Processing page 14
+2022-11-13 03:46:53,899 Processing page 15
+2022-11-13 03:47:29,454 Processing page 16
+2022-11-13 03:47:39,841 Split uncaught adomralog cud JT CBH>YIS OrderedDict([('number', '412'), ('id', 'XIL0109629')])
+2022-11-13 03:48:03,333 Processing page 17
+2022-11-13 03:48:38,059 Processing page 18
+2022-11-13 03:49:11,202 Processing page 19
+2022-11-13 03:49:44,390 Processing page 20
+2022-11-13 03:50:17,732 Processing page 21
+2022-11-13 03:50:50,648 Processing page 22
+2022-11-13 03:51:18,793 Processing page 23
+2022-11-13 03:51:47,865 Processing page 24
+2022-11-13 03:52:18,115 Processing page 25
+2022-11-13 03:52:52,004 Processing page 26
+2022-11-13 03:53:27,481 Processing page 27
+2022-11-13 03:54:02,690 Processing page 28
+2022-11-13 03:54:33,576 Processing page 29
+2022-11-13 03:55:07,945 Processing page 30
+2022-11-13 03:55:43,138 Processing page 31
+2022-11-13 03:56:18,439 Processing page 32
+2022-11-13 03:56:53,369 Processing page 33
+2022-11-13 03:57:27,357 Processing page 34
+2022-11-13 03:57:57,046 Processing page 35
+2022-11-13 03:58:03,664 Processing page 36
+2022-11-13 03:58:22,847 Processing page 37
+2022-11-13 03:58:31,478 Processing page 38
+2022-11-13 03:58:52,521 Formatting and exporting data/part274/in/kerala/2013/2013_122_048.pdf data..
+2022-11-13 03:58:52,578 Converted to csv: data/part274/out/kerala/2013/2013_122_048.csv
+2022-11-13 03:58:52,717 Converting data/part274/in/kerala/2013/2013_122_049.pdf to img...
+2022-11-13 03:58:58,856 Parsing first and last page data..
+2022-11-13 03:59:01,912 Detecting and parsing data/part274/in/kerala/2013/2013_122_049.pdf boxes..
+2022-11-13 03:59:01,912 Processing page 3
+2022-11-13 03:59:34,498 Split uncaught Cole JT CBH>YIS OrderedDict([('number', '4'), ('id', 'FWD2923068')])
+2022-11-13 03:59:37,150 Processing page 4
+2022-11-13 04:00:12,100 Processing page 5
+2022-11-13 04:00:46,508 Processing page 6
+2022-11-13 04:01:18,177 Processing page 7
+2022-11-13 04:01:53,148 Processing page 8
+2022-11-13 04:02:30,345 Processing page 9
+2022-11-13 04:03:04,709 Processing page 10
+2022-11-13 04:03:36,501 Processing page 11
+2022-11-13 04:04:07,250 Processing page 12
+2022-11-13 04:04:46,570 Processing page 13
+2022-11-13 04:05:20,378 Processing page 14
+2022-11-13 04:05:55,175 Processing page 15
+2022-11-13 04:06:29,849 Processing page 16
+2022-11-13 04:07:00,188 Processing page 17
+2022-11-13 04:07:34,651 Processing page 18
+2022-11-13 04:08:09,902 Processing page 19
+2022-11-13 04:08:46,480 Processing page 20
+2022-11-13 04:09:21,642 Processing page 21
+2022-11-13 04:09:48,089 Processing page 22
+2022-11-13 04:10:25,423 Processing page 23
+2022-11-13 04:11:02,487 Processing page 24
+2022-11-13 04:11:41,556 Processing page 25
+2022-11-13 04:12:18,558 Processing page 26
+2022-11-13 04:12:46,974 Processing page 27
+2022-11-13 04:13:07,876 Processing page 28
+2022-11-13 04:13:15,537 Processing page 29
+2022-11-13 04:13:39,622 Formatting and exporting data/part274/in/kerala/2013/2013_122_049.pdf data..
+2022-11-13 04:13:39,668 Converted to csv: data/part274/out/kerala/2013/2013_122_049.csv
+2022-11-13 04:13:39,763 Converting data/part274/in/kerala/2013/2013_122_050.pdf to img...
+2022-11-13 04:13:48,006 Parsing first and last page data..
+2022-11-13 04:13:50,975 Detecting and parsing data/part274/in/kerala/2013/2013_122_050.pdf boxes..
+2022-11-13 04:13:50,975 Processing page 3
+2022-11-13 04:14:20,472 Processing page 4
+2022-11-13 04:14:53,087 Processing page 5
+2022-11-13 04:15:30,747 Processing page 6
+2022-11-13 04:15:59,082 Processing page 7
+2022-11-13 04:16:32,299 Processing page 8
+2022-11-13 04:17:07,681 Processing page 9
+2022-11-13 04:17:35,561 Processing page 10
+2022-11-13 04:18:08,570 Processing page 11
+2022-11-13 04:18:38,342 Processing page 12
+2022-11-13 04:19:07,769 Processing page 13
+2022-11-13 04:19:38,307 Processing page 14
+2022-11-13 04:20:14,387 Processing page 15
+2022-11-13 04:20:44,629 Processing page 16
+2022-11-13 04:21:15,875 Processing page 17
+2022-11-13 04:21:47,657 Processing page 18
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 118-121: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught sdomalog ete (Gle>JaIB OrderedDict([('number', '480'), ('id', 'FWD2595288'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d38\u0d41\u0d28\u0d3f\u0d24')])"
+Arguments: ()
+2022-11-13 04:21:48,812 Split uncaught sdomalog ete (Gle>JaIB OrderedDict([('number', '480'), ('id', 'FWD2595288'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d38\u0d41\u0d28\u0d3f\u0d24')])
+2022-11-13 04:22:17,800 Processing page 19
+2022-11-13 04:22:47,419 Processing page 20
+2022-11-13 04:23:26,470 Processing page 21
+2022-11-13 04:24:02,178 Processing page 22
+2022-11-13 04:24:36,214 Processing page 23
+2022-11-13 04:25:09,941 Processing page 24
+2022-11-13 04:25:43,622 Processing page 25
+2022-11-13 04:26:17,428 Processing page 26
+2022-11-13 04:26:53,357 Processing page 27
+2022-11-13 04:27:25,133 Processing page 28
+2022-11-13 04:27:57,053 Processing page 29
+2022-11-13 04:28:30,867 Processing page 30
+2022-11-13 04:29:03,009 Processing page 31
+2022-11-13 04:29:29,840 Processing page 32
+2022-11-13 04:30:06,851 Processing page 33
+2022-11-13 04:30:44,886 Processing page 34
+2022-11-13 04:31:18,356 Processing page 35
+2022-11-13 04:31:52,659 Processing page 36
+2022-11-13 04:32:26,876 Processing page 37
+2022-11-13 04:33:03,847 Processing page 38
+2022-11-13 04:33:35,255 Processing page 39
+2022-11-13 04:34:12,155 Processing page 40
+2022-11-13 04:34:23,770 Processing page 41
+2022-11-13 04:34:51,704 Processing page 42
+2022-11-13 04:35:05,248 Processing page 43
+2022-11-13 04:35:18,304 Processing page 44
+2022-11-13 04:35:33,721 Formatting and exporting data/part274/in/kerala/2013/2013_122_050.pdf data..
+2022-11-13 04:35:33,793 Converted to csv: data/part274/out/kerala/2013/2013_122_050.csv
+2022-11-13 04:35:33,909 Converting data/part274/in/kerala/2013/2013_122_051.pdf to img...
+2022-11-13 04:35:38,950 Parsing first and last page data..
+2022-11-13 04:35:40,902 Detecting and parsing data/part274/in/kerala/2013/2013_122_051.pdf boxes..
+2022-11-13 04:35:40,902 Processing page 3
+2022-11-13 04:36:04,414 Processing page 4
+2022-11-13 04:36:42,418 Processing page 5
+2022-11-13 04:37:18,428 Processing page 6
+2022-11-13 04:37:56,289 Processing page 7
+2022-11-13 04:38:31,241 Processing page 8
+2022-11-13 04:39:03,825 Processing page 9
+2022-11-13 04:39:36,952 Processing page 10
+2022-11-13 04:39:57,446 Processing page 11
+2022-11-13 04:40:28,766 Processing page 12
+2022-11-13 04:41:01,686 Processing page 13
+2022-11-13 04:41:32,847 Processing page 14
+2022-11-13 04:42:02,430 Processing page 15
+2022-11-13 04:42:27,011 Processing page 16
+2022-11-13 04:43:00,226 Processing page 17
+2022-11-13 04:43:38,474 Processing page 18
+2022-11-13 04:44:13,060 Processing page 19
+2022-11-13 04:44:50,260 Processing page 20
+2022-11-13 04:45:21,946 Processing page 21
+2022-11-13 04:45:57,152 Processing page 22
+2022-11-13 04:46:26,775 Processing page 23
+2022-11-13 04:47:01,205 Processing page 24
+2022-11-13 04:47:34,255 Processing page 25
+2022-11-13 04:48:08,203 Processing page 26
+2022-11-13 04:48:39,721 Processing page 27
+2022-11-13 04:49:04,900 Processing page 28
+2022-11-13 04:49:47,111 Processing page 29
+2022-11-13 04:50:18,388 Processing page 30
+2022-11-13 04:50:55,472 Processing page 31
+2022-11-13 04:51:33,903 Processing page 32
+2022-11-13 04:52:11,861 Processing page 33
+2022-11-13 04:52:44,900 Processing page 34
+2022-11-13 04:53:22,225 Processing page 35
+2022-11-13 04:53:51,119 Processing page 36
+2022-11-13 04:54:00,775 Processing page 37
+2022-11-13 04:54:13,017 Processing page 38
+2022-11-13 04:54:15,605 Processing page 39
+2022-11-13 04:54:16,527 Processing page 40
+2022-11-13 04:54:21,345 Processing page 41
+2022-11-13 04:54:29,756 Formatting and exporting data/part274/in/kerala/2013/2013_122_051.pdf data..
+2022-11-13 04:54:29,814 Converted to csv: data/part274/out/kerala/2013/2013_122_051.csv
+2022-11-13 04:54:29,927 Converting data/part274/in/kerala/2013/2013_122_052.pdf to img...
+2022-11-13 04:54:35,872 Parsing first and last page data..
+2022-11-13 04:54:37,797 Detecting and parsing data/part274/in/kerala/2013/2013_122_052.pdf boxes..
+2022-11-13 04:54:37,797 Processing page 3
+2022-11-13 04:55:01,111 Processing page 4
+2022-11-13 04:55:36,258 Processing page 5
+2022-11-13 04:56:07,979 Processing page 6
+2022-11-13 04:56:41,726 Processing page 7
+2022-11-13 04:57:19,380 Processing page 8
+2022-11-13 04:57:47,489 Processing page 9
+2022-11-13 04:58:14,038 Processing page 10
+2022-11-13 04:58:48,566 Processing page 11
+2022-11-13 04:59:22,168 Processing page 12
+2022-11-13 04:59:53,345 Processing page 13
+2022-11-13 05:00:27,714 Processing page 14
+2022-11-13 05:00:59,564 Processing page 15
+2022-11-13 05:01:35,431 Processing page 16
+2022-11-13 05:02:11,174 Processing page 17
+2022-11-13 05:02:44,785 Processing page 18
+2022-11-13 05:03:20,806 Processing page 19
+2022-11-13 05:03:54,431 Processing page 20
+2022-11-13 05:04:30,158 Processing page 21
+2022-11-13 05:05:05,791 Processing page 22
+2022-11-13 05:05:41,432 Processing page 23
+2022-11-13 05:06:13,492 Processing page 24
+2022-11-13 05:06:46,221 Processing page 25
+2022-11-13 05:07:16,437 Processing page 26
+2022-11-13 05:07:42,095 Processing page 27
+2022-11-13 05:08:19,346 Processing page 28
+2022-11-13 05:08:51,835 Processing page 29
+2022-11-13 05:09:28,334 Processing page 30
+2022-11-13 05:10:04,153 Processing page 31
+2022-11-13 05:10:37,716 Processing page 32
+2022-11-13 05:11:08,609 Processing page 33
+2022-11-13 05:11:43,360 Processing page 34
+2022-11-13 05:12:14,946 Processing page 35
+2022-11-13 05:12:48,457 Processing page 36
+2022-11-13 05:13:18,621 Processing page 37
+2022-11-13 05:13:53,982 Processing page 38
+2022-11-13 05:14:23,469 Processing page 39
+2022-11-13 05:14:57,788 Processing page 40
+2022-11-13 05:15:25,848 Processing page 41
+2022-11-13 05:15:27,681 Processing page 42
+2022-11-13 05:15:59,025 Processing page 43
+2022-11-13 05:16:11,810 Processing page 44
+2022-11-13 05:16:15,803 Processing page 45
+2022-11-13 05:16:32,278 Formatting and exporting data/part274/in/kerala/2013/2013_122_052.pdf data..
+2022-11-13 05:16:32,325 Converted to csv: data/part274/out/kerala/2013/2013_122_052.csv
+2022-11-13 05:16:32,437 Converting data/part274/in/kerala/2013/2013_122_053.pdf to img...
+2022-11-13 05:16:40,523 Parsing first and last page data..
+2022-11-13 05:16:43,406 Detecting and parsing data/part274/in/kerala/2013/2013_122_053.pdf boxes..
+2022-11-13 05:16:43,406 Processing page 3
+2022-11-13 05:17:20,075 Processing page 4
+2022-11-13 05:17:53,779 Processing page 5
+2022-11-13 05:18:27,713 Processing page 6
+2022-11-13 05:18:59,080 Processing page 7
+2022-11-13 05:19:27,968 Processing page 8
+2022-11-13 05:19:52,504 Processing page 9
+2022-11-13 05:20:29,912 Processing page 10
+2022-11-13 05:21:04,809 Processing page 11
+2022-11-13 05:21:39,857 Processing page 12
+2022-11-13 05:22:13,627 Processing page 13
+2022-11-13 05:22:48,867 Processing page 14
+2022-11-13 05:23:24,369 Processing page 15
+2022-11-13 05:23:52,988 Processing page 16
+2022-11-13 05:24:23,175 Processing page 17
+2022-11-13 05:24:55,976 Processing page 18
+2022-11-13 05:25:28,842 Processing page 19
+2022-11-13 05:25:57,987 Processing page 20
+2022-11-13 05:26:31,609 Processing page 21
+2022-11-13 05:27:05,426 Processing page 22
+2022-11-13 05:27:37,585 Processing page 23
+2022-11-13 05:28:10,340 Processing page 24
+2022-11-13 05:28:42,676 Processing page 25
+2022-11-13 05:29:16,855 Processing page 26
+2022-11-13 05:29:53,175 Processing page 27
+2022-11-13 05:30:29,863 Processing page 28
+2022-11-13 05:31:07,029 Processing page 29
+2022-11-13 05:31:42,786 Processing page 30
+2022-11-13 05:32:09,874 Processing page 31
+2022-11-13 05:32:43,859 Processing page 32
+2022-11-13 05:33:20,536 Processing page 33
+2022-11-13 05:33:57,040 Processing page 34
+2022-11-13 05:34:30,415 Processing page 35
+2022-11-13 05:35:00,654 Split uncaught Cole moeniim> enflal OrderedDict([('number', '962'), ('id', 'JMR1285840')])
+2022-11-13 05:35:01,860 Processing page 36
+2022-11-13 05:35:34,232 Processing page 37
+2022-11-13 05:36:08,996 Processing page 38
+2022-11-13 05:36:43,860 Processing page 39
+2022-11-13 05:37:18,557 Processing page 40
+2022-11-13 05:37:51,860 Processing page 41
+2022-11-13 05:38:20,595 Processing page 42
+2022-11-13 05:38:59,375 Processing page 43
+2022-11-13 05:39:33,018 Processing page 44
+2022-11-13 05:40:02,809 Processing page 45
+2022-11-13 05:40:36,810 Processing page 46
+2022-11-13 05:40:38,615 Processing page 47
+2022-11-13 05:40:42,989 Processing page 48
+2022-11-13 05:40:44,339 Processing page 49
+2022-11-13 05:41:15,977 Processing page 50
+2022-11-13 05:41:17,345 Processing page 51
+2022-11-13 05:41:25,513 Processing page 52
+2022-11-13 05:41:41,915 Formatting and exporting data/part274/in/kerala/2013/2013_122_053.pdf data..
+2022-11-13 05:41:41,984 Converted to csv: data/part274/out/kerala/2013/2013_122_053.csv
+2022-11-13 05:41:42,191 Converting data/part274/in/kerala/2013/2013_122_054.pdf to img...
+2022-11-13 05:41:46,764 Parsing first and last page data..
+2022-11-13 05:41:49,743 Detecting and parsing data/part274/in/kerala/2013/2013_122_054.pdf boxes..
+2022-11-13 05:41:49,743 Processing page 3
+2022-11-13 05:42:22,931 Processing page 4
+2022-11-13 05:43:00,201 Processing page 5
+2022-11-13 05:43:33,361 Processing page 6
+2022-11-13 05:44:05,752 Processing page 7
+2022-11-13 05:44:32,837 Processing page 8
+2022-11-13 05:45:02,060 Processing page 9
+2022-11-13 05:45:38,030 Processing page 10
+2022-11-13 05:46:09,509 Processing page 11
+2022-11-13 05:46:45,080 Processing page 12
+2022-11-13 05:47:17,218 Processing page 13
+2022-11-13 05:47:50,212 Processing page 14
+2022-11-13 05:48:23,890 Processing page 15
+2022-11-13 05:48:56,187 Processing page 16
+2022-11-13 05:49:27,482 Processing page 17
+2022-11-13 05:50:00,454 Processing page 18
+2022-11-13 05:50:30,564 Processing page 19
+2022-11-13 05:50:56,317 Processing page 20
+2022-11-13 05:51:33,841 Processing page 21
+2022-11-13 05:52:06,292 Processing page 22
+2022-11-13 05:52:44,682 Processing page 23
+2022-11-13 05:53:20,875 Processing page 24
+2022-11-13 05:53:55,701 Processing page 25
+2022-11-13 05:54:32,914 Processing page 26
+2022-11-13 05:55:06,942 Processing page 27
+2022-11-13 05:55:42,742 Processing page 28
+2022-11-13 05:56:11,257 Processing page 29
+2022-11-13 05:56:46,268 Processing page 30
+2022-11-13 05:56:47,464 Processing page 31
+2022-11-13 05:56:53,639 Processing page 32
+2022-11-13 05:57:01,743 Processing page 33
+2022-11-13 05:57:04,387 Processing page 34
+2022-11-13 05:57:14,504 Processing page 35
+2022-11-13 05:57:20,403 Formatting and exporting data/part274/in/kerala/2013/2013_122_054.pdf data..
+2022-11-13 05:57:20,429 Converted to csv: data/part274/out/kerala/2013/2013_122_054.csv
+2022-11-13 05:57:20,592 Converting data/part274/in/kerala/2013/2013_122_055.pdf to img...
+2022-11-13 05:57:29,090 Parsing first and last page data..
+2022-11-13 05:57:32,615 Detecting and parsing data/part274/in/kerala/2013/2013_122_055.pdf boxes..
+2022-11-13 05:57:32,616 Processing page 3
+2022-11-13 05:58:03,312 Processing page 4
+2022-11-13 05:58:34,785 Processing page 5
+2022-11-13 05:59:08,896 Processing page 6
+2022-11-13 05:59:44,127 Processing page 7
+2022-11-13 06:00:18,399 Processing page 8
+2022-11-13 06:00:52,342 Processing page 9
+2022-11-13 06:01:27,756 Processing page 10
+2022-11-13 06:01:57,333 Processing page 11
+2022-11-13 06:02:28,080 Processing page 12
+2022-11-13 06:03:03,831 Processing page 13
+2022-11-13 06:03:30,923 Processing page 14
+2022-11-13 06:04:05,065 Processing page 15
+2022-11-13 06:04:38,950 Processing page 16
+2022-11-13 06:05:15,218 Processing page 17
+2022-11-13 06:05:49,455 Processing page 18
+2022-11-13 06:06:24,103 Processing page 19
+2022-11-13 06:06:57,444 Processing page 20
+2022-11-13 06:07:31,549 Processing page 21
+2022-11-13 06:07:57,794 Processing page 22
+2022-11-13 06:08:23,236 Processing page 23
+2022-11-13 06:08:59,288 Processing page 24
+2022-11-13 06:09:32,140 Processing page 25
+2022-11-13 06:09:58,427 Processing page 26
+2022-11-13 06:10:30,179 Processing page 27
+2022-11-13 06:11:13,398 Processing page 28
+2022-11-13 06:11:46,564 Processing page 29
+2022-11-13 06:12:21,717 Processing page 30
+2022-11-13 06:12:52,939 Processing page 31
+2022-11-13 06:13:27,824 Processing page 32
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 39-43: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught \u0d2a\u0d47\u0d30\u0d4d\u200c =) OrderedDict([('number', '875'), ('id', 'KL/17/116/198480')])"
+Arguments: ()
+2022-11-13 06:13:57,284 Split uncaught \u0d2a\u0d47\u0d30\u0d4d\u200c =) OrderedDict([('number', '875'), ('id', 'KL/17/116/198480')])
+2022-11-13 06:14:00,948 Processing page 33
+2022-11-13 06:14:33,282 Processing page 34
+2022-11-13 06:15:00,762 Processing page 35
+2022-11-13 06:15:28,296 Processing page 36
+2022-11-13 06:15:35,670 Processing page 37
+2022-11-13 06:15:56,792 Formatting and exporting data/part274/in/kerala/2013/2013_122_055.pdf data..
+2022-11-13 06:15:56,848 Converted to csv: data/part274/out/kerala/2013/2013_122_055.csv
+2022-11-13 06:15:56,982 Converting data/part274/in/kerala/2013/2013_122_056.pdf to img...
+2022-11-13 06:16:03,028 Parsing first and last page data..
+2022-11-13 06:16:05,017 Detecting and parsing data/part274/in/kerala/2013/2013_122_056.pdf boxes..
+2022-11-13 06:16:05,017 Processing page 3
+2022-11-13 06:16:31,131 Processing page 4
+2022-11-13 06:17:05,347 Processing page 5
+2022-11-13 06:17:38,171 Processing page 6
+2022-11-13 06:18:10,567 Processing page 7
+2022-11-13 06:18:45,279 Processing page 8
+2022-11-13 06:19:19,135 Processing page 9
+2022-11-13 06:19:56,823 Processing page 10
+2022-11-13 06:20:30,872 Processing page 11
+2022-11-13 06:21:04,038 Processing page 12
+2022-11-13 06:21:37,977 Processing page 13
+2022-11-13 06:22:10,869 Processing page 14
+2022-11-13 06:22:43,781 Processing page 15
+2022-11-13 06:23:07,759 Processing page 16
+2022-11-13 06:23:42,789 Processing page 17
+2022-11-13 06:24:14,781 Processing page 18
+2022-11-13 06:24:45,863 Processing page 19
+2022-11-13 06:25:16,772 Processing page 20
+2022-11-13 06:25:43,826 Processing page 21
+2022-11-13 06:26:13,682 Processing page 22
+2022-11-13 06:26:50,293 Processing page 23
+2022-11-13 06:27:24,221 Processing page 24
+2022-11-13 06:27:59,409 Processing page 25
+2022-11-13 06:28:37,756 Processing page 26
+2022-11-13 06:29:16,698 Processing page 27
+2022-11-13 06:29:44,139 Processing page 28
+2022-11-13 06:30:15,292 Processing page 29
+2022-11-13 06:30:55,350 Processing page 30
+2022-11-13 06:31:32,505 Processing page 31
+2022-11-13 06:32:05,096 Processing page 32
+2022-11-13 06:32:29,062 Processing page 33
+2022-11-13 06:32:58,440 Processing page 34
+2022-11-13 06:33:03,403 Processing page 35
+2022-11-13 06:33:13,297 Formatting and exporting data/part274/in/kerala/2013/2013_122_056.pdf data..
+2022-11-13 06:33:13,326 Converted to csv: data/part274/out/kerala/2013/2013_122_056.csv
+2022-11-13 06:33:13,404 Converting data/part274/in/kerala/2013/2013_122_057.pdf to img...
+2022-11-13 06:33:20,471 Parsing first and last page data..
+2022-11-13 06:33:23,233 Detecting and parsing data/part274/in/kerala/2013/2013_122_057.pdf boxes..
+2022-11-13 06:33:23,233 Processing page 3
+2022-11-13 06:33:56,882 Processing page 4
+2022-11-13 06:34:26,314 Processing page 5
+2022-11-13 06:35:00,994 Processing page 6
+2022-11-13 06:35:38,492 Processing page 7
+2022-11-13 06:36:09,926 Processing page 8
+2022-11-13 06:36:36,171 Processing page 9
+2022-11-13 06:37:15,842 Processing page 10
+2022-11-13 06:37:50,470 Processing page 11
+2022-11-13 06:38:18,727 Processing page 12
+2022-11-13 06:38:47,123 Processing page 13
+2022-11-13 06:39:17,261 Processing page 14
+2022-11-13 06:39:46,927 Processing page 15
+2022-11-13 06:40:14,323 Processing page 16
+2022-11-13 06:40:42,721 Processing page 17
+2022-11-13 06:41:13,253 Processing page 18
+2022-11-13 06:41:45,458 Processing page 19
+2022-11-13 06:42:21,283 Processing page 20
+2022-11-13 06:42:47,678 Processing page 21
+2022-11-13 06:43:19,215 Processing page 22
+2022-11-13 06:43:55,940 Processing page 23
+2022-11-13 06:44:29,958 Processing page 24
+2022-11-13 06:45:03,537 Processing page 25
+2022-11-13 06:45:38,332 Processing page 26
+2022-11-13 06:46:15,202 Processing page 27
+2022-11-13 06:46:51,428 Processing page 28
+2022-11-13 06:47:29,596 Processing page 29
+2022-11-13 06:48:03,774 Processing page 30
+2022-11-13 06:48:35,608 Processing page 31
+2022-11-13 06:49:12,053 Processing page 32
+2022-11-13 06:49:25,545 Processing page 33
+2022-11-13 06:49:39,128 Processing page 34
+2022-11-13 06:49:41,483 Processing page 35
+2022-11-13 06:49:47,704 Formatting and exporting data/part274/in/kerala/2013/2013_122_057.pdf data..
+2022-11-13 06:49:47,760 Converted to csv: data/part274/out/kerala/2013/2013_122_057.csv
+2022-11-13 06:49:47,922 Converting data/part274/in/kerala/2013/2013_122_058.pdf to img...
+2022-11-13 06:49:53,497 Parsing first and last page data..
+2022-11-13 06:49:55,813 Detecting and parsing data/part274/in/kerala/2013/2013_122_058.pdf boxes..
+2022-11-13 06:49:55,813 Processing page 3
+2022-11-13 06:50:28,990 Processing page 4
+2022-11-13 06:51:01,583 Processing page 5
+2022-11-13 06:51:38,689 Processing page 6
+2022-11-13 06:52:14,421 Processing page 7
+2022-11-13 06:52:44,494 Processing page 8
+2022-11-13 06:53:18,248 Processing page 9
+2022-11-13 06:53:55,505 Processing page 10
+2022-11-13 06:54:26,035 Processing page 11
+2022-11-13 06:54:59,437 Processing page 12
+2022-11-13 06:55:35,735 Processing page 13
+2022-11-13 06:56:07,077 Processing page 14
+2022-11-13 06:56:32,628 Processing page 15
+2022-11-13 06:57:12,431 Processing page 16
+2022-11-13 06:57:38,694 Processing page 17
+2022-11-13 06:58:12,827 Processing page 18
+2022-11-13 06:58:44,032 Processing page 19
+2022-11-13 06:59:18,758 Processing page 20
+2022-11-13 06:59:53,672 Processing page 21
+2022-11-13 07:00:24,285 Processing page 22
+2022-11-13 07:00:53,917 Processing page 23
+2022-11-13 07:01:32,449 Processing page 24
+2022-11-13 07:02:07,364 Processing page 25
+2022-11-13 07:02:39,395 Processing page 26
+2022-11-13 07:03:21,910 Processing page 27
+2022-11-13 07:04:00,701 Processing page 28
+2022-11-13 07:04:35,293 Processing page 29
+2022-11-13 07:05:08,988 Processing page 30
+2022-11-13 07:05:43,680 Processing page 31
+2022-11-13 07:06:00,931 Processing page 32
+2022-11-13 07:06:02,737 Processing page 33
+2022-11-13 07:06:03,903 Processing page 34
+2022-11-13 07:06:12,833 Processing page 35
+2022-11-13 07:06:19,287 Processing page 36
+2022-11-13 07:06:21,101 Processing page 37
+2022-11-13 07:06:25,496 Processing page 38
+2022-11-13 07:06:29,099 Formatting and exporting data/part274/in/kerala/2013/2013_122_058.pdf data..
+2022-11-13 07:06:29,128 Converted to csv: data/part274/out/kerala/2013/2013_122_058.csv
+2022-11-13 07:06:29,211 Converting data/part274/in/kerala/2013/2013_122_059.pdf to img...
+2022-11-13 07:06:34,807 Parsing first and last page data..
+2022-11-13 07:06:37,387 Detecting and parsing data/part274/in/kerala/2013/2013_122_059.pdf boxes..
+2022-11-13 07:06:37,387 Processing page 3
+2022-11-13 07:07:05,002 Processing page 4
+2022-11-13 07:07:37,211 Processing page 5
+2022-11-13 07:08:06,375 Processing page 6
+2022-11-13 07:08:40,820 Processing page 7
+2022-11-13 07:09:11,495 Processing page 8
+2022-11-13 07:09:36,926 Processing page 9
+2022-11-13 07:10:14,102 Processing page 10
+2022-11-13 07:10:48,768 Processing page 11
+2022-11-13 07:11:04,232 Split uncaught Gale (or=fan)| OrderedDict([('number', '254'), ('id', 'FWD2559144')])
+2022-11-13 07:11:17,091 Processing page 12
+2022-11-13 07:11:53,314 Processing page 13
+2022-11-13 07:12:17,889 Processing page 14
+2022-11-13 07:12:42,502 Processing page 15
+2022-11-13 07:13:09,985 Processing page 16
+2022-11-13 07:13:39,450 Processing page 17
+2022-11-13 07:14:08,310 Processing page 18
+2022-11-13 07:14:41,227 Processing page 19
+2022-11-13 07:15:13,188 Processing page 20
+2022-11-13 07:15:43,958 Processing page 21
+2022-11-13 07:16:09,537 Processing page 22
+2022-11-13 07:16:49,826 Processing page 23
+2022-11-13 07:17:31,553 Processing page 24
+2022-11-13 07:18:03,915 Processing page 25
+2022-11-13 07:18:39,838 Processing page 26
+2022-11-13 07:19:14,782 Processing page 27
+2022-11-13 07:19:49,890 Processing page 28
+2022-11-13 07:20:26,654 Processing page 29
+2022-11-13 07:20:57,430 Processing page 30
+2022-11-13 07:21:24,332 Processing page 31
+2022-11-13 07:21:59,114 Processing page 32
+2022-11-13 07:22:32,115 Processing page 33
+2022-11-13 07:22:57,994 Processing page 34
+2022-11-13 07:23:34,788 Processing page 35
+2022-11-13 07:23:54,457 Processing page 36
+2022-11-13 07:24:18,787 Processing page 37
+2022-11-13 07:24:21,523 Processing page 38
+2022-11-13 07:24:27,411 Formatting and exporting data/part274/in/kerala/2013/2013_122_059.pdf data..
+2022-11-13 07:24:27,454 Converted to csv: data/part274/out/kerala/2013/2013_122_059.csv
+2022-11-13 07:24:27,545 Converting data/part274/in/kerala/2013/2013_122_060.pdf to img...
+2022-11-13 07:24:36,161 Parsing first and last page data..
+2022-11-13 07:24:38,316 Detecting and parsing data/part274/in/kerala/2013/2013_122_060.pdf boxes..
+2022-11-13 07:24:38,316 Processing page 3
+2022-11-13 07:25:04,407 Processing page 4
+2022-11-13 07:25:36,595 Processing page 5
+2022-11-13 07:26:10,371 Processing page 6
+2022-11-13 07:26:39,396 Processing page 7
+2022-11-13 07:27:12,729 Processing page 8
+2022-11-13 07:27:50,027 Processing page 9
+2022-11-13 07:28:22,183 Processing page 10
+2022-11-13 07:28:48,436 Processing page 11
+2022-11-13 07:29:15,691 Processing page 12
+2022-11-13 07:29:24,280 Processing page 13
+2022-11-13 07:29:50,644 Processing page 14
+2022-11-13 07:30:22,767 Processing page 15
+2022-11-13 07:31:01,271 Processing page 16
+2022-11-13 07:31:34,512 Processing page 17
+2022-11-13 07:32:11,455 Processing page 18
+2022-11-13 07:32:47,852 Processing page 19
+2022-11-13 07:33:24,434 Processing page 20
+2022-11-13 07:34:00,893 Processing page 21
+2022-11-13 07:34:31,485 Processing page 22
+2022-11-13 07:35:01,597 Processing page 23
+2022-11-13 07:35:32,438 Processing page 24
+2022-11-13 07:36:03,601 Processing page 25
+2022-11-13 07:36:31,406 Processing page 26
+2022-11-13 07:37:12,340 Processing page 27
+2022-11-13 07:37:47,267 Processing page 28
+2022-11-13 07:38:18,286 Processing page 29
+2022-11-13 07:38:51,788 Processing page 30
+2022-11-13 07:39:19,650 Processing page 31
+2022-11-13 07:39:52,517 Processing page 32
+2022-11-13 07:40:30,269 Processing page 33
+2022-11-13 07:41:06,125 Processing page 34
+2022-11-13 07:41:34,744 Processing page 35
+2022-11-13 07:42:03,276 Processing page 36
+2022-11-13 07:42:37,343 Processing page 37
+2022-11-13 07:43:06,753 Processing page 38
+2022-11-13 07:43:47,767 Processing page 39
+2022-11-13 07:44:13,181 Processing page 40
+2022-11-13 07:44:43,808 Processing page 41
+2022-11-13 07:45:07,941 Processing page 42
+2022-11-13 07:45:31,964 Processing page 43
+2022-11-13 07:46:02,875 Processing page 44
+2022-11-13 07:46:30,969 Processing page 45
+2022-11-13 07:46:59,574 Processing page 46
+2022-11-13 07:47:31,142 Processing page 47
+2022-11-13 07:48:01,645 Processing page 48
+2022-11-13 07:48:33,332 Processing page 49
+2022-11-13 07:49:01,087 Processing page 50
+2022-11-13 07:49:28,140 Processing page 51
+2022-11-13 07:49:53,840 Processing page 52
+2022-11-13 07:50:04,612 Processing page 53
+2022-11-13 07:50:10,659 Processing page 54
+2022-11-13 07:50:46,262 Processing page 55
+2022-11-13 07:51:06,373 Processing page 56
+2022-11-13 07:51:09,119 Processing page 57
+2022-11-13 07:51:13,606 Processing page 58
+2022-11-13 07:51:17,866 Processing page 59
+2022-11-13 07:51:38,690 Formatting and exporting data/part274/in/kerala/2013/2013_122_060.pdf data..
+2022-11-13 07:51:38,769 Converted to csv: data/part274/out/kerala/2013/2013_122_060.csv
+2022-11-13 07:51:39,001 Converting data/part274/in/kerala/2013/2013_122_061.pdf to img...
+2022-11-13 07:51:45,438 Parsing first and last page data..
+2022-11-13 07:51:47,328 Detecting and parsing data/part274/in/kerala/2013/2013_122_061.pdf boxes..
+2022-11-13 07:51:47,329 Processing page 3
+2022-11-13 07:52:20,784 Processing page 4
+2022-11-13 07:52:53,230 Processing page 5
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 64-68: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught sdomralod cue ©2U)2&> 94 \u0d2a\u0d3f\u0d33\u0d4d\u0d33 OrderedDict([('number', '81'), ('id', 'XIL0324756'), ('\u0d2a\u0d47\u0d30\u0d4d', 'ene) goan')])"
+Arguments: ()
+2022-11-13 07:53:04,362 Split uncaught sdomralod cue ©2U)2&> 94 \u0d2a\u0d3f\u0d33\u0d4d\u0d33 OrderedDict([('number', '81'), ('id', 'XIL0324756'), ('\u0d2a\u0d47\u0d30\u0d4d', 'ene) goan')])
+2022-11-13 07:53:26,404 Processing page 6
+2022-11-13 07:54:03,124 Processing page 7
+2022-11-13 07:54:32,614 Processing page 8
+2022-11-13 07:55:09,723 Processing page 9
+2022-11-13 07:55:41,392 Processing page 10
+2022-11-13 07:56:12,205 Processing page 11
+2022-11-13 07:56:39,702 Processing page 12
+2022-11-13 07:57:23,130 Processing page 13
+2022-11-13 07:57:57,264 Processing page 14
+2022-11-13 07:58:32,341 Processing page 15
+2022-11-13 07:58:53,756 Processing page 16
+2022-11-13 07:59:31,205 Processing page 17
+2022-11-13 08:00:06,445 Processing page 18
+2022-11-13 08:00:35,372 Processing page 19
+2022-11-13 08:01:12,263 Processing page 20
+2022-11-13 08:01:44,723 Processing page 21
+2022-11-13 08:02:10,664 Processing page 22
+2022-11-13 08:02:40,820 Processing page 23
+2022-11-13 08:03:04,006 Processing page 24
+2022-11-13 08:03:42,719 Processing page 25
+2022-11-13 08:04:22,094 Processing page 26
+2022-11-13 08:04:52,661 Processing page 27
+2022-11-13 08:05:24,819 Processing page 28
+2022-11-13 08:05:58,170 Processing page 29
+2022-11-13 08:06:35,859 Processing page 30
+2022-11-13 08:07:08,208 Processing page 31
+2022-11-13 08:07:45,042 Processing page 32
+2022-11-13 08:07:56,817 Processing page 33
+2022-11-13 08:08:03,364 Processing page 34
+2022-11-13 08:08:18,884 Processing page 35
+2022-11-13 08:08:24,287 Processing page 36
+2022-11-13 08:08:25,820 Processing page 37
+2022-11-13 08:08:36,906 Formatting and exporting data/part274/in/kerala/2013/2013_122_061.pdf data..
+2022-11-13 08:08:36,937 Converted to csv: data/part274/out/kerala/2013/2013_122_061.csv
+2022-11-13 08:08:37,057 Converting data/part274/in/kerala/2013/2013_122_062.pdf to img...
+2022-11-13 08:08:42,197 Parsing first and last page data..
+2022-11-13 08:08:45,152 Detecting and parsing data/part274/in/kerala/2013/2013_122_062.pdf boxes..
+2022-11-13 08:08:45,153 Processing page 3
+2022-11-13 08:09:17,317 Processing page 4
+2022-11-13 08:09:44,772 Processing page 5
+2022-11-13 08:10:17,511 Processing page 6
+2022-11-13 08:10:59,668 Processing page 7
+2022-11-13 08:11:32,530 Processing page 8
+2022-11-13 08:12:03,999 Processing page 9
+2022-11-13 08:12:36,806 Processing page 10
+2022-11-13 08:13:07,098 Processing page 11
+2022-11-13 08:13:38,038 Processing page 12
+2022-11-13 08:14:11,593 Processing page 13
+2022-11-13 08:14:43,363 Processing page 14
+2022-11-13 08:15:16,892 Processing page 15
+2022-11-13 08:15:45,698 Processing page 16
+2022-11-13 08:16:19,339 Processing page 17
+2022-11-13 08:16:47,424 Processing page 18
+2022-11-13 08:17:28,935 Processing page 19
+2022-11-13 08:18:03,913 Processing page 20
+2022-11-13 08:18:37,096 Processing page 21
+2022-11-13 08:19:12,815 Processing page 22
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode character '\u0d28' in position 39: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught \u0d28) 6/5690g ~\u2014=«(6/483) OrderedDict([('number', '598'), ('id', 'FWD2506210'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d2a\u0d3f'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d30\u0d3e\u0d2e\u0d15\u0d43\u0d37\u0d4d\u0d23\u0d28\u0d4d\\u200d')])"
+Arguments: ()
+2022-11-13 08:19:18,095 Split uncaught \u0d28) 6/5690g ~\u2014=«(6/483) OrderedDict([('number', '598'), ('id', 'FWD2506210'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d2a\u0d3f'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d30\u0d3e\u0d2e\u0d15\u0d43\u0d37\u0d4d\u0d23\u0d28\u0d4d\u200d')])
+2022-11-13 08:19:46,600 Processing page 23
+2022-11-13 08:20:18,044 Processing page 24
+2022-11-13 08:20:53,737 Processing page 25
+2022-11-13 08:21:28,331 Processing page 26
+2022-11-13 08:21:48,380 Processing page 27
+2022-11-13 08:22:09,499 Processing page 28
+2022-11-13 08:22:11,806 Processing page 29
+2022-11-13 08:22:24,905 Formatting and exporting data/part274/in/kerala/2013/2013_122_062.pdf data..
+2022-11-13 08:22:24,938 Converted to csv: data/part274/out/kerala/2013/2013_122_062.csv
+2022-11-13 08:22:24,973 Converting data/part274/in/kerala/2013/2013_122_063.pdf to img...
+2022-11-13 08:22:34,172 Parsing first and last page data..
+2022-11-13 08:22:36,383 Detecting and parsing data/part274/in/kerala/2013/2013_122_063.pdf boxes..
+2022-11-13 08:22:36,383 Processing page 3
+2022-11-13 08:23:05,583 Processing page 4
+2022-11-13 08:23:35,768 Processing page 5
+2022-11-13 08:24:07,993 Processing page 6
+2022-11-13 08:24:34,668 Processing page 7
+2022-11-13 08:25:02,173 Processing page 8
+2022-11-13 08:25:35,630 Processing page 9
+2022-11-13 08:26:04,959 Processing page 10
+2022-11-13 08:26:37,235 Processing page 11
+2022-11-13 08:27:08,252 Processing page 12
+2022-11-13 08:27:42,467 Processing page 13
+2022-11-13 08:28:18,864 Processing page 14
+2022-11-13 08:28:54,404 Processing page 15
+2022-11-13 08:29:19,622 Processing page 16
+2022-11-13 08:29:58,576 Processing page 17
+2022-11-13 08:30:35,482 Processing page 18
+2022-11-13 08:31:04,402 Processing page 19
+2022-11-13 08:31:39,828 Processing page 20
+2022-11-13 08:32:10,537 Processing page 21
+2022-11-13 08:32:44,800 Processing page 22
+2022-11-13 08:33:17,450 Processing page 23
+2022-11-13 08:33:43,347 Processing page 24
+2022-11-13 08:34:16,414 Processing page 25
+2022-11-13 08:34:51,732 Processing page 26
+2022-11-13 08:35:23,058 Processing page 27
+2022-11-13 08:35:52,682 Processing page 28
+2022-11-13 08:36:30,385 Processing page 29
+2022-11-13 08:37:02,680 Processing page 30
+2022-11-13 08:37:35,579 Processing page 31
+2022-11-13 08:38:11,942 Processing page 32
+2022-11-13 08:38:44,397 Processing page 33
+2022-11-13 08:39:14,662 Processing page 34
+2022-11-13 08:39:45,418 Processing page 35
+2022-11-13 08:40:22,351 Processing page 36
+2022-11-13 08:40:58,433 Processing page 37
+2022-11-13 08:41:32,482 Processing page 38
+2022-11-13 08:41:59,128 Processing page 39
+2022-11-13 08:42:39,429 Processing page 40
+2022-11-13 08:43:13,241 Processing page 41
+2022-11-13 08:43:44,765 Processing page 42
+2022-11-13 08:44:19,859 Processing page 43
+2022-11-13 08:44:52,995 Processing page 44
+2022-11-13 08:45:28,065 Processing page 45
+2022-11-13 08:46:02,691 Processing page 46
+2022-11-13 08:46:37,131 Processing page 47
+2022-11-13 08:46:40,310 Processing page 48
+2022-11-13 08:47:05,387 Processing page 49
+2022-11-13 08:47:14,602 Processing page 50
+2022-11-13 08:47:17,913 Processing page 51
+2022-11-13 08:47:46,174 Formatting and exporting data/part274/in/kerala/2013/2013_122_063.pdf data..
+2022-11-13 08:47:46,244 Converted to csv: data/part274/out/kerala/2013/2013_122_063.csv
+2022-11-13 08:47:46,392 Converting data/part274/in/kerala/2013/2013_122_064.pdf to img...
+2022-11-13 08:47:52,459 Parsing first and last page data..
+2022-11-13 08:47:54,560 Detecting and parsing data/part274/in/kerala/2013/2013_122_064.pdf boxes..
+2022-11-13 08:47:54,561 Processing page 3
+2022-11-13 08:48:20,176 Processing page 4
+2022-11-13 08:48:58,364 Processing page 5
+2022-11-13 08:49:29,563 Processing page 6
+2022-11-13 08:50:04,591 Processing page 7
+2022-11-13 08:50:40,668 Processing page 8
+2022-11-13 08:51:16,461 Processing page 9
+2022-11-13 08:51:50,333 Processing page 10
+2022-11-13 08:52:24,990 Processing page 11
+2022-11-13 08:52:55,294 Processing page 12
+2022-11-13 08:53:28,717 Processing page 13
+2022-11-13 08:54:00,904 Processing page 14
+2022-11-13 08:54:31,040 Processing page 15
+2022-11-13 08:55:04,326 Processing page 16
+2022-11-13 08:55:35,966 Processing page 17
+2022-11-13 08:56:08,085 Processing page 18
+2022-11-13 08:56:41,208 Processing page 19
+2022-11-13 08:57:08,205 Processing page 20
+2022-11-13 08:57:40,364 Processing page 21
+2022-11-13 08:58:11,140 Processing page 22
+2022-11-13 08:58:39,288 Processing page 23
+2022-11-13 08:59:14,985 Processing page 24
+2022-11-13 08:59:47,846 Processing page 25
+2022-11-13 09:00:21,355 Processing page 26
+2022-11-13 09:00:48,528 Processing page 27
+2022-11-13 09:01:21,366 Processing page 28
+2022-11-13 09:01:55,878 Processing page 29
+2022-11-13 09:02:24,256 Processing page 30
+2022-11-13 09:02:59,600 Processing page 31
+2022-11-13 09:03:37,240 Processing page 32
+2022-11-13 09:04:11,009 Processing page 33
+2022-11-13 09:04:46,247 Processing page 34
+2022-11-13 09:05:22,038 Processing page 35
+2022-11-13 09:05:58,622 Processing page 36
+2022-11-13 09:06:34,623 Processing page 37
+2022-11-13 09:07:06,631 Processing page 38
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 39-43: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught \u0d2a\u0d47\u0d30\u0d4d\u200c =) OrderedDict([('number', '1067'), ('id', 'FWD1003615')])"
+Arguments: ()
+2022-11-13 09:07:18,543 Split uncaught \u0d2a\u0d47\u0d30\u0d4d\u200c =) OrderedDict([('number', '1067'), ('id', 'FWD1003615')])
+2022-11-13 09:07:31,092 Processing page 39
+2022-11-13 09:07:34,893 Processing page 40
+2022-11-13 09:08:05,707 Processing page 41
+2022-11-13 09:08:11,373 Processing page 42
+2022-11-13 09:08:13,167 Processing page 43
+2022-11-13 09:08:33,368 Formatting and exporting data/part274/in/kerala/2013/2013_122_064.pdf data..
+2022-11-13 09:08:33,430 Converted to csv: data/part274/out/kerala/2013/2013_122_064.csv
+2022-11-13 09:08:33,597 Converting data/part274/in/kerala/2013/2013_122_065.pdf to img...
+2022-11-13 09:08:40,780 Parsing first and last page data..
+2022-11-13 09:08:43,468 Detecting and parsing data/part274/in/kerala/2013/2013_122_065.pdf boxes..
+2022-11-13 09:08:43,468 Processing page 3
+2022-11-13 09:09:20,125 Processing page 4
+2022-11-13 09:09:58,696 Processing page 5
+2022-11-13 09:10:32,839 Processing page 6
+2022-11-13 09:11:05,062 Processing page 7
+2022-11-13 09:11:35,248 Processing page 8
+2022-11-13 09:12:07,273 Processing page 9
+2022-11-13 09:12:40,926 Processing page 10
+2022-11-13 09:13:14,067 Processing page 11
+2022-11-13 09:13:42,952 Processing page 12
+2022-11-13 09:14:22,369 Processing page 13
+2022-11-13 09:14:55,815 Processing page 14
+2022-11-13 09:15:28,588 Processing page 15
+2022-11-13 09:15:59,864 Processing page 16
+2022-11-13 09:16:32,246 Processing page 17
+2022-11-13 09:17:05,376 Processing page 18
+2022-11-13 09:17:38,147 Processing page 19
+2022-11-13 09:18:13,500 Processing page 20
+2022-11-13 09:18:44,661 Processing page 21
+2022-11-13 09:19:14,094 Processing page 22
+2022-11-13 09:19:51,196 Processing page 23
+2022-11-13 09:20:16,167 Processing page 24
+2022-11-13 09:20:57,880 Processing page 25
+2022-11-13 09:21:36,386 Processing page 26
+2022-11-13 09:22:11,471 Processing page 27
+2022-11-13 09:22:47,211 Processing page 28
+2022-11-13 09:23:24,487 Processing page 29
+2022-11-13 09:23:58,383 Processing page 30
+2022-11-13 09:24:30,013 Processing page 31
+2022-11-13 09:25:05,718 Processing page 32
+2022-11-13 09:25:38,025 Processing page 33
+2022-11-13 09:26:09,041 Processing page 34
+2022-11-13 09:26:36,472 Processing page 35
+2022-11-13 09:27:11,289 Processing page 36
+2022-11-13 09:27:46,558 Processing page 37
+2022-11-13 09:28:20,619 Processing page 38
+2022-11-13 09:28:53,376 Processing page 39
+2022-11-13 09:29:25,763 Processing page 40
+2022-11-13 09:30:04,740 Processing page 41
+2022-11-13 09:30:43,534 Processing page 42
+2022-11-13 09:31:18,636 Processing page 43
+2022-11-13 09:31:42,314 Processing page 44
+2022-11-13 09:32:12,404 Processing page 45
+2022-11-13 09:32:16,680 Processing page 46
+2022-11-13 09:32:27,125 Processing page 47
+2022-11-13 09:32:47,524 Formatting and exporting data/part274/in/kerala/2013/2013_122_065.pdf data..
+2022-11-13 09:32:47,562 Converted to csv: data/part274/out/kerala/2013/2013_122_065.csv
+2022-11-13 09:32:47,700 Converting data/part274/in/kerala/2013/2013_122_066.pdf to img...
+2022-11-13 09:32:52,612 Parsing first and last page data..
+2022-11-13 09:32:54,857 Detecting and parsing data/part274/in/kerala/2013/2013_122_066.pdf boxes..
+2022-11-13 09:32:54,857 Processing page 3
+2022-11-13 09:33:27,369 Processing page 4
+2022-11-13 09:34:01,323 Processing page 5
+2022-11-13 09:34:32,865 Processing page 6
+2022-11-13 09:35:03,103 Processing page 7
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 65-69: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught SdGOIAM OG Goo 20) &>\\o94 \u0d2a\u0d3f\u0d33\u0d4d\u0d33 OrderedDict([('number', '140'), ('id', 'KL/17/116/327532'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d2a\u0d4d\\u200c 1]')])"
+Arguments: ()
+2022-11-13 09:35:15,295 Split uncaught SdGOIAM OG Goo 20) &>\o94 \u0d2a\u0d3f\u0d33\u0d4d\u0d33 OrderedDict([('number', '140'), ('id', 'KL/17/116/327532'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d2a\u0d4d\u200c 1]')])
+2022-11-13 09:35:33,331 Processing page 8
+2022-11-13 09:36:06,371 Processing page 9
+2022-11-13 09:36:43,932 Processing page 10
+2022-11-13 09:37:15,892 Processing page 11
+2022-11-13 09:37:48,844 Processing page 12
+2022-11-13 09:38:19,970 Processing page 13
+2022-11-13 09:38:52,181 Processing page 14
+2022-11-13 09:39:20,002 Processing page 15
+2022-11-13 09:39:57,456 Processing page 16
+2022-11-13 09:40:31,302 Processing page 17
+2022-11-13 09:41:04,367 Processing page 18
+2022-11-13 09:41:33,716 Processing page 19
+2022-11-13 09:42:10,648 Processing page 20
+2022-11-13 09:42:44,105 Processing page 21
+2022-11-13 09:43:19,590 Processing page 22
+2022-11-13 09:43:50,205 Processing page 23
+2022-11-13 09:44:25,074 Processing page 24
+2022-11-13 09:45:01,889 Processing page 25
+2022-11-13 09:45:34,562 Processing page 26
+2022-11-13 09:46:00,983 Processing page 27
+2022-11-13 09:46:32,021 Processing page 28
+2022-11-13 09:47:11,175 Processing page 29
+2022-11-13 09:47:48,899 Processing page 30
+2022-11-13 09:48:24,662 Processing page 31
+2022-11-13 09:48:55,697 Processing page 32
+2022-11-13 09:49:33,808 Processing page 33
+2022-11-13 09:50:08,971 Processing page 34
+2022-11-13 09:50:42,909 Processing page 35
+2022-11-13 09:51:18,758 Processing page 36
+2022-11-13 09:51:38,299 Processing page 37
+2022-11-13 09:52:05,212 Processing page 38
+2022-11-13 09:52:11,417 Processing page 39
+2022-11-13 09:52:30,315 Formatting and exporting data/part274/in/kerala/2013/2013_122_066.pdf data..
+2022-11-13 09:52:30,352 Converted to csv: data/part274/out/kerala/2013/2013_122_066.csv
+2022-11-13 09:52:30,426 Converting data/part274/in/kerala/2013/2013_122_067.pdf to img...
+2022-11-13 09:52:35,737 Parsing first and last page data..
+2022-11-13 09:52:37,603 Detecting and parsing data/part274/in/kerala/2013/2013_122_067.pdf boxes..
+2022-11-13 09:52:37,603 Processing page 3
+2022-11-13 09:53:12,354 Processing page 4
+2022-11-13 09:53:46,356 Processing page 5
+2022-11-13 09:54:21,113 Processing page 6
+2022-11-13 09:54:52,436 Processing page 7
+2022-11-13 09:55:23,419 Processing page 8
+2022-11-13 09:55:56,631 Processing page 9
+2022-11-13 09:56:30,702 Processing page 10
+2022-11-13 09:57:03,212 Processing page 11
+2022-11-13 09:57:35,255 Processing page 12
+2022-11-13 09:58:09,414 Processing page 13
+2022-11-13 09:58:38,826 Processing page 14
+2022-11-13 09:59:04,559 Processing page 15
+2022-11-13 09:59:48,537 Processing page 16
+2022-11-13 10:00:20,830 Processing page 17
+2022-11-13 10:00:55,742 Processing page 18
+2022-11-13 10:01:28,315 Processing page 19
+2022-11-13 10:01:59,738 Processing page 20
+2022-11-13 10:02:33,914 Processing page 21
+2022-11-13 10:03:07,321 Processing page 22
+2022-11-13 10:03:41,681 Processing page 23
+2022-11-13 10:04:10,546 Processing page 24
+2022-11-13 10:04:43,429 Processing page 25
+2022-11-13 10:05:19,974 Processing page 26
+2022-11-13 10:05:53,771 Processing page 27
+2022-11-13 10:06:32,564 Processing page 28
+2022-11-13 10:07:10,608 Processing page 29
+2022-11-13 10:07:42,450 Processing page 30
+2022-11-13 10:08:13,647 Processing page 31
+2022-11-13 10:08:47,890 Processing page 32
+2022-11-13 10:09:25,229 Processing page 33
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 118-121: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught sdomalog ete (Gle>JaIB OrderedDict([('number', '930'), ('id', 'XIL0098475'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d1f\u0d4d\\u200c\u0d3f]')])"
+Arguments: ()
+2022-11-13 10:09:28,576 Split uncaught sdomalog ete (Gle>JaIB OrderedDict([('number', '930'), ('id', 'XIL0098475'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d1f\u0d4d\u200c\u0d3f]')])
+2022-11-13 10:09:56,770 Processing page 34
+2022-11-13 10:10:32,048 Processing page 35
+2022-11-13 10:11:01,045 Processing page 36
+2022-11-13 10:11:26,992 Processing page 37
+2022-11-13 10:11:32,023 Processing page 38
+2022-11-13 10:11:39,712 Formatting and exporting data/part274/in/kerala/2013/2013_122_067.pdf data..
+2022-11-13 10:11:39,745 Converted to csv: data/part274/out/kerala/2013/2013_122_067.csv
+2022-11-13 10:11:39,812 Converting data/part274/in/kerala/2013/2013_122_068.pdf to img...
+2022-11-13 10:11:45,474 Parsing first and last page data..
+2022-11-13 10:11:47,319 Detecting and parsing data/part274/in/kerala/2013/2013_122_068.pdf boxes..
+2022-11-13 10:11:47,319 Processing page 3
+2022-11-13 10:12:27,527 Processing page 4
+2022-11-13 10:13:05,477 Processing page 5
+2022-11-13 10:13:38,267 Processing page 6
+2022-11-13 10:14:10,914 Processing page 7
+2022-11-13 10:14:46,880 Processing page 8
+2022-11-13 10:15:14,262 Processing page 9
+2022-11-13 10:15:51,279 Processing page 10
+2022-11-13 10:16:23,797 Processing page 11
+2022-11-13 10:16:54,604 Processing page 12
+2022-11-13 10:17:25,732 Processing page 13
+2022-11-13 10:17:58,509 Processing page 14
+2022-11-13 10:18:28,392 Processing page 15
+2022-11-13 10:19:07,673 Processing page 16
+2022-11-13 10:19:45,228 Processing page 17
+2022-11-13 10:20:21,196 Processing page 18
+2022-11-13 10:20:51,831 Processing page 19
+2022-11-13 10:21:23,160 Processing page 20
+2022-11-13 10:21:52,873 Processing page 21
+2022-11-13 10:22:23,418 Processing page 22
+2022-11-13 10:22:57,705 Processing page 23
+2022-11-13 10:23:29,873 Processing page 24
+2022-11-13 10:23:57,860 Processing page 25
+2022-11-13 10:24:27,620 Processing page 26
+2022-11-13 10:25:05,205 Processing page 27
+2022-11-13 10:25:38,347 Processing page 28
+2022-11-13 10:26:11,324 Processing page 29
+2022-11-13 10:26:48,363 Processing page 30
+2022-11-13 10:27:20,798 Processing page 31
+2022-11-13 10:27:54,643 Processing page 32
+2022-11-13 10:28:30,986 Processing page 33
+2022-11-13 10:29:07,928 Processing page 34
+2022-11-13 10:29:43,989 Processing page 35
+2022-11-13 10:30:19,395 Processing page 36
+2022-11-13 10:30:52,395 Processing page 37
+2022-11-13 10:31:25,462 Processing page 38
+2022-11-13 10:32:02,757 Processing page 39
+2022-11-13 10:32:36,325 Processing page 40
+2022-11-13 10:33:11,048 Processing page 41
+2022-11-13 10:33:16,703 Processing page 42
+2022-11-13 10:33:48,000 Processing page 43
+2022-11-13 10:33:49,540 Processing page 44
+2022-11-13 10:34:01,531 Processing page 45
+2022-11-13 10:34:24,182 Formatting and exporting data/part274/in/kerala/2013/2013_122_068.pdf data..
+2022-11-13 10:34:24,221 Converted to csv: data/part274/out/kerala/2013/2013_122_068.csv
+2022-11-13 10:34:24,321 Converting data/part274/in/kerala/2013/2013_122_069.pdf to img...
+2022-11-13 10:34:32,670 Parsing first and last page data..
+2022-11-13 10:34:35,661 Detecting and parsing data/part274/in/kerala/2013/2013_122_069.pdf boxes..
+2022-11-13 10:34:35,662 Processing page 3
+2022-11-13 10:35:06,201 Processing page 4
+2022-11-13 10:35:34,932 Processing page 5
+2022-11-13 10:36:04,806 Processing page 6
+2022-11-13 10:36:36,549 Processing page 7
+2022-11-13 10:37:07,875 Processing page 8
+2022-11-13 10:37:35,950 Processing page 9
+2022-11-13 10:37:46,775 Split uncaught adomralog cud JT CBH>YIS OrderedDict([('number', '202'), ('id', 'FWD2569754')])
+2022-11-13 10:38:10,825 Processing page 10
+2022-11-13 10:38:40,950 Processing page 11
+2022-11-13 10:39:12,269 Processing page 12
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 39-40: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught \u0d2a\u0d3f AUZOOA>OONG OrderedDict([('number', '271'), ('id', 'KL/17/116/315504'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d2b\u0d24\u0d4d\u0d24\u0d39\u0d41\u0d26\u0d40\u0d28\u0d4d\\u200d'), ('\u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d2e\u0d4d\u0d2a\u0d30\u0d4d', '13/190 (12/317)')])"
+Arguments: ()
+2022-11-13 10:39:45,998 Split uncaught \u0d2a\u0d3f AUZOOA>OONG OrderedDict([('number', '271'), ('id', 'KL/17/116/315504'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d2b\u0d24\u0d4d\u0d24\u0d39\u0d41\u0d26\u0d40\u0d28\u0d4d\u200d'), ('\u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d2e\u0d4d\u0d2a\u0d30\u0d4d', '13/190 (12/317)')])
+2022-11-13 10:39:45,999 Processing page 13
+2022-11-13 10:40:21,250 Processing page 14
+2022-11-13 10:40:53,385 Processing page 15
+2022-11-13 10:41:26,262 Processing page 16
+2022-11-13 10:42:01,410 Processing page 17
+2022-11-13 10:42:36,250 Processing page 18
+2022-11-13 10:43:04,744 Processing page 19
+2022-11-13 10:43:40,460 Processing page 20
+2022-11-13 10:44:19,917 Processing page 21
+2022-11-13 10:44:57,865 Processing page 22
+2022-11-13 10:45:33,208 Processing page 23
+2022-11-13 10:46:05,495 Processing page 24
+2022-11-13 10:46:38,846 Processing page 25
+2022-11-13 10:47:14,254 Processing page 26
+2022-11-13 10:47:47,612 Processing page 27
+2022-11-13 10:48:25,598 Processing page 28
+2022-11-13 10:48:59,341 Processing page 29
+2022-11-13 10:49:30,344 Processing page 30
+2022-11-13 10:50:10,952 Processing page 31
+2022-11-13 10:50:47,313 Processing page 32
+2022-11-13 10:51:24,591 Processing page 33
+2022-11-13 10:51:52,169 Processing page 34
+2022-11-13 10:52:27,510 Processing page 35
+2022-11-13 10:53:05,621 Processing page 36
+2022-11-13 10:53:43,867 Processing page 37
+2022-11-13 10:54:06,663 Processing page 38
+2022-11-13 10:54:31,905 Processing page 39
+2022-11-13 10:54:36,976 Processing page 40
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode character '\u201d' in position 63: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught ANgyense H>OHOACTOG alls\u201d OrderedDict([('number', 'E329'), ('id', 'KL/17/116/315129'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d15\u0d43\u0d37\u0d4d\u0d23\u0d28\u0d4d\\u200d\u0d15\u0d41\u0d1f\u0d4d\u0d1f\u0d3f\u0d2a\u0d4d\u0d2a\u0d3f\u0d33\u0d4d\u0d33'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d05\u0d1a\u0d4d\u0d2f\u0d41\u0d24\u0d28\u0d4d\\u200d\u0d2a\u0d3f\u0d33\u0d4d\u0d33'), ('\u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d2e\u0d4d\u0d2a\u0d30\u0d4d', '13/212 (12/292)')])"
+Arguments: ()
+2022-11-13 10:54:38,694 Split uncaught ANgyense H>OHOACTOG alls\u201d OrderedDict([('number', 'E329'), ('id', 'KL/17/116/315129'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d15\u0d43\u0d37\u0d4d\u0d23\u0d28\u0d4d\u200d\u0d15\u0d41\u0d1f\u0d4d\u0d1f\u0d3f\u0d2a\u0d4d\u0d2a\u0d3f\u0d33\u0d4d\u0d33'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d05\u0d1a\u0d4d\u0d2f\u0d41\u0d24\u0d28\u0d4d\u200d\u0d2a\u0d3f\u0d33\u0d4d\u0d33'), ('\u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d2e\u0d4d\u0d2a\u0d30\u0d4d', '13/212 (12/292)')])
+2022-11-13 10:54:51,061 Formatting and exporting data/part274/in/kerala/2013/2013_122_069.pdf data..
+2022-11-13 10:54:51,120 Converted to csv: data/part274/out/kerala/2013/2013_122_069.csv
+2022-11-13 10:54:51,265 Converting data/part274/in/kerala/2013/2013_122_070.pdf to img...
+2022-11-13 10:55:00,099 Parsing first and last page data..
+2022-11-13 10:55:02,163 Detecting and parsing data/part274/in/kerala/2013/2013_122_070.pdf boxes..
+2022-11-13 10:55:02,164 Processing page 3
+2022-11-13 10:55:27,149 Processing page 4
+2022-11-13 10:56:08,285 Processing page 5
+2022-11-13 10:56:44,949 Processing page 6
+2022-11-13 10:57:20,749 Processing page 7
+2022-11-13 10:57:56,665 Processing page 8
+2022-11-13 10:58:31,292 Processing page 9
+2022-11-13 10:59:06,149 Processing page 10
+2022-11-13 10:59:37,617 Processing page 11
+2022-11-13 11:00:12,032 Processing page 12
+2022-11-13 11:00:41,456 Processing page 13
+2022-11-13 11:01:12,587 Processing page 14
+2022-11-13 11:01:38,641 Processing page 15
+2022-11-13 11:02:13,994 Processing page 16
+2022-11-13 11:02:52,555 Processing page 17
+2022-11-13 11:03:29,661 Processing page 18
+2022-11-13 11:04:01,646 Processing page 19
+2022-11-13 11:04:35,758 Processing page 20
+2022-11-13 11:05:10,881 Processing page 21
+2022-11-13 11:05:41,898 Processing page 22
+2022-11-13 11:06:13,764 Processing page 23
+2022-11-13 11:06:48,409 Processing page 24
+2022-11-13 11:07:22,781 Processing page 25
+2022-11-13 11:07:50,250 Processing page 26
+2022-11-13 11:08:25,671 Processing page 27
+2022-11-13 11:09:00,992 Processing page 28
+2022-11-13 11:09:37,626 Processing page 29
+2022-11-13 11:10:09,186 Processing page 30
+2022-11-13 11:10:44,274 Processing page 31
+2022-11-13 11:11:08,932 Processing page 32
+2022-11-13 11:11:44,918 Processing page 33
+2022-11-13 11:12:19,268 Processing page 34
+2022-11-13 11:12:48,421 Processing page 35
+2022-11-13 11:13:21,967 Processing page 36
+2022-11-13 11:13:49,189 Processing page 37
+2022-11-13 11:14:24,784 Processing page 38
+2022-11-13 11:14:59,699 Processing page 39
+2022-11-13 11:15:31,411 Processing page 40
+2022-11-13 11:16:01,863 Processing page 41
+2022-11-13 11:16:32,824 Processing page 42
+2022-11-13 11:17:04,188 Processing page 43
+2022-11-13 11:17:25,379 Processing page 44
+2022-11-13 11:17:36,621 Processing page 45
+2022-11-13 11:17:38,094 Processing page 46
+2022-11-13 11:17:40,181 Processing page 47
+2022-11-13 11:17:54,716 Processing page 48
+2022-11-13 11:17:56,175 Formatting and exporting data/part274/in/kerala/2013/2013_122_070.pdf data..
+2022-11-13 11:17:56,243 Converted to csv: data/part274/out/kerala/2013/2013_122_070.csv
+2022-11-13 11:17:56,411 Converting data/part274/in/kerala/2013/2013_122_071.pdf to img...
+2022-11-13 11:18:03,259 Parsing first and last page data..
+2022-11-13 11:18:05,230 Detecting and parsing data/part274/in/kerala/2013/2013_122_071.pdf boxes..
+2022-11-13 11:18:05,230 Processing page 3
+2022-11-13 11:18:34,945 Processing page 4
+2022-11-13 11:19:08,683 Processing page 5
+2022-11-13 11:19:43,273 Processing page 6
+2022-11-13 11:20:08,113 Processing page 7
+2022-11-13 11:20:44,416 Processing page 8
+2022-11-13 11:21:12,049 Processing page 9
+2022-11-13 11:21:41,497 Processing page 10
+2022-11-13 11:22:12,970 Processing page 11
+2022-11-13 11:22:41,126 Processing page 12
+2022-11-13 11:23:14,600 Processing page 13
+2022-11-13 11:23:47,231 Processing page 14
+2022-11-13 11:24:23,650 Processing page 15
+2022-11-13 11:24:54,154 Processing page 16
+2022-11-13 11:25:28,617 Processing page 17
+2022-11-13 11:25:56,370 Processing page 18
+2022-11-13 11:26:23,815 Processing page 19
+2022-11-13 11:26:52,502 Processing page 20
+2022-11-13 11:27:21,593 Processing page 21
+2022-11-13 11:27:51,346 Processing page 22
+2022-11-13 11:28:23,935 Processing page 23
+2022-11-13 11:29:00,776 Processing page 24
+2022-11-13 11:29:36,241 Processing page 25
+2022-11-13 11:30:05,321 Processing page 26
+2022-11-13 11:30:37,125 Processing page 27
+2022-11-13 11:31:10,195 Processing page 28
+2022-11-13 11:31:43,051 Processing page 29
+2022-11-13 11:32:12,513 Processing page 30
+2022-11-13 11:32:53,399 Processing page 31
+2022-11-13 11:33:27,235 Processing page 32
+2022-11-13 11:33:56,893 Processing page 33
+2022-11-13 11:34:26,227 Processing page 34
+2022-11-13 11:35:01,549 Processing page 35
+2022-11-13 11:35:40,132 Processing page 36
+2022-11-13 11:36:16,426 Processing page 37
+2022-11-13 11:36:53,439 Processing page 38
+2022-11-13 11:37:30,605 Processing page 39
+2022-11-13 11:38:06,439 Processing page 40
+2022-11-13 11:38:42,061 Processing page 41
+2022-11-13 11:39:11,660 Processing page 42
+2022-11-13 11:39:34,635 Processing page 43
+2022-11-13 11:39:38,963 Processing page 44
+2022-11-13 11:39:44,918 Formatting and exporting data/part274/in/kerala/2013/2013_122_071.pdf data..
+2022-11-13 11:39:44,964 Converted to csv: data/part274/out/kerala/2013/2013_122_071.csv
+2022-11-13 11:39:45,104 Converting data/part274/in/kerala/2013/2013_122_072.pdf to img...
+2022-11-13 11:39:52,934 Parsing first and last page data..
+2022-11-13 11:39:55,059 Detecting and parsing data/part274/in/kerala/2013/2013_122_072.pdf boxes..
+2022-11-13 11:39:55,059 Processing page 3
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 126-129: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught aligynaué 10/. Rr ist=t3)) OrderedDict([('number', '1'), ('id', 'KL/17/116/309134'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d15\u0d2e\u0d32\u0d3e\u0d15\u0d4d\u0d37\u0d3f\u0d2f\u0d2e\u0d4d\u0d2e')])"
+Arguments: ()
+2022-11-13 11:40:26,367 Split uncaught aligynaué 10/. Rr ist=t3)) OrderedDict([('number', '1'), ('id', 'KL/17/116/309134'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d15\u0d2e\u0d32\u0d3e\u0d15\u0d4d\u0d37\u0d3f\u0d2f\u0d2e\u0d4d\u0d2e')])
+2022-11-13 11:40:26,371 Processing page 4
+2022-11-13 11:41:00,016 Processing page 5
+2022-11-13 11:41:33,980 Processing page 6
+2022-11-13 11:42:09,312 Processing page 7
+2022-11-13 11:42:41,361 Processing page 8
+2022-11-13 11:43:14,575 Processing page 9
+2022-11-13 11:43:45,961 Processing page 10
+2022-11-13 11:44:18,115 Processing page 11
+2022-11-13 11:44:52,956 Processing page 12
+2022-11-13 11:45:28,917 Processing page 13
+2022-11-13 11:46:01,616 Processing page 14
+2022-11-13 11:46:37,257 Processing page 15
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 136-139: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught allgysnic BAOAIA AQ Ao Odd.ng) a>. OrderedDict([('number', '381'), ('id', 'KL/17/116/306290'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d38\u0d41\u0d2c\u0d48\u0d26\u0d3e\u0d2c\u0d40\u0d35\u0d3f'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d05\u0d2c\u0d4d\u0d26\u0d41\u0d32\u0d4d\\u200d\u0d16\u0d3e\u0d26\u0d30\u0d4d\\u200d')])"
+Arguments: ()
+2022-11-13 11:46:48,485 Split uncaught allgysnic BAOAIA AQ Ao Odd.ng) a>. OrderedDict([('number', '381'), ('id', 'KL/17/116/306290'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d38\u0d41\u0d2c\u0d48\u0d26\u0d3e\u0d2c\u0d40\u0d35\u0d3f'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d05\u0d2c\u0d4d\u0d26\u0d41\u0d32\u0d4d\u200d\u0d16\u0d3e\u0d26\u0d30\u0d4d\u200d')])
+2022-11-13 11:47:11,742 Processing page 16
+2022-11-13 11:47:30,366 Processing page 17
+2022-11-13 11:47:59,718 Processing page 18
+2022-11-13 11:48:31,324 Processing page 19
+2022-11-13 11:49:04,534 Processing page 20
+2022-11-13 11:49:39,485 Processing page 21
+2022-11-13 11:50:12,376 Processing page 22
+2022-11-13 11:50:46,220 Processing page 23
+2022-11-13 11:51:23,091 Processing page 24
+2022-11-13 11:51:29,849 Split uncaught Bole aurenilo> enllall OrderedDict([('number', '643'), ('id', 'FWD3206570')])
+2022-11-13 11:52:01,184 Processing page 25
+2022-11-13 11:52:33,822 Processing page 26
+2022-11-13 11:53:07,309 Processing page 27
+2022-11-13 11:53:43,179 Processing page 28
+2022-11-13 11:54:18,733 Processing page 29
+2022-11-13 11:54:54,809 Processing page 30
+2022-11-13 11:55:30,034 Processing page 31
+2022-11-13 11:56:08,751 Processing page 32
+2022-11-13 11:56:42,860 Processing page 33
+2022-11-13 11:57:14,338 Processing page 34
+2022-11-13 11:57:48,848 Processing page 35
+2022-11-13 11:58:24,760 Processing page 36
+2022-11-13 11:59:01,268 Processing page 37
+2022-11-13 11:59:37,398 Processing page 38
+2022-11-13 12:00:05,584 Processing page 39
+2022-11-13 12:00:10,190 Processing page 40
+2022-11-13 12:00:28,645 Processing page 41
+2022-11-13 12:00:30,028 Processing page 42
+2022-11-13 12:00:36,490 Processing page 43
+2022-11-13 12:00:37,888 Processing page 44
+2022-11-13 12:00:50,779 Formatting and exporting data/part274/in/kerala/2013/2013_122_072.pdf data..
+2022-11-13 12:00:50,838 Converted to csv: data/part274/out/kerala/2013/2013_122_072.csv
+2022-11-13 12:00:50,962 Converting data/part274/in/kerala/2013/2013_122_073.pdf to img...
+2022-11-13 12:01:00,806 Parsing first and last page data..
+2022-11-13 12:01:03,732 Detecting and parsing data/part274/in/kerala/2013/2013_122_073.pdf boxes..
+2022-11-13 12:01:03,732 Processing page 3
+2022-11-13 12:01:39,032 Processing page 4
+2022-11-13 12:02:13,973 Processing page 5
+2022-11-13 12:02:50,457 Processing page 6
+2022-11-13 12:03:25,186 Processing page 7
+2022-11-13 12:03:56,750 Processing page 8
+2022-11-13 12:04:31,530 Processing page 9
+2022-11-13 12:05:04,714 Processing page 10
+2022-11-13 12:05:36,585 Processing page 11
+2022-11-13 12:06:07,785 Processing page 12
+2022-11-13 12:06:40,045 Processing page 13
+2022-11-13 12:07:14,169 Processing page 14
+2022-11-13 12:07:49,225 Processing page 15
+2022-11-13 12:08:26,124 Processing page 16
+2022-11-13 12:09:00,646 Processing page 17
+2022-11-13 12:09:38,108 Processing page 18
+2022-11-13 12:10:14,556 Processing page 19
+2022-11-13 12:10:49,155 Processing page 20
+2022-11-13 12:11:23,792 Processing page 21
+2022-11-13 12:11:57,561 Processing page 22
+2022-11-13 12:12:31,487 Processing page 23
+2022-11-13 12:13:04,848 Processing page 24
+2022-11-13 12:13:39,701 Processing page 25
+2022-11-13 12:14:10,432 Processing page 26
+2022-11-13 12:14:44,616 Processing page 27
+2022-11-13 12:15:19,021 Processing page 28
+2022-11-13 12:15:52,153 Processing page 29
+2022-11-13 12:16:27,698 Processing page 30
+2022-11-13 12:16:31,537 Processing page 31
+2022-11-13 12:17:08,136 Processing page 32
+2022-11-13 12:17:41,976 Processing page 33
+2022-11-13 12:18:16,265 Processing page 34
+2022-11-13 12:18:50,073 Processing page 35
+2022-11-13 12:19:25,085 Processing page 36
+2022-11-13 12:19:59,224 Processing page 37
+2022-11-13 12:20:35,689 Processing page 38
+2022-11-13 12:21:12,196 Processing page 39
+2022-11-13 12:21:48,737 Processing page 40
+2022-11-13 12:22:18,961 Processing page 41
+2022-11-13 12:22:49,403 Processing page 42
+2022-11-13 12:23:25,376 Processing page 43
+2022-11-13 12:24:00,075 Processing page 44
+2022-11-13 12:24:16,339 Processing page 45
+2022-11-13 12:24:33,570 Processing page 46
+2022-11-13 12:24:52,993 Processing page 47
+2022-11-13 12:24:54,582 Processing page 48
+2022-11-13 12:24:59,586 Processing page 49
+2022-11-13 12:25:11,298 Processing page 50
+2022-11-13 12:25:21,164 Formatting and exporting data/part274/in/kerala/2013/2013_122_073.pdf data..
+2022-11-13 12:25:21,231 Converted to csv: data/part274/out/kerala/2013/2013_122_073.csv
+2022-11-13 12:25:21,395 Converting data/part274/in/kerala/2013/2013_122_074.pdf to img...
+2022-11-13 12:25:30,387 Parsing first and last page data..
+2022-11-13 12:25:32,933 Detecting and parsing data/part274/in/kerala/2013/2013_122_074.pdf boxes..
+2022-11-13 12:25:32,934 Processing page 3
+2022-11-13 12:26:04,652 Processing page 4
+2022-11-13 12:26:37,588 Processing page 5
+2022-11-13 12:27:11,940 Processing page 6
+2022-11-13 12:27:44,306 Processing page 7
+2022-11-13 12:28:18,552 Processing page 8
+2022-11-13 12:28:54,131 Processing page 9
+2022-11-13 12:29:29,150 Processing page 10
+2022-11-13 12:30:04,051 Processing page 11
+2022-11-13 12:30:36,580 Processing page 12
+2022-11-13 12:31:00,164 Processing page 13
+2022-11-13 12:31:32,129 Processing page 14
+2022-11-13 12:32:02,730 Processing page 15
+2022-11-13 12:32:37,594 Processing page 16
+2022-11-13 12:33:13,561 Processing page 17
+2022-11-13 12:33:49,946 Processing page 18
+2022-11-13 12:34:26,116 Processing page 19
+2022-11-13 12:35:02,921 Processing page 20
+2022-11-13 12:35:39,341 Processing page 21
+2022-11-13 12:36:14,269 Processing page 22
+2022-11-13 12:36:51,384 Processing page 23
+2022-11-13 12:37:27,786 Processing page 24
+2022-11-13 12:38:02,449 Processing page 25
+2022-11-13 12:38:29,225 Processing page 26
+2022-11-13 12:39:02,159 Processing page 27
+2022-11-13 12:39:37,731 Processing page 28
+2022-11-13 12:40:12,787 Processing page 29
+2022-11-13 12:40:47,785 Processing page 30
+2022-11-13 12:41:24,418 Processing page 31
+2022-11-13 12:42:00,956 Processing page 32
+2022-11-13 12:42:37,819 Processing page 33
+2022-11-13 12:43:15,096 Processing page 34
+2022-11-13 12:43:51,702 Processing page 35
+2022-11-13 12:44:29,864 Processing page 36
+2022-11-13 12:45:07,437 Processing page 37
+2022-11-13 12:45:36,813 Processing page 38
+2022-11-13 12:46:08,663 Processing page 39
+2022-11-13 12:46:43,707 Processing page 40
+2022-11-13 12:47:14,766 Processing page 41
+2022-11-13 12:47:49,553 Processing page 42
+2022-11-13 12:48:24,090 Processing page 43
+2022-11-13 12:48:26,895 Processing page 44
+2022-11-13 12:48:56,610 Processing page 45
+2022-11-13 12:48:56,908 Processing page 46
+2022-11-13 12:49:08,200 Formatting and exporting data/part274/in/kerala/2013/2013_122_074.pdf data..
+2022-11-13 12:49:08,268 Converted to csv: data/part274/out/kerala/2013/2013_122_074.csv
+2022-11-13 12:49:08,363 Converting data/part274/in/kerala/2013/2013_122_075.pdf to img...
+2022-11-13 12:49:18,503 Parsing first and last page data..
+2022-11-13 12:49:21,790 Detecting and parsing data/part274/in/kerala/2013/2013_122_075.pdf boxes..
+2022-11-13 12:49:21,790 Processing page 3
+2022-11-13 12:49:56,985 Processing page 4
+2022-11-13 12:50:33,444 Processing page 5
+2022-11-13 12:51:08,118 Processing page 6
+2022-11-13 12:51:44,881 Processing page 7
+2022-11-13 12:52:22,515 Processing page 8
+2022-11-13 12:52:57,881 Processing page 9
+2022-11-13 12:53:22,226 Processing page 10
+2022-11-13 12:53:46,747 Processing page 11
+2022-11-13 12:54:23,502 Processing page 12
+2022-11-13 12:54:59,021 Processing page 13
+2022-11-13 12:55:36,723 Processing page 14
+2022-11-13 12:56:13,570 Processing page 15
+2022-11-13 12:56:49,996 Processing page 16
+2022-11-13 12:57:25,113 Processing page 17
+2022-11-13 12:58:02,550 Processing page 18
+2022-11-13 12:58:38,048 Processing page 19
+2022-11-13 12:59:05,532 Processing page 20
+2022-11-13 12:59:39,927 Processing page 21
+2022-11-13 13:00:11,066 Processing page 22
+2022-11-13 13:00:50,607 Processing page 23
+2022-11-13 13:01:20,567 Processing page 24
+2022-11-13 13:01:55,717 Processing page 25
+2022-11-13 13:02:36,785 Processing page 26
+2022-11-13 13:03:13,812 Processing page 27
+2022-11-13 13:03:51,374 Processing page 28
+2022-11-13 13:04:24,650 Processing page 29
+2022-11-13 13:05:03,353 Processing page 30
+2022-11-13 13:05:42,278 Processing page 31
+2022-11-13 13:06:20,351 Processing page 32
+2022-11-13 13:06:56,882 Processing page 33
+2022-11-13 13:07:33,972 Processing page 34
+2022-11-13 13:08:10,251 Processing page 35
+2022-11-13 13:08:44,143 Processing page 36
+2022-11-13 13:09:15,790 Processing page 37
+2022-11-13 13:09:50,842 Processing page 38
+2022-11-13 13:10:31,167 Processing page 39
+2022-11-13 13:11:10,782 Processing page 40
+2022-11-13 13:11:49,674 Processing page 41
+2022-11-13 13:12:29,119 Processing page 42
+2022-11-13 13:13:07,282 Processing page 43
+2022-11-13 13:13:27,265 Processing page 44
+2022-11-13 13:13:44,858 Processing page 45
+2022-11-13 13:13:58,373 Processing page 46
+2022-11-13 13:14:00,911 Processing page 47
+2022-11-13 13:14:02,443 Processing page 48
+2022-11-13 13:14:03,914 Processing page 49
+2022-11-13 13:14:20,026 Formatting and exporting data/part274/in/kerala/2013/2013_122_075.pdf data..
+2022-11-13 13:14:20,100 Converted to csv: data/part274/out/kerala/2013/2013_122_075.csv
+2022-11-13 13:14:20,213 Converting data/part274/in/kerala/2013/2013_122_076.pdf to img...
+2022-11-13 13:14:32,347 Parsing first and last page data..
+2022-11-13 13:14:35,744 Detecting and parsing data/part274/in/kerala/2013/2013_122_076.pdf boxes..
+2022-11-13 13:14:35,745 Processing page 3
+2022-11-13 13:15:11,386 Processing page 4
+2022-11-13 13:15:45,289 Processing page 5
+2022-11-13 13:16:11,816 Processing page 6
+2022-11-13 13:16:35,786 Processing page 7
+2022-11-13 13:17:07,740 Processing page 8
+2022-11-13 13:17:42,934 Processing page 9
+2022-11-13 13:18:19,433 Processing page 10
+2022-11-13 13:18:56,886 Processing page 11
+2022-11-13 13:19:35,501 Processing page 12
+2022-11-13 13:20:11,572 Processing page 13
+2022-11-13 13:20:49,549 Processing page 14
+2022-11-13 13:21:25,388 Processing page 15
+2022-11-13 13:22:01,729 Processing page 16
+2022-11-13 13:22:34,905 Processing page 17
+2022-11-13 13:23:10,827 Processing page 18
+2022-11-13 13:23:44,303 Processing page 19
+2022-11-13 13:24:11,447 Processing page 20
+2022-11-13 13:24:41,731 Processing page 21
+2022-11-13 13:25:20,253 Processing page 22
+2022-11-13 13:25:59,582 Processing page 23
+2022-11-13 13:26:36,077 Processing page 24
+2022-11-13 13:27:13,397 Processing page 25
+2022-11-13 13:27:50,792 Processing page 26
+2022-11-13 13:28:28,114 Processing page 27
+2022-11-13 13:29:04,293 Processing page 28
+2022-11-13 13:29:41,933 Processing page 29
+2022-11-13 13:30:19,176 Processing page 30
+2022-11-13 13:30:56,440 Processing page 31
+2022-11-13 13:31:17,313 Processing page 32
+2022-11-13 13:31:54,467 Processing page 33
+2022-11-13 13:32:25,323 Processing page 34
+2022-11-13 13:32:49,215 Processing page 35
+2022-11-13 13:33:30,040 Processing page 36
+2022-11-13 13:34:06,796 Processing page 37
+2022-11-13 13:34:43,200 Processing page 38
+2022-11-13 13:35:15,003 Processing page 39
+2022-11-13 13:35:51,871 Processing page 40
+2022-11-13 13:36:25,487 Processing page 41
+2022-11-13 13:36:56,767 Processing page 42
+2022-11-13 13:37:33,433 Processing page 43
+2022-11-13 13:38:12,339 Processing page 44
+2022-11-13 13:38:45,198 Processing page 45
+2022-11-13 13:39:18,049 Processing page 46
+2022-11-13 13:39:43,203 Processing page 47
+2022-11-13 13:40:20,385 Processing page 48
+2022-11-13 13:40:54,556 Processing page 49
+2022-11-13 13:41:32,973 Processing page 50
+2022-11-13 13:42:06,896 Processing page 51
+2022-11-13 13:42:42,896 Processing page 52
+2022-11-13 13:43:07,902 Processing page 53
+2022-11-13 13:43:20,543 Processing page 54
+2022-11-13 13:43:34,755 Processing page 55
+2022-11-13 13:43:36,487 Processing page 56
+2022-11-13 13:43:37,556 Processing page 57
+2022-11-13 13:43:54,337 Processing page 58
+2022-11-13 13:44:13,895 Formatting and exporting data/part274/in/kerala/2013/2013_122_076.pdf data..
+2022-11-13 13:44:13,937 Converted to csv: data/part274/out/kerala/2013/2013_122_076.csv
+2022-11-13 13:44:14,037 Converting data/part274/in/kerala/2013/2013_122_077.pdf to img...
+2022-11-13 13:44:18,306 Parsing first and last page data..
+2022-11-13 13:44:20,542 Detecting and parsing data/part274/in/kerala/2013/2013_122_077.pdf boxes..
+2022-11-13 13:44:20,542 Processing page 3
+2022-11-13 13:44:48,157 Processing page 4
+2022-11-13 13:45:16,872 Processing page 5
+2022-11-13 13:45:43,234 Processing page 6
+2022-11-13 13:46:08,969 Processing page 7
+2022-11-13 13:46:45,880 Processing page 8
+2022-11-13 13:47:21,123 Processing page 9
+2022-11-13 13:47:48,853 Processing page 10
+2022-11-13 13:48:25,328 Processing page 11
+2022-11-13 13:48:54,665 Processing page 12
+2022-11-13 13:49:30,287 Processing page 13
+2022-11-13 13:50:07,490 Processing page 14
+2022-11-13 13:50:41,428 Processing page 15
+2022-11-13 13:51:14,566 Processing page 16
+2022-11-13 13:51:43,470 Processing page 17
+2022-11-13 13:52:08,275 Processing page 18
+2022-11-13 13:52:38,614 Processing page 19
+2022-11-13 13:53:16,613 Processing page 20
+2022-11-13 13:53:54,701 Processing page 21
+2022-11-13 13:54:32,318 Processing page 22
+2022-11-13 13:55:10,044 Processing page 23
+2022-11-13 13:55:47,748 Processing page 24
+2022-11-13 13:56:26,225 Processing page 25
+2022-11-13 13:57:03,651 Processing page 26
+2022-11-13 13:57:40,779 Processing page 27
+2022-11-13 13:58:17,890 Processing page 28
+2022-11-13 13:58:54,611 Processing page 29
+2022-11-13 13:59:32,364 Processing page 30
+2022-11-13 14:00:07,775 Processing page 31
+2022-11-13 14:00:09,232 Processing page 32
+2022-11-13 14:00:23,243 Processing page 33
+2022-11-13 14:00:26,336 Processing page 34
+2022-11-13 14:00:42,041 Formatting and exporting data/part274/in/kerala/2013/2013_122_077.pdf data..
+2022-11-13 14:00:42,097 Converted to csv: data/part274/out/kerala/2013/2013_122_077.csv
+2022-11-13 14:00:42,242 Converting data/part274/in/kerala/2013/2013_122_078.pdf to img...
+2022-11-13 14:00:50,015 Parsing first and last page data..
+2022-11-13 14:00:53,380 Detecting and parsing data/part274/in/kerala/2013/2013_122_078.pdf boxes..
+2022-11-13 14:00:53,380 Processing page 3
+2022-11-13 14:01:31,870 Processing page 4
+2022-11-13 14:02:08,121 Processing page 5
+2022-11-13 14:02:43,463 Processing page 6
+2022-11-13 14:03:19,792 Processing page 7
+2022-11-13 14:03:55,898 Processing page 8
+2022-11-13 14:04:31,619 Processing page 9
+2022-11-13 14:05:07,831 Processing page 10
+2022-11-13 14:05:45,064 Processing page 11
+2022-11-13 14:06:22,977 Processing page 12
+2022-11-13 14:06:59,609 Processing page 13
+2022-11-13 14:07:35,700 Processing page 14
+2022-11-13 14:08:03,554 Processing page 15
+2022-11-13 14:08:42,881 Processing page 16
+2022-11-13 14:09:22,034 Processing page 17
+2022-11-13 14:10:00,198 Processing page 18
+2022-11-13 14:10:37,381 Processing page 19
+2022-11-13 14:11:14,214 Processing page 20
+2022-11-13 14:11:52,269 Processing page 21
+2022-11-13 14:12:31,690 Processing page 22
+2022-11-13 14:13:09,015 Processing page 23
+2022-11-13 14:13:47,598 Processing page 24
+2022-11-13 14:14:26,358 Processing page 25
+2022-11-13 14:15:04,045 Processing page 26
+2022-11-13 14:15:37,567 Processing page 27
+2022-11-13 14:16:02,428 Processing page 28
+2022-11-13 14:16:18,175 Processing page 29
+2022-11-13 14:16:20,203 Processing page 30
+2022-11-13 14:16:50,547 Processing page 31
+2022-11-13 14:16:52,308 Processing page 32
+2022-11-13 14:17:10,262 Formatting and exporting data/part274/in/kerala/2013/2013_122_078.pdf data..
+2022-11-13 14:17:10,317 Converted to csv: data/part274/out/kerala/2013/2013_122_078.csv
+2022-11-13 14:17:10,441 Converting data/part274/in/kerala/2013/2013_122_079.pdf to img...
+2022-11-13 14:17:17,741 Parsing first and last page data..
+2022-11-13 14:17:21,569 Detecting and parsing data/part274/in/kerala/2013/2013_122_079.pdf boxes..
+2022-11-13 14:17:21,569 Processing page 3
+2022-11-13 14:17:56,470 Processing page 4
+2022-11-13 14:18:32,563 Processing page 5
+2022-11-13 14:19:08,466 Processing page 6
+2022-11-13 14:19:44,817 Processing page 7
+2022-11-13 14:20:20,540 Processing page 8
+2022-11-13 14:20:58,359 Processing page 9
+2022-11-13 14:21:35,438 Processing page 10
+2022-11-13 14:22:10,192 Processing page 11
+2022-11-13 14:22:45,762 Processing page 12
+2022-11-13 14:23:19,935 Processing page 13
+2022-11-13 14:23:50,802 Processing page 14
+2022-11-13 14:24:14,646 Processing page 15
+2022-11-13 14:24:48,033 Processing page 16
+2022-11-13 14:25:25,170 Processing page 17
+2022-11-13 14:26:01,668 Processing page 18
+2022-11-13 14:26:35,913 Processing page 19
+2022-11-13 14:27:06,857 Processing page 20
+2022-11-13 14:27:38,469 Processing page 21
+2022-11-13 14:28:09,246 Processing page 22
+2022-11-13 14:28:38,288 Processing page 23
+2022-11-13 14:29:11,352 Processing page 24
+2022-11-13 14:29:41,041 Processing page 25
+2022-11-13 14:30:14,784 Processing page 26
+2022-11-13 14:30:41,771 Processing page 27
+2022-11-13 14:30:49,698 Processing page 28
+2022-11-13 14:30:58,833 Processing page 29
+2022-11-13 14:31:02,858 Processing page 30
+2022-11-13 14:31:10,716 Formatting and exporting data/part274/in/kerala/2013/2013_122_079.pdf data..
+2022-11-13 14:31:10,758 Converted to csv: data/part274/out/kerala/2013/2013_122_079.csv
+2022-11-13 14:31:10,834 Converting data/part274/in/kerala/2013/2013_122_080.pdf to img...
+2022-11-13 14:31:15,332 Parsing first and last page data..
+2022-11-13 14:31:17,967 Detecting and parsing data/part274/in/kerala/2013/2013_122_080.pdf boxes..
+2022-11-13 14:31:17,967 Processing page 3
+2022-11-13 14:31:51,518 Processing page 4
+2022-11-13 14:32:18,451 Processing page 5
+2022-11-13 14:32:55,585 Processing page 6
+2022-11-13 14:33:32,512 Processing page 7
+2022-11-13 14:34:08,752 Processing page 8
+2022-11-13 14:34:43,939 Processing page 9
+2022-11-13 14:35:14,259 Processing page 10
+2022-11-13 14:35:49,113 Processing page 11
+2022-11-13 14:36:21,636 Processing page 12
+2022-11-13 14:36:45,954 Processing page 13
+2022-11-13 14:37:15,166 Processing page 14
+2022-11-13 14:37:48,546 Processing page 15
+2022-11-13 14:38:23,287 Processing page 16
+2022-11-13 14:38:56,493 Processing page 17
+2022-11-13 14:39:24,730 Processing page 18
+2022-11-13 14:39:53,701 Processing page 19
+2022-11-13 14:40:24,026 Processing page 20
+2022-11-13 14:40:58,477 Processing page 21
+2022-11-13 14:41:32,056 Processing page 22
+2022-11-13 14:42:09,164 Processing page 23
+2022-11-13 14:42:43,304 Processing page 24
+2022-11-13 14:43:13,961 Processing page 25
+2022-11-13 14:43:56,172 Processing page 26
+2022-11-13 14:44:35,722 Processing page 27
+2022-11-13 14:44:38,428 Processing page 28
+2022-11-13 14:45:07,739 Processing page 29
+2022-11-13 14:45:10,335 Processing page 30
+2022-11-13 14:45:31,350 Formatting and exporting data/part274/in/kerala/2013/2013_122_080.pdf data..
+2022-11-13 14:45:31,397 Converted to csv: data/part274/out/kerala/2013/2013_122_080.csv
+2022-11-13 14:45:31,497 Converting data/part274/in/kerala/2013/2013_122_081.pdf to img...
+2022-11-13 14:45:38,259 Parsing first and last page data..
+2022-11-13 14:45:41,645 Detecting and parsing data/part274/in/kerala/2013/2013_122_081.pdf boxes..
+2022-11-13 14:45:41,645 Processing page 3
+2022-11-13 14:46:17,126 Processing page 4
+2022-11-13 14:46:52,435 Processing page 5
+2022-11-13 14:47:28,014 Processing page 6
+2022-11-13 14:48:03,925 Processing page 7
+2022-11-13 14:48:39,656 Processing page 8
+2022-11-13 14:49:15,594 Processing page 9
+2022-11-13 14:49:50,507 Processing page 10
+2022-11-13 14:50:25,471 Processing page 11
+2022-11-13 14:50:58,880 Processing page 12
+2022-11-13 14:51:39,267 Processing page 13
+2022-11-13 14:52:16,986 Processing page 14
+2022-11-13 14:52:54,176 Processing page 15
+2022-11-13 14:53:30,900 Processing page 16
+2022-11-13 14:54:07,847 Processing page 17
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 39-43: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught \u0d2a\u0d47\u0d30\u0d4d\u200c =) OrderedDict([('number', '437'), ('id', 'KL/17/116/276366')])"
+Arguments: ()
+2022-11-13 14:54:25,266 Split uncaught \u0d2a\u0d47\u0d30\u0d4d\u200c =) OrderedDict([('number', '437'), ('id', 'KL/17/116/276366')])
+2022-11-13 14:54:44,676 Processing page 18
+2022-11-13 14:55:21,382 Processing page 19
+2022-11-13 14:55:59,330 Processing page 20
+2022-11-13 14:56:37,076 Processing page 21
+2022-11-13 14:57:14,425 Processing page 22
+2022-11-13 14:57:51,063 Processing page 23
+2022-11-13 14:58:26,982 Processing page 24
+2022-11-13 14:58:54,874 Processing page 25
+2022-11-13 14:59:33,172 Processing page 26
+2022-11-13 15:00:10,867 Processing page 27
+2022-11-13 15:00:48,213 Processing page 28
+2022-11-13 15:01:26,634 Processing page 29
+2022-11-13 15:02:01,963 Processing page 30
+2022-11-13 15:02:23,025 Processing page 31
+2022-11-13 15:02:23,311 Processing page 32
+2022-11-13 15:02:48,585 Formatting and exporting data/part274/in/kerala/2013/2013_122_081.pdf data..
+2022-11-13 15:02:48,640 Converted to csv: data/part274/out/kerala/2013/2013_122_081.csv
+2022-11-13 15:02:48,738 Converting data/part274/in/kerala/2013/2013_122_082.pdf to img...
+2022-11-13 15:02:55,724 Parsing first and last page data..
+2022-11-13 15:02:58,696 Detecting and parsing data/part274/in/kerala/2013/2013_122_082.pdf boxes..
+2022-11-13 15:02:58,696 Processing page 3
+2022-11-13 15:03:34,749 Processing page 4
+2022-11-13 15:04:09,747 Processing page 5
+2022-11-13 15:04:45,426 Processing page 6
+2022-11-13 15:05:22,468 Processing page 7
+2022-11-13 15:05:57,982 Processing page 8
+2022-11-13 15:06:33,873 Processing page 9
+2022-11-13 15:07:03,066 Processing page 10
+2022-11-13 15:07:41,131 Processing page 11
+2022-11-13 15:08:15,777 Processing page 12
+2022-11-13 15:08:51,166 Processing page 13
+2022-11-13 15:09:26,733 Processing page 14
+2022-11-13 15:10:03,124 Processing page 15
+2022-11-13 15:10:39,108 Processing page 16
+2022-11-13 15:11:14,644 Processing page 17
+2022-11-13 15:11:50,517 Processing page 18
+2022-11-13 15:12:25,907 Processing page 19
+2022-11-13 15:13:01,976 Processing page 20
+2022-11-13 15:13:37,640 Processing page 21
+2022-11-13 15:14:15,473 Processing page 22
+2022-11-13 15:14:52,005 Processing page 23
+2022-11-13 15:15:20,595 Processing page 24
+2022-11-13 15:16:00,545 Processing page 25
+2022-11-13 15:16:35,839 Processing page 26
+2022-11-13 15:17:13,163 Processing page 27
+2022-11-13 15:17:49,940 Processing page 28
+2022-11-13 15:18:26,738 Processing page 29
+2022-11-13 15:19:03,948 Processing page 30
+2022-11-13 15:19:24,193 Processing page 31
+2022-11-13 15:19:25,830 Processing page 32
+2022-11-13 15:19:51,213 Processing page 33
+2022-11-13 15:19:53,796 Processing page 34
+2022-11-13 15:20:10,966 Formatting and exporting data/part274/in/kerala/2013/2013_122_082.pdf data..
+2022-11-13 15:20:11,014 Converted to csv: data/part274/out/kerala/2013/2013_122_082.csv
+2022-11-13 15:20:11,129 Converting data/part274/in/kerala/2013/2013_122_083.pdf to img...
+2022-11-13 15:20:17,078 Parsing first and last page data..
+2022-11-13 15:20:20,496 Detecting and parsing data/part274/in/kerala/2013/2013_122_083.pdf boxes..
+2022-11-13 15:20:20,496 Processing page 3
+2022-11-13 15:20:56,542 Processing page 4
+2022-11-13 15:21:32,691 Processing page 5
+2022-11-13 15:22:07,915 Processing page 6
+2022-11-13 15:22:44,065 Processing page 7
+2022-11-13 15:23:14,823 Processing page 8
+2022-11-13 15:23:45,553 Processing page 9
+2022-11-13 15:24:23,565 Processing page 10
+2022-11-13 15:24:58,839 Processing page 11
+2022-11-13 15:25:34,967 Processing page 12
+2022-11-13 15:26:10,194 Processing page 13
+2022-11-13 15:26:45,667 Processing page 14
+2022-11-13 15:27:20,132 Processing page 15
+2022-11-13 15:27:57,164 Processing page 16
+2022-11-13 15:28:34,216 Processing page 17
+2022-11-13 15:29:10,723 Processing page 18
+2022-11-13 15:29:47,633 Processing page 19
+2022-11-13 15:30:24,451 Processing page 20
+2022-11-13 15:31:00,452 Processing page 21
+2022-11-13 15:31:30,920 Processing page 22
+2022-11-13 15:31:59,484 Processing page 23
+2022-11-13 15:32:38,570 Processing page 24
+2022-11-13 15:33:14,726 Processing page 25
+2022-11-13 15:33:51,954 Processing page 26
+2022-11-13 15:34:29,340 Processing page 27
+2022-11-13 15:35:06,530 Processing page 28
+2022-11-13 15:35:14,694 Processing page 29
+2022-11-13 15:35:30,910 Processing page 30
+2022-11-13 15:35:34,805 Processing page 31
+2022-11-13 15:35:48,699 Formatting and exporting data/part274/in/kerala/2013/2013_122_083.pdf data..
+2022-11-13 15:35:48,750 Converted to csv: data/part274/out/kerala/2013/2013_122_083.csv
+2022-11-13 15:35:48,844 Converting data/part274/in/kerala/2013/2013_122_084.pdf to img...
+2022-11-13 15:35:56,462 Parsing first and last page data..
+2022-11-13 15:35:59,488 Detecting and parsing data/part274/in/kerala/2013/2013_122_084.pdf boxes..
+2022-11-13 15:35:59,489 Processing page 3
+2022-11-13 15:36:35,205 Processing page 4
+2022-11-13 15:37:10,384 Processing page 5
+2022-11-13 15:37:47,310 Processing page 6
+2022-11-13 15:38:23,200 Processing page 7
+2022-11-13 15:38:58,868 Processing page 8
+2022-11-13 15:39:29,912 Processing page 9
+2022-11-13 15:39:58,693 Processing page 10
+2022-11-13 15:40:36,720 Processing page 11
+2022-11-13 15:41:12,840 Processing page 12
+2022-11-13 15:41:47,997 Processing page 13
+2022-11-13 15:42:24,292 Processing page 14
+2022-11-13 15:43:00,623 Processing page 15
+2022-11-13 15:43:38,786 Processing page 16
+2022-11-13 15:44:17,024 Processing page 17
+2022-11-13 15:44:53,997 Processing page 18
+2022-11-13 15:45:30,667 Processing page 19
+2022-11-13 15:46:06,447 Processing page 20
+2022-11-13 15:46:42,630 Processing page 21
+2022-11-13 15:47:15,314 Processing page 22
+2022-11-13 15:47:39,733 Processing page 23
+2022-11-13 15:48:18,043 Processing page 24
+2022-11-13 15:48:52,774 Processing page 25
+2022-11-13 15:49:28,423 Processing page 26
+2022-11-13 15:49:57,047 Processing page 27
+2022-11-13 15:50:34,231 Processing page 28
+2022-11-13 15:51:09,101 Processing page 29
+2022-11-13 15:51:42,083 Processing page 30
+2022-11-13 15:52:17,357 Processing page 31
+2022-11-13 15:52:51,625 Processing page 32
+2022-11-13 15:53:19,619 Processing page 33
+2022-11-13 15:53:48,560 Processing page 34
+2022-11-13 15:53:58,256 Processing page 35
+2022-11-13 15:54:19,873 Processing page 36
+2022-11-13 15:54:24,680 Processing page 37
+2022-11-13 15:54:43,403 Formatting and exporting data/part274/in/kerala/2013/2013_122_084.pdf data..
+2022-11-13 15:54:43,456 Converted to csv: data/part274/out/kerala/2013/2013_122_084.csv
+2022-11-13 15:54:43,605 Converting data/part274/in/kerala/2013/2013_122_085.pdf to img...
+2022-11-13 15:54:52,011 Parsing first and last page data..
+2022-11-13 15:54:55,004 Detecting and parsing data/part274/in/kerala/2013/2013_122_085.pdf boxes..
+2022-11-13 15:54:55,004 Processing page 3
+2022-11-13 15:55:30,812 Processing page 4
+2022-11-13 15:56:03,074 Processing page 5
+2022-11-13 15:56:36,313 Processing page 6
+2022-11-13 15:57:09,962 Processing page 7
+2022-11-13 15:57:37,752 Processing page 8
+2022-11-13 15:58:13,028 Processing page 9
+2022-11-13 15:58:49,175 Processing page 10
+2022-11-13 15:59:24,749 Processing page 11
+2022-11-13 15:59:47,863 Processing page 12
+2022-11-13 16:00:28,390 Processing page 13
+2022-11-13 16:01:03,398 Processing page 14
+2022-11-13 16:01:39,899 Processing page 15
+2022-11-13 16:02:15,126 Processing page 16
+2022-11-13 16:02:50,226 Processing page 17
+2022-11-13 16:03:24,838 Processing page 18
+2022-11-13 16:03:59,543 Processing page 19
+2022-11-13 16:04:37,009 Processing page 20
+2022-11-13 16:05:13,549 Processing page 21
+2022-11-13 16:05:49,595 Processing page 22
+2022-11-13 16:06:26,268 Processing page 23
+2022-11-13 16:07:00,621 Processing page 24
+2022-11-13 16:07:24,498 Processing page 25
+2022-11-13 16:08:02,083 Processing page 26
+2022-11-13 16:08:33,938 Processing page 27
+2022-11-13 16:09:12,568 Processing page 28
+2022-11-13 16:09:48,797 Processing page 29
+2022-11-13 16:10:26,943 Processing page 30
+2022-11-13 16:11:04,567 Processing page 31
+2022-11-13 16:11:41,948 Processing page 32
+2022-11-13 16:12:18,712 Processing page 33
+2022-11-13 16:12:56,192 Processing page 34
+2022-11-13 16:13:34,756 Processing page 35
+2022-11-13 16:14:10,955 Processing page 36
+2022-11-13 16:14:49,422 Processing page 37
+2022-11-13 16:15:02,015 Processing page 38
+2022-11-13 16:15:18,844 Processing page 39
+2022-11-13 16:15:24,969 Processing page 40
+2022-11-13 16:15:37,703 Formatting and exporting data/part274/in/kerala/2013/2013_122_085.pdf data..
+2022-11-13 16:15:37,757 Converted to csv: data/part274/out/kerala/2013/2013_122_085.csv
+2022-11-13 16:15:37,860 Converting data/part274/in/kerala/2013/2013_122_086.pdf to img...
+2022-11-13 16:15:45,912 Parsing first and last page data..
+2022-11-13 16:15:48,883 Detecting and parsing data/part274/in/kerala/2013/2013_122_086.pdf boxes..
+2022-11-13 16:15:48,884 Processing page 3
+2022-11-13 16:16:27,142 Processing page 4
+2022-11-13 16:17:03,237 Processing page 5
+2022-11-13 16:17:39,674 Processing page 6
+2022-11-13 16:18:16,228 Processing page 7
+2022-11-13 16:18:52,687 Processing page 8
+2022-11-13 16:19:27,901 Processing page 9
+2022-11-13 16:20:02,562 Processing page 10
+2022-11-13 16:20:39,033 Processing page 11
+2022-11-13 16:21:15,816 Processing page 12
+2022-11-13 16:21:50,577 Processing page 13
+2022-11-13 16:22:28,019 Processing page 14
+2022-11-13 16:23:03,554 Processing page 15
+2022-11-13 16:23:36,825 Processing page 16
+2022-11-13 16:24:13,997 Processing page 17
+2022-11-13 16:24:49,106 Processing page 18
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode character '\u2019' in position 43: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught ease\u2019 AEM o> (994d all OrderedDict([('number', '471'), ('id', 'FWD1002617')])"
+Arguments: ()
+2022-11-13 16:25:01,077 Split uncaught ease\u2019 AEM o> (994d all OrderedDict([('number', '471'), ('id', 'FWD1002617')])
+2022-11-13 16:25:24,168 Processing page 19
+2022-11-13 16:26:01,309 Processing page 20
+2022-11-13 16:26:37,118 Processing page 21
+2022-11-13 16:26:44,572 Processing page 22
+2022-11-13 16:27:20,649 Processing page 23
+2022-11-13 16:27:58,144 Processing page 24
+2022-11-13 16:28:34,950 Processing page 25
+2022-11-13 16:29:11,567 Processing page 26
+2022-11-13 16:29:47,436 Processing page 27
+2022-11-13 16:30:25,933 Processing page 28
+2022-11-13 16:31:00,792 Processing page 29
+2022-11-13 16:31:26,075 Processing page 30
+2022-11-13 16:32:10,328 Processing page 31
+2022-11-13 16:32:50,104 Processing page 32
+2022-11-13 16:33:27,574 Processing page 33
+2022-11-13 16:34:06,493 Processing page 34
+2022-11-13 16:34:45,500 Processing page 35
+2022-11-13 16:35:24,203 Processing page 36
+2022-11-13 16:36:02,776 Processing page 37
+2022-11-13 16:36:41,943 Processing page 38
+2022-11-13 16:36:57,031 Processing page 39
+2022-11-13 16:37:05,635 Processing page 40
+2022-11-13 16:37:21,878 Processing page 41
+2022-11-13 16:37:23,411 Processing page 42
+2022-11-13 16:37:34,289 Processing page 43
+2022-11-13 16:37:44,870 Formatting and exporting data/part274/in/kerala/2013/2013_122_086.pdf data..
+2022-11-13 16:37:44,932 Converted to csv: data/part274/out/kerala/2013/2013_122_086.csv
+2022-11-13 16:37:45,072 Converting data/part274/in/kerala/2013/2013_122_087.pdf to img...
+2022-11-13 16:37:54,525 Parsing first and last page data..
+2022-11-13 16:37:57,725 Detecting and parsing data/part274/in/kerala/2013/2013_122_087.pdf boxes..
+2022-11-13 16:37:57,725 Processing page 3
+2022-11-13 16:38:33,748 Processing page 4
+2022-11-13 16:39:05,424 Processing page 5
+2022-11-13 16:39:40,215 Processing page 6
+2022-11-13 16:40:19,788 Processing page 7
+2022-11-13 16:40:55,702 Processing page 8
+2022-11-13 16:41:31,650 Processing page 9
+2022-11-13 16:42:07,773 Processing page 10
+2022-11-13 16:42:44,760 Processing page 11
+2022-11-13 16:43:22,018 Processing page 12
+2022-11-13 16:43:57,585 Processing page 13
+2022-11-13 16:44:34,514 Processing page 14
+2022-11-13 16:45:10,623 Processing page 15
+2022-11-13 16:45:48,509 Processing page 16
+2022-11-13 16:46:25,551 Processing page 17
+2022-11-13 16:46:51,020 Processing page 18
+2022-11-13 16:47:23,116 Processing page 19
+2022-11-13 16:48:05,589 Processing page 20
+2022-11-13 16:48:41,493 Processing page 21
+2022-11-13 16:49:17,127 Processing page 22
+2022-11-13 16:49:54,160 Processing page 23
+2022-11-13 16:50:31,707 Processing page 24
+2022-11-13 16:51:08,953 Processing page 25
+2022-11-13 16:51:45,530 Processing page 26
+2022-11-13 16:52:22,849 Processing page 27
+2022-11-13 16:53:00,406 Processing page 28
+2022-11-13 16:53:38,553 Processing page 29
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 39-40: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught \u0d28\u0d3f AL>OlOo OrderedDict([('number', '782'), ('id', 'XIL0258426'), ('\u0d2a\u0d47\u0d30\u0d4d', '4:11')])"
+Arguments: ()
+2022-11-13 16:54:15,529 Split uncaught \u0d28\u0d3f AL>OlOo OrderedDict([('number', '782'), ('id', 'XIL0258426'), ('\u0d2a\u0d47\u0d30\u0d4d', '4:11')])
+2022-11-13 16:54:16,416 Processing page 30
+2022-11-13 16:54:45,742 Processing page 31
+2022-11-13 16:55:20,552 Processing page 32
+2022-11-13 16:55:53,624 Processing page 33
+2022-11-13 16:56:31,788 Processing page 34
+2022-11-13 16:57:10,036 Processing page 35
+2022-11-13 16:57:47,656 Processing page 36
+2022-11-13 16:58:25,436 Processing page 37
+2022-11-13 16:59:05,451 Processing page 38
+2022-11-13 16:59:44,755 Processing page 39
+2022-11-13 17:00:22,700 Processing page 40
+2022-11-13 17:00:59,048 Processing page 41
+2022-11-13 17:01:08,128 Processing page 42
+2022-11-13 17:01:29,322 Processing page 43
+2022-11-13 17:01:38,289 Processing page 44
+2022-11-13 17:02:04,503 Processing page 45
+2022-11-13 17:02:05,425 Formatting and exporting data/part274/in/kerala/2013/2013_122_087.pdf data..
+2022-11-13 17:02:05,459 Converted to csv: data/part274/out/kerala/2013/2013_122_087.csv
+2022-11-13 17:02:05,559 Converting data/part274/in/kerala/2013/2013_122_088.pdf to img...
+2022-11-13 17:02:10,000 Parsing first and last page data..
+2022-11-13 17:02:11,743 Detecting and parsing data/part274/in/kerala/2013/2013_122_088.pdf boxes..
+2022-11-13 17:02:11,743 Processing page 3
+2022-11-13 17:02:40,767 Processing page 4
+2022-11-13 17:03:17,512 Processing page 5
+2022-11-13 17:03:54,762 Processing page 6
+2022-11-13 17:04:32,469 Processing page 7
+2022-11-13 17:05:09,526 Processing page 8
+2022-11-13 17:05:45,169 Processing page 9
+2022-11-13 17:06:22,807 Processing page 10
+2022-11-13 17:06:59,018 Processing page 11
+2022-11-13 17:07:35,647 Processing page 12
+2022-11-13 17:08:12,312 Processing page 13
+2022-11-13 17:08:50,036 Processing page 14
+2022-11-13 17:09:26,223 Processing page 15
+2022-11-13 17:09:55,365 Processing page 16
+2022-11-13 17:10:34,973 Processing page 17
+2022-11-13 17:11:09,206 Processing page 18
+2022-11-13 17:11:45,751 Processing page 19
+2022-11-13 17:12:23,975 Processing page 20
+2022-11-13 17:12:58,496 Processing page 21
+2022-11-13 17:13:35,697 Processing page 22
+2022-11-13 17:14:13,996 Processing page 23
+2022-11-13 17:14:52,032 Processing page 24
+2022-11-13 17:15:29,962 Processing page 25
+2022-11-13 17:16:08,188 Processing page 26
+2022-11-13 17:16:46,140 Processing page 27
+2022-11-13 17:17:11,056 Processing page 28
+2022-11-13 17:17:44,217 Processing page 29
+2022-11-13 17:18:21,934 Processing page 30
+2022-11-13 17:18:56,961 Processing page 31
+2022-11-13 17:19:34,535 Processing page 32
+2022-11-13 17:20:12,817 Processing page 33
+2022-11-13 17:20:39,674 Processing page 34
+2022-11-13 17:21:06,033 Processing page 35
+2022-11-13 17:21:13,025 Processing page 36
+2022-11-13 17:21:37,989 Formatting and exporting data/part274/in/kerala/2013/2013_122_088.pdf data..
+2022-11-13 17:21:38,041 Converted to csv: data/part274/out/kerala/2013/2013_122_088.csv
+2022-11-13 17:21:38,164 Converting data/part274/in/kerala/2013/2013_122_089.pdf to img...
+2022-11-13 17:21:45,447 Parsing first and last page data..
+2022-11-13 17:21:47,908 Detecting and parsing data/part274/in/kerala/2013/2013_122_089.pdf boxes..
+2022-11-13 17:21:47,908 Processing page 3
+2022-11-13 17:22:16,646 Processing page 4
+2022-11-13 17:22:52,633 Processing page 5
+2022-11-13 17:23:28,145 Processing page 6
+2022-11-13 17:24:05,612 Processing page 7
+2022-11-13 17:24:35,335 Processing page 8
+2022-11-13 17:24:58,644 Processing page 9
+2022-11-13 17:25:30,461 Processing page 10
+2022-11-13 17:26:02,983 Processing page 11
+2022-11-13 17:26:37,098 Processing page 12
+2022-11-13 17:27:12,278 Processing page 13
+2022-11-13 17:27:48,393 Processing page 14
+2022-11-13 17:28:23,556 Processing page 15
+2022-11-13 17:29:01,548 Processing page 16
+2022-11-13 17:29:38,379 Processing page 17
+2022-11-13 17:30:13,535 Processing page 18
+2022-11-13 17:30:50,251 Processing page 19
+2022-11-13 17:31:26,957 Processing page 20
+2022-11-13 17:32:00,784 Processing page 21
+2022-11-13 17:32:23,791 Processing page 22
+2022-11-13 17:32:54,802 Processing page 23
+2022-11-13 17:33:28,404 Processing page 24
+2022-11-13 17:34:06,161 Processing page 25
+2022-11-13 17:34:44,842 Processing page 26
+2022-11-13 17:35:22,950 Processing page 27
+2022-11-13 17:36:00,718 Processing page 28
+2022-11-13 17:36:38,437 Processing page 29
+2022-11-13 17:37:13,171 Processing page 30
+2022-11-13 17:37:50,869 Processing page 31
+2022-11-13 17:38:28,361 Processing page 32
+2022-11-13 17:39:06,140 Processing page 33
+2022-11-13 17:39:43,044 Processing page 34
+2022-11-13 17:40:03,556 Processing page 35
+2022-11-13 17:40:21,987 Processing page 36
+2022-11-13 17:40:27,279 Processing page 37
+2022-11-13 17:40:37,925 Formatting and exporting data/part274/in/kerala/2013/2013_122_089.pdf data..
+2022-11-13 17:40:37,967 Converted to csv: data/part274/out/kerala/2013/2013_122_089.csv
+2022-11-13 17:40:38,073 Converting data/part274/in/kerala/2013/2013_122_090.pdf to img...
+2022-11-13 17:40:44,519 Parsing first and last page data..
+2022-11-13 17:40:47,561 Detecting and parsing data/part274/in/kerala/2013/2013_122_090.pdf boxes..
+2022-11-13 17:40:47,562 Processing page 3
+2022-11-13 17:41:20,962 Processing page 4
+2022-11-13 17:41:56,145 Processing page 5
+2022-11-13 17:42:28,548 Processing page 6
+2022-11-13 17:43:04,507 Processing page 7
+2022-11-13 17:43:40,364 Processing page 8
+2022-11-13 17:44:15,120 Processing page 9
+2022-11-13 17:44:50,726 Processing page 10
+2022-11-13 17:45:27,048 Processing page 11
+2022-11-13 17:46:03,160 Processing page 12
+2022-11-13 17:46:40,476 Processing page 13
+2022-11-13 17:47:17,474 Processing page 14
+2022-11-13 17:47:41,283 Processing page 15
+2022-11-13 17:48:10,754 Processing page 16
+2022-11-13 17:48:47,647 Processing page 17
+2022-11-13 17:49:26,197 Processing page 18
+2022-11-13 17:50:00,398 Processing page 19
+2022-11-13 17:50:35,962 Processing page 20
+2022-11-13 17:51:11,039 Processing page 21
+2022-11-13 17:51:45,889 Processing page 22
+2022-11-13 17:52:21,776 Processing page 23
+2022-11-13 17:52:57,021 Processing page 24
+2022-11-13 17:53:34,620 Processing page 25
+2022-11-13 17:54:12,669 Processing page 26
+2022-11-13 17:54:48,184 Processing page 27
+2022-11-13 17:55:12,303 Processing page 28
+2022-11-13 17:55:50,706 Processing page 29
+2022-11-13 17:56:30,401 Processing page 30
+2022-11-13 17:57:06,417 Processing page 31
+2022-11-13 17:57:43,086 Processing page 32
+2022-11-13 17:58:20,584 Processing page 33
+2022-11-13 17:58:58,059 Processing page 34
+2022-11-13 17:59:29,984 Processing page 35
+2022-11-13 17:59:59,411 Processing page 36
+2022-11-13 18:00:06,780 Processing page 37
+2022-11-13 18:00:21,082 Formatting and exporting data/part274/in/kerala/2013/2013_122_090.pdf data..
+2022-11-13 18:00:21,141 Converted to csv: data/part274/out/kerala/2013/2013_122_090.csv
+2022-11-13 18:00:21,273 Converting data/part274/in/kerala/2013/2013_122_091.pdf to img...
+2022-11-13 18:00:29,115 Parsing first and last page data..
+2022-11-13 18:00:32,197 Detecting and parsing data/part274/in/kerala/2013/2013_122_091.pdf boxes..
+2022-11-13 18:00:32,198 Processing page 3
+2022-11-13 18:01:05,083 Processing page 4
+2022-11-13 18:01:41,714 Processing page 5
+2022-11-13 18:02:18,599 Processing page 6
+2022-11-13 18:02:42,471 Processing page 7
+2022-11-13 18:03:19,494 Processing page 8
+2022-11-13 18:04:00,624 Processing page 9
+2022-11-13 18:04:36,302 Processing page 10
+2022-11-13 18:05:12,388 Processing page 11
+2022-11-13 18:05:48,462 Processing page 12
+2022-11-13 18:06:22,401 Processing page 13
+2022-11-13 18:06:58,183 Processing page 14
+2022-11-13 18:07:34,782 Processing page 15
+2022-11-13 18:08:12,196 Processing page 16
+2022-11-13 18:08:47,022 Processing page 17
+2022-11-13 18:09:23,497 Processing page 18
+2022-11-13 18:09:59,537 Processing page 19
+2022-11-13 18:10:23,204 Processing page 20
+2022-11-13 18:11:03,329 Processing page 21
+2022-11-13 18:11:40,071 Processing page 22
+2022-11-13 18:12:16,338 Processing page 23
+2022-11-13 18:12:50,136 Processing page 24
+2022-11-13 18:13:27,084 Processing page 25
+2022-11-13 18:14:04,093 Processing page 26
+2022-11-13 18:14:42,654 Processing page 27
+2022-11-13 18:15:18,807 Processing page 28
+2022-11-13 18:15:56,812 Processing page 29
+2022-11-13 18:16:35,086 Processing page 30
+2022-11-13 18:17:12,773 Processing page 31
+2022-11-13 18:17:40,312 Processing page 32
+2022-11-13 18:18:11,168 Processing page 33
+2022-11-13 18:18:26,806 Processing page 34
+2022-11-13 18:18:44,746 Processing page 35
+2022-11-13 18:18:48,956 Processing page 36
+2022-11-13 18:19:23,998 Processing page 37
+2022-11-13 18:19:39,161 Formatting and exporting data/part274/in/kerala/2013/2013_122_091.pdf data..
+2022-11-13 18:19:39,214 Converted to csv: data/part274/out/kerala/2013/2013_122_091.csv
+2022-11-13 18:19:39,331 Converting data/part274/in/kerala/2013/2013_122_092.pdf to img...
+2022-11-13 18:19:46,569 Parsing first and last page data..
+2022-11-13 18:19:49,567 Detecting and parsing data/part274/in/kerala/2013/2013_122_092.pdf boxes..
+2022-11-13 18:19:49,568 Processing page 3
+2022-11-13 18:20:25,555 Processing page 4
+2022-11-13 18:21:02,258 Processing page 5
+2022-11-13 18:21:38,839 Processing page 6
+2022-11-13 18:22:15,263 Processing page 7
+2022-11-13 18:22:52,877 Processing page 8
+2022-11-13 18:23:29,540 Processing page 9
+2022-11-13 18:24:05,908 Processing page 10
+2022-11-13 18:24:41,843 Processing page 11
+2022-11-13 18:25:12,812 Processing page 12
+2022-11-13 18:25:37,246 Processing page 13
+2022-11-13 18:26:13,975 Processing page 14
+2022-11-13 18:26:53,701 Processing page 15
+2022-11-13 18:27:30,873 Processing page 16
+2022-11-13 18:28:07,246 Processing page 17
+2022-11-13 18:28:43,321 Processing page 18
+2022-11-13 18:29:19,025 Processing page 19
+2022-11-13 18:29:55,407 Processing page 20
+2022-11-13 18:30:32,345 Processing page 21
+2022-11-13 18:31:09,302 Processing page 22
+2022-11-13 18:31:47,246 Processing page 23
+2022-11-13 18:32:25,158 Processing page 24
+2022-11-13 18:32:57,185 Processing page 25
+2022-11-13 18:33:30,599 Processing page 26
+2022-11-13 18:34:16,633 Processing page 27
+2022-11-13 18:34:54,161 Processing page 28
+2022-11-13 18:35:30,662 Processing page 29
+2022-11-13 18:36:08,115 Processing page 30
+2022-11-13 18:36:45,200 Processing page 31
+2022-11-13 18:37:23,791 Processing page 32
+2022-11-13 18:37:30,779 Processing page 33
+2022-11-13 18:37:44,863 Processing page 34
+2022-11-13 18:37:50,520 Processing page 35
+2022-11-13 18:38:02,732 Formatting and exporting data/part274/in/kerala/2013/2013_122_092.pdf data..
+2022-11-13 18:38:02,784 Converted to csv: data/part274/out/kerala/2013/2013_122_092.csv
+2022-11-13 18:38:02,922 Converting data/part274/in/kerala/2013/2013_122_093.pdf to img...
+2022-11-13 18:38:12,441 Parsing first and last page data..
+2022-11-13 18:38:16,043 Detecting and parsing data/part274/in/kerala/2013/2013_122_093.pdf boxes..
+2022-11-13 18:38:16,044 Processing page 3
+2022-11-13 18:38:51,871 Processing page 4
+2022-11-13 18:39:28,807 Processing page 5
+2022-11-13 18:40:04,635 Processing page 6
+2022-11-13 18:40:40,579 Processing page 7
+2022-11-13 18:41:03,605 Processing page 8
+2022-11-13 18:41:42,022 Processing page 9
+2022-11-13 18:42:18,426 Processing page 10
+2022-11-13 18:42:54,485 Processing page 11
+2022-11-13 18:43:29,778 Processing page 12
+2022-11-13 18:44:06,586 Processing page 13
+2022-11-13 18:44:42,667 Processing page 14
+2022-11-13 18:45:18,856 Processing page 15
+2022-11-13 18:45:55,635 Processing page 16
+2022-11-13 18:46:33,517 Processing page 17
+2022-11-13 18:47:10,084 Processing page 18
+2022-11-13 18:47:45,920 Processing page 19
+2022-11-13 18:48:11,960 Processing page 20
+2022-11-13 18:48:50,084 Processing page 21
+2022-11-13 18:49:29,789 Processing page 22
+2022-11-13 18:50:07,045 Processing page 23
+2022-11-13 18:50:44,329 Processing page 24
+2022-11-13 18:51:20,050 Processing page 25
+2022-11-13 18:51:56,076 Processing page 26
+2022-11-13 18:52:32,626 Processing page 27
+2022-11-13 18:53:09,885 Processing page 28
+2022-11-13 18:53:46,246 Processing page 29
+2022-11-13 18:54:23,439 Processing page 30
+2022-11-13 18:55:00,489 Processing page 31
+2022-11-13 18:55:32,131 Processing page 32
+2022-11-13 18:56:12,729 Processing page 33
+2022-11-13 18:56:48,677 Processing page 34
+2022-11-13 18:57:26,139 Processing page 35
+2022-11-13 18:58:05,992 Processing page 36
+2022-11-13 18:58:44,588 Processing page 37
+2022-11-13 18:59:23,827 Processing page 38
+2022-11-13 19:00:03,838 Processing page 39
+2022-11-13 19:00:40,552 Processing page 40
+2022-11-13 19:01:18,283 Processing page 41
+2022-11-13 19:01:29,574 Processing page 42
+2022-11-13 19:01:32,730 Processing page 43
+2022-11-13 19:02:05,769 Processing page 44
+2022-11-13 19:02:09,962 Processing page 45
+2022-11-13 19:02:14,123 Processing page 46
+2022-11-13 19:02:41,317 Processing page 47
+2022-11-13 19:02:44,134 Formatting and exporting data/part274/in/kerala/2013/2013_122_093.pdf data..
+2022-11-13 19:02:44,211 Converted to csv: data/part274/out/kerala/2013/2013_122_093.csv
+2022-11-13 19:02:44,439 Converting data/part274/in/kerala/2013/2013_122_094.pdf to img...
+2022-11-13 19:02:55,116 Parsing first and last page data..
+2022-11-13 19:02:58,469 Detecting and parsing data/part274/in/kerala/2013/2013_122_094.pdf boxes..
+2022-11-13 19:02:58,470 Processing page 3
+2022-11-13 19:03:38,013 Processing page 4
+2022-11-13 19:04:14,075 Processing page 5
+2022-11-13 19:04:52,226 Processing page 6
+2022-11-13 19:05:29,538 Processing page 7
+2022-11-13 19:06:06,118 Processing page 8
+2022-11-13 19:06:39,610 Processing page 9
+2022-11-13 19:07:15,317 Processing page 10
+2022-11-13 19:07:51,783 Processing page 11
+2022-11-13 19:08:29,910 Processing page 12
+2022-11-13 19:09:06,244 Processing page 13
+2022-11-13 19:09:41,270 Processing page 14
+2022-11-13 19:10:05,629 Processing page 15
+2022-11-13 19:10:38,025 Processing page 16
+2022-11-13 19:11:15,082 Processing page 17
+2022-11-13 19:11:49,596 Processing page 18
+2022-11-13 19:12:25,483 Processing page 19
+2022-11-13 19:13:02,313 Processing page 20
+2022-11-13 19:13:40,290 Processing page 21
+2022-11-13 19:14:17,149 Processing page 22
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 118-121: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught sdomalog ete (Gle>JaIB OrderedDict([('number', '600'), ('id', 'FWD2820868'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d37\u0d48\u0d32\u0d1c')])"
+Arguments: ()
+2022-11-13 19:14:18,840 Split uncaught sdomalog ete (Gle>JaIB OrderedDict([('number', '600'), ('id', 'FWD2820868'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d37\u0d48\u0d32\u0d1c')])
+2022-11-13 19:14:53,392 Processing page 23
+2022-11-13 19:15:30,891 Processing page 24
+2022-11-13 19:16:08,222 Processing page 25
+2022-11-13 19:16:45,326 Processing page 26
+2022-11-13 19:17:17,911 Processing page 27
+2022-11-13 19:17:41,778 Processing page 28
+2022-11-13 19:18:06,147 Processing page 29
+2022-11-13 19:18:42,031 Processing page 30
+2022-11-13 19:19:24,668 Processing page 31
+2022-11-13 19:20:03,168 Processing page 32
+2022-11-13 19:20:41,183 Processing page 33
+2022-11-13 19:21:18,346 Processing page 34
+2022-11-13 19:21:58,632 Processing page 35
+2022-11-13 19:22:35,937 Processing page 36
+2022-11-13 19:23:15,151 Processing page 37
+2022-11-13 19:23:54,766 Processing page 38
+2022-11-13 19:24:33,463 Processing page 39
+2022-11-13 19:25:11,257 Processing page 40
+2022-11-13 19:25:12,863 Processing page 41
+2022-11-13 19:25:26,566 Processing page 42
+2022-11-13 19:25:29,158 Processing page 43
+2022-11-13 19:25:44,289 Formatting and exporting data/part274/in/kerala/2013/2013_122_094.pdf data..
+2022-11-13 19:25:44,322 Converted to csv: data/part274/out/kerala/2013/2013_122_094.csv
+2022-11-13 19:25:44,405 Converting data/part274/in/kerala/2013/2013_122_095.pdf to img...
+2022-11-13 19:25:49,247 Parsing first and last page data..
+2022-11-13 19:25:51,119 Detecting and parsing data/part274/in/kerala/2013/2013_122_095.pdf boxes..
+2022-11-13 19:25:51,119 Processing page 3
+2022-11-13 19:26:18,145 Processing page 4
+2022-11-13 19:26:52,162 Processing page 5
+2022-11-13 19:27:28,405 Processing page 6
+2022-11-13 19:28:04,648 Processing page 7
+2022-11-13 19:28:40,347 Processing page 8
+2022-11-13 19:29:16,197 Processing page 9
+2022-11-13 19:29:53,148 Processing page 10
+2022-11-13 19:30:28,931 Processing page 11
+2022-11-13 19:31:04,943 Processing page 12
+2022-11-13 19:31:42,663 Processing page 13
+2022-11-13 19:32:19,340 Processing page 14
+2022-11-13 19:32:54,574 Processing page 15
+2022-11-13 19:33:18,344 Processing page 16
+2022-11-13 19:33:59,672 Processing page 17
+2022-11-13 19:34:36,352 Processing page 18
+2022-11-13 19:35:09,975 Processing page 19
+2022-11-13 19:35:44,198 Processing page 20
+2022-11-13 19:36:20,408 Processing page 21
+2022-11-13 19:36:55,430 Processing page 22
+2022-11-13 19:37:30,572 Processing page 23
+2022-11-13 19:38:06,020 Processing page 24
+2022-11-13 19:38:43,090 Processing page 25
+2022-11-13 19:39:18,108 Processing page 26
+2022-11-13 19:39:54,441 Processing page 27
+2022-11-13 19:40:27,287 Processing page 28
+2022-11-13 19:40:56,424 Processing page 29
+2022-11-13 19:41:29,016 Processing page 30
+2022-11-13 19:42:04,517 Processing page 31
+2022-11-13 19:42:40,892 Processing page 32
+2022-11-13 19:43:16,951 Processing page 33
+2022-11-13 19:43:53,224 Processing page 34
+2022-11-13 19:44:30,722 Processing page 35
+2022-11-13 19:45:06,360 Processing page 36
+2022-11-13 19:45:43,785 Processing page 37
+2022-11-13 19:45:52,513 Processing page 38
+2022-11-13 19:46:19,597 Processing page 39
+2022-11-13 19:46:21,092 Processing page 40
+2022-11-13 19:46:43,728 Formatting and exporting data/part274/in/kerala/2013/2013_122_095.pdf data..
+2022-11-13 19:46:43,784 Converted to csv: data/part274/out/kerala/2013/2013_122_095.csv
+2022-11-13 19:46:43,916 Converting data/part274/in/kerala/2013/2013_122_096.pdf to img...
+2022-11-13 19:46:54,800 Parsing first and last page data..
+2022-11-13 19:46:58,199 Detecting and parsing data/part274/in/kerala/2013/2013_122_096.pdf boxes..
+2022-11-13 19:46:58,211 Processing page 3
+2022-11-13 19:47:32,651 Processing page 4
+2022-11-13 19:47:56,847 Processing page 5
+2022-11-13 19:48:24,907 Processing page 6
+2022-11-13 19:49:01,883 Processing page 7
+2022-11-13 19:49:39,292 Processing page 8
+2022-11-13 19:50:15,054 Processing page 9
+2022-11-13 19:50:51,581 Processing page 10
+2022-11-13 19:51:26,769 Processing page 11
+2022-11-13 19:52:00,489 Processing page 12
+2022-11-13 19:52:35,850 Processing page 13
+2022-11-13 19:53:11,407 Processing page 14
+2022-11-13 19:53:45,557 Processing page 15
+2022-11-13 19:54:19,329 Processing page 16
+2022-11-13 19:54:53,059 Processing page 17
+2022-11-13 19:55:16,077 Processing page 18
+2022-11-13 19:55:47,297 Processing page 19
+2022-11-13 19:56:27,672 Processing page 20
+2022-11-13 19:57:02,921 Processing page 21
+2022-11-13 19:57:39,798 Processing page 22
+2022-11-13 19:58:14,034 Processing page 23
+2022-11-13 19:58:50,754 Processing page 24
+2022-11-13 19:59:25,834 Processing page 25
+2022-11-13 20:00:01,197 Processing page 26
+2022-11-13 20:00:37,611 Processing page 27
+2022-11-13 20:01:13,568 Processing page 28
+2022-11-13 20:01:48,484 Processing page 29
+2022-11-13 20:02:17,488 Processing page 30
+2022-11-13 20:02:40,724 Processing page 31
+2022-11-13 20:03:16,193 Processing page 32
+2022-11-13 20:03:50,487 Processing page 33
+2022-11-13 20:04:26,759 Processing page 34
+2022-11-13 20:05:04,173 Processing page 35
+2022-11-13 20:05:36,287 Processing page 36
+2022-11-13 20:06:13,368 Processing page 37
+2022-11-13 20:06:49,614 Processing page 38
+2022-11-13 20:07:24,927 Processing page 39
+2022-11-13 20:08:02,008 Processing page 40
+2022-11-13 20:08:32,028 Processing page 41
+2022-11-13 20:09:05,299 Processing page 42
+2022-11-13 20:09:29,131 Processing page 43
+2022-11-13 20:09:53,488 Processing page 44
+2022-11-13 20:10:22,199 Processing page 45
+2022-11-13 20:10:54,957 Processing page 46
+2022-11-13 20:11:31,775 Processing page 47
+2022-11-13 20:12:08,459 Processing page 48
+2022-11-13 20:12:43,029 Processing page 49
+2022-11-13 20:13:15,960 Processing page 50
+2022-11-13 20:13:50,595 Processing page 51
+2022-11-13 20:14:25,584 Processing page 52
+2022-11-13 20:14:38,095 Processing page 53
+2022-11-13 20:15:04,883 Processing page 54
+2022-11-13 20:15:06,292 Processing page 55
+2022-11-13 20:15:38,694 Processing page 56
+2022-11-13 20:15:41,105 Formatting and exporting data/part274/in/kerala/2013/2013_122_096.pdf data..
+2022-11-13 20:15:41,184 Converted to csv: data/part274/out/kerala/2013/2013_122_096.csv
+
+#################
+Epilogue Job Info:
+Job ID: 467707[274].acropolis
+User ID: t-9adar
+Job Name: Kerala2013JobArray-274
+Resource List: nodes=1:ppn=1,mem=3500mb,neednodes=1:ppn=1
+Resources Used: cput=22:43:16,vmem=3443472kb,walltime=22:51:32,mem=2578192kb,energy_used=0
+Exit Code: 0
+#################
+

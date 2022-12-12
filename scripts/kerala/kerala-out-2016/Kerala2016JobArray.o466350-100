@@ -1,0 +1,86 @@
+2022-11-03 11:14:39,916 Converting data/part100/in/kerala/2016/2016_052_122.pdf to img...
+2022-11-03 11:14:45,939 Parsing first and last page data..
+2022-11-03 11:14:49,938 Detecting and parsing data/part100/in/kerala/2016/2016_052_122.pdf boxes..
+2022-11-03 11:14:49,938 Processing page 3
+2022-11-03 11:15:15,467 Processing page 4
+2022-11-03 11:15:40,301 Processing page 5
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 39-49: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught \u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d35\u0d30\u0d4d\u200d 10/28 = (14/28) OrderedDict([('number', '18'), ('id', 'FTR1283662'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d15\u0d3e\u0d26\u0d30\u0d4d\\u200d'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d2e\u0d41\u0d39\u0d2e\u0d4d\u0d2e\u0d26\u0d4d\\u200c \u0d15\u0d41\u0d1f\u0d4d\u0d1f\u0d3f')])"
+Arguments: ()
+2022-11-03 11:15:52,796 Split uncaught \u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d35\u0d30\u0d4d\u200d 10/28 = (14/28) OrderedDict([('number', '18'), ('id', 'FTR1283662'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d15\u0d3e\u0d26\u0d30\u0d4d\u200d'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d2e\u0d41\u0d39\u0d2e\u0d4d\u0d2e\u0d26\u0d4d\u200c \u0d15\u0d41\u0d1f\u0d4d\u0d1f\u0d3f')])
+2022-11-03 11:16:05,560 Processing page 6
+2022-11-03 11:16:30,903 Processing page 7
+2022-11-03 11:16:56,836 Processing page 8
+2022-11-03 11:17:21,253 Processing page 9
+2022-11-03 11:17:46,985 Processing page 10
+2022-11-03 11:18:12,302 Processing page 11
+2022-11-03 11:18:36,973 Processing page 12
+2022-11-03 11:19:00,318 Processing page 13
+2022-11-03 11:19:25,102 Processing page 14
+2022-11-03 11:19:49,095 Processing page 15
+2022-11-03 11:20:14,750 Processing page 16
+2022-11-03 11:20:39,554 Processing page 17
+2022-11-03 11:21:04,343 Processing page 18
+2022-11-03 11:21:29,569 Processing page 19
+2022-11-03 11:21:54,884 Processing page 20
+2022-11-03 11:22:20,212 Processing page 21
+2022-11-03 11:22:45,581 Processing page 22
+2022-11-03 11:23:09,416 Processing page 23
+2022-11-03 11:23:34,344 Processing page 24
+2022-11-03 11:23:59,768 Processing page 25
+2022-11-03 11:24:23,690 Processing page 26
+2022-11-03 11:24:49,212 Processing page 27
+2022-11-03 11:25:15,204 Processing page 28
+2022-11-03 11:25:40,980 Processing page 29
+2022-11-03 11:26:06,432 Processing page 30
+2022-11-03 11:26:32,195 Processing page 31
+2022-11-03 11:26:57,369 Processing page 32
+2022-11-03 11:27:22,760 Processing page 33
+2022-11-03 11:27:48,058 Processing page 34
+2022-11-03 11:28:13,338 Processing page 35
+2022-11-03 11:28:38,225 Processing page 36
+2022-11-03 11:29:03,333 Processing page 37
+2022-11-03 11:29:28,328 Processing page 38
+2022-11-03 11:29:54,741 Processing page 39
+2022-11-03 11:30:19,956 Processing page 40
+2022-11-03 11:30:45,465 Processing page 41
+2022-11-03 11:31:10,307 Processing page 42
+2022-11-03 11:31:36,157 Processing page 43
+/share/svasudevan2lab/gs-delhi/parse_unsearchable_rolls/scripts/kerala/joblist_2016/kerala100.sh: line 1: 55884 Killed                  python scripts/kerala/kerala_2016.py data/part100/
+
+#################
+Epilogue Job Info:
+Job ID: 466350[100].acropolis
+User ID: t-9adar
+Job Name: Kerala2016JobArray-100
+Resource List: nodes=1:ppn=1,mem=2gb,neednodes=1:ppn=1
+Resources Used: cput=00:16:16,vmem=3382412kb,walltime=00:17:29,mem=1998484kb,energy_used=0
+Exit Code: 137
+Exit code 137 job terminated, resource limit violation
+Generally this means you need to request more RAM or CPU
+Please compare your resources used/requested
+#################
+

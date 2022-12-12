@@ -1,0 +1,20 @@
+#PBS -N Kerala2011JobArray
+#PBS -j oe
+#PBS -V
+#PBS -l nodes=1:ppn=1,mem=3500mb
+#PBS -t 1-280
+
+#Move into the directory you submitted from
+cd $PBS_O_WORKDIR
+
+#Load Miniconda
+module load python/anaconda3
+
+#You may load a virtual environment 
+source activate env38
+
+#mprirun will start 100 instances of helloworld.py
+#$PBS_NODFILE tells mpirun which CPU's PBS reserved for the job
+#helloworld.py will print the jobs rank
+#mpirun -n 100 -machinefile $PBS_NODEFILE python helloworld.py
+/share/svasudevan2lab/gs-delhi/parse_unsearchable_rolls/scripts/kerala/joblist_2011/kerala${PBS_ARRAYID}.sh

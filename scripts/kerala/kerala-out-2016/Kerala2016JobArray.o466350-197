@@ -1,0 +1,199 @@
+2022-11-03 11:14:40,895 Converting data/part197/in/kerala/2016/2016_101_104.pdf to img...
+2022-11-03 11:14:45,626 Parsing first and last page data..
+2022-11-03 11:14:49,893 Detecting and parsing data/part197/in/kerala/2016/2016_101_104.pdf boxes..
+2022-11-03 11:14:49,893 Processing page 3
+2022-11-03 11:15:24,960 Processing page 4
+2022-11-03 11:16:01,777 Processing page 5
+2022-11-03 11:16:37,428 Processing page 6
+2022-11-03 11:17:15,481 Processing page 7
+2022-11-03 11:17:51,334 Processing page 8
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 39-40: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught \u0d1f\u0d3f WUble>J 2B OrderedDict([('number', '176'), ('id', 'KL/12/087/261248'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d2e\u0d3f\u0d28\u0d3f')])"
+Arguments: ()
+2022-11-03 11:18:00,414 Split uncaught \u0d1f\u0d3f WUble>J 2B OrderedDict([('number', '176'), ('id', 'KL/12/087/261248'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d2e\u0d3f\u0d28\u0d3f')])
+2022-11-03 11:18:28,921 Processing page 9
+2022-11-03 11:19:04,286 Processing page 10
+2022-11-03 11:19:39,906 Processing page 11
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 118-121: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught algyenie BPH E>® OrderedDict([('number', '261'), ('id', 'KL/12/087/261311'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d36\u0d4d\u0d30\u0d40\u0d27\u0d30\u0d28\u0d4d\\u200d'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d2a\u0d3f'), ('\u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d2e\u0d4d\u0d2a\u0d30\u0d4d', '5/80 (20/97ag)')])"
+Arguments: ()
+2022-11-03 11:19:55,968 Split uncaught algyenie BPH E>® OrderedDict([('number', '261'), ('id', 'KL/12/087/261311'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d36\u0d4d\u0d30\u0d40\u0d27\u0d30\u0d28\u0d4d\u200d'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d2a\u0d3f'), ('\u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d2e\u0d4d\u0d2a\u0d30\u0d4d', '5/80 (20/97ag)')])
+2022-11-03 11:20:16,249 Processing page 12
+2022-11-03 11:20:53,556 Processing page 13
+2022-11-03 11:21:30,631 Processing page 14
+2022-11-03 11:22:08,194 Processing page 15
+2022-11-03 11:22:45,734 Processing page 16
+2022-11-03 11:23:23,199 Processing page 17
+2022-11-03 11:23:59,277 Processing page 18
+2022-11-03 11:24:35,221 Processing page 19
+2022-11-03 11:25:11,477 Processing page 20
+2022-11-03 11:25:48,777 Processing page 21
+2022-11-03 11:26:26,107 Processing page 22
+2022-11-03 11:27:03,675 Processing page 23
+2022-11-03 11:27:40,445 Processing page 24
+2022-11-03 11:28:17,613 Processing page 25
+2022-11-03 11:28:54,113 Processing page 26
+2022-11-03 11:29:31,702 Processing page 27
+2022-11-03 11:30:07,549 Processing page 28
+2022-11-03 11:30:19,773 Formatting and exporting data/part197/in/kerala/2016/2016_101_104.pdf data..
+2022-11-03 11:30:20,011 Converted to csv: data/out/kerala/2016/2016_101_104.csv
+2022-11-03 11:30:20,055 Converting data/part197/in/kerala/2016/2016_101_105.pdf to img...
+2022-11-03 11:30:25,311 Parsing first and last page data..
+2022-11-03 11:30:41,941 Detecting and parsing data/part197/in/kerala/2016/2016_101_105.pdf boxes..
+2022-11-03 11:30:41,942 Processing page 3
+2022-11-03 11:31:17,997 Processing page 4
+2022-11-03 11:31:54,103 Processing page 5
+2022-11-03 11:32:29,639 Processing page 6
+2022-11-03 11:33:05,903 Processing page 7
+2022-11-03 11:33:43,410 Processing page 8
+2022-11-03 11:34:19,730 Processing page 9
+2022-11-03 11:34:56,813 Processing page 10
+2022-11-03 11:35:32,938 Processing page 11
+2022-11-03 11:36:08,435 Processing page 12
+2022-11-03 11:36:44,535 Processing page 13
+2022-11-03 11:37:22,916 Processing page 14
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 85-86: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught Algyenic! E=preyl a) OrderedDict([('number', '\u0d26\u0d42'), ('id', 'TTD0152496'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d2e\u0d4b\u0d28\u0d3f\u0d37 \u0d0e\u0d02 \u0d2e\u0d4b\u0d39\u0d28\u0d28\u0d4d\\u200d'), ('\u0d05\u0d2e\u0d4d\u0d2e\u0d2f\u0d41\u0d1f\u0d46 \u0d2a\u0d47\u0d30\u0d4d', 'haedei05)')])"
+Arguments: ()
+2022-11-03 11:37:49,581 Split uncaught Algyenic! E=preyl a) OrderedDict([('number', '\u0d26\u0d42'), ('id', 'TTD0152496'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d2e\u0d4b\u0d28\u0d3f\u0d37 \u0d0e\u0d02 \u0d2e\u0d4b\u0d39\u0d28\u0d28\u0d4d\u200d'), ('\u0d05\u0d2e\u0d4d\u0d2e\u0d2f\u0d41\u0d1f\u0d46 \u0d2a\u0d47\u0d30\u0d4d', 'haedei05)')])
+2022-11-03 11:38:00,453 Processing page 15
+2022-11-03 11:38:37,632 Processing page 16
+2022-11-03 11:39:14,048 Processing page 17
+2022-11-03 11:39:51,347 Processing page 18
+2022-11-03 11:40:28,182 Processing page 19
+2022-11-03 11:41:04,696 Processing page 20
+2022-11-03 11:41:40,985 Processing page 21
+2022-11-03 11:42:19,459 Processing page 22
+2022-11-03 11:42:55,884 Processing page 23
+2022-11-03 11:43:32,093 Processing page 24
+2022-11-03 11:43:48,830 Formatting and exporting data/part197/in/kerala/2016/2016_101_105.pdf data..
+2022-11-03 11:43:48,870 Converted to csv: data/out/kerala/2016/2016_101_105.csv
+2022-11-03 11:43:48,909 Converting data/part197/in/kerala/2016/2016_101_106.pdf to img...
+2022-11-03 11:44:00,300 Parsing first and last page data..
+2022-11-03 11:44:08,433 Detecting and parsing data/part197/in/kerala/2016/2016_101_106.pdf boxes..
+2022-11-03 11:44:08,434 Processing page 3
+2022-11-03 11:44:44,560 Processing page 4
+2022-11-03 11:45:21,473 Processing page 5
+2022-11-03 11:45:58,728 Processing page 6
+2022-11-03 11:46:34,624 Processing page 7
+2022-11-03 11:47:11,203 Processing page 8
+2022-11-03 11:47:46,218 Processing page 9
+2022-11-03 11:48:23,195 Processing page 10
+2022-11-03 11:48:59,582 Processing page 11
+2022-11-03 11:49:37,413 Processing page 12
+2022-11-03 11:50:13,204 Processing page 13
+2022-11-03 11:50:48,704 Processing page 14
+2022-11-03 11:51:21,492 Processing page 15
+2022-11-03 11:51:58,075 Processing page 16
+2022-11-03 11:52:36,050 Processing page 17
+2022-11-03 11:53:13,228 Processing page 18
+2022-11-03 11:53:51,233 Processing page 19
+2022-11-03 11:54:29,378 Processing page 20
+2022-11-03 11:55:07,181 Processing page 21
+2022-11-03 11:55:43,727 Processing page 22
+2022-11-03 11:56:21,118 Processing page 23
+2022-11-03 11:56:56,960 Processing page 24
+2022-11-03 11:57:34,112 Processing page 25
+2022-11-03 11:58:11,998 Processing page 26
+2022-11-03 11:58:48,839 Processing page 27
+2022-11-03 11:59:25,511 Processing page 28
+2022-11-03 12:00:01,717 Processing page 29
+2022-11-03 12:00:37,297 Processing page 30
+2022-11-03 12:01:14,490 Processing page 31
+2022-11-03 12:01:51,917 Processing page 32
+2022-11-03 12:02:27,778 Processing page 33
+2022-11-03 12:03:03,805 Processing page 34
+2022-11-03 12:03:40,035 Processing page 35
+2022-11-03 12:04:17,357 Processing page 36
+2022-11-03 12:04:53,330 Processing page 37
+2022-11-03 12:05:30,141 Processing page 38
+2022-11-03 12:05:48,207 Split uncaught Gale adkovan cea> OrderedDict([('number', '1067'), ('id', 'KL/12/087/267819')])
+2022-11-03 12:06:08,297 Processing page 39
+2022-11-03 12:06:44,183 Processing page 40
+2022-11-03 12:07:20,919 Processing page 41
+2022-11-03 12:07:58,808 Processing page 42
+2022-11-03 12:08:36,304 Processing page 43
+/share/svasudevan2lab/gs-delhi/parse_unsearchable_rolls/scripts/kerala/joblist_2016/kerala197.sh: line 1: 38995 Killed                  python scripts/kerala/kerala_2016.py data/part197/
+
+#################
+Epilogue Job Info:
+Job ID: 466350[197].acropolis
+User ID: t-9adar
+Job Name: Kerala2016JobArray-197
+Resource List: nodes=1:ppn=1,mem=2gb,neednodes=1:ppn=1
+Resources Used: cput=00:52:51,vmem=3379808kb,walltime=00:54:22,mem=2097152kb,energy_used=0
+Exit Code: 137
+Exit code 137 job terminated, resource limit violation
+Generally this means you need to request more RAM or CPU
+Please compare your resources used/requested
+#################
+

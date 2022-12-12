@@ -1,0 +1,74 @@
+2022-11-09 09:43:57,602 Converting data/part22/in/kerala/2015/2015_011_064.pdf to img...
+2022-11-09 09:44:07,338 Parsing first and last page data..
+2022-11-09 09:44:10,265 Detecting and parsing data/part22/in/kerala/2015/2015_011_064.pdf boxes..
+2022-11-09 09:44:10,266 Processing page 3
+2022-11-09 09:44:18,895 Split uncaught Cale @omoen) = all OrderedDict([('number', '20'), ('id', 'UXK0226761')])
+2022-11-09 09:44:39,055 Processing page 4
+2022-11-09 09:45:09,221 Processing page 5
+2022-11-09 09:45:39,534 Processing page 6
+2022-11-09 09:46:08,114 Processing page 7
+2022-11-09 09:46:34,779 Processing page 8
+2022-11-09 09:47:05,171 Processing page 9
+2022-11-09 09:47:35,507 Processing page 10
+2022-11-09 09:48:05,333 Processing page 11
+2022-11-09 09:48:36,842 Processing page 12
+2022-11-09 09:49:06,240 Processing page 13
+2022-11-09 09:49:37,161 Processing page 14
+2022-11-09 09:50:07,714 Processing page 15
+2022-11-09 09:50:38,227 Processing page 16
+2022-11-09 09:51:08,166 Processing page 17
+2022-11-09 09:51:35,768 Processing page 18
+2022-11-09 09:52:01,558 Processing page 19
+2022-11-09 09:52:32,340 Processing page 20
+2022-11-09 09:53:00,652 Processing page 21
+2022-11-09 09:53:30,340 Processing page 22
+2022-11-09 09:54:00,782 Processing page 23
+2022-11-09 09:54:28,409 Processing page 24
+2022-11-09 09:54:58,720 Processing page 25
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 119-122: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught aligned 1/239 = (0/311) OrderedDict([('number', '690'), ('id', 'LQF1110063'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d2a\u0d3f]'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d16\u0d3e\u0d26\u0d30\u0d4d\\u200d')])"
+Arguments: ()
+2022-11-09 09:55:00,746 Split uncaught aligned 1/239 = (0/311) OrderedDict([('number', '690'), ('id', 'LQF1110063'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d2a\u0d3f]'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d16\u0d3e\u0d26\u0d30\u0d4d\u200d')])
+2022-11-09 09:55:27,906 Processing page 26
+2022-11-09 09:55:58,797 Processing page 27
+2022-11-09 09:56:25,095 Processing page 28
+2022-11-09 09:56:54,326 Processing page 29
+2022-11-09 09:57:22,734 Processing page 30
+2022-11-09 09:57:33,520 Split uncaught Cole jean = all OrderedDict([('number', '$29'), ('id', 'UXK0351940')])
+2022-11-09 09:57:49,015 Processing page 31
+2022-11-09 09:58:15,471 Processing page 32
+2022-11-09 09:58:43,373 Processing page 33
+
+#################
+Epilogue Job Info:
+Job ID: 467116[22].acropolis
+User ID: t-9adar
+Job Name: Kerala2015JobArray-22
+Resource List: nodes=1:ppn=1,mem=3400mb,neednodes=1:ppn=1
+Resources Used: cput=00:14:54,vmem=2513196kb,walltime=00:15:12,mem=1548804kb,energy_used=0
+Exit Code: 271
+#################
+

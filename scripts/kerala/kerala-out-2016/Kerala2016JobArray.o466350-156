@@ -1,0 +1,85 @@
+2022-11-03 11:14:28,630 Converting data/part156/in/kerala/2016/2016_081_067.pdf to img...
+2022-11-03 11:14:38,362 Parsing first and last page data..
+2022-11-03 11:14:43,626 Detecting and parsing data/part156/in/kerala/2016/2016_081_067.pdf boxes..
+2022-11-03 11:14:43,626 Processing page 3
+2022-11-03 11:15:16,291 Processing page 4
+2022-11-03 11:15:48,405 Processing page 5
+2022-11-03 11:16:20,798 Processing page 6
+2022-11-03 11:16:52,980 Processing page 7
+2022-11-03 11:17:25,732 Processing page 8
+2022-11-03 11:18:00,082 Processing page 9
+2022-11-03 11:18:33,410 Processing page 10
+2022-11-03 11:19:06,512 Processing page 11
+2022-11-03 11:19:39,733 Processing page 12
+2022-11-03 11:20:13,898 Processing page 13
+2022-11-03 11:20:48,178 Processing page 14
+2022-11-03 11:21:23,067 Processing page 15
+2022-11-03 11:21:56,880 Processing page 16
+2022-11-03 11:22:30,632 Processing page 17
+2022-11-03 11:23:04,097 Processing page 18
+2022-11-03 11:23:38,453 Processing page 19
+2022-11-03 11:24:11,876 Processing page 20
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 39-43: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught \u0d2a\u0d47\u0d30\u0d4d\u200c =) OrderedDict([('number', '515'), ('id', 'KL/11/074/408181')])"
+Arguments: ()
+2022-11-03 11:24:42,982 Split uncaught \u0d2a\u0d47\u0d30\u0d4d\u200c =) OrderedDict([('number', '515'), ('id', 'KL/11/074/408181')])
+2022-11-03 11:24:44,244 Processing page 21
+2022-11-03 11:25:18,903 Processing page 22
+2022-11-03 11:25:52,479 Processing page 23
+2022-11-03 11:26:26,854 Processing page 24
+2022-11-03 11:27:00,741 Processing page 25
+2022-11-03 11:27:33,957 Processing page 26
+2022-11-03 11:28:07,540 Processing page 27
+2022-11-03 11:28:41,605 Processing page 28
+2022-11-03 11:29:14,955 Processing page 29
+2022-11-03 11:29:46,095 Processing page 30
+2022-11-03 11:30:20,472 Processing page 31
+2022-11-03 11:30:55,329 Processing page 32
+2022-11-03 11:31:29,529 Processing page 33
+2022-11-03 11:32:04,521 Processing page 34
+2022-11-03 11:32:39,308 Processing page 35
+2022-11-03 11:33:13,597 Processing page 36
+2022-11-03 11:33:47,871 Processing page 37
+2022-11-03 11:34:22,128 Processing page 38
+2022-11-03 11:34:56,642 Processing page 39
+2022-11-03 11:35:32,271 Processing page 40
+2022-11-03 11:36:06,207 Processing page 41
+2022-11-03 11:36:42,900 Processing page 42
+/share/svasudevan2lab/gs-delhi/parse_unsearchable_rolls/scripts/kerala/joblist_2016/kerala156.sh: line 1: 42443 Killed                  python scripts/kerala/kerala_2016.py data/part156/
+
+#################
+Epilogue Job Info:
+Job ID: 466350[156].acropolis
+User ID: t-9adar
+Job Name: Kerala2016JobArray-156
+Resource List: nodes=1:ppn=1,mem=2gb,neednodes=1:ppn=1
+Resources Used: cput=00:21:58,vmem=3396968kb,walltime=00:22:32,mem=1994928kb,energy_used=0
+Exit Code: 137
+Exit code 137 job terminated, resource limit violation
+Generally this means you need to request more RAM or CPU
+Please compare your resources used/requested
+#################
+

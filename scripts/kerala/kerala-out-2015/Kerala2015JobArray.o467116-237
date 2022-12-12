@@ -1,0 +1,74 @@
+2022-11-09 09:44:20,894 Converting data/part237/in/kerala/2015/2015_119_147.pdf to img...
+2022-11-09 09:44:26,004 Parsing first and last page data..
+2022-11-09 09:44:28,161 Detecting and parsing data/part237/in/kerala/2015/2015_119_147.pdf boxes..
+2022-11-09 09:44:28,161 Processing page 3
+2022-11-09 09:44:51,502 Processing page 4
+2022-11-09 09:45:15,978 Processing page 5
+2022-11-09 09:45:39,128 Processing page 6
+2022-11-09 09:46:03,164 Processing page 7
+2022-11-09 09:46:26,787 Processing page 8
+2022-11-09 09:46:51,003 Processing page 9
+2022-11-09 09:47:14,438 Processing page 10
+2022-11-09 09:47:39,123 Processing page 11
+2022-11-09 09:48:02,874 Processing page 12
+2022-11-09 09:48:27,087 Processing page 13
+2022-11-09 09:48:51,236 Processing page 14
+2022-11-09 09:49:15,185 Processing page 15
+2022-11-09 09:49:39,046 Processing page 16
+2022-11-09 09:50:08,074 Processing page 17
+2022-11-09 09:50:43,957 Processing page 18
+2022-11-09 09:51:18,426 Processing page 19
+2022-11-09 09:51:52,610 Processing page 20
+2022-11-09 09:52:25,354 Processing page 21
+2022-11-09 09:52:59,560 Processing page 22
+2022-11-09 09:53:33,179 Processing page 23
+2022-11-09 09:54:07,035 Processing page 24
+2022-11-09 09:54:40,675 Processing page 25
+2022-11-09 09:55:14,972 Processing page 26
+2022-11-09 09:55:39,119 Processing page 27
+2022-11-09 09:56:03,892 Processing page 28
+2022-11-09 09:56:27,667 Processing page 29
+2022-11-09 09:56:51,925 Processing page 30
+2022-11-09 09:57:15,687 Processing page 31
+2022-11-09 09:57:38,123 Processing page 32
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 129-132: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught allgyenie Od>2.2)) Ns agperuenave OrderedDict([('number', '880'), ('id', 'JMP3040466'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d21\u0d3f \u0d36\u0d3e\u0d2e\u0d41\u0d35\u0d47\u0d32\u0d4d\\u200d'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d32\u0d3f'), ('\u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d2e\u0d4d\u0d2a\u0d30\u0d4d', '210\u0d0e (0810)')])"
+Arguments: ()
+2022-11-09 09:57:41,221 Split uncaught allgyenie Od>2.2)) Ns agperuenave OrderedDict([('number', '880'), ('id', 'JMP3040466'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d21\u0d3f \u0d36\u0d3e\u0d2e\u0d41\u0d35\u0d47\u0d32\u0d4d\u200d'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d32\u0d3f'), ('\u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d2e\u0d4d\u0d2a\u0d30\u0d4d', '210\u0d0e (0810)')])
+2022-11-09 09:58:13,560 Processing page 33
+2022-11-09 09:58:49,273 Processing page 34
+2022-11-09 09:59:23,951 Processing page 35
+
+#################
+Epilogue Job Info:
+Job ID: 467116[237].acropolis
+User ID: t-9adar
+Job Name: Kerala2015JobArray-237
+Resource List: nodes=1:ppn=1,mem=3400mb,neednodes=1:ppn=1
+Resources Used: cput=00:15:02,vmem=2589564kb,walltime=00:15:28,mem=1624364kb,energy_used=0
+Exit Code: 271
+#################
+

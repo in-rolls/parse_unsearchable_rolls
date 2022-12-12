@@ -1,0 +1,76 @@
+2022-11-09 09:44:21,084 Converting data/part224/in/kerala/2015/2015_113_186.pdf to img...
+2022-11-09 09:44:26,528 Parsing first and last page data..
+2022-11-09 09:44:28,892 Detecting and parsing data/part224/in/kerala/2015/2015_113_186.pdf boxes..
+2022-11-09 09:44:28,892 Processing page 3
+2022-11-09 09:44:53,264 Processing page 4
+2022-11-09 09:45:17,475 Processing page 5
+2022-11-09 09:45:42,363 Processing page 6
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 122-125: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: 'Split uncaught AAgyeo.16" DELDIe>Cd OrderedDict([(\'number\', \'102\'), (\'id\', \'KL/14/112/021551\'), (\'\u0d2a\u0d47\u0d30\u0d4d\', \'\u0d0e\u0d32\u0d3f\u0d38\u0d2c\u0d47\u0d24\u0d4d\u0d24\u0d4d\\u200c \u0d2e\u0d3e\u0d24\u0d4d\u0d2f\u0d42\'), (\'\u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d2e\u0d4d\u0d2a\u0d30\u0d4d\', \'14/153 (12/153)\')])'
+Arguments: ()
+2022-11-09 09:45:57,608 Split uncaught AAgyeo.16" DELDIe>Cd OrderedDict([('number', '102'), ('id', 'KL/14/112/021551'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d0e\u0d32\u0d3f\u0d38\u0d2c\u0d47\u0d24\u0d4d\u0d24\u0d4d\u200c \u0d2e\u0d3e\u0d24\u0d4d\u0d2f\u0d42'), ('\u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d2e\u0d4d\u0d2a\u0d30\u0d4d', '14/153 (12/153)')])
+2022-11-09 09:46:07,708 Processing page 7
+2022-11-09 09:46:32,438 Processing page 8
+2022-11-09 09:46:56,671 Processing page 9
+2022-11-09 09:47:20,847 Processing page 10
+2022-11-09 09:47:46,525 Processing page 11
+2022-11-09 09:48:11,587 Processing page 12
+2022-11-09 09:48:36,395 Processing page 13
+2022-11-09 09:49:01,459 Processing page 14
+2022-11-09 09:49:26,974 Processing page 15
+2022-11-09 09:49:51,700 Processing page 16
+2022-11-09 09:50:16,974 Processing page 17
+2022-11-09 09:50:43,641 Processing page 18
+2022-11-09 09:51:10,044 Processing page 19
+2022-11-09 09:51:36,627 Processing page 20
+2022-11-09 09:52:02,367 Processing page 21
+2022-11-09 09:52:28,376 Processing page 22
+2022-11-09 09:52:54,023 Processing page 23
+2022-11-09 09:53:19,388 Processing page 24
+2022-11-09 09:53:45,477 Processing page 25
+2022-11-09 09:54:11,103 Processing page 26
+2022-11-09 09:54:36,648 Processing page 27
+2022-11-09 09:55:02,219 Processing page 28
+2022-11-09 09:55:28,599 Processing page 29
+2022-11-09 09:55:54,331 Processing page 30
+2022-11-09 09:56:20,701 Processing page 31
+2022-11-09 09:56:50,792 Processing page 32
+2022-11-09 09:57:17,582 Processing page 33
+2022-11-09 09:57:44,505 Processing page 34
+2022-11-09 09:58:11,698 Processing page 35
+2022-11-09 09:58:38,202 Processing page 36
+2022-11-09 09:59:05,461 Processing page 37
+
+#################
+Epilogue Job Info:
+Job ID: 467116[224].acropolis
+User ID: t-9adar
+Job Name: Kerala2015JobArray-224
+Resource List: nodes=1:ppn=1,mem=3400mb,neednodes=1:ppn=1
+Resources Used: cput=00:14:59,vmem=2622384kb,walltime=00:15:27,mem=1661056kb,energy_used=0
+Exit Code: 271
+#################
+

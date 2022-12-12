@@ -1,0 +1,88 @@
+2022-11-09 09:44:00,917 Converting data/part156/in/kerala/2015/2015_081_103.pdf to img...
+2022-11-09 09:44:05,824 Parsing first and last page data..
+2022-11-09 09:44:07,850 Detecting and parsing data/part156/in/kerala/2015/2015_081_103.pdf boxes..
+2022-11-09 09:44:07,850 Processing page 3
+2022-11-09 09:44:30,342 Processing page 4
+2022-11-09 09:44:53,237 Processing page 5
+2022-11-09 09:45:17,323 Processing page 6
+2022-11-09 09:45:40,891 Processing page 7
+2022-11-09 09:46:04,009 Processing page 8
+2022-11-09 09:46:27,411 Processing page 9
+2022-11-09 09:46:50,009 Processing page 10
+2022-11-09 09:47:13,523 Processing page 11
+2022-11-09 09:47:36,499 Processing page 12
+2022-11-09 09:47:59,824 Processing page 13
+2022-11-09 09:48:22,842 Processing page 14
+2022-11-09 09:48:45,873 Processing page 15
+2022-11-09 09:49:09,009 Processing page 16
+2022-11-09 09:49:31,938 Processing page 17
+2022-11-09 09:49:54,820 Processing page 18
+2022-11-09 09:50:17,675 Processing page 19
+2022-11-09 09:50:41,380 Processing page 20
+2022-11-09 09:51:04,919 Processing page 21
+2022-11-09 09:51:28,477 Processing page 22
+2022-11-09 09:51:51,579 Processing page 23
+2022-11-09 09:52:14,836 Processing page 24
+2022-11-09 09:52:37,997 Processing page 25
+2022-11-09 09:53:01,329 Processing page 26
+2022-11-09 09:53:25,173 Processing page 27
+2022-11-09 09:53:48,882 Processing page 28
+2022-11-09 09:54:12,426 Processing page 29
+2022-11-09 09:54:36,454 Processing page 30
+2022-11-09 09:55:00,908 Processing page 31
+2022-11-09 09:55:25,333 Processing page 32
+2022-11-09 09:55:49,711 Processing page 33
+2022-11-09 09:56:14,559 Processing page 34
+2022-11-09 09:56:39,563 Processing page 35
+2022-11-09 09:57:04,448 Processing page 36
+2022-11-09 09:57:29,410 Processing page 37
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 39-49: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught \u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d35\u0d30\u0d4d\u200d 11/662 nf = (7/127) OrderedDict([('number', '1029'), ('id', 'AFJ0084343'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d17\u0d4b\u0d2a\u0d41\u0d15\u0d43\u0d37\u0d4d\u0d23\u0d28\u0d4d\\u200d \u0d2a\u0d3f\u0d1c\u0d3f'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', 'cual')])"
+Arguments: ()
+2022-11-09 09:57:43,027 Split uncaught \u0d35\u0d40\u0d1f\u0d4d\u0d1f\u0d41\u0d28\u0d35\u0d30\u0d4d\u200d 11/662 nf = (7/127) OrderedDict([('number', '1029'), ('id', 'AFJ0084343'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d17\u0d4b\u0d2a\u0d41\u0d15\u0d43\u0d37\u0d4d\u0d23\u0d28\u0d4d\u200d \u0d2a\u0d3f\u0d1c\u0d3f'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', 'cual')])
+2022-11-09 09:57:49,997 Processing page 38
+2022-11-09 09:58:12,645 Processing page 39
+2022-11-09 09:58:12,780 Processing page 40
+2022-11-09 09:58:33,823 Processing page 41
+2022-11-09 09:58:34,703 Processing page 42
+2022-11-09 09:58:43,974 Formatting and exporting data/part156/in/kerala/2015/2015_081_103.pdf data..
+2022-11-09 09:58:44,055 Converted to csv: data/out/kerala/2015/2015_081_103.csv
+2022-11-09 09:58:44,066 Converting data/part156/in/kerala/2015/2015_081_104.pdf to img...
+2022-11-09 09:58:50,039 Parsing first and last page data..
+2022-11-09 09:58:52,193 Detecting and parsing data/part156/in/kerala/2015/2015_081_104.pdf boxes..
+2022-11-09 09:58:52,194 Processing page 3
+2022-11-09 09:59:15,566 Processing page 4
+
+#################
+Epilogue Job Info:
+Job ID: 467116[156].acropolis
+User ID: t-9adar
+Job Name: Kerala2015JobArray-156
+Resource List: nodes=1:ppn=1,mem=3400mb,neednodes=1:ppn=1
+Resources Used: cput=00:15:13,vmem=2823448kb,walltime=00:15:24,mem=1859720kb,energy_used=0
+Exit Code: 271
+#################
+

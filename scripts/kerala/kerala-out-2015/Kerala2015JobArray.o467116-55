@@ -1,0 +1,119 @@
+2022-11-09 09:43:57,669 Converting data/part55/in/kerala/2015/2015_028_096.pdf to img...
+2022-11-09 09:44:05,076 Parsing first and last page data..
+2022-11-09 09:44:07,890 Detecting and parsing data/part55/in/kerala/2015/2015_028_096.pdf boxes..
+2022-11-09 09:44:07,890 Processing page 3
+2022-11-09 09:44:44,897 Processing page 4
+2022-11-09 09:45:22,107 Processing page 5
+2022-11-09 09:45:59,021 Processing page 6
+2022-11-09 09:46:35,812 Processing page 7
+2022-11-09 09:47:11,950 Processing page 8
+2022-11-09 09:47:48,725 Processing page 9
+2022-11-09 09:48:26,583 Processing page 10
+2022-11-09 09:49:04,890 Processing page 11
+2022-11-09 09:49:43,225 Processing page 12
+2022-11-09 09:50:21,904 Processing page 13
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 129-132: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught allgynaud 20/443ag)1 PActist=i<)) OrderedDict([('number', '312'), ('id', 'WEY0136655'), ('\u0d2a\u0d47\u0d30\u0d4d', 'allnw'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d2e\u0d3e\u0d27\u0d35\u0d26\u0d3e\u0d38\u0d4d\\u200c')])"
+Arguments: ()
+2022-11-09 09:50:44,814 Split uncaught allgynaud 20/443ag)1 PActist=i<)) OrderedDict([('number', '312'), ('id', 'WEY0136655'), ('\u0d2a\u0d47\u0d30\u0d4d', 'allnw'), ('\u0d05\u0d1a\u0d4d\u0d1b\u0d28\u0d4d\u0d31\u0d46 \u0d2a\u0d47\u0d30\u0d4d', '\u0d2e\u0d3e\u0d27\u0d35\u0d26\u0d3e\u0d38\u0d4d\u200c')])
+2022-11-09 09:50:59,665 Processing page 14
+2022-11-09 09:51:37,537 Processing page 15
+2022-11-09 09:52:14,256 Processing page 16
+2022-11-09 09:52:50,873 Processing page 17
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 129-132: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught allggnaue 20/465 elist=i0)) OrderedDict([('number', '429'), ('id', 'KL/04/025/111287'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d17\u0d40\u0d24')])"
+Arguments: ()
+2022-11-09 09:53:17,845 Split uncaught allggnaue 20/465 elist=i0)) OrderedDict([('number', '429'), ('id', 'KL/04/025/111287'), ('\u0d2a\u0d47\u0d30\u0d4d', '\u0d17\u0d40\u0d24')])
+2022-11-09 09:53:28,131 Processing page 18
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/logging/__init__.py", line 1084, in emit
+    stream.write(msg + self.terminator)
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 127-130: ordinal not in range(256)
+Call stack:
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 80, in _worker
+    work_item.run()
+  File "/home/t-9adar/.conda/envs/env38/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 320, in get_data
+    processed_box = self.process_boxes_text(text)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 149, in process_boxes_text
+    result, last_key, is_splitted = self.columns_split(r, self.columns, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 255, in columns_split
+    result, last_key, is_splitted = self.handle_separator_without_column(r, result, last_key)
+  File "../parse_unsearchable_rolls/parser/parser.py", line 226, in handle_separator_without_column
+    logging.warning(f'Split uncaught {r} {result}')
+Message: "Split uncaught allgynaué 20/474 istst=)) OrderedDict([('number', '458'), ('id', 'KL/04/025/111515'), ('\u0d2a\u0d47\u0d30\u0d4d', 'smal')])"
+Arguments: ()
+2022-11-09 09:53:57,149 Split uncaught allgynaué 20/474 istst=)) OrderedDict([('number', '458'), ('id', 'KL/04/025/111515'), ('\u0d2a\u0d47\u0d30\u0d4d', 'smal')])
+2022-11-09 09:54:04,886 Processing page 19
+2022-11-09 09:54:41,743 Processing page 20
+2022-11-09 09:55:18,510 Processing page 21
+2022-11-09 09:55:54,517 Processing page 22
+2022-11-09 09:56:31,248 Processing page 23
+2022-11-09 09:57:08,677 Processing page 24
+2022-11-09 09:57:45,108 Processing page 25
+2022-11-09 09:58:20,926 Processing page 26
+
+#################
+Epilogue Job Info:
+Job ID: 467116[55].acropolis
+User ID: t-9adar
+Job Name: Kerala2015JobArray-55
+Resource List: nodes=1:ppn=1,mem=3400mb,neednodes=1:ppn=1
+Resources Used: cput=00:14:58,vmem=2204212kb,walltime=00:15:15,mem=1239788kb,energy_used=0
+Exit Code: 271
+#################
+
